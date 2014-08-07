@@ -1,0 +1,881 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9FB29BAB481D4554A680B637 /* libPods-Aqarland.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5927B457B6A417681F471E3 /* libPods-Aqarland.a */; };
+		B7948F94198A3A4C00936E16 /* CustomPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948F8F198A3A4C00936E16 /* CustomPinView.m */; };
+		B7948F95198A3A4C00936E16 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948F91198A3A4C00936E16 /* MapAnnotation.m */; };
+		B7948F96198A3A4C00936E16 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948F93198A3A4C00936E16 /* MKMapView+ZoomLevel.m */; };
+		B7948F9C198A3D6900936E16 /* dashboard_map_icn_station.png in Resources */ = {isa = PBXBuildFile; fileRef = B7948F98198A3D6900936E16 /* dashboard_map_icn_station.png */; };
+		B7948F9D198A3D6900936E16 /* dashboard_map_icn_station@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7948F99198A3D6900936E16 /* dashboard_map_icn_station@2x.png */; };
+		B7948F9E198A3D6900936E16 /* dashboard_map_icn_station_selector.png in Resources */ = {isa = PBXBuildFile; fileRef = B7948F9A198A3D6900936E16 /* dashboard_map_icn_station_selector.png */; };
+		B7948F9F198A3D6900936E16 /* dashboard_map_icn_station_selector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7948F9B198A3D6900936E16 /* dashboard_map_icn_station_selector@2x.png */; };
+		B7948FA2198B571A00936E16 /* AQCreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948FA1198B571A00936E16 /* AQCreateAccountViewController.m */; };
+		B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948FA4198B73B000936E16 /* ParseLayerService.m */; };
+		B7A43B081988A2A800180532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B071988A2A800180532 /* Foundation.framework */; };
+		B7A43B0A1988A2A800180532 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B091988A2A800180532 /* CoreGraphics.framework */; };
+		B7A43B0C1988A2A800180532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B0B1988A2A800180532 /* UIKit.framework */; };
+		B7A43B121988A2A800180532 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7A43B101988A2A800180532 /* InfoPlist.strings */; };
+		B7A43B141988A2A800180532 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B131988A2A800180532 /* main.m */; };
+		B7A43B181988A2A800180532 /* AQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B171988A2A800180532 /* AQAppDelegate.m */; };
+		B7A43B1B1988A2A800180532 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7A43B191988A2A800180532 /* Main.storyboard */; };
+		B7A43B1E1988A2A800180532 /* AQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B1D1988A2A800180532 /* AQViewController.m */; };
+		B7A43B201988A2A800180532 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7A43B1F1988A2A800180532 /* Images.xcassets */; };
+		B7A43B271988A2A800180532 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B261988A2A800180532 /* XCTest.framework */; };
+		B7A43B281988A2A800180532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B071988A2A800180532 /* Foundation.framework */; };
+		B7A43B291988A2A800180532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B0B1988A2A800180532 /* UIKit.framework */; };
+		B7A43B311988A2A800180532 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7A43B2F1988A2A800180532 /* InfoPlist.strings */; };
+		B7A43B331988A2A800180532 /* AqarlandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B321988A2A800180532 /* AqarlandTests.m */; };
+		B7A43B521988A35B00180532 /* CustomLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B461988A35B00180532 /* CustomLoginVC.m */; };
+		B7A43B531988A35B00180532 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B4F1988A35B00180532 /* Global.m */; };
+		B7A43B5F1988A40700180532 /* AQHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B5E1988A40700180532 /* AQHomeViewController.m */; };
+		B7A43B621988A41C00180532 /* AQSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B611988A41C00180532 /* AQSideMenuViewController.m */; };
+		B7A43B681988BB6400180532 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7A43B6A1988BB6400180532 /* Localizable.strings */; };
+		B7A43B781988C6BD00180532 /* CustomSignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B771988C6BD00180532 /* CustomSignUpVC.m */; };
+		B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B7B1988C8E700180532 /* AQSignUpViewController.m */; };
+		B7A43B8D198A23CB00180532 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B8C198A23CB00180532 /* CoreLocation.framework */; };
+		B7A43B8F198A23D100180532 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B8E198A23D100180532 /* MapKit.framework */; };
+		B7AABE001990CF2500DEADAD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABDFF1990CF2500DEADAD /* Accounts.framework */; };
+		B7AABE021990CF2D00DEADAD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABE011990CF2D00DEADAD /* Social.framework */; };
+		B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE071991E7B000DEADAD /* FHSStream.m */; };
+		B7AABE1A1991E7B000DEADAD /* FHSTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE091991E7B000DEADAD /* FHSTwitterEngine.m */; };
+		B7AABE1B1991E7B000DEADAD /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE0D1991E7B000DEADAD /* NSData+Base64.m */; };
+		B7AABE1C1991E7B000DEADAD /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE0F1991E7B000DEADAD /* OAuth+Additions.m */; };
+		B7AABE1D1991E7B000DEADAD /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE111991E7B000DEADAD /* OAuthCore.m */; };
+		B7AABE1E1991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE131991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m */; };
+		B7AABE1F1991E7B000DEADAD /* TWAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE161991E7B000DEADAD /* TWAPIManager.m */; };
+		B7AABE201991E7B000DEADAD /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE181991E7B000DEADAD /* TWSignedRequest.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B7A43B2A1988A2A800180532 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7A43AFC1988A2A800180532 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7A43B031988A2A800180532;
+			remoteInfo = Aqarland;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9529DA1ECBA845959C7ED5E2 /* Pods-Aqarland.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aqarland.xcconfig"; path = "Pods/Pods-Aqarland.xcconfig"; sourceTree = "<group>"; };
+		A5927B457B6A417681F471E3 /* libPods-Aqarland.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aqarland.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7948F8E198A3A4C00936E16 /* CustomPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPinView.h; sourceTree = "<group>"; };
+		B7948F8F198A3A4C00936E16 /* CustomPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPinView.m; sourceTree = "<group>"; };
+		B7948F90198A3A4C00936E16 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
+		B7948F91198A3A4C00936E16 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
+		B7948F92198A3A4C00936E16 /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
+		B7948F93198A3A4C00936E16 /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
+		B7948F98198A3D6900936E16 /* dashboard_map_icn_station.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_map_icn_station.png; sourceTree = "<group>"; };
+		B7948F99198A3D6900936E16 /* dashboard_map_icn_station@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboard_map_icn_station@2x.png"; sourceTree = "<group>"; };
+		B7948F9A198A3D6900936E16 /* dashboard_map_icn_station_selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboard_map_icn_station_selector.png; sourceTree = "<group>"; };
+		B7948F9B198A3D6900936E16 /* dashboard_map_icn_station_selector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboard_map_icn_station_selector@2x.png"; sourceTree = "<group>"; };
+		B7948FA0198B571A00936E16 /* AQCreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQCreateAccountViewController.h; sourceTree = "<group>"; };
+		B7948FA1198B571A00936E16 /* AQCreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQCreateAccountViewController.m; sourceTree = "<group>"; };
+		B7948FA3198B73B000936E16 /* ParseLayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseLayerService.h; sourceTree = "<group>"; };
+		B7948FA4198B73B000936E16 /* ParseLayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseLayerService.m; sourceTree = "<group>"; };
+		B7A43B041988A2A800180532 /* Aqarland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqarland.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7A43B071988A2A800180532 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B7A43B091988A2A800180532 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B7A43B0B1988A2A800180532 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B7A43B0F1988A2A800180532 /* Aqarland-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Aqarland-Info.plist"; sourceTree = "<group>"; };
+		B7A43B111988A2A800180532 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B7A43B131988A2A800180532 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B7A43B151988A2A800180532 /* Aqarland-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aqarland-Prefix.pch"; sourceTree = "<group>"; };
+		B7A43B161988A2A800180532 /* AQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQAppDelegate.h; sourceTree = "<group>"; };
+		B7A43B171988A2A800180532 /* AQAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AQAppDelegate.m; sourceTree = "<group>"; };
+		B7A43B1A1988A2A800180532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B7A43B1C1988A2A800180532 /* AQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQViewController.h; sourceTree = "<group>"; };
+		B7A43B1D1988A2A800180532 /* AQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AQViewController.m; sourceTree = "<group>"; };
+		B7A43B1F1988A2A800180532 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B7A43B251988A2A800180532 /* AqarlandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AqarlandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7A43B261988A2A800180532 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B7A43B2E1988A2A800180532 /* AqarlandTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AqarlandTests-Info.plist"; sourceTree = "<group>"; };
+		B7A43B301988A2A800180532 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B7A43B321988A2A800180532 /* AqarlandTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AqarlandTests.m; sourceTree = "<group>"; };
+		B7A43B451988A35B00180532 /* CustomLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoginVC.h; sourceTree = "<group>"; };
+		B7A43B461988A35B00180532 /* CustomLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoginVC.m; sourceTree = "<group>"; };
+		B7A43B4D1988A35B00180532 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		B7A43B4E1988A35B00180532 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		B7A43B4F1988A35B00180532 /* Global.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
+		B7A43B5D1988A40700180532 /* AQHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQHomeViewController.h; sourceTree = "<group>"; };
+		B7A43B5E1988A40700180532 /* AQHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQHomeViewController.m; sourceTree = "<group>"; };
+		B7A43B601988A41C00180532 /* AQSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSideMenuViewController.h; sourceTree = "<group>"; };
+		B7A43B611988A41C00180532 /* AQSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSideMenuViewController.m; sourceTree = "<group>"; };
+		B7A43B651988BB3800180532 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B7A43B671988BB3800180532 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B7A43B691988BB6400180532 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7A43B6B1988BBA500180532 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7A43B751988C45F00180532 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		B7A43B761988C6BD00180532 /* CustomSignUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSignUpVC.h; sourceTree = "<group>"; };
+		B7A43B771988C6BD00180532 /* CustomSignUpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSignUpVC.m; sourceTree = "<group>"; };
+		B7A43B7A1988C8E700180532 /* AQSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSignUpViewController.h; sourceTree = "<group>"; };
+		B7A43B7B1988C8E700180532 /* AQSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSignUpViewController.m; sourceTree = "<group>"; };
+		B7A43B8C198A23CB00180532 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B7A43B8E198A23D100180532 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B7AABDFF1990CF2500DEADAD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		B7AABE011990CF2D00DEADAD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		B7AABE061991E7B000DEADAD /* FHSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSStream.h; sourceTree = "<group>"; };
+		B7AABE071991E7B000DEADAD /* FHSStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSStream.m; sourceTree = "<group>"; };
+		B7AABE081991E7B000DEADAD /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
+		B7AABE091991E7B000DEADAD /* FHSTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTwitterEngine.m; sourceTree = "<group>"; };
+		B7AABE0C1991E7B000DEADAD /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		B7AABE0D1991E7B000DEADAD /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		B7AABE0E1991E7B000DEADAD /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
+		B7AABE0F1991E7B000DEADAD /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
+		B7AABE101991E7B000DEADAD /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
+		B7AABE111991E7B000DEADAD /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+		B7AABE121991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFTwitterUtils+NativeTwitter.h"; sourceTree = "<group>"; };
+		B7AABE131991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFTwitterUtils+NativeTwitter.m"; sourceTree = "<group>"; };
+		B7AABE151991E7B000DEADAD /* TWAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWAPIManager.h; sourceTree = "<group>"; };
+		B7AABE161991E7B000DEADAD /* TWAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWAPIManager.m; sourceTree = "<group>"; };
+		B7AABE171991E7B000DEADAD /* TWSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSignedRequest.h; sourceTree = "<group>"; };
+		B7AABE181991E7B000DEADAD /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B7A43B011988A2A800180532 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7AABE021990CF2D00DEADAD /* Social.framework in Frameworks */,
+				B7AABE001990CF2500DEADAD /* Accounts.framework in Frameworks */,
+				B7A43B8F198A23D100180532 /* MapKit.framework in Frameworks */,
+				B7A43B8D198A23CB00180532 /* CoreLocation.framework in Frameworks */,
+				B7A43B0A1988A2A800180532 /* CoreGraphics.framework in Frameworks */,
+				B7A43B0C1988A2A800180532 /* UIKit.framework in Frameworks */,
+				B7A43B081988A2A800180532 /* Foundation.framework in Frameworks */,
+				9FB29BAB481D4554A680B637 /* libPods-Aqarland.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7A43B221988A2A800180532 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7A43B271988A2A800180532 /* XCTest.framework in Frameworks */,
+				B7A43B291988A2A800180532 /* UIKit.framework in Frameworks */,
+				B7A43B281988A2A800180532 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B7948F8D198A3A4C00936E16 /* MapClassHelper */ = {
+			isa = PBXGroup;
+			children = (
+				B7948F8E198A3A4C00936E16 /* CustomPinView.h */,
+				B7948F8F198A3A4C00936E16 /* CustomPinView.m */,
+				B7948F90198A3A4C00936E16 /* MapAnnotation.h */,
+				B7948F91198A3A4C00936E16 /* MapAnnotation.m */,
+				B7948F92198A3A4C00936E16 /* MKMapView+ZoomLevel.h */,
+				B7948F93198A3A4C00936E16 /* MKMapView+ZoomLevel.m */,
+			);
+			path = MapClassHelper;
+			sourceTree = "<group>";
+		};
+		B7948F97198A3D6900936E16 /* mapImage */ = {
+			isa = PBXGroup;
+			children = (
+				B7948F98198A3D6900936E16 /* dashboard_map_icn_station.png */,
+				B7948F99198A3D6900936E16 /* dashboard_map_icn_station@2x.png */,
+				B7948F9A198A3D6900936E16 /* dashboard_map_icn_station_selector.png */,
+				B7948F9B198A3D6900936E16 /* dashboard_map_icn_station_selector@2x.png */,
+			);
+			path = mapImage;
+			sourceTree = "<group>";
+		};
+		B7A43AFB1988A2A800180532 = {
+			isa = PBXGroup;
+			children = (
+				B7A43B0D1988A2A800180532 /* Aqarland */,
+				B7A43B2C1988A2A800180532 /* AqarlandTests */,
+				B7A43B061988A2A800180532 /* Frameworks */,
+				B7A43B051988A2A800180532 /* Products */,
+				9529DA1ECBA845959C7ED5E2 /* Pods-Aqarland.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		B7A43B051988A2A800180532 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B041988A2A800180532 /* Aqarland.app */,
+				B7A43B251988A2A800180532 /* AqarlandTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B7A43B061988A2A800180532 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7AABE011990CF2D00DEADAD /* Social.framework */,
+				B7AABDFF1990CF2500DEADAD /* Accounts.framework */,
+				B7A43B8E198A23D100180532 /* MapKit.framework */,
+				B7A43B8C198A23CB00180532 /* CoreLocation.framework */,
+				B7A43B071988A2A800180532 /* Foundation.framework */,
+				B7A43B091988A2A800180532 /* CoreGraphics.framework */,
+				B7A43B0B1988A2A800180532 /* UIKit.framework */,
+				B7A43B261988A2A800180532 /* XCTest.framework */,
+				A5927B457B6A417681F471E3 /* libPods-Aqarland.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7A43B0D1988A2A800180532 /* Aqarland */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B3C1988A35B00180532 /* CustomUI */,
+				B7A43B441988A35B00180532 /* HelperClass */,
+				B7A43B471988A35B00180532 /* MainViewControllers */,
+				B7A43B481988A35B00180532 /* Model */,
+				B7A43B491988A35B00180532 /* Resources */,
+				B7A43B4C1988A35B00180532 /* Util */,
+				B7A43B501988A35B00180532 /* Vendor */,
+				B7A43B511988A35B00180532 /* WebService */,
+				B7A43B161988A2A800180532 /* AQAppDelegate.h */,
+				B7A43B171988A2A800180532 /* AQAppDelegate.m */,
+				B7A43B191988A2A800180532 /* Main.storyboard */,
+				B7A43B1C1988A2A800180532 /* AQViewController.h */,
+				B7A43B1D1988A2A800180532 /* AQViewController.m */,
+				B7A43B5D1988A40700180532 /* AQHomeViewController.h */,
+				B7A43B5E1988A40700180532 /* AQHomeViewController.m */,
+				B7A43B601988A41C00180532 /* AQSideMenuViewController.h */,
+				B7A43B611988A41C00180532 /* AQSideMenuViewController.m */,
+				B7A43B1F1988A2A800180532 /* Images.xcassets */,
+				B7A43B0E1988A2A800180532 /* Supporting Files */,
+			);
+			path = Aqarland;
+			sourceTree = "<group>";
+		};
+		B7A43B0E1988A2A800180532 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B0F1988A2A800180532 /* Aqarland-Info.plist */,
+				B7A43B101988A2A800180532 /* InfoPlist.strings */,
+				B7A43B131988A2A800180532 /* main.m */,
+				B7A43B151988A2A800180532 /* Aqarland-Prefix.pch */,
+				B7A43B6A1988BB6400180532 /* Localizable.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B7A43B2C1988A2A800180532 /* AqarlandTests */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B321988A2A800180532 /* AqarlandTests.m */,
+				B7A43B2D1988A2A800180532 /* Supporting Files */,
+			);
+			path = AqarlandTests;
+			sourceTree = "<group>";
+		};
+		B7A43B2D1988A2A800180532 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B2E1988A2A800180532 /* AqarlandTests-Info.plist */,
+				B7A43B2F1988A2A800180532 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B7A43B3C1988A35B00180532 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B3D1988A35B00180532 /* CustomButtons */,
+				B7A43B3E1988A35B00180532 /* CustomCells */,
+				B7A43B3F1988A35B00180532 /* CustomFonts */,
+				B7A43B401988A35B00180532 /* CustomLabels */,
+				B7A43B411988A35B00180532 /* CustomPickers */,
+				B7A43B421988A35B00180532 /* CustomTextField */,
+				B7A43B431988A35B00180532 /* CustomViews */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		B7A43B3D1988A35B00180532 /* CustomButtons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomButtons;
+			sourceTree = "<group>";
+		};
+		B7A43B3E1988A35B00180532 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		B7A43B3F1988A35B00180532 /* CustomFonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomFonts;
+			sourceTree = "<group>";
+		};
+		B7A43B401988A35B00180532 /* CustomLabels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomLabels;
+			sourceTree = "<group>";
+		};
+		B7A43B411988A35B00180532 /* CustomPickers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomPickers;
+			sourceTree = "<group>";
+		};
+		B7A43B421988A35B00180532 /* CustomTextField */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomTextField;
+			sourceTree = "<group>";
+		};
+		B7A43B431988A35B00180532 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		B7A43B441988A35B00180532 /* HelperClass */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B451988A35B00180532 /* CustomLoginVC.h */,
+				B7A43B461988A35B00180532 /* CustomLoginVC.m */,
+				B7A43B761988C6BD00180532 /* CustomSignUpVC.h */,
+				B7A43B771988C6BD00180532 /* CustomSignUpVC.m */,
+			);
+			path = HelperClass;
+			sourceTree = "<group>";
+		};
+		B7A43B471988A35B00180532 /* MainViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B791988C8B300180532 /* SignUp */,
+			);
+			path = MainViewControllers;
+			sourceTree = "<group>";
+		};
+		B7A43B481988A35B00180532 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B7A43B491988A35B00180532 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B4A1988A35B00180532 /* Fonts */,
+				B7A43B4B1988A35B00180532 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B7A43B4A1988A35B00180532 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B7A43B4B1988A35B00180532 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B7948F97198A3D6900936E16 /* mapImage */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		B7A43B4C1988A35B00180532 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B4D1988A35B00180532 /* Constants.h */,
+				B7A43B4E1988A35B00180532 /* Global.h */,
+				B7A43B4F1988A35B00180532 /* Global.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		B7A43B501988A35B00180532 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B7AABE051991E7B000DEADAD /* FHSTwitterEngine */,
+				B7AABE0A1991E7B000DEADAD /* PFTwitterUtils-NativeTwitter */,
+				B7948F8D198A3A4C00936E16 /* MapClassHelper */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		B7A43B511988A35B00180532 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				B7948FA3198B73B000936E16 /* ParseLayerService.h */,
+				B7948FA4198B73B000936E16 /* ParseLayerService.m */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
+		B7A43B791988C8B300180532 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				B7A43B7A1988C8E700180532 /* AQSignUpViewController.h */,
+				B7A43B7B1988C8E700180532 /* AQSignUpViewController.m */,
+				B7948FA0198B571A00936E16 /* AQCreateAccountViewController.h */,
+				B7948FA1198B571A00936E16 /* AQCreateAccountViewController.m */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		B7AABE051991E7B000DEADAD /* FHSTwitterEngine */ = {
+			isa = PBXGroup;
+			children = (
+				B7AABE061991E7B000DEADAD /* FHSStream.h */,
+				B7AABE071991E7B000DEADAD /* FHSStream.m */,
+				B7AABE081991E7B000DEADAD /* FHSTwitterEngine.h */,
+				B7AABE091991E7B000DEADAD /* FHSTwitterEngine.m */,
+			);
+			path = FHSTwitterEngine;
+			sourceTree = "<group>";
+		};
+		B7AABE0A1991E7B000DEADAD /* PFTwitterUtils-NativeTwitter */ = {
+			isa = PBXGroup;
+			children = (
+				B7AABE0B1991E7B000DEADAD /* ABOAuthCore */,
+				B7AABE121991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.h */,
+				B7AABE131991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m */,
+				B7AABE141991E7B000DEADAD /* TwitterReverseAuth */,
+			);
+			path = "PFTwitterUtils-NativeTwitter";
+			sourceTree = "<group>";
+		};
+		B7AABE0B1991E7B000DEADAD /* ABOAuthCore */ = {
+			isa = PBXGroup;
+			children = (
+				B7AABE0C1991E7B000DEADAD /* NSData+Base64.h */,
+				B7AABE0D1991E7B000DEADAD /* NSData+Base64.m */,
+				B7AABE0E1991E7B000DEADAD /* OAuth+Additions.h */,
+				B7AABE0F1991E7B000DEADAD /* OAuth+Additions.m */,
+				B7AABE101991E7B000DEADAD /* OAuthCore.h */,
+				B7AABE111991E7B000DEADAD /* OAuthCore.m */,
+			);
+			path = ABOAuthCore;
+			sourceTree = "<group>";
+		};
+		B7AABE141991E7B000DEADAD /* TwitterReverseAuth */ = {
+			isa = PBXGroup;
+			children = (
+				B7AABE151991E7B000DEADAD /* TWAPIManager.h */,
+				B7AABE161991E7B000DEADAD /* TWAPIManager.m */,
+				B7AABE171991E7B000DEADAD /* TWSignedRequest.h */,
+				B7AABE181991E7B000DEADAD /* TWSignedRequest.m */,
+			);
+			path = TwitterReverseAuth;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B7A43B031988A2A800180532 /* Aqarland */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7A43B361988A2A800180532 /* Build configuration list for PBXNativeTarget "Aqarland" */;
+			buildPhases = (
+				EAC6A5D290CC448187882ABB /* Check Pods Manifest.lock */,
+				B7A43B001988A2A800180532 /* Sources */,
+				B7A43B011988A2A800180532 /* Frameworks */,
+				B7A43B021988A2A800180532 /* Resources */,
+				7D931EBBC6784ADFA5B1FB19 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Aqarland;
+			productName = Aqarland;
+			productReference = B7A43B041988A2A800180532 /* Aqarland.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B7A43B241988A2A800180532 /* AqarlandTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7A43B391988A2A800180532 /* Build configuration list for PBXNativeTarget "AqarlandTests" */;
+			buildPhases = (
+				B7A43B211988A2A800180532 /* Sources */,
+				B7A43B221988A2A800180532 /* Frameworks */,
+				B7A43B231988A2A800180532 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B7A43B2B1988A2A800180532 /* PBXTargetDependency */,
+			);
+			name = AqarlandTests;
+			productName = AqarlandTests;
+			productReference = B7A43B251988A2A800180532 /* AqarlandTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B7A43AFC1988A2A800180532 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AQ;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Louise;
+				TargetAttributes = {
+					B7A43B241988A2A800180532 = {
+						TestTargetID = B7A43B031988A2A800180532;
+					};
+				};
+			};
+			buildConfigurationList = B7A43AFF1988A2A800180532 /* Build configuration list for PBXProject "Aqarland" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ar,
+			);
+			mainGroup = B7A43AFB1988A2A800180532;
+			productRefGroup = B7A43B051988A2A800180532 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B7A43B031988A2A800180532 /* Aqarland */,
+				B7A43B241988A2A800180532 /* AqarlandTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B7A43B021988A2A800180532 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7948F9D198A3D6900936E16 /* dashboard_map_icn_station@2x.png in Resources */,
+				B7948F9C198A3D6900936E16 /* dashboard_map_icn_station.png in Resources */,
+				B7A43B201988A2A800180532 /* Images.xcassets in Resources */,
+				B7A43B681988BB6400180532 /* Localizable.strings in Resources */,
+				B7A43B121988A2A800180532 /* InfoPlist.strings in Resources */,
+				B7948F9F198A3D6900936E16 /* dashboard_map_icn_station_selector@2x.png in Resources */,
+				B7948F9E198A3D6900936E16 /* dashboard_map_icn_station_selector.png in Resources */,
+				B7A43B1B1988A2A800180532 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7A43B231988A2A800180532 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7A43B311988A2A800180532 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7D931EBBC6784ADFA5B1FB19 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Aqarland-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EAC6A5D290CC448187882ABB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B7A43B001988A2A800180532 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7948FA2198B571A00936E16 /* AQCreateAccountViewController.m in Sources */,
+				B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */,
+				B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */,
+				B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */,
+				B7AABE1E1991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m in Sources */,
+				B7AABE1B1991E7B000DEADAD /* NSData+Base64.m in Sources */,
+				B7948F96198A3A4C00936E16 /* MKMapView+ZoomLevel.m in Sources */,
+				B7948F94198A3A4C00936E16 /* CustomPinView.m in Sources */,
+				B7AABE1C1991E7B000DEADAD /* OAuth+Additions.m in Sources */,
+				B7A43B181988A2A800180532 /* AQAppDelegate.m in Sources */,
+				B7AABE201991E7B000DEADAD /* TWSignedRequest.m in Sources */,
+				B7AABE1A1991E7B000DEADAD /* FHSTwitterEngine.m in Sources */,
+				B7A43B1E1988A2A800180532 /* AQViewController.m in Sources */,
+				B7A43B621988A41C00180532 /* AQSideMenuViewController.m in Sources */,
+				B7A43B531988A35B00180532 /* Global.m in Sources */,
+				B7A43B141988A2A800180532 /* main.m in Sources */,
+				B7948F95198A3A4C00936E16 /* MapAnnotation.m in Sources */,
+				B7AABE1D1991E7B000DEADAD /* OAuthCore.m in Sources */,
+				B7A43B781988C6BD00180532 /* CustomSignUpVC.m in Sources */,
+				B7AABE1F1991E7B000DEADAD /* TWAPIManager.m in Sources */,
+				B7A43B521988A35B00180532 /* CustomLoginVC.m in Sources */,
+				B7A43B5F1988A40700180532 /* AQHomeViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7A43B211988A2A800180532 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7A43B331988A2A800180532 /* AqarlandTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B7A43B2B1988A2A800180532 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7A43B031988A2A800180532 /* Aqarland */;
+			targetProxy = B7A43B2A1988A2A800180532 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B7A43B101988A2A800180532 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7A43B111988A2A800180532 /* en */,
+				B7A43B651988BB3800180532 /* ar */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B7A43B191988A2A800180532 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7A43B1A1988A2A800180532 /* Base */,
+				B7A43B751988C45F00180532 /* ar */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B7A43B2F1988A2A800180532 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7A43B301988A2A800180532 /* en */,
+				B7A43B671988BB3800180532 /* ar */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B7A43B6A1988BB6400180532 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7A43B691988BB6400180532 /* en */,
+				B7A43B6B1988BBA500180532 /* ar */,
+			);
+			name = Localizable.strings;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B7A43B341988A2A800180532 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B7A43B351988A2A800180532 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B7A43B371988A2A800180532 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9529DA1ECBA845959C7ED5E2 /* Pods-Aqarland.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Aqarland/Aqarland-Prefix.pch";
+				INFOPLIST_FILE = "Aqarland/Aqarland-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B7A43B381988A2A800180532 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9529DA1ECBA845959C7ED5E2 /* Pods-Aqarland.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Aqarland/Aqarland-Prefix.pch";
+				INFOPLIST_FILE = "Aqarland/Aqarland-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B7A43B3A1988A2A800180532 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Aqarland.app/Aqarland";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Aqarland/Aqarland-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "AqarlandTests/AqarlandTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B7A43B3B1988A2A800180532 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Aqarland.app/Aqarland";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Aqarland/Aqarland-Prefix.pch";
+				INFOPLIST_FILE = "AqarlandTests/AqarlandTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B7A43AFF1988A2A800180532 /* Build configuration list for PBXProject "Aqarland" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7A43B341988A2A800180532 /* Debug */,
+				B7A43B351988A2A800180532 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7A43B361988A2A800180532 /* Build configuration list for PBXNativeTarget "Aqarland" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7A43B371988A2A800180532 /* Debug */,
+				B7A43B381988A2A800180532 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7A43B391988A2A800180532 /* Build configuration list for PBXNativeTarget "AqarlandTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7A43B3A1988A2A800180532 /* Debug */,
+				B7A43B3B1988A2A800180532 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B7A43AFC1988A2A800180532 /* Project object */;
+}
