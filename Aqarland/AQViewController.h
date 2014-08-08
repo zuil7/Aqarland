@@ -10,4 +10,6 @@
 
 @interface AQViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *uETxtField;
+@property (weak, nonatomic) IBOutlet UITextField *uPTxtField;
 @end

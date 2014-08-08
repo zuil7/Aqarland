@@ -25,7 +25,6 @@ typedef void(^AQFailedBlock)(NSError *error);
 -(void) createAccount:(NSDictionary *) profileInfo;
 -(void) createAccountViaFB:(NSDictionary *) profileInfo;
 
--(void) updateUserEmailViaFB:(NSDictionary *) profileInfo;
 
 //Twitter
 - (void) loginUserWithAccount:(ACAccount *)twitterAccount;

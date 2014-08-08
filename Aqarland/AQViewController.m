@@ -11,9 +11,8 @@
 #import "AQHomeViewController.h"
 #import "CustomLoginVC.h"
 #import "AQSignUpViewController.h"
-
 #import "PFTwitterUtils+NativeTwitter.h"
-#import "FHSTwitterEngine.h"
+
 
 @interface AQViewController ()<UIActionSheetDelegate,PFLogInViewControllerDelegate>
 
@@ -38,20 +37,22 @@
     
    // [self ParseLoginCustomizationControllers];
     
-    
-    [self LoadViewControllers];
-#warning mark Put NSUSERDEFAULTS HERE
-    BOOL check=0;
-    if(check)
-    {
-        [self.navigationController pushViewController:self.viewDeckVC animated:NO];
-    }
-#warning mark Put NSUSERDEFAULTS HERE
+     [self LoadViewControllers];
+  
+
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+     [self.navigationController setNavigationBarHidden:YES];
+#warning mark Put NSUSERDEFAULTS HERE
+    if([self checkUserDefaults])
+    {
+        //[self LoadDashboard];
+        [self.navigationController pushViewController:self.viewDeckVC animated:NO];
+        
+    }
+#warning mark Put NSUSERDEFAULTS HERE
 }
 - (void)didReceiveMemoryWarning
 {
@@ -59,40 +60,51 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
--(void) ParseLoginCustomizationControllers
-{
-    self.customLoginVC = [[CustomLoginVC alloc] init];
-    self.customLoginVC.delegate = self;
-    self.customLoginVC.facebookPermissions = @[@"user_about_me", @"user_birthday", @"email"];
-    self.customLoginVC.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsSignUpButton | PFLogInFieldsDismissButton;
-    
-    self.signUpVC=[GlobalInstance loadStoryBoardId:sSignUpVC];
-    //self.customLoginVC.signUpController = nil;
-    [self.view addSubview:self.customLoginVC.view];
-
-    [self.customLoginVC.customSignUpBtn addTarget:self action:@selector(showSignUp:) forControlEvents:UIControlEventTouchUpInside];
-    //    self.logInController=[[PFLogInViewController alloc] init];
-    //    [self.logInController setDelegate:self];
-    //    self.logInController.fields =  PFLogInFieldsUsernameAndPassword
-    //    | PFLogInFieldsLogInButton
-    //    | PFLogInFieldsSignUpButton
-    //    | PFLogInFieldsPasswordForgotten
-    //    | PFLogInFieldsFacebook
-    //    | PFLogInFieldsTwitter;
-    //
-    //    [self.logInView.facebookButton setFrame:CGRectMake(35.0f, 287.0f, 120.0f, 40.0f)];
-    
-}*/
+////////////////////////////////////
 #pragma mark - Logic
+////////////////////////////////////
+-(BOOL) checkUserDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"defaults %@",defaults);
+    NSString *userName = [defaults objectForKey:userDefaultUserName];
+    NSString *loginType = [defaults objectForKey:userDefaultLoginType];
+    NSString *emailVerified = [defaults objectForKey:userDefaultEmailVerified];
+    NSString *loginFlag = [defaults objectForKey:userDefaultLoginFlag];
+    NSLog(@"user %@,logintype %@,emailverified %@,loginFlag %@",userName,loginType,emailVerified,loginFlag);
+    BOOL isVerified=[emailVerified boolValue];
+    BOOL isLogin=[loginFlag boolValue];
+   if([userName length] != 0 &&
+      [loginType length] != 0 &&
+      isLogin!=0)
+   {
+       if (isVerified!=0)
+       {
+           return 1;
+       }else
+       {
+           if([loginType isEqualToString:mTwitterLogin])
+           {
+               return 1;
+           }else if([loginType isEqualToString:mFBLogin])
+           {
+               return 1;
+           }
+       }
+       
+   }else
+   {
+       return 0;
+   }
+    return 0;
+}
 -(void) LoadViewControllers
 {
     
-    
     self.homeVC =[GlobalInstance loadStoryBoardId:sHomeVC];
     self.sideMenuVC =[GlobalInstance loadStoryBoardId:sSideMenuVC];
-    self.HomeVcNav = [[UINavigationController alloc] initWithRootViewController:self.homeVC];
     
+    self.HomeVcNav = [[UINavigationController alloc] initWithRootViewController:self.homeVC];
     self.viewDeckVC=[[IIViewDeckController alloc] init];
     self.viewDeckVC.leftSize=70.0f;
     self.viewDeckVC.leftController=self.sideMenuVC;
@@ -101,7 +113,22 @@
     
 }
 
-
+-(void) LoadDashboard
+{
+    
+    self.homeVC =[GlobalInstance loadStoryBoardId:sHomeVC];
+    self.sideMenuVC =[GlobalInstance loadStoryBoardId:sSideMenuVC];
+    
+    self.HomeVcNav = [[UINavigationController alloc] initWithRootViewController:self.homeVC];
+    [self.HomeVcNav setNavigationBarHidden:YES];
+    self.viewDeckVC=[[IIViewDeckController alloc] init];
+    self.viewDeckVC.leftSize=70.0f;
+    self.viewDeckVC.leftController=self.sideMenuVC;
+    self.viewDeckVC.rightController=nil;
+    self.viewDeckVC.centerController=self.HomeVcNav;
+    [self.navigationController setViewControllers:@[self.viewDeckVC] animated:YES];
+    
+}
 -(void) facebookRequestInfo
 {
     // Send request to Facebook
@@ -109,14 +136,13 @@
     [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error)
      {
          NSLog(@"result %@",result);
-         
         // handle response
         if (!error) {
             // Parse the data received
             NSDictionary *userData = (NSDictionary *)result;
             NSString *facebookID = userData[@"id"];
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
-            NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithCapacity:7];
+            NSMutableDictionary *userProfile = [[NSMutableDictionary alloc] init];
             if (facebookID) {
                 userProfile[@"facebookId"] = facebookID;
             }
@@ -136,6 +162,8 @@
                 PFFile *imageFile = [PFFile fileWithData:imageData];
                 userProfile[@"imgFile"] = imageFile;
             }
+            userProfile[@"loginType"]=mFBLogin;
+            
             NSLog(@"userProfile %@",userProfile);
             
             ParseLayerService *request=[[ParseLayerService alloc] init];
@@ -144,13 +172,17 @@
              {
                  [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
                  
-                 if ([results boolValue]==1)
+                 if (results)
                  {
+                     NSLog(@"results %@",results);
+                   PFUser *user=results;
+                   [self SavedUserDefaults:user];
                    [self.navigationController pushViewController:self.viewDeckVC animated:YES];
                  }
              }];
             [request setFailedBlock:^(NSError *error)
             {
+                [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
                 [GlobalInstance showAlert:iErrorInfo message:[error description]];
             }];
             
@@ -162,22 +194,94 @@
             //[self logoutButtonTouchHandler:nil];
         } else
         {
+            [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
             [GlobalInstance showAlert:iErrorInfo message:[error description]];
         }
     }];
 }
 
+-(void) SavedUserDefaults :(PFUser *) userInfo
+{
+    if([userInfo[@"loginType"] isEqualToString:mManualLogin]||
+       [userInfo[@"loginType"] isEqualToString:mFBLogin])
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+        [defaults setObject:userInfo[@"username"] forKey:userDefaultUserName];
+        [defaults setObject:userInfo[@"loginType"] forKey:userDefaultLoginType];
+        [defaults setObject:userInfo[@"emailVerified"] forKey:userDefaultEmailVerified];
+        [defaults setObject:[NSNumber numberWithBool:YES] forKey:userDefaultLoginFlag];
+        [defaults synchronize];
+    }else
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        [defaults setObject:userInfo[@"username"] forKey:userDefaultUserName];
+        [defaults setObject:userInfo[@"loginType"] forKey:userDefaultLoginType];
+        [defaults setObject:[NSNumber numberWithBool:YES] forKey:userDefaultLoginFlag];
+        [defaults synchronize];
+    }
+}
 -(void) TwitterRequestInfo
 {
-
+    __weak AQViewController *weakSelf = self;
+    [PFTwitterUtils getTwitterAccounts:^(BOOL accountsWereFound, NSArray *twitterAccounts) {
+        [weakSelf handleTwitterAccounts:twitterAccounts];
+    }];
 }
 
+-(BOOL) checkTextField
+{
+    if (self.uETxtField.text.length!=0 &&
+        self.uPTxtField.text.length!=0) {
+        return 1;
+    }else
+    {
+        return 0;
+    }
+    
+}
+////////////////////////////////////
 #pragma mark - Action
+////////////////////////////////////
+
 -(IBAction)login_touchedup_inside:(id)sender
 {
-    if (self.viewDeckVC)
+    [self.uETxtField resignFirstResponder];
+    [self.uPTxtField resignFirstResponder];
+
+    if([self checkTextField])
     {
-        [self.navigationController pushViewController:self.viewDeckVC animated:YES];
+            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+            ParseLayerService *request=[[ParseLayerService alloc] init];
+            [request requestLogin:self.uETxtField.text passWord:self.uPTxtField.text];
+            [request setCompletionBlock:^(id results)
+             {
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 if (results)
+                 {
+                     PFUser *user=results;
+                     BOOL isVerified=[user[@"emailVerified"] boolValue];
+                     if(isVerified==0)
+                     {
+                          [GlobalInstance showAlert:iInformation message:NSLocalizedString(@"Please Verify Registration", nil)];
+                     }else
+                     {
+                         [self SavedUserDefaults:user];
+                         [self.navigationController pushViewController:self.viewDeckVC animated:YES];
+                     }
+                 }else
+                 {
+                  [GlobalInstance showAlert:iInformation message:NSLocalizedString(@"Wrong Combination", nil)];
+                 }
+             }];
+            [request setFailedBlock:^(NSError *error)
+             {
+                 [GlobalInstance showAlert:NSLocalizedString(iErrorInfo, nil) message:[error description]];
+             }];
+    }else
+    {
+          [GlobalInstance showAlert:iInformation message:NSLocalizedString(@"Please fill in the fields", nil)];
     }
 }
 
@@ -189,6 +293,7 @@
      {
             if (!user)
             {
+                [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
                 if (!error)
                 {
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In Error" message:@"The user cancelled the Facebook login." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
@@ -203,30 +308,57 @@
             {
                 [self facebookRequestInfo];
                 //NSLog(@"User with facebook signed up and logged in!");
-                 [self.navigationController pushViewController:self.viewDeckVC animated:YES];
+                // [self.navigationController pushViewController:self.viewDeckVC animated:YES];
             }
             else
             {
-              [self facebookRequestInfo];
-              //[self.navigationController pushViewController:self.viewDeckVC animated:YES];
-                //           
+              //[self facebookRequestInfo];
+                if (user)
+                {
+                     [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                    [self SavedUserDefaults:user];
+                    [self.navigationController pushViewController:self.viewDeckVC animated:YES];
+                }
+                
+                
             }
         }];
 }
 -(IBAction)loginTwitter_touchedup_inside:(id)sender
 {
-    __weak AQViewController *weakSelf = self;
-    [PFTwitterUtils getTwitterAccounts:^(BOOL accountsWereFound, NSArray *twitterAccounts) {
-        [weakSelf handleTwitterAccounts:twitterAccounts];
+    [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+    [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
+        if (!user)
+        {
+            [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+            NSLog(@"Uh oh. The user cancelled the Twitter login.");
+            
+        }
+        else if (user.isNew)
+        {
+           [self TwitterRequestInfo];
+            
+        } else
+        {
+            if (user)
+            {
+                [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                [self SavedUserDefaults:user];
+                [self.navigationController pushViewController:self.viewDeckVC animated:YES];
+            }
+
+        }
     }];
+    //[self TwitterRequestInfo];
 }
 -(IBAction)signUp_touchedup_inside:(id)sender
 {
     self.signUpVC=[GlobalInstance loadStoryBoardId:sSignUpVC];
     [self.navigationController pushViewController:self.signUpVC animated:YES];
 }
-
+////////////////////////////////////
 #pragma mark - PFLogInViewControllerDelegate
+////////////////////////////////////
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -237,37 +369,33 @@
     return NO;
 }
 
+////////////////////////////////////
 #pragma mark - Twitter Login Methods
-
+////////////////////////////////////
 - (void)handleTwitterAccounts:(NSArray *)twitterAccounts
 {
     NSLog(@"twitterAccounts %@",twitterAccounts);
     switch ([twitterAccounts count]) {
         case 0:
         {
-            [[FHSTwitterEngine sharedEngine] permanentlySetConsumerKey:kTwitterKey andSecret:kTwitterSecret];
-            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
-            UIViewController *loginController = [[FHSTwitterEngine sharedEngine] loginControllerWithCompletionHandler:^(BOOL success) {
-                if (success) {
-                    //[NTRTwitterClient loginUserWithTwitterEngine];
-                    ParseLayerService *request=[[ParseLayerService alloc] init];
-                    [request loginUserWithTwitterEngine];
-                    [request setCompletionBlock:^(id results)
-                     {
-                         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-                         
-                         if ([results boolValue]==1)
-                         {
-                             [self.navigationController pushViewController:self.viewDeckVC animated:YES];
-                         }
-                     }];
-                    [request setFailedBlock:^(NSError *error)
-                     {
-                         [GlobalInstance showAlert:iErrorInfo message:[error description]];
-                     }];
-                }
-            }];
-            [self presentViewController:loginController animated:YES completion:nil];
+            ParseLayerService *request=[[ParseLayerService alloc] init];
+            [request loginUserWithTwitterEngine];
+            [request setCompletionBlock:^(id results)
+             {
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 
+                 if (results)
+                 {
+                     PFUser *user=results;
+                     [self SavedUserDefaults:user];
+                     [self.navigationController pushViewController:self.viewDeckVC animated:YES];
+                 }
+             }];
+            [request setFailedBlock:^(NSError *error)
+             {
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 [GlobalInstance showAlert:iErrorInfo message:[error description]];
+             }];
             
         }
             break;
@@ -314,15 +442,14 @@
      }];
     [request setFailedBlock:^(NSError *error)
      {
+         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
          [GlobalInstance showAlert:iErrorInfo message:[error description]];
      }];
 }
 
-- (void)loginUserWithTwitterEngine
-{
-
-}
+////////////////////////////////////
 #pragma mark - UIActionSheetDelegate Methods
+////////////////////////////////////
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {

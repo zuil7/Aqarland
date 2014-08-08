@@ -112,7 +112,7 @@
     if (self.streetTxtFld.text.length!=0 &&
         self.countryTxtFld.text.length!=0 &&
         self.cityTxtFld.text.length!=0 &&
-        self.streetTxtFld.text.length!=0 ) {
+        self.postalCodeTxtFld.text.length!=0 ) {
         return 1;
     }else
     {
@@ -176,8 +176,8 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"didUpdateToLocation: %@", newLocation);
-    self.selectedLocation = newLocation;
+   // NSLog(@"didUpdateToLocation: %@", newLocation);
+   // self.selectedLocation = newLocation;
     
     [self.locationManager stopUpdatingLocation];
     
@@ -187,7 +187,10 @@
         zoomLocation.longitude= coordinates.longitude;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1609.344,1609.344);
         [self.mapView setRegion:viewRegion animated:YES];
-    [self reverseGeoCode];
+    self.selectedLocation=self.locationManager.location;
+    [self performSelector:@selector(delayedReverseGeocodeLocation)
+               withObject:nil
+               afterDelay:0.3];
    
 }
 
@@ -197,7 +200,7 @@
     {
         NSLog(@"placemarks %@",placemarks);
        
-        if (error == nil && [placemarks count] > 0)
+        if ([placemarks count]!=0)
         {
             NSDictionary *dictionary = [[placemarks objectAtIndex:0] addressDictionary];
             NSLog(@"self.placeMark: %@", dictionary);
@@ -343,7 +346,7 @@
 }
 
 - (void)mapView:(MKMapView *)amapView didSelectAnnotationView:(MKAnnotationView *)aview {
-    NSLog(@"aview.tag %d",aview.tag);
+    NSLog(@"aview.tag %ld",(long)aview.tag);
     if(isCallout) {
         
         CustomPinView *pinview = selectedPin;

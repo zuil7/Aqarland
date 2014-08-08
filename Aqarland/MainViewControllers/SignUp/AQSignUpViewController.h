@@ -18,9 +18,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *streetTxtFld;
 @property (weak, nonatomic) IBOutlet UITextField *countryTxtFld;
-
 @property (weak, nonatomic) IBOutlet UITextField *cityTxtFld;
 @property (weak, nonatomic) IBOutlet UITextField *postalCodeTxtFld;
+
 @property (weak, nonatomic) IBOutlet UIImageView *centerImageTarget;
 
 

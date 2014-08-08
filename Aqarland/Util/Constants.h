@@ -31,10 +31,22 @@
 #define GlobalInstance [Global sharedInstance]
 
 //Standard Text
-#define iErrorInfo      @"Error Message"
+#define iErrorInfo      NSLocalizedString(@"Error Message", nil)
+#define iInformation    NSLocalizedString(@"Information", nil)
 
 //Header Bar
 #define TitleHeaderFont @"Helvetica"
+
+//UserDefaults
+#define userDefaultUserName             @"dUsername"
+#define userDefaultLoginType            @"dLoginType"
+#define userDefaultEmailVerified        @"dEmailVerified"
+#define userDefaultLoginFlag            @"dLoginFlag"
+
+//Login Type
+#define mFBLogin         @"Facebook"
+#define mTwitterLogin    @"Twitter"
+#define mManualLogin     @"UserManualSignUp"
 
 //StoryBoard ID
 #define sSideMenuVC         @"SideMenuVC"

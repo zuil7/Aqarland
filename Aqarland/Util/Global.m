@@ -150,7 +150,7 @@
 - (id) loadStoryBoardId:(NSString *) storyBoardID
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    return [sb instantiateViewControllerWithIdentifier:storyBoardID];;
+    return [sb instantiateViewControllerWithIdentifier:storyBoardID];
 }
 #pragma mark - load plist 
 + (NSDictionary *)loadPlistfile:(NSString *)name {

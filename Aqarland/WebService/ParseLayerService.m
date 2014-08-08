@@ -78,6 +78,8 @@ static ParseLayerService *instance = nil;
     user.username = profileInfo[@"EmailAddress"];
     user.password = profileInfo[@"Password"];
     user.email = profileInfo[@"EmailAddress"];
+    user[@"name"] =profileInfo[@"fullname"];
+    user[@"loginType"] =profileInfo[@"loginType"];
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
@@ -115,6 +117,7 @@ static ParseLayerService *instance = nil;
         }
     }];
 }
+/*
 -(void) updateUserEmailViaFB:(NSDictionary *) profileInfo
 {
     PFUser *currentUser = [PFUser currentUser];
@@ -144,7 +147,7 @@ static ParseLayerService *instance = nil;
         }];
     
     }];
-}
+}*/
 ////////////////////////////////
 // Create Account Via FB
 ////////////////////////////////
@@ -154,6 +157,8 @@ static ParseLayerService *instance = nil;
     PFUser *cUser = [PFUser currentUser];
     cUser[@"username"]=profileInfo[@"email"];
     cUser[@"email"]=profileInfo[@"email"];
+    cUser[@"name"]= profileInfo[@"name"];
+    cUser[@"loginType"] =profileInfo[@"loginType"];
     [cUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         if(succeeded)
@@ -163,7 +168,7 @@ static ParseLayerService *instance = nil;
             [query whereKey:@"user" equalTo:cUser];
             [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
              {
-                 NSLog(@"pUserProfile %d",[result count]);
+                 NSLog(@"pUserProfile %lu",(unsigned long)[result count]);
                  if([result count]==0)
                  {
                      PFObject *post = [PFObject objectWithClassName:pUserProfile];
@@ -174,7 +179,9 @@ static ParseLayerService *instance = nil;
                       {
                           if (!error)
                           {
-                              [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                              PFUser *user=[PFUser currentUser];
+                              NSLog(@"user %@",user);
+                              [self reportSuccess:user];
                           }
                           else
                           {
@@ -183,7 +190,8 @@ static ParseLayerService *instance = nil;
                       }];
                   }else if([result count]==1)
                   {
-                      [self reportSuccess:mSuccess];
+                       PFUser *user=[PFUser currentUser];
+                      [self reportSuccess:user];
                   }else
                   {
                        [self reportFailure:error];
@@ -218,17 +226,18 @@ static ParseLayerService *instance = nil;
 
 -(void) loginUserWithTwitterEngine
 {
-    FHSTwitterEngine *twitterEngine = [FHSTwitterEngine sharedEngine];
-    FHSToken *token = [FHSTwitterEngine sharedEngine].accessToken;
-    
-    [PFTwitterUtils logInWithTwitterId:twitterEngine.authenticatedID
-                            screenName:twitterEngine.authenticatedUsername
-                             authToken:token.key
-                       authTokenSecret:token.secret
+    //FHSTwitterEngine *twitterEngine = [FHSTwitterEngine sharedEngine];
+    //FHSToken *token = [FHSTwitterEngine sharedEngine].accessToken;
+    PF_Twitter *twitterUtil=[PFTwitterUtils twitter];
+
+    [PFTwitterUtils logInWithTwitterId:twitterUtil.userId
+                            screenName:twitterUtil.screenName
+                             authToken:twitterUtil.authToken
+                       authTokenSecret:twitterUtil.authTokenSecret
                                  block:^(PFUser *user, NSError *error) {
                                      if (user) {
-                                         NSLog(@"authenticatedUsername %@",twitterEngine.authenticatedUsername);
-                                         [self onLoginSuccess:user username:twitterEngine.authenticatedUsername];
+                                         NSLog(@"authenticatedUsername %@",twitterUtil.screenName);
+                                         [self onLoginSuccess:user username:twitterUtil.screenName];
                                      } else {
                                          [self onLoginFailure:error];
                                      }
@@ -262,8 +271,9 @@ static ParseLayerService *instance = nil;
             NSLog(@"result %@",resultDict);
             user.username = resultDict[@"screen_name"];
             user[@"name"]= resultDict[@"name"];
-            user[@"profileDescription"] = resultDict[@"description"];
-            user[@"imageURL"] = [resultDict[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"];
+            user[@"loginType"] =mTwitterLogin;
+            //user[@"profileDescription"] = resultDict[@"description"];
+            //user[@"imageURL"] = [resultDict[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"];
             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
              {
                  if (!error)
@@ -279,7 +289,10 @@ static ParseLayerService *instance = nil;
                               PFObject *post = [PFObject objectWithClassName:pUserProfile];
                               post[@"user"] = user;
                               post[@"fullName"] = resultDict[@"name"];
-                              NSURL *pictureURL = [NSURL URLWithString:resultDict[@"profile_image_url_https"]];
+                              
+                              NSString *cleanProfileImageURL=[resultDict[@"profile_image_url_https"] stringByReplacingOccurrencesOfString:@"_normal" withString:@"_bigger"];
+                              NSLog(@"cleanProfileImageURL %@",cleanProfileImageURL);
+                              NSURL *pictureURL = [NSURL URLWithString:cleanProfileImageURL];
                               NSData *imageData = [NSData dataWithContentsOfURL:pictureURL];
                               PFFile *imageFile = [PFFile fileWithData:imageData];
                               [post setObject:imageFile forKey:@"userAvatar"];
@@ -287,7 +300,9 @@ static ParseLayerService *instance = nil;
                                {
                                    if (!error)
                                    {
-                                       [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                                       PFUser *user=[PFUser currentUser];
+                                       NSLog(@"user %@",user);
+                                       [self reportSuccess:user];
                                    }
                                    else
                                    {
@@ -317,6 +332,17 @@ static ParseLayerService *instance = nil;
 
 - (void) requestLogin:(NSString *)username passWord:(NSString *) pass;
 {
-
+    [PFUser logInWithUsernameInBackground:username password:pass
+                                    block:^(PFUser *user, NSError *error)
+     {
+         NSLog(@"user %@",user);
+        if (user)
+        {
+            [self reportSuccess:user];
+        } else
+        {
+            [self reportFailure:error];
+        }
+    }];
 }
 @end

@@ -95,6 +95,7 @@
             parameters[@"City"]=self.placeDict[@"city"];
             parameters[@"PostCode"]=self.placeDict[@"postcode"];
             parameters[@"LatLong"]=self.placeDict[@"latlong"];
+            parameters[@"loginType"]=mManualLogin;
             
             ParseLayerService *request=[[ParseLayerService alloc] init];
             [request signUp:parameters];

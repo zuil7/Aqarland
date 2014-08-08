@@ -27,16 +27,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
-    {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleLeftView)];
-    }
-    
-    
+     [self customizeHeaderBar];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+   
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -53,5 +51,30 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+////////////////////////////////////
+#pragma mark - Logic
+////////////////////////////////////
+-(void) customizeHeaderBar
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
+    {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleLeftView)];
+    }
+}
+////////////////////////////////////
+#pragma mark - Action
+////////////////////////////////////
+-(IBAction)logout:(id)sender
+{
+    [PFUser logOut];
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    NSDictionary * dict = [defs dictionaryRepresentation];
+    for (id key in dict) {
+        [defs removeObjectForKey:key];
+    }
+    [defs synchronize];
+    [GlobalInstance.navController popToRootViewControllerAnimated:NO];
+}
 @end
