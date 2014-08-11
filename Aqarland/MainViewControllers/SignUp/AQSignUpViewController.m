@@ -82,7 +82,21 @@
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(popViewControllerAnimated:)];
+        UIImage *backButtonImage = [UIImage imageNamed:@"back_navigation_icon.png"];
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        backBtn.frame = CGRectMake(0,0,22,22);
+        [backBtn setBackgroundColor:[UIColor redColor]];
+        [backBtn setImage:backButtonImage forState:UIControlStateNormal];
+
+        [backBtn addTarget:self.viewDeckController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        [self.navigationItem setLeftBarButtonItem:barButtonItem];
+        
+       /* self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(popViewControllerAnimated:)];
+        
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        [self.navigationItem setLeftBarButtonItem:barButtonItem];*/
     }
 
 }

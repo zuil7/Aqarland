@@ -31,18 +31,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Td-Js-sjJ">
-                                <rect key="frame" x="115" y="229" width="102" height="53"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_screen_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y6p-gV-XZP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login">
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="CaM-nu-PzO">
+                                <rect key="frame" x="74" y="60" width="185" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="QTi-Xo-ZHz">
+                                <rect key="frame" x="0.0" y="220" width="320" height="109"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Td-Js-sjJ">
+                                <rect key="frame" x="5" y="332" width="326" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="login_button_inactive.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="login_button_active.png"/>
+                                <state key="highlighted" image="login_button_inactive.png"/>
                                 <connections>
                                     <action selector="login_touchedup_inside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xlO-Kj-bz1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhE-hU-4tQ">
-                                <rect key="frame" x="44" y="339" width="96" height="30"/>
+                                <rect key="frame" x="20" y="394" width="291" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBK-RA-5VV">
-                                <rect key="frame" x="163" y="339" width="96" height="30"/>
+                                <rect key="frame" x="178" y="489" width="96" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="SignUp">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,7 +76,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FT6-8D-NoQ">
-                                <rect key="frame" x="130" y="400" width="77" height="30"/>
+                                <rect key="frame" x="121" y="440" width="77" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Twitter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -71,14 +85,14 @@
                                     <action selector="loginTwitter_touchedup_inside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="VMh-Cn-fUp"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username or email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9mz-KJ-Xdn">
-                                <rect key="frame" x="44" y="124" width="230" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username or email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9mz-KJ-Xdn">
+                                <rect key="frame" x="44" y="229" width="230" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Cs-Qk-7AG">
-                                <rect key="frame" x="44" y="171" width="230" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Cs-Qk-7AG">
+                                <rect key="frame" x="44" y="283" width="230" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -87,6 +101,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ktc-5O-S3K"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="uETxtField" destination="9mz-KJ-Xdn" id="Xlz-nR-Rgq"/>
                         <outlet property="uPTxtField" destination="0Cs-Qk-7AG" id="433-6D-5Ut"/>
@@ -240,13 +256,13 @@
                                     <outlet property="delegate" destination="sF0-gK-gnY" id="3NS-Er-JTC"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z40-pJ-djz">
-                                <rect key="frame" x="8" y="282" width="76" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z40-pJ-djz">
+                                <rect key="frame" x="8" y="272" width="47" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="City">
+                                <state key="normal" title="City" image="city_view_icon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" title="Earth"/>
+                                <state key="selected" title="Earth" image="earth_view_icon.png"/>
                                 <connections>
                                     <action selector="mapviewType:" destination="sF0-gK-gnY" eventType="touchUpInside" id="Zrs-jZ-mNT"/>
                                 </connections>
@@ -260,6 +276,10 @@
                                     <outlet property="delegate" destination="sF0-gK-gnY" id="FlT-1D-UVN"/>
                                 </connections>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line_seperator.png" translatesAutoresizingMaskIntoConstraints="NO" id="Snu-Wt-Re3">
+                                <rect key="frame" x="28" y="366" width="264" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hnc-lQ-U1H">
                                 <rect key="frame" x="52" y="370" width="226" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -269,6 +289,18 @@
                                     <outlet property="delegate" destination="sF0-gK-gnY" id="mIf-lr-lgZ"/>
                                 </connections>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line_seperator.png" translatesAutoresizingMaskIntoConstraints="NO" id="mx5-oJ-9Js">
+                                <rect key="frame" x="28" y="400" width="264" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line_seperator.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wut-Et-sm0">
+                                <rect key="frame" x="28" y="433" width="264" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line_seperator.png" translatesAutoresizingMaskIntoConstraints="NO" id="gX9-PH-op6">
+                                <rect key="frame" x="28" y="466" width="264" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vzi-Hr-xts">
                                 <rect key="frame" x="53" y="403" width="226" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -287,12 +319,13 @@
                                     <outlet property="delegate" destination="sF0-gK-gnY" id="P9y-JY-hcQ"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbO-vs-ORZ">
-                                <rect key="frame" x="87" y="490" width="158" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbO-vs-ORZ">
+                                <rect key="frame" x="25" y="484" width="281" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Confirm Address">
+                                <state key="normal" image="confirm_button_inactive.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="confirm_button_active.png"/>
                                 <connections>
                                     <action selector="confirmAddress_touchedup_inside:" destination="sF0-gK-gnY" eventType="touchUpInside" id="Lg9-aR-EXA"/>
                                 </connections>
@@ -355,7 +388,17 @@
         </scene>
     </scenes>
     <resources>
+        <image name="city_view_icon.png" width="47" height="47"/>
+        <image name="confirm_button_active.png" width="281" height="43"/>
+        <image name="confirm_button_inactive.png" width="281" height="43"/>
         <image name="dashboard_map_icn_station.png" width="54" height="48"/>
+        <image name="earth_view_icon.png" width="47" height="47"/>
+        <image name="line_seperator.png" width="264" height="4"/>
+        <image name="login_box.png" width="320" height="109"/>
+        <image name="login_button_active.png" width="281" height="43"/>
+        <image name="login_button_inactive.png" width="281" height="43"/>
+        <image name="login_screen_background.png" width="320" height="480"/>
+        <image name="logo.png" width="185" height="133"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
