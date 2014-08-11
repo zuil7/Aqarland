@@ -88,11 +88,6 @@
 		B7A83BB21998B86500B4B0C6 /* Regsitration-Screen-2.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B071998B86400B4B0C6 /* Regsitration-Screen-2.png */; };
 		B7A83BB41998B86500B4B0C6 /* Regsitration-Screen-3.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B091998B86400B4B0C6 /* Regsitration-Screen-3.png */; };
 		B7A83BB61998B86500B4B0C6 /* Regsitration-Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B0B1998B86400B4B0C6 /* Regsitration-Screen.png */; };
-		B7A83BB81998B86500B4B0C6 /* close_navigation_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B0E1998B86400B4B0C6 /* close_navigation_icon.png */; };
-		B7A83BB91998B86500B4B0C6 /* close_navigation_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B0F1998B86400B4B0C6 /* close_navigation_icon@2x.png */; };
-		B7A83BBA1998B86500B4B0C6 /* login_screen_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B101998B86400B4B0C6 /* login_screen_background.png */; };
-		B7A83BBB1998B86500B4B0C6 /* login_screen_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B111998B86400B4B0C6 /* login_screen_background@2x.png */; };
-		B7A83BBC1998B86500B4B0C6 /* login_screen_background_1136.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B121998B86400B4B0C6 /* login_screen_background_1136.png */; };
 		B7A83BBD1998B86500B4B0C6 /* Reset-Password-Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B131998B86500B4B0C6 /* Reset-Password-Screen.png */; };
 		B7A83BBF1998B86500B4B0C6 /* reset_password_button_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B151998B86500B4B0C6 /* reset_password_button_active.png */; };
 		B7A83BC01998B86500B4B0C6 /* reset_password_button_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B161998B86500B4B0C6 /* reset_password_button_active@2x.png */; };
@@ -175,7 +170,6 @@
 		B7A83C1C1998B86500B4B0C6 /* check_properties_button_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B781998B86500B4B0C6 /* check_properties_button_active.png */; };
 		B7A83C1D1998B86500B4B0C6 /* check_properties_button_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B791998B86500B4B0C6 /* check_properties_button_active@2x.png */; };
 		B7A83C1E1998B86500B4B0C6 /* Agent-Profile-Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B7B1998B86500B4B0C6 /* Agent-Profile-Screen.png */; };
-		B7A83C211998B86500B4B0C6 /* My-Messages-Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B7E1998B86500B4B0C6 /* My-Messages-Screen.png */; };
 		B7A83C221998B86500B4B0C6 /* My-Messages-Screen-2.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B801998B86500B4B0C6 /* My-Messages-Screen-2.png */; };
 		B7A83C241998B86500B4B0C6 /* My-Messages-Screen.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83B821998B86500B4B0C6 /* My-Messages-Screen.png */; };
 		B7A83C281998C19D00B4B0C6 /* city_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83C261998C19D00B4B0C6 /* city_view_icon.png */; };
@@ -306,11 +300,6 @@
 		B7A83B071998B86400B4B0C6 /* Regsitration-Screen-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Regsitration-Screen-2.png"; sourceTree = "<group>"; };
 		B7A83B091998B86400B4B0C6 /* Regsitration-Screen-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Regsitration-Screen-3.png"; sourceTree = "<group>"; };
 		B7A83B0B1998B86400B4B0C6 /* Regsitration-Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Regsitration-Screen.png"; sourceTree = "<group>"; };
-		B7A83B0E1998B86400B4B0C6 /* close_navigation_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_navigation_icon.png; sourceTree = "<group>"; };
-		B7A83B0F1998B86400B4B0C6 /* close_navigation_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_navigation_icon@2x.png"; sourceTree = "<group>"; };
-		B7A83B101998B86400B4B0C6 /* login_screen_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_screen_background.png; sourceTree = "<group>"; };
-		B7A83B111998B86400B4B0C6 /* login_screen_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_screen_background@2x.png"; sourceTree = "<group>"; };
-		B7A83B121998B86400B4B0C6 /* login_screen_background_1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_screen_background_1136.png; sourceTree = "<group>"; };
 		B7A83B131998B86500B4B0C6 /* Reset-Password-Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reset-Password-Screen.png"; sourceTree = "<group>"; };
 		B7A83B151998B86500B4B0C6 /* reset_password_button_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset_password_button_active.png; sourceTree = "<group>"; };
 		B7A83B161998B86500B4B0C6 /* reset_password_button_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reset_password_button_active@2x.png"; sourceTree = "<group>"; };
@@ -393,7 +382,6 @@
 		B7A83B781998B86500B4B0C6 /* check_properties_button_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_properties_button_active.png; sourceTree = "<group>"; };
 		B7A83B791998B86500B4B0C6 /* check_properties_button_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_properties_button_active@2x.png"; sourceTree = "<group>"; };
 		B7A83B7B1998B86500B4B0C6 /* Agent-Profile-Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Agent-Profile-Screen.png"; sourceTree = "<group>"; };
-		B7A83B7E1998B86500B4B0C6 /* My-Messages-Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "My-Messages-Screen.png"; sourceTree = "<group>"; };
 		B7A83B801998B86500B4B0C6 /* My-Messages-Screen-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "My-Messages-Screen-2.png"; sourceTree = "<group>"; };
 		B7A83B821998B86500B4B0C6 /* My-Messages-Screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "My-Messages-Screen.png"; sourceTree = "<group>"; };
 		B7A83C261998C19D00B4B0C6 /* city_view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = city_view_icon.png; sourceTree = "<group>"; };
@@ -810,11 +798,6 @@
 		B7A83B0D1998B86400B4B0C6 /* 04 - Reset Password */ = {
 			isa = PBXGroup;
 			children = (
-				B7A83B0E1998B86400B4B0C6 /* close_navigation_icon.png */,
-				B7A83B0F1998B86400B4B0C6 /* close_navigation_icon@2x.png */,
-				B7A83B101998B86400B4B0C6 /* login_screen_background.png */,
-				B7A83B111998B86400B4B0C6 /* login_screen_background@2x.png */,
-				B7A83B121998B86400B4B0C6 /* login_screen_background_1136.png */,
 				B7A83B131998B86500B4B0C6 /* Reset-Password-Screen.png */,
 				B7A83B151998B86500B4B0C6 /* reset_password_button_active.png */,
 				B7A83B161998B86500B4B0C6 /* reset_password_button_active@2x.png */,
@@ -946,7 +929,6 @@
 			isa = PBXGroup;
 			children = (
 				B7A83B7B1998B86500B4B0C6 /* Agent-Profile-Screen.png */,
-				B7A83B7E1998B86500B4B0C6 /* My-Messages-Screen.png */,
 			);
 			path = "11 - Agent Profile";
 			sourceTree = "<group>";
@@ -1101,7 +1083,6 @@
 				B7A83C021998B86500B4B0C6 /* bed_icon.png in Resources */,
 				B7A83C0C1998B86500B4B0C6 /* share_icon.png in Resources */,
 				B7A83BD11998B86500B4B0C6 /* dashboard_icon@2x.png in Resources */,
-				B7A83BB91998B86500B4B0C6 /* close_navigation_icon@2x.png in Resources */,
 				B7A83BC01998B86500B4B0C6 /* reset_password_button_active@2x.png in Resources */,
 				B7A83B9D1998B86500B4B0C6 /* close_navigation_icon.png in Resources */,
 				B7948F9D198A3D6900936E16 /* dashboard_map_icn_station@2x.png in Resources */,
@@ -1123,7 +1104,6 @@
 				B7A83BE01998B86500B4B0C6 /* search_bar.png in Resources */,
 				B7A83BDA1998B86500B4B0C6 /* map_pin.png in Resources */,
 				B7A83B901998B86500B4B0C6 /* login_button_active@2x.png in Resources */,
-				B7A83BB81998B86500B4B0C6 /* close_navigation_icon.png in Resources */,
 				B7A83BC91998B86500B4B0C6 /* Dashboard-Screen-2.png in Resources */,
 				B7A83BB41998B86500B4B0C6 /* Regsitration-Screen-3.png in Resources */,
 				B7A83BA11998B86500B4B0C6 /* confirm_button_inactive.png in Resources */,
@@ -1162,7 +1142,6 @@
 				B7A83B9C1998B86500B4B0C6 /* city_view_icon@2x.png in Resources */,
 				B7A83B951998B86500B4B0C6 /* login_screen_background_1136.png in Resources */,
 				B7A83BD01998B86500B4B0C6 /* dashboard_icon.png in Resources */,
-				B7A83BBA1998B86500B4B0C6 /* login_screen_background.png in Resources */,
 				B7A83BAD1998B86500B4B0C6 /* location_button_inactive@2x.png in Resources */,
 				B7A83BA91998B86500B4B0C6 /* line_seperator@2x.png in Resources */,
 				B7A83C081998B86500B4B0C6 /* Property-Details-Screen-2.png in Resources */,
@@ -1199,7 +1178,6 @@
 				B7A43B121988A2A800180532 /* InfoPlist.strings in Resources */,
 				B7A83BDF1998B86500B4B0C6 /* property_type_inactive@2x.png in Resources */,
 				B7A83BFA1998B86500B4B0C6 /* Add-Property-Screen.png in Resources */,
-				B7A83BBB1998B86500B4B0C6 /* login_screen_background@2x.png in Resources */,
 				B7A83BFC1998B86500B4B0C6 /* add_property_icon@2x.png in Resources */,
 				B7A83BB01998B86500B4B0C6 /* next_button_inactive.png in Resources */,
 				B7A83B991998B86500B4B0C6 /* twitter_icon_inactive@2x.png in Resources */,
@@ -1224,13 +1202,11 @@
 				B7A83BE21998B86500B4B0C6 /* search_button_active@2x.png in Resources */,
 				B7A83BDE1998B86500B4B0C6 /* property_type_inactive.png in Resources */,
 				B7A83BAC1998B86500B4B0C6 /* location_button_inactive.png in Resources */,
-				B7A83C211998B86500B4B0C6 /* My-Messages-Screen.png in Resources */,
 				B7A83BA51998B86500B4B0C6 /* dashboard_button_inactive.png in Resources */,
 				B7948F9E198A3D6900936E16 /* dashboard_map_icn_station_selector.png in Resources */,
 				B7A83C0A1998B86500B4B0C6 /* Property-Details-Screen.png in Resources */,
 				B7A83C0E1998B86500B4B0C6 /* List-Property-Screen-2.png in Resources */,
 				B7A43B1B1988A2A800180532 /* Main.storyboard in Resources */,
-				B7A83BBC1998B86500B4B0C6 /* login_screen_background_1136.png in Resources */,
 				B7A83C071998B86500B4B0C6 /* favorites_icon@2x.png in Resources */,
 				B7A83C121998B86500B4B0C6 /* List-Property-Screen.png in Resources */,
 				B7A83BEF1998B86500B4B0C6 /* settings_icon@2x.png in Resources */,
