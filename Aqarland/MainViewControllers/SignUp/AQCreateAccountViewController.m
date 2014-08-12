@@ -52,7 +52,16 @@
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(popViewControllerAnimated:)];
+        /*self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(popViewControllerAnimated:)];*/
+        UIImage *backButtonImage = [UIImage imageNamed:iBackArrowImg];
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        backBtn.frame = CGRectMake(0,0,22,32);
+        [backBtn setImage:backButtonImage forState:UIControlStateNormal];
+        
+        [backBtn addTarget:self.viewDeckController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        [self.navigationItem setLeftBarButtonItem:barButtonItem];
     }
     
 }
@@ -105,7 +114,13 @@
 
                 if ([results boolValue]==1)
                 {
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Information"
+                                                                    message:@"Successfuly Registered"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+
                 }
             }];
             [request setFailedBlock:^(NSError *error)
@@ -113,6 +128,15 @@
                 [GlobalInstance showAlert:iErrorInfo message:[error description]];
             }];
         }
+    }
+}
+
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0)
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 

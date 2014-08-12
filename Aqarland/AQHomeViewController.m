@@ -56,12 +56,39 @@
 ////////////////////////////////////
 -(void) customizeHeaderBar
 {
-    [self.navigationController setNavigationBarHidden:NO];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [self.navigationItem setTitle:@"Property Map"];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:23], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
+    
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleLeftView)];
+        //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleLeftView)];
+        UIImage *menuImage = [UIImage imageNamed:iMenuImg];
+        UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        menuBtn.frame = CGRectMake(0,0,22,32);
+        [menuBtn setImage:menuImage forState:UIControlStateNormal];
+        
+        [menuBtn addTarget:self.viewDeckController action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuBtn];
+        [self.navigationItem setLeftBarButtonItem:barButtonItem];
+
     }
+    
+    if ([self.navigationItem respondsToSelector:@selector(rightBarButtonItems)])
+    {
+        UIImage *searchImage = [UIImage imageNamed:iSearchImg];
+        UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        searchBtn.frame = CGRectMake(0,0,22,32);
+        [searchBtn setImage:searchImage forState:UIControlStateNormal];
+        
+        [searchBtn addTarget:self action:@selector(searchBarBtn_touchedupInside:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBtn];
+        [self.navigationItem setRightBarButtonItem:barButtonItem];
+        
+    }
+
 }
 ////////////////////////////////////
 #pragma mark - Action
@@ -76,5 +103,13 @@
     }
     [defs synchronize];
     [GlobalInstance.navController popToRootViewControllerAnimated:NO];
+}
+////////////////////////////////////
+#pragma mark - Logic
+////////////////////////////////////
+
+-(void) searchBarBtn_touchedupInside:(id) sender
+{
+
 }
 @end

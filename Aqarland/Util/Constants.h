@@ -58,5 +58,9 @@
 #define pUser               @"User"
 #define pUserProfile        @"UserProfile"
 
+//Images
 
+#define iBackArrowImg       @"back_navigation_icon.png"
+#define iMenuImg            @"dashboard_icon.png"
+#define iSearchImg            @"search_icon.png"
 #endif
