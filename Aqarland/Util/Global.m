@@ -6,6 +6,7 @@
 
 #import "Global.h"
 #import "Constants.h"
+#import "IIViewDeckController.h"
 
 @implementation Global
 
@@ -161,7 +162,7 @@
 }
 
 #pragma mark - load array with specific key
-+ (NSArray *)loadPlistfile:(NSString *)name forKey:(NSString *)key {
+- (NSArray *)loadPlistfile:(NSString *)name forKey:(NSString *)key {
     NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     NSArray *arraylist = [dict objectForKey:key];
@@ -250,5 +251,7 @@
     
     return newImage;
 }
+
+
 
 @end

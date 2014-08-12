@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>sideMenuList</key>
+	<array>
+		<dict>
+			<key>icon</key>
+			<string>profile_icon.png</string>
+			<key>textTitle</key>
+			<string>Profile</string>
+		</dict>
+		<dict>
+			<key>icon</key>
+			<string>myproperties_icon.png</string>
+			<key>textTitle</key>
+			<string>My Properties</string>
+		</dict>
+		<dict>
+			<key>icon</key>
+			<string>mychats_icon.png</string>
+			<key>textTitle</key>
+			<string>My Chats</string>
+		</dict>
+		<dict>
+			<key>icon</key>
+			<string>support_icon.png</string>
+			<key>textTitle</key>
+			<string>Support</string>
+		</dict>
+		<dict>
+			<key>icon</key>
+			<string>shortlist_icon.png</string>
+			<key>textTitle</key>
+			<string>Shortlist</string>
+		</dict>
+		<dict>
+			<key>icon</key>
+			<string>settings_icon.png</string>
+			<key>textTitle</key>
+			<string>Settings</string>
+		</dict>
+	</array>
+</dict>
+</plist>

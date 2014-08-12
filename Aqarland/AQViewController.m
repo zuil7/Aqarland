@@ -71,7 +71,13 @@
     NSString *loginType = [defaults objectForKey:userDefaultLoginType];
     NSString *emailVerified = [defaults objectForKey:userDefaultEmailVerified];
     NSString *loginFlag = [defaults objectForKey:userDefaultLoginFlag];
-    NSLog(@"user %@,logintype %@,emailverified %@,loginFlag %@",userName,loginType,emailVerified,loginFlag);
+    //Logs
+    NSLog(@"loginType %@",loginType);
+    NSLog(@"userName %@",userName);
+    NSLog(@"emailVerified %@",emailVerified);
+    NSLog(@"loginFlag %@",loginFlag);
+    //logs
+    
     BOOL isVerified=[emailVerified boolValue];
     BOOL isLogin=[loginFlag boolValue];
    if([userName length] != 0 &&
@@ -212,6 +218,13 @@
         [defaults setObject:userInfo[@"emailVerified"] forKey:userDefaultEmailVerified];
         [defaults setObject:[NSNumber numberWithBool:YES] forKey:userDefaultLoginFlag];
         [defaults synchronize];
+        
+         //Logs
+        NSLog(@"loginType %@",[defaults objectForKey:userDefaultLoginType]);
+        NSLog(@"userName %@",[defaults objectForKey:userDefaultUserName]);
+        NSLog(@"emailVerified %@",[defaults objectForKey:userDefaultEmailVerified]);
+        NSLog(@"loginFlag %@",[defaults objectForKey:userDefaultLoginFlag]);
+
     }else
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -220,6 +233,13 @@
         [defaults setObject:userInfo[@"loginType"] forKey:userDefaultLoginType];
         [defaults setObject:[NSNumber numberWithBool:YES] forKey:userDefaultLoginFlag];
         [defaults synchronize];
+        //Logs
+        NSLog(@"loginType %@",[defaults objectForKey:userDefaultLoginType]);
+        NSLog(@"userName %@",[defaults objectForKey:userDefaultUserName]);
+        NSLog(@"emailVerified %@",[defaults objectForKey:userDefaultEmailVerified]);
+        NSLog(@"loginFlag %@",[defaults objectForKey:userDefaultLoginFlag]);
+        
+
     }
 }
 -(void) TwitterRequestInfo

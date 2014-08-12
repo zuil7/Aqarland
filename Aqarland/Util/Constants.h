@@ -35,7 +35,8 @@
 #define iInformation    NSLocalizedString(@"Information", nil)
 
 //Header Bar
-#define TitleHeaderFont @"Helvetica"
+#define TitleHeaderFont @"Roboto-Light"
+#define TitleHeaderFontSize 18.0
 
 //UserDefaults
 #define userDefaultUserName             @"dUsername"
@@ -49,10 +50,16 @@
 #define mManualLogin     @"UserManualSignUp"
 
 //StoryBoard ID
-#define sSideMenuVC         @"SideMenuVC"
-#define sHomeVC             @"HomeVC"
-#define sSignUpVC           @"SignUpVC"
-#define sCreateAccountVC    @"CreateAccountVC"
+#define sSideMenuVC             @"SideMenuVC"
+#define sHomeVC                 @"HomeVC"
+#define sSignUpVC               @"SignUpVC"
+#define sCreateAccountVC        @"CreateAccountVC"
+#define sProfileVC              @"ProfileVC"
+#define sPropertiesVC           @"PropertiesVC"
+#define sMyChatVC               @"MyChatVC"
+#define sSupportVC              @"SupportVC"
+#define sShortListVC            @"ShortListVC"
+#define sSettingVC              @"SettingsVC"
 
 //Parse Class Name
 #define pUser               @"User"

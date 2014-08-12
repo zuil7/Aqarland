@@ -180,6 +180,20 @@
 		B7A83C561999DD2000B4B0C6 /* done_button_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83C521999DD2000B4B0C6 /* done_button_active@2x.png */; };
 		B7A83C571999DD2000B4B0C6 /* done_button_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83C531999DD2000B4B0C6 /* done_button_inactive.png */; };
 		B7A83C581999DD2000B4B0C6 /* done_button_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83C541999DD2000B4B0C6 /* done_button_inactive@2x.png */; };
+		B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C5A1999E01500B4B0C6 /* AQSideMenuCell.m */; };
+		B7A83C5E1999E24A00B4B0C6 /* sideMenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7A83C5D1999E24A00B4B0C6 /* sideMenuList.plist */; };
+		B7A83C671999F57800B4B0C6 /* AQProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C661999F57800B4B0C6 /* AQProfileViewController.m */; };
+		B7A83C6A1999FDD600B4B0C6 /* AQPropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C691999FDD600B4B0C6 /* AQPropertiesViewController.m */; };
+		B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C6C1999FDE300B4B0C6 /* AQMyChatViewController.m */; };
+		B7A83C701999FDEF00B4B0C6 /* AQSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C6F1999FDEF00B4B0C6 /* AQSupportViewController.m */; };
+		B7A83C731999FDFA00B4B0C6 /* AQShortListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C721999FDFA00B4B0C6 /* AQShortListViewController.m */; };
+		B7A83C761999FE0500B4B0C6 /* AQSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C751999FE0500B4B0C6 /* AQSettingViewController.m */; };
+		B7A83CC2199A138C00B4B0C6 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7A83CC1199A138C00B4B0C6 /* Roboto-Light.ttf */; };
+		B7A83CC5199A139200B4B0C6 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7A83CC3199A139200B4B0C6 /* Roboto-Medium.ttf */; };
+		B7A83CC6199A139200B4B0C6 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7A83CC4199A139200B4B0C6 /* Roboto-Regular.ttf */; };
+		B7A83CC9199A14A000B4B0C6 /* CustomFontsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83CC8199A14A000B4B0C6 /* CustomFontsLabel.m */; };
+		B7A83CCC199A163200B4B0C6 /* CustomFontsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83CCB199A163200B4B0C6 /* CustomFontsButton.m */; };
+		B7A83CCF199A18F900B4B0C6 /* CustomFontsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83CCE199A18F900B4B0C6 /* CustomFontsTextField.m */; };
 		B7AABE001990CF2500DEADAD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABDFF1990CF2500DEADAD /* Accounts.framework */; };
 		B7AABE021990CF2D00DEADAD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABE011990CF2D00DEADAD /* Social.framework */; };
 		B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE071991E7B000DEADAD /* FHSStream.m */; };
@@ -398,6 +412,30 @@
 		B7A83C521999DD2000B4B0C6 /* done_button_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done_button_active@2x.png"; sourceTree = "<group>"; };
 		B7A83C531999DD2000B4B0C6 /* done_button_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done_button_inactive.png; sourceTree = "<group>"; };
 		B7A83C541999DD2000B4B0C6 /* done_button_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done_button_inactive@2x.png"; sourceTree = "<group>"; };
+		B7A83C591999E01500B4B0C6 /* AQSideMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSideMenuCell.h; sourceTree = "<group>"; };
+		B7A83C5A1999E01500B4B0C6 /* AQSideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSideMenuCell.m; sourceTree = "<group>"; };
+		B7A83C5D1999E24A00B4B0C6 /* sideMenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sideMenuList.plist; sourceTree = "<group>"; };
+		B7A83C651999F57800B4B0C6 /* AQProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQProfileViewController.h; sourceTree = "<group>"; };
+		B7A83C661999F57800B4B0C6 /* AQProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQProfileViewController.m; sourceTree = "<group>"; };
+		B7A83C681999FDD600B4B0C6 /* AQPropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertiesViewController.h; sourceTree = "<group>"; };
+		B7A83C691999FDD600B4B0C6 /* AQPropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertiesViewController.m; sourceTree = "<group>"; };
+		B7A83C6B1999FDE300B4B0C6 /* AQMyChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQMyChatViewController.h; sourceTree = "<group>"; };
+		B7A83C6C1999FDE300B4B0C6 /* AQMyChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQMyChatViewController.m; sourceTree = "<group>"; };
+		B7A83C6E1999FDEF00B4B0C6 /* AQSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSupportViewController.h; sourceTree = "<group>"; };
+		B7A83C6F1999FDEF00B4B0C6 /* AQSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSupportViewController.m; sourceTree = "<group>"; };
+		B7A83C711999FDFA00B4B0C6 /* AQShortListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQShortListViewController.h; sourceTree = "<group>"; };
+		B7A83C721999FDFA00B4B0C6 /* AQShortListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQShortListViewController.m; sourceTree = "<group>"; };
+		B7A83C741999FE0500B4B0C6 /* AQSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQSettingViewController.h; sourceTree = "<group>"; };
+		B7A83C751999FE0500B4B0C6 /* AQSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSettingViewController.m; sourceTree = "<group>"; };
+		B7A83CC1199A138C00B4B0C6 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		B7A83CC3199A139200B4B0C6 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		B7A83CC4199A139200B4B0C6 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		B7A83CC7199A14A000B4B0C6 /* CustomFontsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFontsLabel.h; sourceTree = "<group>"; };
+		B7A83CC8199A14A000B4B0C6 /* CustomFontsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFontsLabel.m; sourceTree = "<group>"; };
+		B7A83CCA199A163200B4B0C6 /* CustomFontsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFontsButton.h; sourceTree = "<group>"; };
+		B7A83CCB199A163200B4B0C6 /* CustomFontsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFontsButton.m; sourceTree = "<group>"; };
+		B7A83CCD199A18F900B4B0C6 /* CustomFontsTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFontsTextField.h; sourceTree = "<group>"; };
+		B7A83CCE199A18F900B4B0C6 /* CustomFontsTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFontsTextField.m; sourceTree = "<group>"; };
 		B7AABDFF1990CF2500DEADAD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B7AABE011990CF2D00DEADAD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B7AABE061991E7B000DEADAD /* FHSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSStream.h; sourceTree = "<group>"; };
@@ -587,6 +625,8 @@
 		B7A43B3E1988A35B00180532 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				B7A83C591999E01500B4B0C6 /* AQSideMenuCell.h */,
+				B7A83C5A1999E01500B4B0C6 /* AQSideMenuCell.m */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -594,6 +634,12 @@
 		B7A43B3F1988A35B00180532 /* CustomFonts */ = {
 			isa = PBXGroup;
 			children = (
+				B7A83CC7199A14A000B4B0C6 /* CustomFontsLabel.h */,
+				B7A83CC8199A14A000B4B0C6 /* CustomFontsLabel.m */,
+				B7A83CCA199A163200B4B0C6 /* CustomFontsButton.h */,
+				B7A83CCB199A163200B4B0C6 /* CustomFontsButton.m */,
+				B7A83CCD199A18F900B4B0C6 /* CustomFontsTextField.h */,
+				B7A83CCE199A18F900B4B0C6 /* CustomFontsTextField.m */,
 			);
 			path = CustomFonts;
 			sourceTree = "<group>";
@@ -640,6 +686,12 @@
 		B7A43B471988A35B00180532 /* MainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B7A83C601999F4AA00B4B0C6 /* Profile */,
+				B7A83C611999F4AA00B4B0C6 /* Properties */,
+				B7A83C5F1999F4AA00B4B0C6 /* MyChats */,
+				B7A83C641999F4AA00B4B0C6 /* Support */,
+				B7A83C631999F4AA00B4B0C6 /* ShortList */,
+				B7A83C621999F4AA00B4B0C6 /* Settings */,
 				B7A43B791988C8B300180532 /* SignUp */,
 			);
 			path = MainViewControllers;
@@ -655,6 +707,7 @@
 		B7A43B491988A35B00180532 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B7A83C5C1999E23600B4B0C6 /* Plist */,
 				B7A43B4A1988A35B00180532 /* Fonts */,
 				B7A43B4B1988A35B00180532 /* Images */,
 			);
@@ -664,6 +717,9 @@
 		B7A43B4A1988A35B00180532 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B7A83CC3199A139200B4B0C6 /* Roboto-Medium.ttf */,
+				B7A83CC4199A139200B4B0C6 /* Roboto-Regular.ttf */,
+				B7A83CC1199A138C00B4B0C6 /* Roboto-Light.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -960,6 +1016,68 @@
 			path = "02 - Login Screen";
 			sourceTree = "<group>";
 		};
+		B7A83C5C1999E23600B4B0C6 /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+				B7A83C5D1999E24A00B4B0C6 /* sideMenuList.plist */,
+			);
+			path = Plist;
+			sourceTree = "<group>";
+		};
+		B7A83C5F1999F4AA00B4B0C6 /* MyChats */ = {
+			isa = PBXGroup;
+			children = (
+				B7A83C6B1999FDE300B4B0C6 /* AQMyChatViewController.h */,
+				B7A83C6C1999FDE300B4B0C6 /* AQMyChatViewController.m */,
+			);
+			path = MyChats;
+			sourceTree = "<group>";
+		};
+		B7A83C601999F4AA00B4B0C6 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B7A83C651999F57800B4B0C6 /* AQProfileViewController.h */,
+				B7A83C661999F57800B4B0C6 /* AQProfileViewController.m */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B7A83C611999F4AA00B4B0C6 /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				B7A83C681999FDD600B4B0C6 /* AQPropertiesViewController.h */,
+				B7A83C691999FDD600B4B0C6 /* AQPropertiesViewController.m */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
+		B7A83C621999F4AA00B4B0C6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B7A83C741999FE0500B4B0C6 /* AQSettingViewController.h */,
+				B7A83C751999FE0500B4B0C6 /* AQSettingViewController.m */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B7A83C631999F4AA00B4B0C6 /* ShortList */ = {
+			isa = PBXGroup;
+			children = (
+				B7A83C711999FDFA00B4B0C6 /* AQShortListViewController.h */,
+				B7A83C721999FDFA00B4B0C6 /* AQShortListViewController.m */,
+			);
+			path = ShortList;
+			sourceTree = "<group>";
+		};
+		B7A83C641999F4AA00B4B0C6 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				B7A83C6E1999FDEF00B4B0C6 /* AQSupportViewController.h */,
+				B7A83C6F1999FDEF00B4B0C6 /* AQSupportViewController.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		B7AABE051991E7B000DEADAD /* FHSTwitterEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,7 +1238,9 @@
 				B7A83C141998B86500B4B0C6 /* Agent-Profile-Viewed-by-Client.png in Resources */,
 				B7A83BAA1998B86500B4B0C6 /* location_button_active.png in Resources */,
 				B7A83BF61998B86500B4B0C6 /* Add-Property-Screen-3.png in Resources */,
+				B7A83CC6199A139200B4B0C6 /* Roboto-Regular.ttf in Resources */,
 				B7A83C4B1999B4E200B4B0C6 /* signup_button_active.png in Resources */,
+				B7A83CC5199A139200B4B0C6 /* Roboto-Medium.ttf in Resources */,
 				B7948F9C198A3D6900936E16 /* dashboard_map_icn_station.png in Resources */,
 				B7A83BE01998B86500B4B0C6 /* search_bar.png in Resources */,
 				B7A83BDA1998B86500B4B0C6 /* map_pin.png in Resources */,
@@ -1148,6 +1268,7 @@
 				B7A83C1A1998B86500B4B0C6 /* check_properties_button.png in Resources */,
 				B7A83C451999B4E200B4B0C6 /* login_button_active@2x.png in Resources */,
 				B7A83C191998B86500B4B0C6 /* chat_agent_button_active@2x.png in Resources */,
+				B7A83CC2199A138C00B4B0C6 /* Roboto-Light.ttf in Resources */,
 				B7A83C3F1999B4E200B4B0C6 /* facebook_icon@2x.png in Resources */,
 				B7A83B9F1998B86500B4B0C6 /* confirm_button_active.png in Resources */,
 				B7A83C1B1998B86500B4B0C6 /* check_properties_button@2x.png in Resources */,
@@ -1197,6 +1318,7 @@
 				B7A83BE51998B86500B4B0C6 /* search_icon@2x.png in Resources */,
 				B7A83BE61998B86500B4B0C6 /* Dashboard-Menu-Screen.png in Resources */,
 				B7A83BF11998B86500B4B0C6 /* shortlist_icon@2x.png in Resources */,
+				B7A83C5E1999E24A00B4B0C6 /* sideMenuList.plist in Resources */,
 				B7A83C061998B86500B4B0C6 /* favorites_icon.png in Resources */,
 				B7A83B851998B86500B4B0C6 /* logo@2x.png in Resources */,
 				B7A83C011998B86500B4B0C6 /* bathtub_icon@2x.png in Resources */,
@@ -1286,14 +1408,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7948FA2198B571A00936E16 /* AQCreateAccountViewController.m in Sources */,
+				B7A83C761999FE0500B4B0C6 /* AQSettingViewController.m in Sources */,
 				B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */,
 				B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */,
 				B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */,
+				B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */,
+				B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */,
 				B7AABE1E1991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m in Sources */,
+				B7A83C671999F57800B4B0C6 /* AQProfileViewController.m in Sources */,
 				B7AABE1B1991E7B000DEADAD /* NSData+Base64.m in Sources */,
 				B7948F96198A3A4C00936E16 /* MKMapView+ZoomLevel.m in Sources */,
+				B7A83C701999FDEF00B4B0C6 /* AQSupportViewController.m in Sources */,
 				B7948F94198A3A4C00936E16 /* CustomPinView.m in Sources */,
+				B7A83C6A1999FDD600B4B0C6 /* AQPropertiesViewController.m in Sources */,
+				B7A83CC9199A14A000B4B0C6 /* CustomFontsLabel.m in Sources */,
 				B7AABE1C1991E7B000DEADAD /* OAuth+Additions.m in Sources */,
+				B7A83CCC199A163200B4B0C6 /* CustomFontsButton.m in Sources */,
 				B7A43B181988A2A800180532 /* AQAppDelegate.m in Sources */,
 				B7AABE201991E7B000DEADAD /* TWSignedRequest.m in Sources */,
 				B7AABE1A1991E7B000DEADAD /* FHSTwitterEngine.m in Sources */,
@@ -1307,6 +1437,8 @@
 				B7AABE1F1991E7B000DEADAD /* TWAPIManager.m in Sources */,
 				B7A43B521988A35B00180532 /* CustomLoginVC.m in Sources */,
 				B7A43B5F1988A40700180532 /* AQHomeViewController.m in Sources */,
+				B7A83C731999FDFA00B4B0C6 /* AQShortListViewController.m in Sources */,
+				B7A83CCF199A18F900B4B0C6 /* CustomFontsTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

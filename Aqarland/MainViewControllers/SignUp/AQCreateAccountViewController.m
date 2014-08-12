@@ -48,7 +48,7 @@
 {
     [self.navigationController setNavigationBarHidden:NO];
     [self.navigationItem setTitle:@"Create Account"];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:23], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {

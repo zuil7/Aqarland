@@ -26,12 +26,14 @@
 - (NSString *) encodeToPercentEscapeString:(NSString *)string;
 - (NSString *) decodeFromPercentEscapeString:(NSString *)string;
 - (NSString *) platformString;
+- (NSArray *) loadPlistfile:(NSString *)name forKey:(NSString *)key;
+
 + (BOOL)isStringNumeric:(NSString *)aString;
 + (NSString *)separateString:(NSString *)str withOccuredString:(NSString *)kString;
 + (NSString *)formatString:(double)total withGroupSize:(int)size;
 + (NSString *)convertDateToString:(NSDate *)yourDate wantedFormat:(NSString *)format;
 + (NSDictionary *)loadPlistfile:(NSString *)name;
-+ (NSArray *)loadPlistfile:(NSString *)name forKey:(NSString *)key;
+
 + (UIImage *)squareImageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
 

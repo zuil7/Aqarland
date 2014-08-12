@@ -10,5 +10,6 @@
 
 @interface AQSideMenuViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *sideMenuTbl;
 @property (weak, nonatomic) IBOutlet UILabel *testLbl;
 @end
