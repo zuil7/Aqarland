@@ -60,6 +60,7 @@
 #define sSupportVC              @"SupportVC"
 #define sShortListVC            @"ShortListVC"
 #define sSettingVC              @"SettingsVC"
+#define sSearchVC               @"SearchVC"
 
 //Parse Class Name
 #define pUser               @"User"

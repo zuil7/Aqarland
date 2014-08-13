@@ -7,9 +7,11 @@
 //
 
 #import "AQHomeViewController.h"
+#import "AQSearchViewController.h"
 
-@interface AQHomeViewController ()
+@interface AQHomeViewController ()<AQSearchViewControllerDelegate>
 
+@property(nonatomic,strong) AQSearchViewController *searchVC;
 @end
 
 @implementation AQHomeViewController
@@ -41,6 +43,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+}
+
 /*
 #pragma mark - Navigation
 
@@ -56,7 +64,8 @@
 ////////////////////////////////////
 -(void) customizeHeaderBar
 {
-    [self.navigationItem setTitle:@"Property Map"];
+    //self.navigationItem.titleView = self.searchBar;
+    //[self.navigationItem setTitle:@"Property Map"];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     
@@ -102,6 +111,25 @@
 
 -(void) searchBarBtn_touchedupInside:(id) sender
 {
+    [self.navigationController setNavigationBarHidden:YES];
+    self.searchVC = [GlobalInstance loadStoryBoardId:sSearchVC];
+    
+    [self.searchVC setSearchVCDelegate:self];
+    
+    [self addChildViewController:self.searchVC];
+    self.searchVC.view.frame = self.view.bounds;
+    [self.view addSubview:self.searchVC.view];
+    [self.searchVC didMoveToParentViewController:self];
+   
+   
 
 }
+////////////////////////////////////
+#pragma mark - AQSearchViewControllerDelegate
+////////////////////////////////////
+- (void)showNavigationBar
+{
+     [self.navigationController setNavigationBarHidden:NO];
+}
+
 @end

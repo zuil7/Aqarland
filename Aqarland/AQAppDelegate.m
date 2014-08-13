@@ -14,18 +14,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-   
     
-    // ****************************************************************************
+    //*******************************************************************
     // Parse initialization
     [Parse setApplicationId:kParseID clientKey:kParseKey];
-	// ****************************************************************************
+	// *****************************************************************
+    
+    
     [PFFacebookUtils initializeFacebook];
     
     [PFTwitterUtils initializeWithConsumerKey:kTwitterKey
                                consumerSecret:kTwitterSecret];
-    
-       
+          
     return YES;
 }
 							
