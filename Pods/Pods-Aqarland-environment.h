@@ -57,8 +57,8 @@
 // Facebook-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Facebook_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Facebook_iOS_SDK 3
-#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 16
-#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 2
+#define COCOAPODS_VERSION_MINOR_Facebook_iOS_SDK 17
+#define COCOAPODS_VERSION_PATCH_Facebook_iOS_SDK 0
 
 // IQKeyboardManager
 #define COCOAPODS_POD_AVAILABLE_IQKeyboardManager
@@ -77,6 +77,12 @@
 #define COCOAPODS_VERSION_MAJOR_Parse 1
 #define COCOAPODS_VERSION_MINOR_Parse 2
 #define COCOAPODS_VERSION_PATCH_Parse 19
+
+// RMPickerViewController
+#define COCOAPODS_POD_AVAILABLE_RMPickerViewController
+#define COCOAPODS_VERSION_MAJOR_RMPickerViewController 1
+#define COCOAPODS_VERSION_MINOR_RMPickerViewController 2
+#define COCOAPODS_VERSION_PATCH_RMPickerViewController 0
 
 // ViewDeck
 #define COCOAPODS_POD_AVAILABLE_ViewDeck

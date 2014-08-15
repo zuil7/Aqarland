@@ -153,14 +153,7 @@
         
     }else
     {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Information"
-                              message:@"Please fill out the textfield to proceed"
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-
+        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
     }
     
 }

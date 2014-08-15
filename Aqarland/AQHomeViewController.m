@@ -8,9 +8,10 @@
 
 #import "AQHomeViewController.h"
 #import "AQSearchViewController.h"
+#import "AQAddPropertyViewController.h"
 
 @interface AQHomeViewController ()<AQSearchViewControllerDelegate>
-
+@property(nonatomic,strong) AQSearchViewController *addPropertyVC;
 @property(nonatomic,strong) AQSearchViewController *searchVC;
 @end
 
@@ -62,6 +63,11 @@
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
+-(void)tabbarCustomization
+{
+//    [self.listPropertyBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,RGB(34, 141, 187), NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    [self.listPropertyBarItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} forState:UIControlStateNormal];
+}
 -(void) customizeHeaderBar
 {
     //self.navigationItem.titleView = self.searchBar;
@@ -102,8 +108,19 @@
 ////////////////////////////////////
 #pragma mark - Action
 ////////////////////////////////////
-
-
+-(IBAction)listProperty_touchedup_inside:(id)sender
+{
+   //self.searchVC = [GlobalInstance loadStoryBoardId:sSearchVC];
+}
+-(IBAction)addProperty_touchedup_inside:(id)sender
+{
+    self.addPropertyVC=[GlobalInstance loadStoryBoardId:sAddPropertyVC];
+    [self.navigationController pushViewController:self.addPropertyVC animated:YES];
+}
+-(IBAction)myChats_touchedup_inside:(id)sender
+{
+    
+}
 
 ////////////////////////////////////
 #pragma mark - Logic

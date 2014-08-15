@@ -114,13 +114,8 @@
 
                 if ([results boolValue]==1)
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Information"
-                                                                    message:@"Successfuly Registered"
-                                                                   delegate:self
-                                                          cancelButtonTitle:@"OK"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-
+                    [GlobalInstance showAlert:iInformation message:@"Successfuly Registered"];
+    
                 }
             }];
             [request setFailedBlock:^(NSError *error)
@@ -128,6 +123,9 @@
                 [GlobalInstance showAlert:iErrorInfo message:[error description]];
             }];
         }
+    }else
+    {
+        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
     }
 }
 

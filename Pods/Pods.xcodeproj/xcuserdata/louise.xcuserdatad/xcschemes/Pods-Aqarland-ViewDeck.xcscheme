@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "718AB5CD1AC240FEB102D22D"
+               BlueprintIdentifier = "F34D593A78984504807D0E6E"
                BuildableName = "libPods-Aqarland-ViewDeck.a"
                BlueprintName = "Pods-Aqarland-ViewDeck"
                ReferencedContainer = "container:Pods.xcodeproj">

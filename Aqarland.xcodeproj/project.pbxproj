@@ -207,6 +207,12 @@
 		B7AABE1E1991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE131991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m */; };
 		B7AABE1F1991E7B000DEADAD /* TWAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE161991E7B000DEADAD /* TWAPIManager.m */; };
 		B7AABE201991E7B000DEADAD /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE181991E7B000DEADAD /* TWSignedRequest.m */; };
+		B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF8B98199CAA9300663A3E /* AQAddPropertyViewController.m */; };
+		B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF8B9B199DE67F00663A3E /* AQPropertyDetailsViewController.m */; };
+		B7AF8BA1199DF8E500663A3E /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AF8B9D199DF8E500663A3E /* home_icon.png */; };
+		B7AF8BA2199DF8E500663A3E /* home_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AF8B9E199DF8E500663A3E /* home_icon@2x.png */; };
+		B7AF8BA3199DF8E500663A3E /* next_navigation_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AF8B9F199DF8E500663A3E /* next_navigation_icon.png */; };
+		B7AF8BA4199DF8E500663A3E /* next_navigation_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AF8BA0199DF8E500663A3E /* next_navigation_icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -461,6 +467,14 @@
 		B7AABE161991E7B000DEADAD /* TWAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWAPIManager.m; sourceTree = "<group>"; };
 		B7AABE171991E7B000DEADAD /* TWSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSignedRequest.h; sourceTree = "<group>"; };
 		B7AABE181991E7B000DEADAD /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
+		B7AF8B97199CAA9300663A3E /* AQAddPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQAddPropertyViewController.h; sourceTree = "<group>"; };
+		B7AF8B98199CAA9300663A3E /* AQAddPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAddPropertyViewController.m; sourceTree = "<group>"; };
+		B7AF8B9A199DE67F00663A3E /* AQPropertyDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyDetailsViewController.h; sourceTree = "<group>"; };
+		B7AF8B9B199DE67F00663A3E /* AQPropertyDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyDetailsViewController.m; sourceTree = "<group>"; };
+		B7AF8B9D199DF8E500663A3E /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
+		B7AF8B9E199DF8E500663A3E /* home_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_icon@2x.png"; sourceTree = "<group>"; };
+		B7AF8B9F199DF8E500663A3E /* next_navigation_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next_navigation_icon.png; sourceTree = "<group>"; };
+		B7AF8BA0199DF8E500663A3E /* next_navigation_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next_navigation_icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -869,6 +883,10 @@
 		B7A83B1B1998B86500B4B0C6 /* 05 - Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				B7AF8B9D199DF8E500663A3E /* home_icon.png */,
+				B7AF8B9E199DF8E500663A3E /* home_icon@2x.png */,
+				B7AF8B9F199DF8E500663A3E /* next_navigation_icon.png */,
+				B7AF8BA0199DF8E500663A3E /* next_navigation_icon@2x.png */,
 				B7A83CD7199B71E000B4B0C6 /* searchBarBg.png */,
 				B7A83CD8199B71E000B4B0C6 /* searchBarBg@2x.png */,
 				B7A83B1C1998B86500B4B0C6 /* addproperty_icon.png */,
@@ -1057,6 +1075,10 @@
 			children = (
 				B7A83C681999FDD600B4B0C6 /* AQPropertiesViewController.h */,
 				B7A83C691999FDD600B4B0C6 /* AQPropertiesViewController.m */,
+				B7AF8B97199CAA9300663A3E /* AQAddPropertyViewController.h */,
+				B7AF8B98199CAA9300663A3E /* AQAddPropertyViewController.m */,
+				B7AF8B9A199DE67F00663A3E /* AQPropertyDetailsViewController.h */,
+				B7AF8B9B199DE67F00663A3E /* AQPropertyDetailsViewController.m */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -1269,6 +1291,7 @@
 				B7A83BB41998B86500B4B0C6 /* Regsitration-Screen-3.png in Resources */,
 				B7A83BA11998B86500B4B0C6 /* confirm_button_inactive.png in Resources */,
 				B7A83B841998B86500B4B0C6 /* logo.png in Resources */,
+				B7AF8BA2199DF8E500663A3E /* home_icon@2x.png in Resources */,
 				B7A83BC41998B86500B4B0C6 /* text_box@2x.png in Resources */,
 				B7A83C001998B86500B4B0C6 /* bathtub_icon.png in Resources */,
 				B7A83C1D1998B86500B4B0C6 /* check_properties_button_active@2x.png in Resources */,
@@ -1301,6 +1324,7 @@
 				B7A83BEA1998B86500B4B0C6 /* myproperties_icon.png in Resources */,
 				B7A83C3E1999B4E200B4B0C6 /* facebook_icon.png in Resources */,
 				B7A83C0D1998B86500B4B0C6 /* share_icon@2x.png in Resources */,
+				B7AF8BA1199DF8E500663A3E /* home_icon.png in Resources */,
 				B7A43B201988A2A800180532 /* Images.xcassets in Resources */,
 				B7A83C501999B4E200B4B0C6 /* twitter_icon_inactive@2x.png in Resources */,
 				B7A83BD51998B86500B4B0C6 /* filter_button@2x.png in Resources */,
@@ -1331,11 +1355,13 @@
 				B7A83C101998B86500B4B0C6 /* List-Property-Screen-3.png in Resources */,
 				B7A83B9A1998B86500B4B0C6 /* back_navigation_icon.png in Resources */,
 				B7A83C041998B86500B4B0C6 /* delete_icon.png in Resources */,
+				B7AF8BA3199DF8E500663A3E /* next_navigation_icon.png in Resources */,
 				B7A83BCE1998B86500B4B0C6 /* Dashboard-Screen.png in Resources */,
 				B7A83BA31998B86500B4B0C6 /* dashboard_button_active.png in Resources */,
 				B7A83BD61998B86500B4B0C6 /* filter_button_active.png in Resources */,
 				B7A83C1E1998B86500B4B0C6 /* Agent-Profile-Screen.png in Resources */,
 				B7A83C031998B86500B4B0C6 /* bed_icon@2x.png in Resources */,
+				B7AF8BA4199DF8E500663A3E /* next_navigation_icon@2x.png in Resources */,
 				B7A83BE51998B86500B4B0C6 /* search_icon@2x.png in Resources */,
 				B7A83BE61998B86500B4B0C6 /* Dashboard-Menu-Screen.png in Resources */,
 				B7A83BF11998B86500B4B0C6 /* shortlist_icon@2x.png in Resources */,
@@ -1433,10 +1459,12 @@
 				B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */,
 				B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */,
 				B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */,
+				B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */,
 				B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */,
 				B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */,
 				B7AABE1E1991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m in Sources */,
 				B7A83C671999F57800B4B0C6 /* AQProfileViewController.m in Sources */,
+				B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */,
 				B7AABE1B1991E7B000DEADAD /* NSData+Base64.m in Sources */,
 				B7948F96198A3A4C00936E16 /* MKMapView+ZoomLevel.m in Sources */,
 				B7A83C701999FDEF00B4B0C6 /* AQSupportViewController.m in Sources */,

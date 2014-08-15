@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/SignUp/AQSignUpViewController.m"
-            timestampString = "429506822.77592"
+            timestampString = "429787685.297093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "@implementation AQSignUpViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/SignUp/AQSignUpViewController.m"
-            timestampString = "429506822.77592"
+            timestampString = "429787685.297093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "@implementation AQSignUpViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "482"
-            endingLineNumber = "482">
+            startingLineNumber = "467"
+            endingLineNumber = "467">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
             landmarkName = "-actionSheet:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-facebookRequestInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "-facebookRequestInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "-loginFb_touchedup_inside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "-loginFb_touchedup_inside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -280,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
             landmarkName = "@implementation AQViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -296,11 +296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "-displayTwitterAccounts:"
             landmarkType = "5">
          </BreakpointContent>
@@ -374,11 +374,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "-login_touchedup_inside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -390,11 +390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "-login_touchedup_inside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -438,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/SignUp/AQSignUpViewController.m"
-            timestampString = "429506822.77592"
+            timestampString = "429787685.297093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -486,11 +486,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-checkUserDefaults"
             landmarkType = "5">
          </BreakpointContent>
@@ -502,11 +502,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "-login_touchedup_inside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -518,11 +518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429187447.096879"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "-checkUserDefaults"
             landmarkType = "5">
          </BreakpointContent>
@@ -598,11 +598,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-facebookRequestInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -614,11 +614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "-facebookRequestInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -630,11 +630,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "-loginFb_touchedup_inside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -646,11 +646,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQViewController.m"
-            timestampString = "429519809.276382"
+            timestampString = "429692983.065166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
             landmarkName = "-loginTwitter_touchedup_inside:"
             landmarkType = "5">
          </BreakpointContent>
@@ -662,11 +662,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/AQHomeViewController.m"
-            timestampString = "429602725.498582"
+            timestampString = "429698410.940731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "-customizeHeaderBar"
             landmarkType = "5">
          </BreakpointContent>

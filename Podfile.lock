@@ -21,12 +21,13 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.1.1)
-  - Facebook-iOS-SDK (3.16.2):
+  - Facebook-iOS-SDK (3.17.0):
     - Bolts
   - IQKeyboardManager (3.0.6)
   - MBProgressHUD (0.8)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
+  - RMPickerViewController (1.2.0)
   - ViewDeck (2.2.11)
 
 DEPENDENCIES:
@@ -34,15 +35,17 @@ DEPENDENCIES:
   - IQKeyboardManager (= 3.0.6)
   - MBProgressHUD (= 0.8)
   - Parse (= 1.2.19)
+  - RMPickerViewController (= 1.2.0)
   - ViewDeck (= 2.2.11)
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   Bolts: 0ca796081c3e7c139bd86d6903c27f1b83036a5d
-  Facebook-iOS-SDK: 34eef640c2cc4c8618ba0f574ad2b290e07f1b4e
+  Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   IQKeyboardManager: 3381092a6728e3565a6ad5051c44386be36bd990
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
+  RMPickerViewController: 9e976b3c4bc09bd7d546306f0e6dacc19ce6c496
   ViewDeck: 2f38c054dfe8e69af4877c006785996faa277902
 
 COCOAPODS: 0.33.1

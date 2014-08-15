@@ -50,25 +50,32 @@
 #define mManualLogin     @"UserManualSignUp"
 
 //StoryBoard ID
-#define sSideMenuVC             @"SideMenuVC"
-#define sHomeVC                 @"HomeVC"
-#define sSignUpVC               @"SignUpVC"
-#define sCreateAccountVC        @"CreateAccountVC"
-#define sProfileVC              @"ProfileVC"
-#define sPropertiesVC           @"PropertiesVC"
-#define sMyChatVC               @"MyChatVC"
-#define sSupportVC              @"SupportVC"
-#define sShortListVC            @"ShortListVC"
-#define sSettingVC              @"SettingsVC"
-#define sSearchVC               @"SearchVC"
+#define sSideMenuVC                 @"SideMenuVC"
+#define sHomeVC                     @"HomeVC"
+#define sSignUpVC                   @"SignUpVC"
+#define sCreateAccountVC            @"CreateAccountVC"
+#define sProfileVC                  @"ProfileVC"
+#define sPropertiesVC               @"PropertiesVC"
+#define sMyChatVC                   @"MyChatVC"
+#define sSupportVC                  @"SupportVC"
+#define sShortListVC                @"ShortListVC"
+#define sSettingVC                  @"SettingsVC"
+#define sSearchVC                   @"SearchVC"
+#define sAddPropertyVC              @"AddPropertyVC"
+#define sAddPropertyDetailsVC       @"AddPropertyDetailsVC"
+
 
 //Parse Class Name
 #define pUser               @"User"
 #define pUserProfile        @"UserProfile"
+#define pPropertyList       @"PropertyList"
+#define pPropertyImage      @"PropertyImage"
+
 
 //Images
 
-#define iBackArrowImg       @"back_navigation_icon.png"
-#define iMenuImg            @"dashboard_icon.png"
-#define iSearchImg            @"search_icon.png"
+#define iBackArrowImg           @"back_navigation_icon.png"
+#define iForwardArrowImg        @"next_navigation_icon"
+#define iMenuImg                @"dashboard_icon.png"
+#define iSearchImg              @"search_icon.png"
 #endif

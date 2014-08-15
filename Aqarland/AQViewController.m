@@ -12,7 +12,7 @@
 #import "CustomLoginVC.h"
 #import "AQSignUpViewController.h"
 #import "PFTwitterUtils+NativeTwitter.h"
-
+#import "IQKeyboardManager.h"
 
 @interface AQViewController ()<UIActionSheetDelegate,PFLogInViewControllerDelegate>
 
@@ -23,7 +23,8 @@
 @property(nonatomic,strong) PFLogInViewController *logInController;
 @property(nonatomic,strong) CustomLoginVC *customLoginVC;
 @property(nonatomic,strong) AQSignUpViewController *signUpVC;
-@property(strong,nonatomic) UINavigationController *HomeVcNav;
+@property(strong,nonatomic) UINavigationController *ListProperty;
+
 
 @property (strong, nonatomic) NSArray *twitterAccounts;
 @end
@@ -36,7 +37,7 @@
     GlobalInstance.navController=self.navigationController;
     
    // [self ParseLoginCustomizationControllers];
-    
+     [[IQKeyboardManager sharedManager] setEnable:YES];
      [self LoadViewControllers];
   
 
@@ -110,31 +111,15 @@
     self.homeVC =[GlobalInstance loadStoryBoardId:sHomeVC];
     self.sideMenuVC =[GlobalInstance loadStoryBoardId:sSideMenuVC];
     
-    self.HomeVcNav = [[UINavigationController alloc] initWithRootViewController:self.homeVC];
+    self.ListProperty = [[UINavigationController alloc] initWithRootViewController:self.homeVC];
     self.viewDeckVC=[[IIViewDeckController alloc] init];
     self.viewDeckVC.leftSize=70.0f;
     self.viewDeckVC.leftController=self.sideMenuVC;
     self.viewDeckVC.rightController=nil;
-    self.viewDeckVC.centerController=self.HomeVcNav;
+    self.viewDeckVC.centerController=self.ListProperty;
     
 }
 
--(void) LoadDashboard
-{
-    
-    self.homeVC =[GlobalInstance loadStoryBoardId:sHomeVC];
-    self.sideMenuVC =[GlobalInstance loadStoryBoardId:sSideMenuVC];
-    
-    self.HomeVcNav = [[UINavigationController alloc] initWithRootViewController:self.homeVC];
-    [self.HomeVcNav setNavigationBarHidden:YES];
-    self.viewDeckVC=[[IIViewDeckController alloc] init];
-    self.viewDeckVC.leftSize=70.0f;
-    self.viewDeckVC.leftController=self.sideMenuVC;
-    self.viewDeckVC.rightController=nil;
-    self.viewDeckVC.centerController=self.HomeVcNav;
-    [self.navigationController setViewControllers:@[self.viewDeckVC] animated:YES];
-    
-}
 -(void) facebookRequestInfo
 {
     // Send request to Facebook

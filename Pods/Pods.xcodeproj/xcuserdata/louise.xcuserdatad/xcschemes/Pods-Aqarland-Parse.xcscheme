@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F54F4A7110134A87A31EF3DB"
+               BlueprintIdentifier = "DD31F791F3CF40EBA5F29533"
                BuildableName = "libPods-Aqarland-Parse.a"
                BlueprintName = "Pods-Aqarland-Parse"
                ReferencedContainer = "container:Pods.xcodeproj">

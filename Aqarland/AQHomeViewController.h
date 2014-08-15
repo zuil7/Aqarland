@@ -10,5 +10,9 @@
 
 @interface AQHomeViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
 
+@property (weak, nonatomic) IBOutlet UITabBarItem *listPropertyBarItem;
+@property (weak, nonatomic) IBOutlet UITabBarItem *addPropertyBarItem;
+@property (weak, nonatomic) IBOutlet UITabBarItem *myChatBarItem;
 @end
