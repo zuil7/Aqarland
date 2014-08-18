@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>propertyList</key>
+	<array>
+        <string>House</string>
+        <string>Apartment</string>
+        <string>Sided Apartment</string>
+        <string>Traditional House</string>
+        <string>Duplex</string>
+        <string>Housetop</string>
+        <string>Condominium Unit</string>
+        <string>Room</string>
+        <string>Studio</string>
+        <string>Villa</string>
+        <string>Chalet</string>
+        <string>Office Space</string>
+        <string>Shop Space</string>
+        <string>Storage</string>
+        <string>Building</string>
+        <string>Resort</string>
+        <string> Raw Land</string>
+        <string>Farm Land</string>
+        <string>Land</string>
+        <string>Other</string>
+	</array>
+</dict>
+</plist>

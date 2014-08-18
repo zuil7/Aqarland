@@ -9,6 +9,7 @@
 #import "AQAddPropertyViewController.h"
 #import "AQPropertyDetailsViewController.h"
 
+
 @interface AQAddPropertyViewController ()
 
 @property(nonatomic,strong) NSMutableDictionary *propertyDictionary;
@@ -30,6 +31,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(handleSingleTap:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
+    
     // Do any additional setup after loading the view.
     [self customizeHeaderBar];
 }
@@ -89,10 +95,15 @@
     }
 }
 
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+    [self.view endEditing:YES];
+}
+
 -(void) goToPropertyDetails:(id) sender
 {
-    if([self checkTextField])
-    {
+//    if([self checkTextField])
+//    {
         self.propertyDictionary=[[NSMutableDictionary alloc] init];
         self.propertyDictionary[@"unit"] = self.unitTxtField.text;
         self.propertyDictionary[@"houseNum"] = self.houseNumTxtField.text;
@@ -104,10 +115,10 @@
         self.propertyDetailsVC=[GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];
         self.propertyDetailsVC.propertyAddress=self.propertyDictionary;
         [self.navigationController pushViewController:self.propertyDetailsVC animated:YES];
-    }else
-    {
-        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
-    }
+//    }else
+//    {
+//        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
+//    }
     
 }
 
@@ -126,5 +137,7 @@
     }
     
 }
+
+
 
 @end

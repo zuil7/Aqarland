@@ -7,10 +7,11 @@
 //
 
 #import "AQPropertyDetailsViewController.h"
+#import "RMPickerViewController.h"
 
-@interface AQPropertyDetailsViewController ()
+@interface AQPropertyDetailsViewController ()<RMPickerViewControllerDelegate>
 
-
+@property(nonatomic,strong) NSArray *propertyList;
 @end
 
 @implementation AQPropertyDetailsViewController
@@ -27,6 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(handleSingleTap:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
+    
+    self.propertyList=[GlobalInstance loadPlistfile:@"propertyTypeList" forKey:@"propertyList"];
     // Do any additional setup after loading the view.
     [self customizeHeaderBar];
     NSLog(@"propertyAddress %@",self.propertyAddress);
@@ -48,6 +55,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+////////////////////////////////////
+#pragma mark - Logic
+////////////////////////////////////
 -(void) customizeHeaderBar
 {
     [self.navigationItem setTitle:@"Property Details"];
@@ -82,9 +92,60 @@
     }
 }
 
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+    [self.view endEditing:YES];
+}
+
+////////////////////////////////////
+#pragma mark - Action
+////////////////////////////////////
+-(IBAction) popertyType_touchedup_inside:(id) sender
+{
+    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
+    pickerVC.delegate = self;
+    
+    //You can enable or disable bouncing and motion effects
+    //pickerVC.disableBouncingWhenShowing = YES;
+    //pickerVC.disableMotionEffects = YES;
+    
+    [pickerVC show];
+}
+
+
 -(void) goToUploadPhoto:(id) sender
 {
     
 }
+
+////////////////////////
+#pragma mark - RMPickerViewController Delegates
+////////////////////////
+- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray *)selectedRows
+{
+//    selectedIdx=0;
+    int idx=[[selectedRows objectAtIndex:0] intValue];
+//    selectedIdx=idx + 1;
+    NSString *selectedStr=[self.propertyList objectAtIndex:idx];
+    [self.propertyTypeLbl setText:selectedStr];
+}
+
+- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
+    NSLog(@"Selection was canceled");
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [self.propertyList count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSString *str=[self.propertyList objectAtIndex:row];
+    return str;
+}
+
 
 @end
