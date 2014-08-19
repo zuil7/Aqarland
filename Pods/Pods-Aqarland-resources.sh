@@ -43,6 +43,7 @@ install_resource()
 }
 install_resource "Facebook-iOS-SDK/src/FBUserSettingsViewResources.bundle"
 install_resource "IQKeyboardManager/KeyboardTextFieldDemo/IQKeyBoardManager/IQKeyboardManager.bundle"
+install_resource "${BUILT_PRODUCTS_DIR}/HockeySDKResources.bundle"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

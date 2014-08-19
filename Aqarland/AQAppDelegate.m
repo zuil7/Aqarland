@@ -7,7 +7,12 @@
 //
 
 #import "AQAppDelegate.h"
+#import "HockeySDK.h"
 
+
+@interface AQAppDelegate ()<BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate>
+
+@end
 
 @implementation AQAppDelegate
 
@@ -25,7 +30,10 @@
     
     [PFTwitterUtils initializeWithConsumerKey:kTwitterKey
                                consumerSecret:kTwitterSecret];
-          
+    
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:kHockeyKey delegate:self];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+    
     return YES;
 }
 							
@@ -64,10 +72,18 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     NSLog(@"session %@",[PFFacebookUtils session]);
+
     return [FBAppCall handleOpenURL:url
                   sourceApplication:sourceApplication
                         withSession:[PFFacebookUtils session]];
-//     return [PFFacebookUtils handleOpenURL:url];
+
+}
+
+#pragma mark - BITUpdateManagerDelegate
+
+- (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager
+{
+    return nil;
 }
 
 

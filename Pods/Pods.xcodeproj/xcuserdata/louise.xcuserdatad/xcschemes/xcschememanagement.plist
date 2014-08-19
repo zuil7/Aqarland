@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>HockeySDKResources.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Aqarland-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -15,6 +20,11 @@
 			<false/>
 		</dict>
 		<key>Pods-Aqarland-Facebook-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Aqarland-HockeySDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,47 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4F69693DDB024CC482A3D0FE</key>
+		<key>0A638BBE2533455C9C5287E6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C19E07C1890465281853269</key>
+		<key>A8B7A48A28554165848D967D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7FCDC10E329D4E5BA8D091D6</key>
+		<key>AE5D1277EFF14AD784B0EF03</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7FF32464CA954FD9A55F18EE</key>
+		<key>B0998A29591D40E282B5E113</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9E66EAA67524D388CAECEA2</key>
+		<key>C98EC3E0BC7E4467A9E99AEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD5ED7C7566747E3BFCA21C1</key>
+		<key>E06BE99DC93B4586B8A83B92</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD31F791F3CF40EBA5F29533</key>
+		<key>E48022F7E1EE4CCEAC7FBC75</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F08077398387467199BBB1B6</key>
+		<key>E6177C6D16974ACAA3A00BA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F34D593A78984504807D0E6E</key>
+		<key>EB237F0A57E0431582E79319</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F06907D6A1C14DDB9E7D7904</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F96A8B18F13F46CD81F1449B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

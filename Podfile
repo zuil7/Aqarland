@@ -8,7 +8,7 @@ pod 'ViewDeck',                 '2.2.11'
 pod 'IQKeyboardManager',        '3.0.6'
 pod 'MBProgressHUD',            '0.8'
 pod 'RMPickerViewController',   '1.2.0'
-
+pod 'HockeySDK',                '3.5.5'
 end
 
 target "AqarlandTests" do

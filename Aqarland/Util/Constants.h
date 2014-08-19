@@ -17,6 +17,7 @@
 #define kTwitterKey        @"ON6HNap5oeszraBIbqKTaj8Ir"
 #define kTwitterSecret        @"JGmXOakwYP6dYJV6gzRUsOGy7X2m2JHldmpgZQsrU8qTlNLfo1"
 
+#define kHockeyKey @"d295228f26b21cf7ae23a4504f9f01a9"
 
 
 //App delegate Easy ACCESS
