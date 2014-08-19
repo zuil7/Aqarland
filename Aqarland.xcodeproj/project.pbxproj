@@ -19,6 +19,7 @@
 		B7948F9F198A3D6900936E16 /* dashboard_map_icn_station_selector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7948F9B198A3D6900936E16 /* dashboard_map_icn_station_selector@2x.png */; };
 		B7948FA2198B571A00936E16 /* AQCreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948FA1198B571A00936E16 /* AQCreateAccountViewController.m */; };
 		B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948FA4198B73B000936E16 /* ParseLayerService.m */; };
+		B7974E5519A331BF00CDB6DE /* AQCustomFontsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7974E5419A331BF00CDB6DE /* AQCustomFontsTextView.m */; };
 		B7A43B081988A2A800180532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B071988A2A800180532 /* Foundation.framework */; };
 		B7A43B0A1988A2A800180532 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B091988A2A800180532 /* CoreGraphics.framework */; };
 		B7A43B0C1988A2A800180532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B0B1988A2A800180532 /* UIKit.framework */; };
@@ -251,6 +252,8 @@
 		B7948FA1198B571A00936E16 /* AQCreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQCreateAccountViewController.m; sourceTree = "<group>"; };
 		B7948FA3198B73B000936E16 /* ParseLayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseLayerService.h; sourceTree = "<group>"; };
 		B7948FA4198B73B000936E16 /* ParseLayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseLayerService.m; sourceTree = "<group>"; };
+		B7974E5319A331BF00CDB6DE /* AQCustomFontsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQCustomFontsTextView.h; sourceTree = "<group>"; };
+		B7974E5419A331BF00CDB6DE /* AQCustomFontsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQCustomFontsTextView.m; sourceTree = "<group>"; };
 		B7A43B041988A2A800180532 /* Aqarland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqarland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7A43B071988A2A800180532 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7A43B091988A2A800180532 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -675,6 +678,8 @@
 				B7A83CCB199A163200B4B0C6 /* CustomFontsButton.m */,
 				B7A83CCD199A18F900B4B0C6 /* CustomFontsTextField.h */,
 				B7A83CCE199A18F900B4B0C6 /* CustomFontsTextField.m */,
+				B7974E5319A331BF00CDB6DE /* AQCustomFontsTextView.h */,
+				B7974E5419A331BF00CDB6DE /* AQCustomFontsTextView.m */,
 			);
 			path = CustomFonts;
 			sourceTree = "<group>";
@@ -1487,6 +1492,7 @@
 				B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */,
 				B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */,
 				B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */,
+				B7974E5519A331BF00CDB6DE /* AQCustomFontsTextView.m in Sources */,
 				B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */,
 				B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */,
 				B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */,

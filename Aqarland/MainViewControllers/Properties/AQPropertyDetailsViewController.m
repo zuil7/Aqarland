@@ -58,6 +58,22 @@
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
+-(BOOL) checkTextField
+{
+    if (![self.propertyTypeLbl.text isEqualToString:@"Property Type"] &&
+        self.areaTxtField.text.length!=0 &&
+        self.nBedroomsTxtField.text.length!=0 &&
+        self.nBathsTxtField.text.length!=0 &&
+        self.amenitiesTxtField.text.length!=0 &&
+        self.descTxtView.text.length!=0 ) {
+        return 1;
+    }else
+    {
+        return 0;
+    }
+    
+}
+
 -(void) customizeHeaderBar
 {
     [self.navigationItem setTitle:@"Property Details"];
@@ -84,7 +100,7 @@
         forwardBtn.frame = CGRectMake(0,0,22,32);
         [forwardBtn setImage:forwardImage forState:UIControlStateNormal];
         
-        [forwardBtn addTarget:self.navigationController action:@selector(goToUploadPhoto:) forControlEvents:UIControlEventTouchUpInside];
+        [forwardBtn addTarget:self action:@selector(goToUploadPhoto:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:forwardBtn];
         [self.navigationItem setRightBarButtonItem:barButtonItem];
@@ -115,7 +131,39 @@
 
 -(void) goToUploadPhoto:(id) sender
 {
-    
+    if([self checkTextField])
+    {
+
+        [self.propertyAddress setValue:self.propertyTypeLbl.text forKey:@"propertyType"];
+        [self.propertyAddress setValue:self.areaTxtField.text forKey:@"propertySize"];
+        [self.propertyAddress setValue:self.nBedroomsTxtField.text forKey:@"numberOfBedrooms"];
+        [self.propertyAddress setValue:self.nBathsTxtField.text forKey:@"numberOfBaths"];
+        [self.propertyAddress setValue:self.amenitiesTxtField.text forKey:@"amenities"];
+        [self.propertyAddress setValue:self.descTxtView.text forKey:@"description"];
+        NSLog(@"self.propertyAddress %@",self.propertyAddress);
+        
+        [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+        ParseLayerService *request=[[ParseLayerService alloc] init];
+        [request addProperty:self.propertyAddress];
+        [request setCompletionBlock:^(id results)
+         {
+             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             
+             if ([results boolValue]==1)
+             {
+                 //[GlobalInstance showAlert:iInformation message:@"Successfuly Registered"];
+                 NSLog(@"Inserted");
+             }
+         }];
+        [request setFailedBlock:^(NSError *error)
+         {
+             [GlobalInstance showAlert:iErrorInfo message:[error description]];
+         }];
+    }else
+    {
+        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
+
+    }
 }
 
 ////////////////////////

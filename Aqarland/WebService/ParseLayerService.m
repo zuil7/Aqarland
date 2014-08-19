@@ -117,39 +117,9 @@ static ParseLayerService *instance = nil;
         }
     }];
 }
-/*
--(void) updateUserEmailViaFB:(NSDictionary *) profileInfo
-{
-    PFUser *currentUser = [PFUser currentUser];
-    PFQuery *query = [PFUser query];
-   
-    NSLog(@"currentUser %@",currentUser.objectId);
-    
-    
-// Retrieve the object by id
-    [query getObjectInBackgroundWithId:currentUser.objectId block:^(PFObject *gameScore, NSError *error)
-    {
-        NSLog(@"error %@",error);
-    // Now let's update it with some new data. In this case, only cheatMode and score
-    // will get sent to the cloud. playerName hasn't changed.
-    gameScore[@"email"] = profileInfo[@"email"];
-    
-        [gameScore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-         {
-            if (succeeded)
-            {
-                [self createAccountViaFB:profileInfo];
-            }
-            else
-            {
-                [self reportFailure:error];
-            }
-        }];
-    
-    }];
-}*/
+
 ////////////////////////////////
-// Create Account Via FB
+#pragma mark - Create Account Via FB
 ////////////////////////////////
 -(void) createAccountViaFB:(NSDictionary *) profileInfo
 {
@@ -329,7 +299,9 @@ static ParseLayerService *instance = nil;
     }];
     
 }
-
+////////////////////////////////
+#pragma mark - Login Request
+////////////////////////////////
 - (void) requestLogin:(NSString *)username passWord:(NSString *) pass;
 {
     [PFUser logInWithUsernameInBackground:username password:pass
@@ -344,5 +316,42 @@ static ParseLayerService *instance = nil;
             [self reportFailure:error];
         }
     }];
+}
+
+////////////////////////////////
+#pragma mark - Add Property
+////////////////////////////////
+-(void) addProperty:(NSDictionary *) propertyDetails
+{
+    PFUser *cUser = [PFUser currentUser];
+    PFObject *post = [PFObject objectWithClassName:pPropertyList];
+   
+    post[@"unit"] = propertyDetails[@"unit"];
+    post[@"houseNumber"]=propertyDetails[@"houseNum"];
+    post[@"building"]=propertyDetails[@"bldg"];
+    post[@"street"]=propertyDetails[@"street"];
+    post[@"city"]=propertyDetails[@"city"];
+    post[@"postCode"]=propertyDetails[@"postcode"];
+    
+    post[@"propertyType"]=propertyDetails[@"propertyType"];
+    post[@"propertySize"]=propertyDetails[@"propertySize"];
+    post[@"numberOfBedrooms"]=propertyDetails[@"numberOfBedrooms"];
+    post[@"numberOfBaths"]=propertyDetails[@"numberOfBaths"];
+    post[@"amenities"]=propertyDetails[@"amenities"];
+    post[@"description"]=propertyDetails[@"description"];
+    
+    post[@"user"] = cUser;
+    
+    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error)
+        {
+            [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+        }
+        else
+        {
+            [self reportFailure:error];
+        }
+    }];
+
 }
 @end
