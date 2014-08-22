@@ -8,10 +8,12 @@
 
 #import "AQPropertyDetailsViewController.h"
 #import "RMPickerViewController.h"
+#import "AQPropertyUploadPhoto.h"
 
 @interface AQPropertyDetailsViewController ()<RMPickerViewControllerDelegate>
 
 @property(nonatomic,strong) NSArray *propertyList;
+@property(nonatomic,strong) AQPropertyUploadPhoto *propertyUploadVC;
 @end
 
 @implementation AQPropertyDetailsViewController
@@ -131,39 +133,39 @@
 
 -(void) goToUploadPhoto:(id) sender
 {
-    if([self checkTextField])
-    {
-
-        [self.propertyAddress setValue:self.propertyTypeLbl.text forKey:@"propertyType"];
-        [self.propertyAddress setValue:self.areaTxtField.text forKey:@"propertySize"];
-        [self.propertyAddress setValue:self.nBedroomsTxtField.text forKey:@"numberOfBedrooms"];
-        [self.propertyAddress setValue:self.nBathsTxtField.text forKey:@"numberOfBaths"];
-        [self.propertyAddress setValue:self.amenitiesTxtField.text forKey:@"amenities"];
-        [self.propertyAddress setValue:self.descTxtView.text forKey:@"description"];
-        NSLog(@"self.propertyAddress %@",self.propertyAddress);
-        
-        [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
-        ParseLayerService *request=[[ParseLayerService alloc] init];
-        [request addProperty:self.propertyAddress];
-        [request setCompletionBlock:^(id results)
-         {
-             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-             
-             if ([results boolValue]==1)
-             {
-                 //[GlobalInstance showAlert:iInformation message:@"Successfuly Registered"];
-                 NSLog(@"Inserted");
-             }
-         }];
-        [request setFailedBlock:^(NSError *error)
-         {
-             [GlobalInstance showAlert:iErrorInfo message:[error description]];
-         }];
-    }else
-    {
-        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
-
-    }
+//    if([self checkTextField])
+//    {
+//
+//        [self.propertyAddress setValue:self.propertyTypeLbl.text forKey:@"propertyType"];
+//        [self.propertyAddress setValue:self.areaTxtField.text forKey:@"propertySize"];
+//        [self.propertyAddress setValue:self.nBedroomsTxtField.text forKey:@"numberOfBedrooms"];
+//        [self.propertyAddress setValue:self.nBathsTxtField.text forKey:@"numberOfBaths"];
+//        [self.propertyAddress setValue:self.amenitiesTxtField.text forKey:@"amenities"];
+//        [self.propertyAddress setValue:self.descTxtView.text forKey:@"description"];
+//        NSLog(@"self.propertyAddress %@",self.propertyAddress);
+//        
+//        [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+//        ParseLayerService *request=[[ParseLayerService alloc] init];
+//        [request addProperty:self.propertyAddress];
+//        [request setCompletionBlock:^(id results)
+//         {
+//             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+//             
+//             if ([results boolValue]==1)
+//             {
+                 self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
+                 [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
+//             }
+//         }];
+//        [request setFailedBlock:^(NSError *error)
+//         {
+//             [GlobalInstance showAlert:iErrorInfo message:[error description]];
+//         }];
+//    }else
+//    {
+//        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
+//
+//    }
 }
 
 ////////////////////////

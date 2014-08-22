@@ -20,6 +20,11 @@
 		B7948FA2198B571A00936E16 /* AQCreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948FA1198B571A00936E16 /* AQCreateAccountViewController.m */; };
 		B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7948FA4198B73B000936E16 /* ParseLayerService.m */; };
 		B7974E5519A331BF00CDB6DE /* AQCustomFontsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7974E5419A331BF00CDB6DE /* AQCustomFontsTextView.m */; };
+		B7974E5919A33EC200CDB6DE /* AQPropertyUploadPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B7974E5819A33EC200CDB6DE /* AQPropertyUploadPhoto.m */; };
+		B7974E6D19A3530B00CDB6DE /* AQUploadPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B7974E6C19A3530B00CDB6DE /* AQUploadPhoto.m */; };
+		B7974E7019A4512A00CDB6DE /* add_property_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7974E6F19A4512A00CDB6DE /* add_property_icon.png */; };
+		B7974E7219A4842D00CDB6DE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7974E7119A4842D00CDB6DE /* MobileCoreServices.framework */; };
+		B7974E7419A49A7F00CDB6DE /* remove_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7974E7319A49A7F00CDB6DE /* remove_icon.png */; };
 		B7A43B081988A2A800180532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B071988A2A800180532 /* Foundation.framework */; };
 		B7A43B0A1988A2A800180532 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B091988A2A800180532 /* CoreGraphics.framework */; };
 		B7A43B0C1988A2A800180532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B0B1988A2A800180532 /* UIKit.framework */; };
@@ -254,6 +259,13 @@
 		B7948FA4198B73B000936E16 /* ParseLayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseLayerService.m; sourceTree = "<group>"; };
 		B7974E5319A331BF00CDB6DE /* AQCustomFontsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQCustomFontsTextView.h; sourceTree = "<group>"; };
 		B7974E5419A331BF00CDB6DE /* AQCustomFontsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQCustomFontsTextView.m; sourceTree = "<group>"; };
+		B7974E5719A33EC200CDB6DE /* AQPropertyUploadPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyUploadPhoto.h; sourceTree = "<group>"; };
+		B7974E5819A33EC200CDB6DE /* AQPropertyUploadPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyUploadPhoto.m; sourceTree = "<group>"; };
+		B7974E6B19A3530B00CDB6DE /* AQUploadPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQUploadPhoto.h; sourceTree = "<group>"; };
+		B7974E6C19A3530B00CDB6DE /* AQUploadPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQUploadPhoto.m; sourceTree = "<group>"; };
+		B7974E6F19A4512A00CDB6DE /* add_property_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_property_icon.png; sourceTree = "<group>"; };
+		B7974E7119A4842D00CDB6DE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B7974E7319A49A7F00CDB6DE /* remove_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_icon.png; sourceTree = "<group>"; };
 		B7A43B041988A2A800180532 /* Aqarland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqarland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7A43B071988A2A800180532 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7A43B091988A2A800180532 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -499,6 +511,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7974E7219A4842D00CDB6DE /* MobileCoreServices.framework in Frameworks */,
 				B7AABE021990CF2D00DEADAD /* Social.framework in Frameworks */,
 				B7AABE001990CF2500DEADAD /* Accounts.framework in Frameworks */,
 				B7A43B8F198A23D100180532 /* MapKit.framework in Frameworks */,
@@ -547,6 +560,15 @@
 			path = mapImage;
 			sourceTree = "<group>";
 		};
+		B7974E5F19A3451C00CDB6DE /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				B7974E6B19A3530B00CDB6DE /* AQUploadPhoto.h */,
+				B7974E6C19A3530B00CDB6DE /* AQUploadPhoto.m */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		B7A43AFB1988A2A800180532 = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +592,7 @@
 		B7A43B061988A2A800180532 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7974E7119A4842D00CDB6DE /* MobileCoreServices.framework */,
 				B7AABE011990CF2D00DEADAD /* Social.framework */,
 				B7AABDFF1990CF2500DEADAD /* Accounts.framework */,
 				B7A43B8E198A23D100180532 /* MapKit.framework */,
@@ -642,13 +665,13 @@
 		B7A43B3C1988A35B00180532 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				B7974E5F19A3451C00CDB6DE /* CustomViews */,
 				B7A43B3D1988A35B00180532 /* CustomButtons */,
 				B7A43B3E1988A35B00180532 /* CustomCells */,
 				B7A43B3F1988A35B00180532 /* CustomFonts */,
 				B7A43B401988A35B00180532 /* CustomLabels */,
 				B7A43B411988A35B00180532 /* CustomPickers */,
 				B7A43B421988A35B00180532 /* CustomTextField */,
-				B7A43B431988A35B00180532 /* CustomViews */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -703,13 +726,6 @@
 			children = (
 			);
 			path = CustomTextField;
-			sourceTree = "<group>";
-		};
-		B7A43B431988A35B00180532 /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		B7A43B441988A35B00180532 /* HelperClass */ = {
@@ -966,6 +982,8 @@
 		B7A83B4C1998B86500B4B0C6 /* 07 - Add Property */ = {
 			isa = PBXGroup;
 			children = (
+				B7974E7319A49A7F00CDB6DE /* remove_icon.png */,
+				B7974E6F19A4512A00CDB6DE /* add_property_icon.png */,
 				B7BEABFC19A204E700CCFC29 /* description_fill_text.png */,
 				B7BEABFD19A204E700CCFC29 /* description_fill_text@2x.png */,
 				B7BEABFE19A204E700CCFC29 /* down_arrow.png */,
@@ -1105,6 +1123,8 @@
 				B7AF8B98199CAA9300663A3E /* AQAddPropertyViewController.m */,
 				B7AF8B9A199DE67F00663A3E /* AQPropertyDetailsViewController.h */,
 				B7AF8B9B199DE67F00663A3E /* AQPropertyDetailsViewController.m */,
+				B7974E5719A33EC200CDB6DE /* AQPropertyUploadPhoto.h */,
+				B7974E5819A33EC200CDB6DE /* AQPropertyUploadPhoto.m */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -1396,6 +1416,7 @@
 				B7A83BE51998B86500B4B0C6 /* search_icon@2x.png in Resources */,
 				B7A83BE61998B86500B4B0C6 /* Dashboard-Menu-Screen.png in Resources */,
 				B7A83BF11998B86500B4B0C6 /* shortlist_icon@2x.png in Resources */,
+				B7974E7019A4512A00CDB6DE /* add_property_icon.png in Resources */,
 				B7A83C5E1999E24A00B4B0C6 /* sideMenuList.plist in Resources */,
 				B7A83C061998B86500B4B0C6 /* favorites_icon.png in Resources */,
 				B7A83B851998B86500B4B0C6 /* logo@2x.png in Resources */,
@@ -1410,6 +1431,7 @@
 				B7A83BFC1998B86500B4B0C6 /* add_property_icon@2x.png in Resources */,
 				B7A83BB01998B86500B4B0C6 /* next_button_inactive.png in Resources */,
 				B7A83BDB1998B86500B4B0C6 /* map_pin@2x.png in Resources */,
+				B7974E7419A49A7F00CDB6DE /* remove_icon.png in Resources */,
 				B7A83BE11998B86500B4B0C6 /* search_bar@2x.png in Resources */,
 				B7A83BE31998B86500B4B0C6 /* search_button_inactive@2x.png in Resources */,
 				B7A83BF41998B86500B4B0C6 /* Add-Property-Screen-2.png in Resources */,
@@ -1491,6 +1513,7 @@
 				B7A83C761999FE0500B4B0C6 /* AQSettingViewController.m in Sources */,
 				B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */,
 				B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */,
+				B7974E5919A33EC200CDB6DE /* AQPropertyUploadPhoto.m in Sources */,
 				B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */,
 				B7974E5519A331BF00CDB6DE /* AQCustomFontsTextView.m in Sources */,
 				B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */,
@@ -1499,6 +1522,7 @@
 				B7AABE1E1991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m in Sources */,
 				B7A83C671999F57800B4B0C6 /* AQProfileViewController.m in Sources */,
 				B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */,
+				B7974E6D19A3530B00CDB6DE /* AQUploadPhoto.m in Sources */,
 				B7AABE1B1991E7B000DEADAD /* NSData+Base64.m in Sources */,
 				B7948F96198A3A4C00936E16 /* MKMapView+ZoomLevel.m in Sources */,
 				B7A83C701999FDEF00B4B0C6 /* AQSupportViewController.m in Sources */,

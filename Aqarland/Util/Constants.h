@@ -64,6 +64,7 @@
 #define sSearchVC                   @"SearchVC"
 #define sAddPropertyVC              @"AddPropertyVC"
 #define sAddPropertyDetailsVC       @"AddPropertyDetailsVC"
+#define sPropertyUploadVC           @"PropertyUploadPhotoVC"
 
 
 //Parse Class Name

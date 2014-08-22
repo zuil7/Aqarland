@@ -24,8 +24,8 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="vXZ-lx-hvc" customClass="AQViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="cYI-O4-hfY"/>
+                        <viewControllerLayoutGuide type="bottom" id="FWh-fC-OXs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -134,8 +134,8 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileVC" id="8Kt-vm-0vp" customClass="AQProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vDu-6M-Z59"/>
-                        <viewControllerLayoutGuide type="bottom" id="qVs-XK-534"/>
+                        <viewControllerLayoutGuide type="top" id="l5g-tc-Ivg"/>
+                        <viewControllerLayoutGuide type="bottom" id="fzZ-6O-73D"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OkY-JW-zlE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -161,8 +161,8 @@
             <objects>
                 <viewController storyboardIdentifier="PropertiesVC" id="TOj-Dj-jIN" customClass="AQPropertiesViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gNk-rW-5CT"/>
-                        <viewControllerLayoutGuide type="bottom" id="Oss-Ku-C5j"/>
+                        <viewControllerLayoutGuide type="top" id="7Au-Is-N7I"/>
+                        <viewControllerLayoutGuide type="bottom" id="EYU-oL-fB2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fpm-BU-LED">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -187,8 +187,8 @@
             <objects>
                 <viewController storyboardIdentifier="HomeVC" id="7SF-FT-jCD" customClass="AQHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FRw-GU-fMl"/>
-                        <viewControllerLayoutGuide type="bottom" id="x3c-rh-uAb"/>
+                        <viewControllerLayoutGuide type="top" id="QmB-7S-NRA"/>
+                        <viewControllerLayoutGuide type="bottom" id="M8D-yq-3eZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EeE-a8-zK6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -319,8 +319,8 @@
             <objects>
                 <viewController storyboardIdentifier="AddPropertyVC" id="746-uf-ZNz" customClass="AQAddPropertyViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZSi-tL-3gq"/>
-                        <viewControllerLayoutGuide type="bottom" id="Jid-4V-X2i"/>
+                        <viewControllerLayoutGuide type="top" id="TkS-7b-F2O"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qq3-6X-jjO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WwS-Au-HEw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -439,8 +439,8 @@
             <objects>
                 <viewController storyboardIdentifier="SearchVC" id="iUO-II-SPt" customClass="AQSearchViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5Lj-g9-aUu"/>
-                        <viewControllerLayoutGuide type="bottom" id="hH2-3i-rxn"/>
+                        <viewControllerLayoutGuide type="top" id="z5P-V4-cE4"/>
+                        <viewControllerLayoutGuide type="bottom" id="utX-uQ-c4b"/>
                     </layoutGuides>
                     <view key="view" autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ydb-dy-Lnw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -494,8 +494,8 @@
             <objects>
                 <viewController storyboardIdentifier="CreateAccountVC" id="vAd-ZU-gl7" customClass="AQCreateAccountViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AeK-A3-6x7"/>
-                        <viewControllerLayoutGuide type="bottom" id="m6P-22-Fu2"/>
+                        <viewControllerLayoutGuide type="top" id="wTv-xN-LaJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="SbG-TK-rMY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zMZ-ei-k3u">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -599,8 +599,8 @@
             <objects>
                 <viewController storyboardIdentifier="SignUpVC" id="sF0-gK-gnY" customClass="AQSignUpViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="g9C-PD-KI3"/>
-                        <viewControllerLayoutGuide type="bottom" id="RvP-Ts-ZVl"/>
+                        <viewControllerLayoutGuide type="top" id="9XO-Kc-uso"/>
+                        <viewControllerLayoutGuide type="bottom" id="cno-WT-RVV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aiu-Mb-9ev">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -713,8 +713,8 @@
             <objects>
                 <viewController storyboardIdentifier="SideMenuVC" id="zx6-QK-vjC" customClass="AQSideMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SHy-3o-nwK"/>
-                        <viewControllerLayoutGuide type="bottom" id="Zl1-FL-gH3"/>
+                        <viewControllerLayoutGuide type="top" id="kyj-gZ-Lwc"/>
+                        <viewControllerLayoutGuide type="bottom" id="FWu-pT-vPp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rVm-Au-Xej">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -791,8 +791,8 @@
             <objects>
                 <viewController storyboardIdentifier="SupportVC" id="L5i-Bn-Fn5" customClass="AQSupportViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="f3U-B7-Kro"/>
-                        <viewControllerLayoutGuide type="bottom" id="ggm-cX-coH"/>
+                        <viewControllerLayoutGuide type="top" id="vg4-TW-Te3"/>
+                        <viewControllerLayoutGuide type="bottom" id="XMr-hI-r3i"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LRk-gf-s3m">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -817,8 +817,8 @@
             <objects>
                 <viewController storyboardIdentifier="MyChatVC" id="6Ym-vy-miy" customClass="AQMyChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="m0b-pB-ncc"/>
-                        <viewControllerLayoutGuide type="bottom" id="jgj-Xf-BT4"/>
+                        <viewControllerLayoutGuide type="top" id="LLl-sV-szx"/>
+                        <viewControllerLayoutGuide type="bottom" id="BQU-99-1nZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PkM-8W-3yD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -843,8 +843,8 @@
             <objects>
                 <viewController storyboardIdentifier="ShortListVC" id="6i3-JP-LdX" customClass="AQShortListViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OaO-63-lyq"/>
-                        <viewControllerLayoutGuide type="bottom" id="qpC-RV-U2N"/>
+                        <viewControllerLayoutGuide type="top" id="Y6H-Zf-NTo"/>
+                        <viewControllerLayoutGuide type="bottom" id="JLm-Ji-4fA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Aqo-lE-39Z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -869,8 +869,8 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsVC" id="aTQ-f4-ZYw" customClass="AQSettingViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="agh-rO-VxJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="0u0-C0-UV8"/>
+                        <viewControllerLayoutGuide type="top" id="L2v-SX-eaD"/>
+                        <viewControllerLayoutGuide type="bottom" id="n9z-8I-ZtT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pAd-R0-XIE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -895,8 +895,8 @@
             <objects>
                 <viewController storyboardIdentifier="AddPropertyDetailsVC" id="nmS-2Y-7PJ" customClass="AQPropertyDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cIQ-sf-h6Z"/>
-                        <viewControllerLayoutGuide type="bottom" id="3HG-hJ-dDB"/>
+                        <viewControllerLayoutGuide type="top" id="nOz-wH-zlH"/>
+                        <viewControllerLayoutGuide type="bottom" id="i0I-OT-2jb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="47F-qx-TQN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -1029,8 +1029,119 @@
             </objects>
             <point key="canvasLocation" x="448" y="1529"/>
         </scene>
+        <!--Property Upload Photo-->
+        <scene sceneID="YUS-wJ-jzq">
+            <objects>
+                <viewController storyboardIdentifier="PropertyUploadPhotoVC" id="wUs-5O-Iry" customClass="AQPropertyUploadPhoto" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tyS-bH-2qL"/>
+                        <viewControllerLayoutGuide type="bottom" id="ybV-fX-kj7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B6a-TN-22p">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jRL-gE-UZV">
+                                <rect key="frame" x="0.0" y="65" width="320" height="34"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Upload Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBc-VF-aGv" customClass="RobotoLight">
+                                        <rect key="frame" x="87" y="2" width="147" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NIq-B3-tpH">
+                                <rect key="frame" x="0.0" y="99" width="320" height="220"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="dMO-ty-tiN">
+                                    <size key="itemSize" width="106" height="104"/>
+                                    <size key="headerReferenceSize" width="0.0" height="4"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UploadPhotoCell" id="IXn-3m-h3H" customClass="AQUploadPhoto">
+                                        <rect key="frame" x="0.0" y="4" width="106" height="104"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="106" height="104"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9H-qu-Hax">
+                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="add_property_icon.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="customSize" width="106" height="104"/>
+                                        <connections>
+                                            <outlet property="addPhotoBtn" destination="T9H-qu-Hax" id="XfD-c7-kuF"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="NSN-hp-Qbx" customClass="AQUploadPhoto">
+                                        <rect key="frame" x="107" y="4" width="106" height="104"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="106" height="104"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="le6-sf-dHW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="104"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARu-lc-84q">
+                                                    <rect key="frame" x="66" y="-1" width="42" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <inset key="imageEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="10"/>
+                                                    <state key="normal" image="remove_icon.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="customSize" width="106" height="104"/>
+                                        <connections>
+                                            <outlet property="deleteImgBtn" destination="ARu-lc-84q" id="IYa-Jy-i0g"/>
+                                            <outlet property="photoImg" destination="le6-sf-dHW" id="RFk-6H-SWg"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="RVE-Bv-tt6">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="4"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="wUs-5O-Iry" id="FVg-zt-5be"/>
+                                    <outlet property="delegate" destination="wUs-5O-Iry" id="zWz-49-fz0"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="photoCV" destination="NIq-B3-tpH" id="QLd-If-zLb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0PK-cu-u21" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="862" y="1529"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="add_property_icon.png" width="106" height="106"/>
         <image name="addproperty_icon.png" width="50" height="50"/>
         <image name="city_view_icon.png" width="47" height="47"/>
         <image name="confirm_button_active.png" width="281" height="43"/>
@@ -1049,6 +1160,7 @@
         <image name="logo.png" width="185" height="133"/>
         <image name="map_pin.png" width="33" height="45"/>
         <image name="mymessages_icon.png" width="50" height="50"/>
+        <image name="remove_icon.png" width="21" height="21"/>
         <image name="searchBarBg.png" width="320" height="44"/>
         <image name="signup_button_active.png" width="136" height="43"/>
         <image name="signup_button_inactive.png" width="136" height="43"/>

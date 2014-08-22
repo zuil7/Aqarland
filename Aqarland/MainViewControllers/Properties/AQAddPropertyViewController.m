@@ -102,8 +102,8 @@
 
 -(void) goToPropertyDetails:(id) sender
 {
-    if([self checkTextField])
-    {
+//    if([self checkTextField])
+//    {
         self.propertyDictionary=[[NSMutableDictionary alloc] init];
         self.propertyDictionary[@"unit"] = self.unitTxtField.text;
         self.propertyDictionary[@"houseNum"] = self.houseNumTxtField.text;
@@ -115,10 +115,10 @@
         self.propertyDetailsVC=[GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];
         self.propertyDetailsVC.propertyAddress=self.propertyDictionary;
         [self.navigationController pushViewController:self.propertyDetailsVC animated:YES];
-    }else
-    {
-        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
-    }
+//    }else
+//    {
+//        [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
+//    }
     
 }
 
