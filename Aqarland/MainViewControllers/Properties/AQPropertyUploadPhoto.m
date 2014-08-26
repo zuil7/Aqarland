@@ -12,9 +12,10 @@
 #define defaultImage @"add_property_icon.png"
 
 
-@interface AQPropertyUploadPhoto ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface AQPropertyUploadPhoto ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIActionSheetDelegate,MBProgressHUDDelegate>
 
 @property (nonatomic, strong) NSMutableArray *imageList;
+@property (nonatomic, strong) MBProgressHUD *HUD;
 @end
 
 @implementation AQPropertyUploadPhoto
@@ -35,6 +36,10 @@
     [self customizeHeaderBar];
     self.imageList=[[NSMutableArray alloc] initWithCapacity:6];
     [self.imageList addObject:defaultImage];
+    
+    self.HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:self.HUD];
+	
     
 }
 
@@ -94,6 +99,22 @@
 }
 -(void) uploadImages:(id) sender
 {
+    
+    if([self.imageList count]>1)
+    {
+        self.HUD.delegate = self;
+        self.HUD.labelText = @"Uploading";
+        self.HUD.detailsLabelText = [NSString stringWithFormat:@"0 of %d",[self.imageList count]-1];
+        self.HUD.square = YES;
+        [self.HUD show:YES];
+        [self myTask];
+
+        
+    }else
+    {
+         NSLog(@"Fail");
+    }
+    /*
      for (int i=0; i<[self.imageList count]; i++)
     {
         if (i!=0)
@@ -116,17 +137,49 @@
             }];
 
         }
+    }*/
+
+}
+-(void) myTask
+{
+    
+    __block int ctr=0;
+    for (int i=0; i<[self.imageList count]; i++)
+    {
+        if (i!=0)
+        {
+            UIImage *image=(UIImage *)[self.imageList objectAtIndex:i];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+            PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
+            
+            userPhoto[@"propertyImg"] = imageFile;
+            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+             {
+                 if(error)
+                 {
+                     
+                 }else
+                 {
+                     NSLog(@"ctr %d",ctr);
+                     NSLog(@"Success");
+                     NSLog(@"[self.imageList count]-1 %d",[self.imageList count]-1);
+
+                         ctr=ctr+1;
+                         NSLog(@"ctr %d",ctr);
+                         self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %d",ctr,[self.imageList count]-1];
+                          if(ctr==[self.imageList count]-1)
+                          {
+                              [self.HUD hide:YES];
+                          }
+                    
+                 }
+             }];
+            
+        }
     }
-//    UIImage *image=(UIImage *)[self.imageList objectAtIndex:1];
-//    NSData *imageData = UIImagePNGRepresentation(image);
-//    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-//    
-//    PFObject *userPhoto = [PFObject objectWithClassName:@"PropertyImages"];
-//   
-//    userPhoto[@"propertyImg"] = imageFile;
-//    [userPhoto saveInBackground];
-////        }
-////    }
+
+    //self.HUD.detailsLabelText = [NSString stringWithFormat:@"0 of %d",[self.imageList count]-1];
 }
 -(void) addPhotoButton:(id) sender
 {

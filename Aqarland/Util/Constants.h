@@ -71,7 +71,7 @@
 #define pUser               @"User"
 #define pUserProfile        @"UserProfile"
 #define pPropertyList       @"PropertyList"
-#define pPropertyImage      @"PropertyImage"
+#define pPropertyImage      @"PropertyImages"
 
 
 //Images
