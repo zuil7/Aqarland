@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CF726DF9C6A44B58BB2004C"
+               BlueprintIdentifier = "1D746631AF034B86B40580B6"
                BuildableName = "libPods-Aqarland-RMPickerViewController.a"
                BlueprintName = "Pods-Aqarland-RMPickerViewController"
                ReferencedContainer = "container:Pods.xcodeproj">

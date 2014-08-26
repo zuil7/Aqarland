@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Aqarland-GMGridView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Aqarland-HockeySDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,62 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>15E19F166DE94F84B36492AC</key>
+		<key>0037D765F00F45AB8D9C8AC1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>20FA942D3EE7482C8892A058</key>
+		<key>1D746631AF034B86B40580B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3CF726DF9C6A44B58BB2004C</key>
+		<key>1EAD4053EB7E40BEB638A24E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>56A822C95CD64F0DBE7525E8</key>
+		<key>29519422E6984FCCB2356E41</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6CEC096EE8CC4F21A66B26CB</key>
+		<key>97CCF80FF1E54E2DA8C075FE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7EE859D0D7C74CAEA2AB9083</key>
+		<key>AA39003193A846E2B857B667</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>932F14C2A13F409A8D0ACE16</key>
+		<key>BE9E3FD859244BF198C24766</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9D4CE233CDF4A83B6225662</key>
+		<key>C37745909E774C26B175F345</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D57F96A23F0D40C884209EE9</key>
+		<key>D697919ACBB94627A970D61B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D9AE222662E345E298B2DF40</key>
+		<key>E10DBA66A3C84996B7C76DA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EFB86281337F437F86323C6F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F23FB02E19A04D289E7EBB73</key>
+		<key>EC2B29B5A2014285A70009CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

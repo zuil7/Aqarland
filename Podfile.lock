@@ -20,10 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts (1.1.1)
+  - Bolts (1.1.2)
   - Facebook-iOS-SDK (3.17.0):
     - Bolts
-  - GMGridView (1.1.1)
   - HockeySDK (3.5.5)
   - IQKeyboardManager (3.0.6)
   - MBProgressHUD (0.8)
@@ -34,7 +33,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 2.3.1)
-  - GMGridView (= 1.1.1)
   - HockeySDK (= 3.5.5)
   - IQKeyboardManager (= 3.0.6)
   - MBProgressHUD (= 0.8)
@@ -44,9 +42,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  Bolts: 0ca796081c3e7c139bd86d6903c27f1b83036a5d
+  Bolts: 2635e8698a630774689441047f3465d78c48d485
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
-  GMGridView: a41123760ebad0b8c32296578c399a2b1b477682
   HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
   IQKeyboardManager: 3381092a6728e3565a6ad5051c44386be36bd990
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
