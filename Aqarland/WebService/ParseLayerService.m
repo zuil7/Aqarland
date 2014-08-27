@@ -264,7 +264,7 @@ static ParseLayerService *instance = nil;
                               NSLog(@"cleanProfileImageURL %@",cleanProfileImageURL);
                               NSURL *pictureURL = [NSURL URLWithString:cleanProfileImageURL];
                               NSData *imageData = [NSData dataWithContentsOfURL:pictureURL];
-                              PFFile *imageFile = [PFFile fileWithData:imageData];
+                              PFFile *imageFile = [PFFile fileWithName:@"avatar.png" data:imageData];
                               [post setObject:imageFile forKey:@"userAvatar"];
                               [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                                {
@@ -353,5 +353,79 @@ static ParseLayerService *instance = nil;
         }
     }];
 
+}
+////////////////////////////////
+#pragma mark - Upload Images
+////////////////////////////////
+-(void) uploadImages:(NSMutableArray *) listImages
+{
+    PFUser *cUser = [PFUser currentUser];
+    NSLog(@"cUser %@",cUser);
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query whereKey:@"user" equalTo:cUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+     {
+         if([result count]!=0)
+         {
+             for (int i=0; i<[listImages count]; i++)
+             {
+                 if (i!=0)
+                 {
+                     UIImage *image=(UIImage *)[listImages objectAtIndex:i];
+                     NSData *imageData = UIImagePNGRepresentation(image);
+                     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+                     PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
+                     
+                     userPhoto[@"propertyImg"]  = imageFile;
+                     for (PFObject *object in result)
+                     {
+                         userPhoto[@"propertyList"] = object;
+                     }
+                     
+                     [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                      {
+                          if(error)
+                          {
+                              [self reportFailure:error];
+                              
+                          }else
+                          {
+                              [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                          }
+                      }];
+                     
+                 }
+             }
+         }
+     }];
+/*
+    
+    for (int i=0; i<[listImages count]; i++)
+    {
+        if (i!=0)
+        {
+            PFObject *post = [PFObject objectWithClassName:pPropertyList];
+            
+            UIImage *image=(UIImage *)[listImages objectAtIndex:i];
+            NSData *imageData = UIImagePNGRepresentation(image);
+            PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+            PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
+            
+            userPhoto[@"propertyImg"] = imageFile;
+            userPhoto[@"propertyList"] =
+            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+             {
+                 if(error)
+                 {
+                     [self reportFailure:error];
+
+                 }else
+                 {
+                     [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                 }
+             }];
+            
+        }
+    }*/
 }
 @end

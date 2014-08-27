@@ -99,7 +99,7 @@
 }
 -(void) uploadImages:(id) sender
 {
-    
+     __block int ctr=0;
     if([self.imageList count]>1)
     {
         self.HUD.delegate = self;
@@ -107,39 +107,39 @@
         self.HUD.detailsLabelText = [NSString stringWithFormat:@"0 of %d",[self.imageList count]-1];
         self.HUD.square = YES;
         [self.HUD show:YES];
-        [self myTask];
+        
+        ParseLayerService *request=[[ParseLayerService alloc] init];
+        [request uploadImages:self.imageList];
+        [request setCompletionBlock:^(id results)
+         {
+             if ([results boolValue]==1)
+             {
+                 ctr=ctr+1;
+                 
+                 self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %d",ctr,[self.imageList count]-1];
+                 if(ctr==[self.imageList count]-1)
+                 {
+                     [self.navigationController popToRootViewControllerAnimated:YES];
+                     [self.HUD hide:YES];
+                 }
+
+                 
+             }
+         }];
+        [request setFailedBlock:^(NSError *error)
+         {
+             [GlobalInstance showAlert:iErrorInfo message:[error description]];
+         }];
 
         
     }else
     {
          NSLog(@"Fail");
     }
-    /*
-     for (int i=0; i<[self.imageList count]; i++)
-    {
-        if (i!=0)
-        {
-            UIImage *image=(UIImage *)[self.imageList objectAtIndex:i];
-            NSData *imageData = UIImagePNGRepresentation(image);
-            PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-            PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
-            
-            userPhoto[@"propertyImg"] = imageFile;
-            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-            {
-                if(error)
-                {
-                
-                }else
-                {
-                    NSLog(@"Success");
-                }
-            }];
-
-        }
-    }*/
+   
 
 }
+/*
 -(void) myTask
 {
     
@@ -161,9 +161,7 @@
                      
                  }else
                  {
-                     NSLog(@"ctr %d",ctr);
-                     NSLog(@"Success");
-                     NSLog(@"[self.imageList count]-1 %d",[self.imageList count]-1);
+                    
 
                          ctr=ctr+1;
                          NSLog(@"ctr %d",ctr);
@@ -180,7 +178,8 @@
     }
 
     //self.HUD.detailsLabelText = [NSString stringWithFormat:@"0 of %d",[self.imageList count]-1];
-}
+}*/
+
 -(void) addPhotoButton:(id) sender
 {
     

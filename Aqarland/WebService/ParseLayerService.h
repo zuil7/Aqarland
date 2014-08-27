@@ -33,7 +33,10 @@ typedef void(^AQFailedBlock)(NSError *error);
 //Login
 - (void) requestLogin:(NSString *)username passWord:(NSString *) pass;
 
-//AddPropert
+//AddProperty
 -(void) addProperty:(NSDictionary *) propertyDetails;
+
+//UploadImages
+-(void) uploadImages:(NSMutableArray *) listImages;
 
 @end

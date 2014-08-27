@@ -626,17 +626,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/Properties/AQPropertyUploadPhoto.m"
-            timestampString = "430739741.338884"
+            timestampString = "430812465.118256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-myTask"
-            landmarkType = "5">
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "@implementation AQPropertyUploadPhoto"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -646,13 +646,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/Properties/AQPropertyUploadPhoto.m"
-            timestampString = "430739871.002557"
+            timestampString = "430812465.118256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "-myTask"
-            landmarkType = "5">
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "@implementation AQPropertyUploadPhoto"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -662,12 +662,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/Properties/AQPropertyUploadPhoto.m"
-            timestampString = "430740036.481399"
+            timestampString = "430810240.53406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-myTask"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "-uploadImages:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
