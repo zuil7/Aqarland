@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface AQHomeViewController : UIViewController
 
@@ -15,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UITabBarItem *listPropertyBarItem;
 @property (weak, nonatomic) IBOutlet UITabBarItem *addPropertyBarItem;
 @property (weak, nonatomic) IBOutlet UITabBarItem *myChatBarItem;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @end

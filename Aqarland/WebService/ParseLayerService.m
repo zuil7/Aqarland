@@ -345,7 +345,9 @@ static ParseLayerService *instance = nil;
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
-            [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+            NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:succeeded],@"flag",
+                                [post objectId],@"propertyObjID",nil];
+            [self reportSuccess:dict];
         }
         else
         {
@@ -355,14 +357,43 @@ static ParseLayerService *instance = nil;
 
 }
 ////////////////////////////////
+#pragma mark - Update Property
+////////////////////////////////
+-(void) updateProperty:(NSDictionary *) propertyDetails :(NSString *) propertyObjID
+{
+    NSLog(@"propertyObjID %@",propertyObjID);
+    NSLog(@"propertyDetails %@",propertyDetails);
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    
+    [query getObjectInBackgroundWithId:propertyObjID block:^(PFObject *property, NSError *error) {
+        
+        property[@"street"] = propertyDetails[@"Street"];
+        property[@"city"] = propertyDetails[@"City"];
+        //property[@"postCode"] = propertyDetails[@"ZIP"];
+        property[@"latLong"] = propertyDetails[@"latLong"];
+        NSLog(@"propertyDetails %@",property);
+        [property saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error)
+            {
+                [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+            }
+            else
+            {
+                [self reportFailure:error];
+            }
+        }];
+        
+    }];
+}
+////////////////////////////////
 #pragma mark - Upload Images
 ////////////////////////////////
--(void) uploadImages:(NSMutableArray *) listImages
+-(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID
 {
     PFUser *cUser = [PFUser currentUser];
     NSLog(@"cUser %@",cUser);
     PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
-    [query whereKey:@"user" equalTo:cUser];
+    [query whereKey:@"objectId" equalTo:objID];
     [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
      {
          if([result count]!=0)
@@ -375,13 +406,14 @@ static ParseLayerService *instance = nil;
                      NSData *imageData = UIImagePNGRepresentation(image);
                      PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
                      PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
-                     
+                     NSString *strID;
                      userPhoto[@"propertyImg"]  = imageFile;
                      for (PFObject *object in result)
                      {
                          userPhoto[@"propertyList"] = object;
+                         strID=[object objectId];
                      }
-                     
+                     NSLog(@"strID %@",strID);
                      [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                       {
                           if(error)
@@ -390,7 +422,11 @@ static ParseLayerService *instance = nil;
                               
                           }else
                           {
-                              [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                              NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:
+                              strID,@"propertyObjID",
+                              [NSNumber numberWithBool:succeeded],@"flag",
+                              nil];
+                              [self reportSuccess:dict];
                           }
                       }];
                      
@@ -398,34 +434,6 @@ static ParseLayerService *instance = nil;
              }
          }
      }];
-/*
-    
-    for (int i=0; i<[listImages count]; i++)
-    {
-        if (i!=0)
-        {
-            PFObject *post = [PFObject objectWithClassName:pPropertyList];
-            
-            UIImage *image=(UIImage *)[listImages objectAtIndex:i];
-            NSData *imageData = UIImagePNGRepresentation(image);
-            PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-            PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
-            
-            userPhoto[@"propertyImg"] = imageFile;
-            userPhoto[@"propertyList"] =
-            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-             {
-                 if(error)
-                 {
-                     [self reportFailure:error];
-
-                 }else
-                 {
-                     [self reportSuccess:[NSNumber numberWithBool:succeeded]];
-                 }
-             }];
-            
-        }
-    }*/
 }
+
 @end

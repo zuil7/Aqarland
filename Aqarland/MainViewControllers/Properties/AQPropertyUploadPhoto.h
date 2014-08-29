@@ -11,4 +11,5 @@
 @interface AQPropertyUploadPhoto : UIViewController
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCV;
+@property (strong, nonatomic) NSString *propertyObjID;
 @end

@@ -35,8 +35,9 @@ typedef void(^AQFailedBlock)(NSError *error);
 
 //AddProperty
 -(void) addProperty:(NSDictionary *) propertyDetails;
+-(void) updateProperty:(NSDictionary *) propertyDetails :(NSString *) propertyObjID;
 
 //UploadImages
--(void) uploadImages:(NSMutableArray *) listImages;
+-(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID;
 
 @end

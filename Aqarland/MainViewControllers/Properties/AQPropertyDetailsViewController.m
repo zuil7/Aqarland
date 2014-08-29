@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self action:@selector(handleSingleTap:)];
     tap.cancelsTouchesInView = NO;
@@ -150,15 +151,18 @@
         [request setCompletionBlock:^(id results)
          {
              [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             NSDictionary *dict=(NSDictionary *) results;
              
-             if ([results boolValue]==1)
+             if ([dict[@"flag"] boolValue]==1)
              {
                  self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
+                 self.propertyUploadVC.propertyObjID=dict[@"propertyObjID"];
                  [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
              }
          }];
         [request setFailedBlock:^(NSError *error)
          {
+             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
              [GlobalInstance showAlert:iErrorInfo message:[error description]];
          }];
     }else

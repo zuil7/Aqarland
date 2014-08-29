@@ -9,6 +9,8 @@
 #import "AQPropertyUploadPhoto.h"
 #import "AQUploadPhoto.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "AQMapConfirmLocationViewController.h"
+
 #define defaultImage @"add_property_icon.png"
 
 
@@ -16,6 +18,7 @@
 
 @property (nonatomic, strong) NSMutableArray *imageList;
 @property (nonatomic, strong) MBProgressHUD *HUD;
+@property (nonatomic, strong) AQMapConfirmLocationViewController *mapConfirmVC;
 @end
 
 @implementation AQPropertyUploadPhoto
@@ -104,22 +107,29 @@
     {
         self.HUD.delegate = self;
         self.HUD.labelText = @"Uploading";
-        self.HUD.detailsLabelText = [NSString stringWithFormat:@"0 of %d",[self.imageList count]-1];
+        self.HUD.detailsLabelText = [NSString stringWithFormat:@"0 of %u",[self.imageList count]-1];
         self.HUD.square = YES;
         [self.HUD show:YES];
         
         ParseLayerService *request=[[ParseLayerService alloc] init];
-        [request uploadImages:self.imageList];
+        [request uploadImages:self.imageList :self.propertyObjID];
         [request setCompletionBlock:^(id results)
          {
-             if ([results boolValue]==1)
+             NSDictionary *dict=(NSDictionary *) results;
+             NSLog(@"dict %@",dict);
+             NSString *propertyID=dict[@"propertyObjID"];
+             if ([dict[@"flag"] boolValue]==1)
              {
                  ctr=ctr+1;
                  
-                 self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %d",ctr,[self.imageList count]-1];
+                 self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %u",ctr,[self.imageList count]-1];
                  if(ctr==[self.imageList count]-1)
                  {
-                     [self.navigationController popToRootViewControllerAnimated:YES];
+                     self.mapConfirmVC=[GlobalInstance loadStoryBoardId:sPropertyConfirmLocVC];
+                     self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:1];
+                     NSLog(@"propertyList %@",propertyID);
+                     self.mapConfirmVC.strPropertyID=propertyID;
+                     [self.navigationController pushViewController:self.mapConfirmVC animated:YES];
                      [self.HUD hide:YES];
                  }
 
@@ -128,6 +138,7 @@
          }];
         [request setFailedBlock:^(NSError *error)
          {
+             [self.HUD hide:YES];
              [GlobalInstance showAlert:iErrorInfo message:[error description]];
          }];
 

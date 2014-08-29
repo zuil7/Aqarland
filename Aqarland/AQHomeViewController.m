@@ -122,6 +122,18 @@
     
 }
 
+-(IBAction)mapviewType:(id)sender
+{
+    if([sender isSelected])
+    {
+        self.mapView.mapType=MKMapTypeStandard;
+        [sender setSelected:NO];
+    }else
+    {
+        self.mapView.mapType=MKMapTypeHybrid;
+        [sender setSelected:YES];
+    }
+}
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
