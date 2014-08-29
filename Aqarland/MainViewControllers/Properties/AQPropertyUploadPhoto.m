@@ -107,7 +107,7 @@
     {
         self.HUD.delegate = self;
         self.HUD.labelText = @"Uploading";
-        self.HUD.detailsLabelText = [NSString stringWithFormat:@"0 of %u",[self.imageList count]-1];
+        self.HUD.detailsLabelText = [NSString stringWithFormat:@"0 of %lu",(unsigned long)[self.imageList count]-1];
         self.HUD.square = YES;
         [self.HUD show:YES];
         
@@ -122,7 +122,7 @@
              {
                  ctr=ctr+1;
                  
-                 self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %u",ctr,[self.imageList count]-1];
+                 self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %lu",ctr,(unsigned long)[self.imageList count]-1];
                  if(ctr==[self.imageList count]-1)
                  {
                      self.mapConfirmVC=[GlobalInstance loadStoryBoardId:sPropertyConfirmLocVC];

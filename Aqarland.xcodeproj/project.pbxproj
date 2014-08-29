@@ -208,14 +208,6 @@
 		B7A83CDA199B71E000B4B0C6 /* searchBarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83CD8199B71E000B4B0C6 /* searchBarBg@2x.png */; };
 		B7AABE001990CF2500DEADAD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABDFF1990CF2500DEADAD /* Accounts.framework */; };
 		B7AABE021990CF2D00DEADAD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABE011990CF2D00DEADAD /* Social.framework */; };
-		B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE071991E7B000DEADAD /* FHSStream.m */; };
-		B7AABE1A1991E7B000DEADAD /* FHSTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE091991E7B000DEADAD /* FHSTwitterEngine.m */; };
-		B7AABE1B1991E7B000DEADAD /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE0D1991E7B000DEADAD /* NSData+Base64.m */; };
-		B7AABE1C1991E7B000DEADAD /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE0F1991E7B000DEADAD /* OAuth+Additions.m */; };
-		B7AABE1D1991E7B000DEADAD /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE111991E7B000DEADAD /* OAuthCore.m */; };
-		B7AABE1E1991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE131991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m */; };
-		B7AABE1F1991E7B000DEADAD /* TWAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE161991E7B000DEADAD /* TWAPIManager.m */; };
-		B7AABE201991E7B000DEADAD /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AABE181991E7B000DEADAD /* TWSignedRequest.m */; };
 		B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF8B98199CAA9300663A3E /* AQAddPropertyViewController.m */; };
 		B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF8B9B199DE67F00663A3E /* AQPropertyDetailsViewController.m */; };
 		B7AF8BA1199DF8E500663A3E /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AF8B9D199DF8E500663A3E /* home_icon.png */; };
@@ -229,6 +221,10 @@
 		B7BEAC0319A204E700CCFC29 /* down_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7BEABFF19A204E700CCFC29 /* down_arrow@2x.png */; };
 		B7EE296E19AF0BA10085DC0D /* confirm_location_button_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EE296C19AF0BA10085DC0D /* confirm_location_button_active.png */; };
 		B7EE296F19AF0BA10085DC0D /* confirm_location_button_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EE296D19AF0BA10085DC0D /* confirm_location_button_inactive.png */; };
+		B7EE297B19B05B1F0085DC0D /* PropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE297A19B05B1F0085DC0D /* PropertyList.m */; };
+		B7EE297E19B05BC30085DC0D /* PropertyImages.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE297D19B05BC30085DC0D /* PropertyImages.m */; };
+		B7EE298119B05BE20085DC0D /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE298019B05BE20085DC0D /* UserProfile.m */; };
+		B7EE298419B05BF50085DC0D /* AQUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE298319B05BF50085DC0D /* AQUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -480,22 +476,6 @@
 		B7A83CD8199B71E000B4B0C6 /* searchBarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarBg@2x.png"; sourceTree = "<group>"; };
 		B7AABDFF1990CF2500DEADAD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B7AABE011990CF2D00DEADAD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		B7AABE061991E7B000DEADAD /* FHSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSStream.h; sourceTree = "<group>"; };
-		B7AABE071991E7B000DEADAD /* FHSStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSStream.m; sourceTree = "<group>"; };
-		B7AABE081991E7B000DEADAD /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
-		B7AABE091991E7B000DEADAD /* FHSTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTwitterEngine.m; sourceTree = "<group>"; };
-		B7AABE0C1991E7B000DEADAD /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		B7AABE0D1991E7B000DEADAD /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		B7AABE0E1991E7B000DEADAD /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
-		B7AABE0F1991E7B000DEADAD /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
-		B7AABE101991E7B000DEADAD /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
-		B7AABE111991E7B000DEADAD /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
-		B7AABE121991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFTwitterUtils+NativeTwitter.h"; sourceTree = "<group>"; };
-		B7AABE131991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFTwitterUtils+NativeTwitter.m"; sourceTree = "<group>"; };
-		B7AABE151991E7B000DEADAD /* TWAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWAPIManager.h; sourceTree = "<group>"; };
-		B7AABE161991E7B000DEADAD /* TWAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWAPIManager.m; sourceTree = "<group>"; };
-		B7AABE171991E7B000DEADAD /* TWSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSignedRequest.h; sourceTree = "<group>"; };
-		B7AABE181991E7B000DEADAD /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
 		B7AF8B97199CAA9300663A3E /* AQAddPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQAddPropertyViewController.h; sourceTree = "<group>"; };
 		B7AF8B98199CAA9300663A3E /* AQAddPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAddPropertyViewController.m; sourceTree = "<group>"; };
 		B7AF8B9A199DE67F00663A3E /* AQPropertyDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyDetailsViewController.h; sourceTree = "<group>"; };
@@ -511,6 +491,14 @@
 		B7BEABFF19A204E700CCFC29 /* down_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down_arrow@2x.png"; sourceTree = "<group>"; };
 		B7EE296C19AF0BA10085DC0D /* confirm_location_button_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirm_location_button_active.png; sourceTree = "<group>"; };
 		B7EE296D19AF0BA10085DC0D /* confirm_location_button_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirm_location_button_inactive.png; sourceTree = "<group>"; };
+		B7EE297919B05B1F0085DC0D /* PropertyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyList.h; sourceTree = "<group>"; };
+		B7EE297A19B05B1F0085DC0D /* PropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyList.m; sourceTree = "<group>"; };
+		B7EE297C19B05BC30085DC0D /* PropertyImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyImages.h; sourceTree = "<group>"; };
+		B7EE297D19B05BC30085DC0D /* PropertyImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyImages.m; sourceTree = "<group>"; };
+		B7EE297F19B05BE20085DC0D /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
+		B7EE298019B05BE20085DC0D /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
+		B7EE298219B05BF50085DC0D /* AQUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQUser.h; sourceTree = "<group>"; };
+		B7EE298319B05BF50085DC0D /* AQUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -616,6 +604,7 @@
 		B7A43B0D1988A2A800180532 /* Aqarland */ = {
 			isa = PBXGroup;
 			children = (
+				B7EE297819B0598E0085DC0D /* ClassObjects */,
 				B7A43B3C1988A35B00180532 /* CustomUI */,
 				B7A43B441988A35B00180532 /* HelperClass */,
 				B7A43B471988A35B00180532 /* MainViewControllers */,
@@ -810,8 +799,6 @@
 		B7A43B501988A35B00180532 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				B7AABE051991E7B000DEADAD /* FHSTwitterEngine */,
-				B7AABE0A1991E7B000DEADAD /* PFTwitterUtils-NativeTwitter */,
 				B7948F8D198A3A4C00936E16 /* MapClassHelper */,
 			);
 			path = Vendor;
@@ -1176,50 +1163,19 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		B7AABE051991E7B000DEADAD /* FHSTwitterEngine */ = {
+		B7EE297819B0598E0085DC0D /* ClassObjects */ = {
 			isa = PBXGroup;
 			children = (
-				B7AABE061991E7B000DEADAD /* FHSStream.h */,
-				B7AABE071991E7B000DEADAD /* FHSStream.m */,
-				B7AABE081991E7B000DEADAD /* FHSTwitterEngine.h */,
-				B7AABE091991E7B000DEADAD /* FHSTwitterEngine.m */,
+				B7EE297919B05B1F0085DC0D /* PropertyList.h */,
+				B7EE297A19B05B1F0085DC0D /* PropertyList.m */,
+				B7EE297C19B05BC30085DC0D /* PropertyImages.h */,
+				B7EE297D19B05BC30085DC0D /* PropertyImages.m */,
+				B7EE297F19B05BE20085DC0D /* UserProfile.h */,
+				B7EE298019B05BE20085DC0D /* UserProfile.m */,
+				B7EE298219B05BF50085DC0D /* AQUser.h */,
+				B7EE298319B05BF50085DC0D /* AQUser.m */,
 			);
-			path = FHSTwitterEngine;
-			sourceTree = "<group>";
-		};
-		B7AABE0A1991E7B000DEADAD /* PFTwitterUtils-NativeTwitter */ = {
-			isa = PBXGroup;
-			children = (
-				B7AABE0B1991E7B000DEADAD /* ABOAuthCore */,
-				B7AABE121991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.h */,
-				B7AABE131991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m */,
-				B7AABE141991E7B000DEADAD /* TwitterReverseAuth */,
-			);
-			path = "PFTwitterUtils-NativeTwitter";
-			sourceTree = "<group>";
-		};
-		B7AABE0B1991E7B000DEADAD /* ABOAuthCore */ = {
-			isa = PBXGroup;
-			children = (
-				B7AABE0C1991E7B000DEADAD /* NSData+Base64.h */,
-				B7AABE0D1991E7B000DEADAD /* NSData+Base64.m */,
-				B7AABE0E1991E7B000DEADAD /* OAuth+Additions.h */,
-				B7AABE0F1991E7B000DEADAD /* OAuth+Additions.m */,
-				B7AABE101991E7B000DEADAD /* OAuthCore.h */,
-				B7AABE111991E7B000DEADAD /* OAuthCore.m */,
-			);
-			path = ABOAuthCore;
-			sourceTree = "<group>";
-		};
-		B7AABE141991E7B000DEADAD /* TwitterReverseAuth */ = {
-			isa = PBXGroup;
-			children = (
-				B7AABE151991E7B000DEADAD /* TWAPIManager.h */,
-				B7AABE161991E7B000DEADAD /* TWAPIManager.m */,
-				B7AABE171991E7B000DEADAD /* TWSignedRequest.h */,
-				B7AABE181991E7B000DEADAD /* TWSignedRequest.m */,
-			);
-			path = TwitterReverseAuth;
+			path = ClassObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1525,38 +1481,34 @@
 				B7948FA2198B571A00936E16 /* AQCreateAccountViewController.m in Sources */,
 				B7A83C761999FE0500B4B0C6 /* AQSettingViewController.m in Sources */,
 				B7948FA5198B73B000936E16 /* ParseLayerService.m in Sources */,
-				B7AABE191991E7B000DEADAD /* FHSStream.m in Sources */,
 				B7974E5919A33EC200CDB6DE /* AQPropertyUploadPhoto.m in Sources */,
 				B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */,
 				B7974E5519A331BF00CDB6DE /* AQCustomFontsTextView.m in Sources */,
 				B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */,
 				B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */,
 				B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */,
-				B7AABE1E1991E7B000DEADAD /* PFTwitterUtils+NativeTwitter.m in Sources */,
+				B7EE297B19B05B1F0085DC0D /* PropertyList.m in Sources */,
+				B7EE297E19B05BC30085DC0D /* PropertyImages.m in Sources */,
 				B7A83C671999F57800B4B0C6 /* AQProfileViewController.m in Sources */,
 				B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */,
 				B7974E6D19A3530B00CDB6DE /* AQUploadPhoto.m in Sources */,
-				B7AABE1B1991E7B000DEADAD /* NSData+Base64.m in Sources */,
 				B7948F96198A3A4C00936E16 /* MKMapView+ZoomLevel.m in Sources */,
 				B7A83C701999FDEF00B4B0C6 /* AQSupportViewController.m in Sources */,
 				B7948F94198A3A4C00936E16 /* CustomPinView.m in Sources */,
+				B7EE298419B05BF50085DC0D /* AQUser.m in Sources */,
 				B7A83C6A1999FDD600B4B0C6 /* AQPropertiesViewController.m in Sources */,
 				B7A83CC9199A14A000B4B0C6 /* CustomFontsLabel.m in Sources */,
-				B7AABE1C1991E7B000DEADAD /* OAuth+Additions.m in Sources */,
 				B7A83CCC199A163200B4B0C6 /* CustomFontsButton.m in Sources */,
 				B7A43B181988A2A800180532 /* AQAppDelegate.m in Sources */,
-				B7AABE201991E7B000DEADAD /* TWSignedRequest.m in Sources */,
 				B788325D19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m in Sources */,
-				B7AABE1A1991E7B000DEADAD /* FHSTwitterEngine.m in Sources */,
 				B7A43B1E1988A2A800180532 /* AQViewController.m in Sources */,
 				B7A43B621988A41C00180532 /* AQSideMenuViewController.m in Sources */,
 				B7A43B531988A35B00180532 /* Global.m in Sources */,
 				B7A83CD6199B3C1D00B4B0C6 /* AQSearchViewController.m in Sources */,
+				B7EE298119B05BE20085DC0D /* UserProfile.m in Sources */,
 				B7A43B141988A2A800180532 /* main.m in Sources */,
 				B7948F95198A3A4C00936E16 /* MapAnnotation.m in Sources */,
-				B7AABE1D1991E7B000DEADAD /* OAuthCore.m in Sources */,
 				B7A43B781988C6BD00180532 /* CustomSignUpVC.m in Sources */,
-				B7AABE1F1991E7B000DEADAD /* TWAPIManager.m in Sources */,
 				B7A43B521988A35B00180532 /* CustomLoginVC.m in Sources */,
 				B7A43B5F1988A40700180532 /* AQHomeViewController.m in Sources */,
 				B7A83C731999FDFA00B4B0C6 /* AQShortListViewController.m in Sources */,

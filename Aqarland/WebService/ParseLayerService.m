@@ -253,7 +253,7 @@ static ParseLayerService *instance = nil;
                      [query whereKey:@"user" equalTo:user];
                      [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
                       {
-                          NSLog(@"pUserProfile %d",[result count]);
+                          NSLog(@"pUserProfile %lu",(unsigned long)[result count]);
                           if([result count]==0)
                           {
                               PFObject *post = [PFObject objectWithClassName:pUserProfile];
