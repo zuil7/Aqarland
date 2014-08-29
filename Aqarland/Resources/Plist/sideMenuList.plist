@@ -6,6 +6,12 @@
 	<array>
 		<dict>
 			<key>icon</key>
+			<string>home_icon.png</string>
+			<key>textTitle</key>
+			<string>Home</string>
+		</dict>
+		<dict>
+			<key>icon</key>
 			<string>profile_icon.png</string>
 			<key>textTitle</key>
 			<string>Profile</string>

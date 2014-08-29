@@ -103,23 +103,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if(indexPath.row==0)
     {
-        self.destinationController=[GlobalInstance loadStoryBoardId:sProfileVC];
+        self.destinationController=[GlobalInstance loadStoryBoardId:sHomeVC];
     }else if(indexPath.row==1)
     {
-        self.destinationController=[GlobalInstance loadStoryBoardId:sPropertiesVC];
+        self.destinationController=[GlobalInstance loadStoryBoardId:sProfileVC];
     }else if(indexPath.row==2)
     {
-        self.destinationController=[GlobalInstance loadStoryBoardId:sMyChatVC];
+        self.destinationController=[GlobalInstance loadStoryBoardId:sPropertiesVC];
     }else if(indexPath.row==3)
     {
-        self.destinationController=[GlobalInstance loadStoryBoardId:sSupportVC];
+        self.destinationController=[GlobalInstance loadStoryBoardId:sMyChatVC];
     }else if(indexPath.row==4)
     {
-         self.destinationController=[GlobalInstance loadStoryBoardId:sShortListVC];
+        self.destinationController=[GlobalInstance loadStoryBoardId:sSupportVC];
     }else if(indexPath.row==5)
+    {
+         self.destinationController=[GlobalInstance loadStoryBoardId:sShortListVC];
+    }else if(indexPath.row==6)
     {
          self.destinationController=[GlobalInstance loadStoryBoardId:sSettingVC];
     }
