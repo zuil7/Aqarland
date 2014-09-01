@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AQUser.h"
-
+#import "PropertyImages.h"
 @interface PropertyList : NSObject
 
 @property (nonatomic, strong) NSString *m_objectID;
@@ -26,5 +26,6 @@
 @property (nonatomic, strong) NSString *m_building;
 @property (nonatomic, strong) NSString *m_propertySize;
 @property (nonatomic, strong) NSString *m_latLong;
+@property (nonatomic, strong) PropertyImages *propertyImages;
 
 @end

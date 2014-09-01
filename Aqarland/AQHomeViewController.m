@@ -36,7 +36,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-   
+    [self fetchPropertyList];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -63,10 +63,24 @@
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
+/*
 -(void)tabbarCustomization
 {
 //    [self.listPropertyBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,RGB(34, 141, 187), NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
     [self.listPropertyBarItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} forState:UIControlStateNormal];
+}*/
+-(void) fetchPropertyList
+{
+    ParseLayerService *request=[[ParseLayerService alloc] init];
+    [request fetchProperty];
+    [request setCompletionBlock:^(id results)
+    {
+             
+    }];
+    [request setFailedBlock:^(NSError *error)
+     {
+         [GlobalInstance showAlert:iErrorInfo message:[error description]];
+    }];
 }
 -(void) customizeHeaderBar
 {

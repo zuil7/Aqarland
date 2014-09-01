@@ -317,6 +317,28 @@ static ParseLayerService *instance = nil;
         }
     }];
 }
+////////////////////////////////
+#pragma mark - FetchProperty
+////////////////////////////////
+-(void) fetchProperty
+{
+    PFUser *cUser = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    
+    [query whereKey:@"user" equalTo:cUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+     {
+         if ([result count]!=0)
+         {
+             [self reportSuccess:result];
+         }
+         else
+         {
+             [self reportFailure:error];
+         }
+     }];
+
+}
 
 ////////////////////////////////
 #pragma mark - Add Property

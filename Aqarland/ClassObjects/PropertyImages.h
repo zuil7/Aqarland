@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PropertyList.h"
+//#import "PropertyList.h"
 
 @interface PropertyImages : NSObject
 
 @property (nonatomic, strong) NSString *m_objectID;
 @property (nonatomic, strong) UIImage *m_propertyImg;
-@property (nonatomic, strong) PropertyList *m_propertyList;
+//@property (nonatomic, strong) PropertyList *propertyList;
 
 @end

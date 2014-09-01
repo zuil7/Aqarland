@@ -33,6 +33,10 @@ typedef void(^AQFailedBlock)(NSError *error);
 //Login
 - (void) requestLogin:(NSString *)username passWord:(NSString *) pass;
 
+//FetchProperty
+-(void) fetchProperty;
+
+
 //AddProperty
 -(void) addProperty:(NSDictionary *) propertyDetails;
 -(void) updateProperty:(NSDictionary *) propertyDetails :(NSString *) propertyObjID;

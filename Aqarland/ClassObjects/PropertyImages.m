@@ -10,4 +10,8 @@
 
 @implementation PropertyImages
 
+@synthesize m_objectID;
+@synthesize m_propertyImg;
+//@synthesize m_propertyList;
+
 @end
