@@ -66,7 +66,7 @@
 #define sAddPropertyDetailsVC       @"AddPropertyDetailsVC"
 #define sPropertyUploadVC           @"PropertyUploadPhotoVC"
 #define sPropertyConfirmLocVC       @"PropertyConfirmLocationVC"
-
+#define sViewPropertyVC             @"ViewPropertyVC"
 
 //Parse Class Name
 #define pUser               @"User"
@@ -81,4 +81,6 @@
 #define iForwardArrowImg        @"next_navigation_icon"
 #define iMenuImg                @"dashboard_icon.png"
 #define iSearchImg              @"search_icon.png"
+#define iFavoriteImg            @"favorites_icon.png"
+#define iShareImg               @"share_icon.png"
 #endif

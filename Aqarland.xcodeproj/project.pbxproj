@@ -26,6 +26,8 @@
 		B7974E7019A4512A00CDB6DE /* add_property_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7974E6F19A4512A00CDB6DE /* add_property_icon.png */; };
 		B7974E7219A4842D00CDB6DE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7974E7119A4842D00CDB6DE /* MobileCoreServices.framework */; };
 		B7974E7419A49A7F00CDB6DE /* remove_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7974E7319A49A7F00CDB6DE /* remove_icon.png */; };
+		B79B3A0119C2F9F800F2DEDD /* AQViewProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = B79B3A0019C2F9F800F2DEDD /* AQViewProperty.m */; };
+		B79B3A0519C2FA9100F2DEDD /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B79B3A0419C2FA9100F2DEDD /* ReflectionView.m */; };
 		B7A43B081988A2A800180532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B071988A2A800180532 /* Foundation.framework */; };
 		B7A43B0A1988A2A800180532 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B091988A2A800180532 /* CoreGraphics.framework */; };
 		B7A43B0C1988A2A800180532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B0B1988A2A800180532 /* UIKit.framework */; };
@@ -275,6 +277,10 @@
 		B7974E6F19A4512A00CDB6DE /* add_property_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_property_icon.png; sourceTree = "<group>"; };
 		B7974E7119A4842D00CDB6DE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		B7974E7319A49A7F00CDB6DE /* remove_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove_icon.png; sourceTree = "<group>"; };
+		B79B39FF19C2F9F800F2DEDD /* AQViewProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQViewProperty.h; sourceTree = "<group>"; };
+		B79B3A0019C2F9F800F2DEDD /* AQViewProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQViewProperty.m; sourceTree = "<group>"; };
+		B79B3A0319C2FA9100F2DEDD /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
+		B79B3A0419C2FA9100F2DEDD /* ReflectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
 		B7A43B041988A2A800180532 /* Aqarland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqarland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7A43B071988A2A800180532 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7A43B091988A2A800180532 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -588,6 +594,15 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		B79B3A0219C2FA9100F2DEDD /* ReflectionView */ = {
+			isa = PBXGroup;
+			children = (
+				B79B3A0319C2FA9100F2DEDD /* ReflectionView.h */,
+				B79B3A0419C2FA9100F2DEDD /* ReflectionView.m */,
+			);
+			path = ReflectionView;
+			sourceTree = "<group>";
+		};
 		B7A43AFB1988A2A800180532 = {
 			isa = PBXGroup;
 			children = (
@@ -823,6 +838,7 @@
 		B7A43B501988A35B00180532 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B79B3A0219C2FA9100F2DEDD /* ReflectionView */,
 				B7EE298519B0673A0085DC0D /* FHSTwitterEngine */,
 				B7EE298A19B0673A0085DC0D /* PFTwitterUtils-NativeTwitter */,
 				B7948F8D198A3A4C00936E16 /* MapClassHelper */,
@@ -1149,6 +1165,8 @@
 				B7974E5819A33EC200CDB6DE /* AQPropertyUploadPhoto.m */,
 				B788325B19ADBBA700FD2219 /* AQMapConfirmLocationViewController.h */,
 				B788325C19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m */,
+				B79B39FF19C2F9F800F2DEDD /* AQViewProperty.h */,
+				B79B3A0019C2F9F800F2DEDD /* AQViewProperty.m */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -1559,6 +1577,7 @@
 				B7EE29A019B0673A0085DC0D /* TWSignedRequest.m in Sources */,
 				B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */,
 				B7EE299A19B0673A0085DC0D /* FHSTwitterEngine.m in Sources */,
+				B79B3A0119C2F9F800F2DEDD /* AQViewProperty.m in Sources */,
 				B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */,
 				B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */,
 				B7EE297B19B05B1F0085DC0D /* PropertyList.m in Sources */,
@@ -1578,6 +1597,7 @@
 				B7A83CC9199A14A000B4B0C6 /* CustomFontsLabel.m in Sources */,
 				B7A83CCC199A163200B4B0C6 /* CustomFontsButton.m in Sources */,
 				B7A43B181988A2A800180532 /* AQAppDelegate.m in Sources */,
+				B79B3A0519C2FA9100F2DEDD /* ReflectionView.m in Sources */,
 				B788325D19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m in Sources */,
 				B7A43B1E1988A2A800180532 /* AQViewController.m in Sources */,
 				B7A43B621988A41C00180532 /* AQSideMenuViewController.m in Sources */,

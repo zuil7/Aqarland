@@ -24,6 +24,7 @@ PODS:
   - Facebook-iOS-SDK (3.17.0):
     - Bolts
   - HockeySDK (3.5.5)
+  - iCarousel (1.8)
   - IQKeyboardManager (3.0.6)
   - MBProgressHUD (0.8)
   - Parse (1.2.19):
@@ -34,6 +35,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.3.1)
   - HockeySDK (= 3.5.5)
+  - iCarousel (= 1.8)
   - IQKeyboardManager (= 3.0.6)
   - MBProgressHUD (= 0.8)
   - Parse (= 1.2.19)
@@ -45,6 +47,7 @@ SPEC CHECKSUMS:
   Bolts: 2635e8698a630774689441047f3465d78c48d485
   Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
+  iCarousel: cf77aea48dfcde9a0cd85569a1d8a9b6dd543bd7
   IQKeyboardManager: 3381092a6728e3565a6ad5051c44386be36bd990
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04

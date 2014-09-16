@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Aqarland-iCarousel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Aqarland.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,57 +67,62 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0037D765F00F45AB8D9C8AC1</key>
+		<key>0535035144454315A5FAAC3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D746631AF034B86B40580B6</key>
+		<key>116A81B11FCF438DAF794A36</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1EAD4053EB7E40BEB638A24E</key>
+		<key>2FB8E9504BA441BE8922FC4E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>29519422E6984FCCB2356E41</key>
+		<key>47EBCC57B03F40B39A50EAE3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>97CCF80FF1E54E2DA8C075FE</key>
+		<key>5A7817441AA04449AD16DBCC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA39003193A846E2B857B667</key>
+		<key>7FE3CC90D3D74533AB1DCBF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE9E3FD859244BF198C24766</key>
+		<key>853D241D1DC44CDE9A23AA25</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C37745909E774C26B175F345</key>
+		<key>8A8FD753564140B7B66B67F1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D697919ACBB94627A970D61B</key>
+		<key>A2310CF1D0284C8287743D06</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E10DBA66A3C84996B7C76DA8</key>
+		<key>B7E3C308B78C477FB80BAA37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC2B29B5A2014285A70009CE</key>
+		<key>D678C0C27A0E481BB1980FDF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E66D61FE3AFA4BA5A800309B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
