@@ -4,26 +4,65 @@
 <dict>
 	<key>propertyList</key>
 	<array>
-        <string>House</string>
-        <string>Apartment</string>
-        <string>Sided Apartment</string>
-        <string>Traditional House</string>
-        <string>Duplex</string>
-        <string>Housetop</string>
-        <string>Condominium Unit</string>
-        <string>Room</string>
-        <string>Studio</string>
-        <string>Villa</string>
-        <string>Chalet</string>
-        <string>Office Space</string>
-        <string>Shop Space</string>
-        <string>Storage</string>
-        <string>Building</string>
-        <string>Resort</string>
-        <string> Raw Land</string>
-        <string>Farm Land</string>
-        <string>Land</string>
-        <string>Other</string>
+		<string>House</string>
+		<string>Apartment</string>
+		<string>Sided Apartment</string>
+		<string>Traditional House</string>
+		<string>Duplex</string>
+		<string>Housetop</string>
+		<string>Condominium Unit</string>
+		<string>Room</string>
+		<string>Studio</string>
+		<string>Villa</string>
+		<string>Chalet</string>
+		<string>Office Space</string>
+		<string>Shop Space</string>
+		<string>Storage</string>
+		<string>Building</string>
+		<string>Resort</string>
+		<string> Raw Land</string>
+		<string>Farm Land</string>
+		<string>Land</string>
+		<string>Other</string>
+	</array>
+	<key>Station</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Phra Nakhon</string>
+			<key>address</key>
+			<string>Phra Nakhon, Bangkok Thailand</string>
+			<key>lat</key>
+			<string>13.7644</string>
+			<key>lon</key>
+			<string>100.4980</string>
+			<key>pinImg</key>
+			<string>inventory_ico_station_red.png</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Ratchathewi</string>
+			<key>address</key>
+			<string>Damnoen Klang Tai, Bangkok Thailand</string>
+			<key>lat</key>
+			<string>13.7589</string>
+			<key>lon</key>
+			<string>100.5344</string>
+			<key>pinImg</key>
+			<string>inventory_ico_station_green.png</string>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Maha Chai</string>
+			<key>address</key>
+			<string>Soi Shirichai 1, Bangkok Thailand</string>
+			<key>lat</key>
+			<string>13.756393</string>
+			<key>lon</key>
+			<string>100.501428</string>
+			<key>pinImg</key>
+			<string>inventory_ico_station_green.png</string>
+		</dict>
 	</array>
 </dict>
 </plist>
