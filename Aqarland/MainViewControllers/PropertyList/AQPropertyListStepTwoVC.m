@@ -39,6 +39,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+////////////////////////////////////
+#pragma mark - Logic
+////////////////////////////////////
 -(void) customizeHeaderBar
 {
     [self.navigationItem setTitle:@"Property List"];

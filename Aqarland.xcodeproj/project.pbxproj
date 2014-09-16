@@ -31,6 +31,10 @@
 		B7A2F7AF19C80CEB00BC3C3C /* AQPropertyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A2F7AE19C80CEB00BC3C3C /* AQPropertyListCell.m */; };
 		B7A2F7B219C8121C00BC3C3C /* AQPropertyListStepTwoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A2F7B119C8121C00BC3C3C /* AQPropertyListStepTwoVC.m */; };
 		B7A2F7B519C816C000BC3C3C /* AQPropertyListOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A2F7B419C816C000BC3C3C /* AQPropertyListOptionViewController.m */; };
+		B7A2F7BA19C81AE500BC3C3C /* blank_button_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A2F7B619C81AE500BC3C3C /* blank_button_active.png */; };
+		B7A2F7BB19C81AE500BC3C3C /* blank_button_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A2F7B719C81AE500BC3C3C /* blank_button_active@2x.png */; };
+		B7A2F7BC19C81AE500BC3C3C /* blank_button_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A2F7B819C81AE500BC3C3C /* blank_button_inactive.png */; };
+		B7A2F7BD19C81AE500BC3C3C /* blank_button_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A2F7B919C81AE500BC3C3C /* blank_button_inactive@2x.png */; };
 		B7A43B081988A2A800180532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B071988A2A800180532 /* Foundation.framework */; };
 		B7A43B0A1988A2A800180532 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B091988A2A800180532 /* CoreGraphics.framework */; };
 		B7A43B0C1988A2A800180532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B0B1988A2A800180532 /* UIKit.framework */; };
@@ -291,6 +295,10 @@
 		B7A2F7B119C8121C00BC3C3C /* AQPropertyListStepTwoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyListStepTwoVC.m; sourceTree = "<group>"; };
 		B7A2F7B319C816C000BC3C3C /* AQPropertyListOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyListOptionViewController.h; sourceTree = "<group>"; };
 		B7A2F7B419C816C000BC3C3C /* AQPropertyListOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyListOptionViewController.m; sourceTree = "<group>"; };
+		B7A2F7B619C81AE500BC3C3C /* blank_button_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_button_active.png; sourceTree = "<group>"; };
+		B7A2F7B719C81AE500BC3C3C /* blank_button_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank_button_active@2x.png"; sourceTree = "<group>"; };
+		B7A2F7B819C81AE500BC3C3C /* blank_button_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_button_inactive.png; sourceTree = "<group>"; };
+		B7A2F7B919C81AE500BC3C3C /* blank_button_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank_button_inactive@2x.png"; sourceTree = "<group>"; };
 		B7A43B041988A2A800180532 /* Aqarland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqarland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7A43B071988A2A800180532 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7A43B091988A2A800180532 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -915,6 +923,10 @@
 		B7A83AEE1998B86400B4B0C6 /* 03 - Registration Screen */ = {
 			isa = PBXGroup;
 			children = (
+				B7A2F7B619C81AE500BC3C3C /* blank_button_active.png */,
+				B7A2F7B719C81AE500BC3C3C /* blank_button_active@2x.png */,
+				B7A2F7B819C81AE500BC3C3C /* blank_button_inactive.png */,
+				B7A2F7B919C81AE500BC3C3C /* blank_button_inactive@2x.png */,
 				B73C05A819A1E8BD0048FE8A /* type_fill.png */,
 				B73C05A919A1E8BD0048FE8A /* type_fill@2x.png */,
 				B7A83C511999DD2000B4B0C6 /* done_button_active.png */,
@@ -1478,6 +1490,7 @@
 				B7A83C051998B86500B4B0C6 /* delete_icon@2x.png in Resources */,
 				B7A83BEE1998B86500B4B0C6 /* settings_icon.png in Resources */,
 				B7A83BF21998B86500B4B0C6 /* support_icon.png in Resources */,
+				B7A2F7BA19C81AE500BC3C3C /* blank_button_active.png in Resources */,
 				B7BEAC0019A204E700CCFC29 /* description_fill_text.png in Resources */,
 				B7A83BC31998B86500B4B0C6 /* text_box.png in Resources */,
 				B7A83BD41998B86500B4B0C6 /* filter_button.png in Resources */,
@@ -1501,6 +1514,7 @@
 				B7AF8BA4199DF8E500663A3E /* next_navigation_icon@2x.png in Resources */,
 				B7A83BE51998B86500B4B0C6 /* search_icon@2x.png in Resources */,
 				B7A83BE61998B86500B4B0C6 /* Dashboard-Menu-Screen.png in Resources */,
+				B7A2F7BB19C81AE500BC3C3C /* blank_button_active@2x.png in Resources */,
 				B7A83BF11998B86500B4B0C6 /* shortlist_icon@2x.png in Resources */,
 				B7974E7019A4512A00CDB6DE /* add_property_icon.png in Resources */,
 				B7A83C5E1999E24A00B4B0C6 /* sideMenuList.plist in Resources */,
@@ -1519,6 +1533,7 @@
 				B7A83BDB1998B86500B4B0C6 /* map_pin@2x.png in Resources */,
 				B7974E7419A49A7F00CDB6DE /* remove_icon.png in Resources */,
 				B7A83BE11998B86500B4B0C6 /* search_bar@2x.png in Resources */,
+				B7A2F7BC19C81AE500BC3C3C /* blank_button_inactive.png in Resources */,
 				B7A83BE31998B86500B4B0C6 /* search_button_inactive@2x.png in Resources */,
 				B7A83BF41998B86500B4B0C6 /* Add-Property-Screen-2.png in Resources */,
 				B7A83C441999B4E200B4B0C6 /* login_button_active.png in Resources */,
@@ -1541,6 +1556,7 @@
 				B7A83C0A1998B86500B4B0C6 /* Property-Details-Screen.png in Resources */,
 				B7A83C0E1998B86500B4B0C6 /* List-Property-Screen-2.png in Resources */,
 				B7A43B1B1988A2A800180532 /* Main.storyboard in Resources */,
+				B7A2F7BD19C81AE500BC3C3C /* blank_button_inactive@2x.png in Resources */,
 				B7EE296F19AF0BA10085DC0D /* confirm_location_button_inactive.png in Resources */,
 				B7A83C071998B86500B4B0C6 /* favorites_icon@2x.png in Resources */,
 				B7A83C121998B86500B4B0C6 /* List-Property-Screen.png in Resources */,

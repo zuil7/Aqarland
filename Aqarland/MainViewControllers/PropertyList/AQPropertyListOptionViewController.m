@@ -35,6 +35,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+////////////////////////////////////
+#pragma mark - Logic
+////////////////////////////////////
 -(void) customizeHeaderBar
 {
     [self.navigationItem setTitle:@"Property List"];
@@ -55,4 +58,18 @@
     }
 }
 
+////////////////////////////////////
+#pragma mark - Action
+////////////////////////////////////
+
+-(IBAction)option_touchedup_inside:(id)sender
+{
+    if([sender tag]==0)
+    {
+    
+    }else
+    {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+}
 @end

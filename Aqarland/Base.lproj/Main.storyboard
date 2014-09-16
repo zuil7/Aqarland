@@ -2042,19 +2042,31 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZ7-Zp-JmX">
-                                <rect key="frame" x="144" y="122" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZ7-Zp-JmX" customClass="RobotoLightBtn">
+                                <rect key="frame" x="20" y="122" width="281" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="View in List" backgroundImage="blank_button_active.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" backgroundImage="blank_button_inactive.png"/>
+                                <state key="highlighted" backgroundImage="blank_button_active.png"/>
+                                <connections>
+                                    <action selector="option_touchedup_inside:" destination="h4D-H1-7BN" eventType="touchUpInside" id="8QR-6n-9Lg"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-cK-UyO">
-                                <rect key="frame" x="137" y="195" width="46" height="30"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXP-cK-UyO" customClass="RobotoLightBtn">
+                                <rect key="frame" x="19" y="184" width="281" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="View In Map" backgroundImage="blank_button_active.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" backgroundImage="blank_button_inactive.png"/>
+                                <state key="highlighted" backgroundImage="blank_button_active.png"/>
+                                <connections>
+                                    <action selector="option_touchedup_inside:" destination="h4D-H1-7BN" eventType="touchUpInside" id="UCo-EZ-Kzt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2071,6 +2083,8 @@
         <image name="addproperty_icon.png" width="50" height="50"/>
         <image name="bathtub_icon.png" width="20" height="20"/>
         <image name="bed_icon.png" width="20" height="20"/>
+        <image name="blank_button_active.png" width="281" height="43"/>
+        <image name="blank_button_inactive.png" width="281" height="43"/>
         <image name="city_view_icon.png" width="47" height="47"/>
         <image name="confirm_button_active.png" width="281" height="43"/>
         <image name="confirm_button_inactive.png" width="281" height="43"/>
