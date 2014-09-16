@@ -28,6 +28,9 @@
 		B7974E7419A49A7F00CDB6DE /* remove_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7974E7319A49A7F00CDB6DE /* remove_icon.png */; };
 		B79B3A0119C2F9F800F2DEDD /* AQViewProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = B79B3A0019C2F9F800F2DEDD /* AQViewProperty.m */; };
 		B79B3A0519C2FA9100F2DEDD /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B79B3A0419C2FA9100F2DEDD /* ReflectionView.m */; };
+		B7A2F7AF19C80CEB00BC3C3C /* AQPropertyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A2F7AE19C80CEB00BC3C3C /* AQPropertyListCell.m */; };
+		B7A2F7B219C8121C00BC3C3C /* AQPropertyListStepTwoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A2F7B119C8121C00BC3C3C /* AQPropertyListStepTwoVC.m */; };
+		B7A2F7B519C816C000BC3C3C /* AQPropertyListOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A2F7B419C816C000BC3C3C /* AQPropertyListOptionViewController.m */; };
 		B7A43B081988A2A800180532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B071988A2A800180532 /* Foundation.framework */; };
 		B7A43B0A1988A2A800180532 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B091988A2A800180532 /* CoreGraphics.framework */; };
 		B7A43B0C1988A2A800180532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B0B1988A2A800180532 /* UIKit.framework */; };
@@ -221,6 +224,7 @@
 		B7BEAC0119A204E700CCFC29 /* description_fill_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7BEABFD19A204E700CCFC29 /* description_fill_text@2x.png */; };
 		B7BEAC0219A204E700CCFC29 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B7BEABFE19A204E700CCFC29 /* down_arrow.png */; };
 		B7BEAC0319A204E700CCFC29 /* down_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7BEABFF19A204E700CCFC29 /* down_arrow@2x.png */; };
+		B7C6DB2219C8022D00A6AADC /* AQPropertListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C6DB2119C8022D00A6AADC /* AQPropertListViewController.m */; };
 		B7EE296E19AF0BA10085DC0D /* confirm_location_button_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EE296C19AF0BA10085DC0D /* confirm_location_button_active.png */; };
 		B7EE296F19AF0BA10085DC0D /* confirm_location_button_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EE296D19AF0BA10085DC0D /* confirm_location_button_inactive.png */; };
 		B7EE297B19B05B1F0085DC0D /* PropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE297A19B05B1F0085DC0D /* PropertyList.m */; };
@@ -281,6 +285,12 @@
 		B79B3A0019C2F9F800F2DEDD /* AQViewProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQViewProperty.m; sourceTree = "<group>"; };
 		B79B3A0319C2FA9100F2DEDD /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
 		B79B3A0419C2FA9100F2DEDD /* ReflectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
+		B7A2F7AD19C80CEB00BC3C3C /* AQPropertyListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyListCell.h; sourceTree = "<group>"; };
+		B7A2F7AE19C80CEB00BC3C3C /* AQPropertyListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyListCell.m; sourceTree = "<group>"; };
+		B7A2F7B019C8121C00BC3C3C /* AQPropertyListStepTwoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyListStepTwoVC.h; sourceTree = "<group>"; };
+		B7A2F7B119C8121C00BC3C3C /* AQPropertyListStepTwoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyListStepTwoVC.m; sourceTree = "<group>"; };
+		B7A2F7B319C816C000BC3C3C /* AQPropertyListOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyListOptionViewController.h; sourceTree = "<group>"; };
+		B7A2F7B419C816C000BC3C3C /* AQPropertyListOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyListOptionViewController.m; sourceTree = "<group>"; };
 		B7A43B041988A2A800180532 /* Aqarland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqarland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7A43B071988A2A800180532 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7A43B091988A2A800180532 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -503,6 +513,8 @@
 		B7BEABFD19A204E700CCFC29 /* description_fill_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "description_fill_text@2x.png"; sourceTree = "<group>"; };
 		B7BEABFE19A204E700CCFC29 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = "<group>"; };
 		B7BEABFF19A204E700CCFC29 /* down_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down_arrow@2x.png"; sourceTree = "<group>"; };
+		B7C6DB2019C8022D00A6AADC /* AQPropertListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertListViewController.h; sourceTree = "<group>"; };
+		B7C6DB2119C8022D00A6AADC /* AQPropertListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertListViewController.m; sourceTree = "<group>"; };
 		B7EE296C19AF0BA10085DC0D /* confirm_location_button_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirm_location_button_active.png; sourceTree = "<group>"; };
 		B7EE296D19AF0BA10085DC0D /* confirm_location_button_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirm_location_button_inactive.png; sourceTree = "<group>"; };
 		B7EE297919B05B1F0085DC0D /* PropertyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyList.h; sourceTree = "<group>"; };
@@ -723,6 +735,8 @@
 			children = (
 				B7A83C591999E01500B4B0C6 /* AQSideMenuCell.h */,
 				B7A83C5A1999E01500B4B0C6 /* AQSideMenuCell.m */,
+				B7A2F7AD19C80CEB00BC3C3C /* AQPropertyListCell.h */,
+				B7A2F7AE19C80CEB00BC3C3C /* AQPropertyListCell.m */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -777,6 +791,7 @@
 		B7A43B471988A35B00180532 /* MainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B7C6DB1F19C8021300A6AADC /* PropertyList */,
 				B7A83CD0199B12C700B4B0C6 /* Dashboard */,
 				B7A83C601999F4AA00B4B0C6 /* Profile */,
 				B7A83C611999F4AA00B4B0C6 /* Properties */,
@@ -1207,6 +1222,19 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		B7C6DB1F19C8021300A6AADC /* PropertyList */ = {
+			isa = PBXGroup;
+			children = (
+				B7C6DB2019C8022D00A6AADC /* AQPropertListViewController.h */,
+				B7C6DB2119C8022D00A6AADC /* AQPropertListViewController.m */,
+				B7A2F7B019C8121C00BC3C3C /* AQPropertyListStepTwoVC.h */,
+				B7A2F7B119C8121C00BC3C3C /* AQPropertyListStepTwoVC.m */,
+				B7A2F7B319C816C000BC3C3C /* AQPropertyListOptionViewController.h */,
+				B7A2F7B419C816C000BC3C3C /* AQPropertyListOptionViewController.m */,
+			);
+			path = PropertyList;
+			sourceTree = "<group>";
+		};
 		B7EE297819B0598E0085DC0D /* ClassObjects */ = {
 			isa = PBXGroup;
 			children = (
@@ -1582,6 +1610,7 @@
 				B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */,
 				B7EE297B19B05B1F0085DC0D /* PropertyList.m in Sources */,
 				B7EE297E19B05BC30085DC0D /* PropertyImages.m in Sources */,
+				B7A2F7AF19C80CEB00BC3C3C /* AQPropertyListCell.m in Sources */,
 				B7A83C671999F57800B4B0C6 /* AQProfileViewController.m in Sources */,
 				B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */,
 				B7974E6D19A3530B00CDB6DE /* AQUploadPhoto.m in Sources */,
@@ -1605,6 +1634,8 @@
 				B7A83CD6199B3C1D00B4B0C6 /* AQSearchViewController.m in Sources */,
 				B7EE298119B05BE20085DC0D /* UserProfile.m in Sources */,
 				B7A43B141988A2A800180532 /* main.m in Sources */,
+				B7A2F7B219C8121C00BC3C3C /* AQPropertyListStepTwoVC.m in Sources */,
+				B7A2F7B519C816C000BC3C3C /* AQPropertyListOptionViewController.m in Sources */,
 				B7948F95198A3A4C00936E16 /* MapAnnotation.m in Sources */,
 				B7A43B781988C6BD00180532 /* CustomSignUpVC.m in Sources */,
 				B7A43B521988A35B00180532 /* CustomLoginVC.m in Sources */,
@@ -1613,6 +1644,7 @@
 				B7EE299F19B0673A0085DC0D /* TWAPIManager.m in Sources */,
 				B7A83CCF199A18F900B4B0C6 /* CustomFontsTextField.m in Sources */,
 				B7EE299919B0673A0085DC0D /* FHSStream.m in Sources */,
+				B7C6DB2219C8022D00A6AADC /* AQPropertListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -67,6 +67,9 @@
 #define sPropertyUploadVC           @"PropertyUploadPhotoVC"
 #define sPropertyConfirmLocVC       @"PropertyConfirmLocationVC"
 #define sViewPropertyVC             @"ViewPropertyVC"
+#define sPropertyListVC             @"PropertyListVC"
+#define sPropertyListStepTwoVC      @"PropertyListStepTwoVC"
+#define sPropertyListOptionVC      @"PropertyListOptionVC"
 
 //Parse Class Name
 #define pUser               @"User"

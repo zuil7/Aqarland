@@ -635,8 +635,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
             endingLineNumber = "147"
-            landmarkName = "@implementation AQPropertyUploadPhoto"
-            landmarkType = "3">
+            landmarkName = "-uploadImages:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

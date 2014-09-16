@@ -10,11 +10,12 @@
 #import "AQSearchViewController.h"
 #import "AQAddPropertyViewController.h"
 #import "AQViewProperty.h"
-
+#import "AQPropertListViewController.h"
 @interface AQHomeViewController ()<AQSearchViewControllerDelegate>
 @property(nonatomic,strong) AQSearchViewController *addPropertyVC;
 @property(nonatomic,strong) AQSearchViewController *searchVC;
 @property(nonatomic,strong) AQViewProperty *viewProperty;
+@property(nonatomic,strong) AQPropertListViewController *propertyListVC;
 @end
 
 @implementation AQHomeViewController
@@ -131,7 +132,8 @@
 }
 -(IBAction)listProperty_touchedup_inside:(id)sender
 {
-   //self.searchVC = [GlobalInstance loadStoryBoardId:sSearchVC];
+   self.propertyListVC = [GlobalInstance loadStoryBoardId:sPropertyListVC];
+   [self.navigationController pushViewController:self.propertyListVC animated:YES];
 }
 -(IBAction)addProperty_touchedup_inside:(id)sender
 {
