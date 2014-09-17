@@ -75,12 +75,12 @@
     
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {
-        UIImage *backImage = [UIImage imageNamed:iBackArrowImg];
+        UIImage *backImage = [UIImage imageNamed:@""];
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.frame = CGRectMake(0,0,22,32);
         [backBtn setImage:backImage forState:UIControlStateNormal];
         
-        [backBtn addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        [backBtn addTarget:self action:@selector(dummy:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
         [self.navigationItem setLeftBarButtonItem:barButtonItem];
@@ -99,6 +99,10 @@
         [self.navigationItem setRightBarButtonItem:barButtonItem];
         
     }
+}
+-(void) dummy:(id) sender
+{
+
 }
 -(void) uploadImages:(id) sender
 {

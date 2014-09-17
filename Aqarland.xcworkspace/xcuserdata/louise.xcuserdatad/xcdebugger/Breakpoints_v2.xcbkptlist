@@ -110,7 +110,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "467"
-            endingLineNumber = "467">
+            endingLineNumber = "467"
+            landmarkName = "@implementation AQViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -221,8 +223,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "376"
             endingLineNumber = "376"
-            landmarkName = "@implementation AQViewController"
-            landmarkType = "3">
+            landmarkName = "-logInViewController:shouldBeginLogInWithUsername:password:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -630,11 +632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/Properties/AQPropertyUploadPhoto.m"
-            timestampString = "430812465.118256"
+            timestampString = "432618403.444752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "-uploadImages:"
             landmarkType = "5">
          </BreakpointContent>
@@ -646,11 +648,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/Properties/AQPropertyUploadPhoto.m"
-            timestampString = "430812465.118256"
+            timestampString = "432618403.444752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "@implementation AQPropertyUploadPhoto"
             landmarkType = "3">
          </BreakpointContent>
@@ -662,11 +664,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/MainViewControllers/Properties/AQPropertyUploadPhoto.m"
-            timestampString = "430810240.53406"
+            timestampString = "432618403.444752"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-uploadImages:"
             landmarkType = "5">
          </BreakpointContent>

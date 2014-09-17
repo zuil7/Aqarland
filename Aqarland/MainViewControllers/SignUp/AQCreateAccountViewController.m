@@ -114,8 +114,14 @@
 
                 if ([results boolValue]==1)
                 {
-                    [GlobalInstance showAlert:iInformation message:@"Successfuly Registered"];
-    
+                    //[GlobalInstance showAlert:iInformation message:@"Successfuly Registered"];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iInformation
+                                                                    message:@"Successfuly Registered"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+
                 }
             }];
             [request setFailedBlock:^(NSError *error)

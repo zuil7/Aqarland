@@ -362,13 +362,18 @@ static ParseLayerService *instance = nil;
     post[@"amenities"]=propertyDetails[@"amenities"];
     post[@"description"]=propertyDetails[@"description"];
     
-    post[@"user"] = cUser;
+    //post[@"user"] = cUser;
     
+    //NSArray *property = @[propertyDetails];
+    //[[PFUser currentUser] setObject:property forKey:@"propertyList"];
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
+            PFRelation *relation = [cUser relationForKey:@"propertyList"];
+            [relation addObject:post];
+            [cUser saveInBackground];
             NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:succeeded],@"flag",
-                                [post objectId],@"propertyObjID",nil];
+                [post objectId],@"propertyObjID",nil];
             [self reportSuccess:dict];
         }
         else
@@ -432,7 +437,7 @@ static ParseLayerService *instance = nil;
                      userPhoto[@"propertyImg"]  = imageFile;
                      for (PFObject *object in result)
                      {
-                         userPhoto[@"propertyList"] = object;
+                         //userPhoto[@"propertyList"] = object;
                          strID=[object objectId];
                      }
                      NSLog(@"strID %@",strID);
@@ -444,6 +449,13 @@ static ParseLayerService *instance = nil;
                               
                           }else
                           {
+                              PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+                              [query getObjectInBackgroundWithId:strID block:^(PFObject *result, NSError *error) {
+                                  PFRelation *relation = [result relationForKey:@"propertyImages"];
+                                  [relation addObject:userPhoto];
+                                  [result saveInBackground];
+                                  
+                              }];
                               NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:
                               strID,@"propertyObjID",
                               [NSNumber numberWithBool:succeeded],@"flag",
