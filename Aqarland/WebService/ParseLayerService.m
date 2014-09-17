@@ -324,6 +324,32 @@ static ParseLayerService *instance = nil;
 {
     PFUser *cUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query whereKey:@"user" equalTo:cUser];
+    // Retrieve the most recent ones
+    [query orderByDescending:@"createdAt"];
+    
+    // Only retrieve the last ten
+    //query.limit = 10;
+    [query includeKey:@"propertyImgArr"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+        for (PFObject *comment in result)
+        {
+            NSLog(@"comment %@",comment);
+            /*
+            NSArray *arr= (NSArray *) comment[@"propertyImgArr"];
+            for (PFObject *imgs in arr)
+            {
+                
+                PFFile *file=(PFFile *)imgs[@"propertyImg"];
+                PFImageView *view = [PFImageView new];
+                [view setFile:file];
+                [view loadInBackground];
+            }*/
+        }
+    }];
+    /*
+    PFUser *cUser = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
     
     [query whereKey:@"user" equalTo:cUser];
     [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
@@ -337,7 +363,7 @@ static ParseLayerService *instance = nil;
              [self reportFailure:error];
          }
      }];
-
+     */
 }
 
 ////////////////////////////////
@@ -362,10 +388,8 @@ static ParseLayerService *instance = nil;
     post[@"amenities"]=propertyDetails[@"amenities"];
     post[@"description"]=propertyDetails[@"description"];
     
-    //post[@"user"] = cUser;
+    post[@"user"] = cUser;
     
-    //NSArray *property = @[propertyDetails];
-    //[[PFUser currentUser] setObject:property forKey:@"propertyList"];
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
@@ -417,6 +441,60 @@ static ParseLayerService *instance = nil;
 ////////////////////////////////
 -(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID
 {
+//    NSMutableArray *arrayImg=[[NSMutableArray alloc] init];
+//    PFUser *cUser = [PFUser currentUser];
+//    NSLog(@"cUser %@",cUser);
+//    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+//    [query whereKey:@"objectId" equalTo:objID];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+//     {
+//         if([result count]!=0)
+//         {
+//             for (int i=0; i<[listImages count]; i++)
+//             {
+//                 if (i!=0)
+//                 {
+//                     UIImage *image=(UIImage *)[listImages objectAtIndex:i];
+//                     NSData *imageData = UIImagePNGRepresentation(image);
+//                     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+//                     PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
+//                     NSString *strID;
+//                     userPhoto[@"propertyImg"]  = imageFile;
+//                     for (PFObject *object in result)
+//                     {
+//                         userPhoto[@"propertyList"] = object;
+//                         strID=[object objectId];
+//                     }
+//                     NSLog(@"strID %@",strID);
+//                     userPhoto[@"user"]=cUser;
+//                     [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//                      {
+//                          if(error)
+//                          {
+//                              [self reportFailure:error];
+//                              
+//                          }else
+//                          {
+//                              PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+//                              [query getObjectInBackgroundWithId:strID block:^(PFObject *result, NSError *error) {
+//                                  PFRelation *relation = [result relationForKey:@"propertyImages"];
+//                                  [relation addObject:userPhoto];
+//                                  [result saveInBackground];
+//                                  
+//                              }];
+//                              NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:
+//                              strID,@"propertyObjID",
+//                              [NSNumber numberWithBool:succeeded],@"flag",
+//                              nil];
+//                              [self reportSuccess:dict];
+//                          }
+//                      }];
+//                     
+//                 }
+//             }
+//         }
+//     }];
+    
     PFUser *cUser = [PFUser currentUser];
     NSLog(@"cUser %@",cUser);
     PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
@@ -437,10 +515,11 @@ static ParseLayerService *instance = nil;
                      userPhoto[@"propertyImg"]  = imageFile;
                      for (PFObject *object in result)
                      {
-                         //userPhoto[@"propertyList"] = object;
+                         userPhoto[@"propertyList"] = object;
                          strID=[object objectId];
                      }
                      NSLog(@"strID %@",strID);
+                     userPhoto[@"user"]=cUser;
                      [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                       {
                           if(error)
@@ -453,13 +532,23 @@ static ParseLayerService *instance = nil;
                               [query getObjectInBackgroundWithId:strID block:^(PFObject *result, NSError *error) {
                                   PFRelation *relation = [result relationForKey:@"propertyImages"];
                                   [relation addObject:userPhoto];
+
+                                  NSMutableArray *array =  [NSMutableArray array];
+                                  array = [result[@"propertyImgArr"] mutableCopy];
+                                  if(!array)
+                                  {
+                                        array =  [NSMutableArray array];
+                                  }
+                                  [array addObject:userPhoto];
+                                  result[@"propertyImgArr"] = array;
                                   [result saveInBackground];
+
                                   
                               }];
                               NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:
-                              strID,@"propertyObjID",
-                              [NSNumber numberWithBool:succeeded],@"flag",
-                              nil];
+                                                  strID,@"propertyObjID",
+                                                  [NSNumber numberWithBool:succeeded],@"flag",
+                                                  nil];
                               [self reportSuccess:dict];
                           }
                       }];
@@ -468,6 +557,7 @@ static ParseLayerService *instance = nil;
              }
          }
      }];
+
 }
 
 @end

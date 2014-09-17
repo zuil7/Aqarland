@@ -52,7 +52,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //[self fetchPropertyList];
+    [self fetchPropertyList];
 }
 - (void)didReceiveMemoryWarning
 {

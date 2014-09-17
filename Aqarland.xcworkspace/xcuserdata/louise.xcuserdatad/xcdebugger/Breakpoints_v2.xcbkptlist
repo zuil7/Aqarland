@@ -616,11 +616,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Aqarland/WebService/ParseLayerService.m"
-            timestampString = "430124778.426991"
+            timestampString = "432640506.608815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "-fetchProperty"
             landmarkType = "5">
          </BreakpointContent>
@@ -671,6 +671,52 @@
             endingLineNumber = "122"
             landmarkName = "-uploadImages:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Aqarland/WebService/ParseLayerService.m"
+            timestampString = "432640506.608815"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "532"
+            endingLineNumber = "532"
+            landmarkName = "-uploadImages::"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[ParseLayerService uploadImages::]_block_invoke_2"
+                  moduleName = "Aqarland"
+                  urlString = "file:///Users/louise/GitHub/ForkGit/AqarlandLatestCode/aqarland/Aqarland/WebService/ParseLayerService.m"
+                  timestampString = "432640585.857582"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "532"
+                  endingLineNumber = "532"
+                  offsetFromSymbolStart = "194">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[ParseLayerService uploadImages::]_block_invoke_3"
+                  moduleName = "Aqarland"
+                  urlString = "file:///Users/louise/GitHub/ForkGit/AqarlandLatestCode/aqarland/Aqarland/WebService/ParseLayerService.m"
+                  timestampString = "432640585.857771"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "532"
+                  endingLineNumber = "532"
+                  offsetFromSymbolStart = "83">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
