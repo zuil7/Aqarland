@@ -33,35 +33,11 @@
 			<key>address</key>
 			<string>Phra Nakhon, Bangkok Thailand</string>
 			<key>lat</key>
-			<string>13.7644</string>
+			<string>35.872025</string>
 			<key>lon</key>
-			<string>100.4980</string>
+			<string>-91.557198</string>
 			<key>pinImg</key>
 			<string>inventory_ico_station_red.png</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>Ratchathewi</string>
-			<key>address</key>
-			<string>Damnoen Klang Tai, Bangkok Thailand</string>
-			<key>lat</key>
-			<string>13.7589</string>
-			<key>lon</key>
-			<string>100.5344</string>
-			<key>pinImg</key>
-			<string>inventory_ico_station_green.png</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>Maha Chai</string>
-			<key>address</key>
-			<string>Soi Shirichai 1, Bangkok Thailand</string>
-			<key>lat</key>
-			<string>13.756393</string>
-			<key>lon</key>
-			<string>100.501428</string>
-			<key>pinImg</key>
-			<string>inventory_ico_station_green.png</string>
 		</dict>
 	</array>
 </dict>

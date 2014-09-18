@@ -18,6 +18,7 @@
     int annType;
     int annIndex;
     
+    
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate; 
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) NSString *mSelectedIcon;
 @property (nonatomic, assign) int annType;
 @property (nonatomic, assign) int annIndex;
+@property (nonatomic, strong) PFFile *file;
 @property ( unsafe_unretained) NSDictionary *data;
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c 

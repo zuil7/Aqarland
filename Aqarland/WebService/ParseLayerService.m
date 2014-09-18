@@ -10,7 +10,7 @@
 #import "PFTwitterUtils+NativeTwitter.h"
 #import <Accounts/Accounts.h>
 #import "FHSTwitterEngine.h"
-
+#import "PropertyList.h"
 
 #define mSuccess [NSNumber numberWithBool:1]
 #define mFailed  [NSNumber numberWithBool:0]
@@ -331,10 +331,90 @@ static ParseLayerService *instance = nil;
     // Only retrieve the last ten
     //query.limit = 10;
     [query includeKey:@"propertyImgArr"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
-        for (PFObject *comment in result)
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+    {
+        
+        if(!error)
         {
-            NSLog(@"comment %@",comment);
+            
+            NSMutableArray *propertyListArr=[[NSMutableArray alloc] init];
+            for (PFObject *pResult in result)
+            {
+                PropertyList *property=[[PropertyList alloc] init];
+                NSLog(@"comment %@",pResult);
+                if (pResult[@"amenities"] != [NSNull null])
+                {
+                    property.m_amenities=pResult[@"amenities"];
+                }
+                if (pResult[@"building"] != [NSNull null])
+                {
+                    property.m_building=pResult[@"building"];
+                }
+                if (pResult[@"city"] != [NSNull null])
+                {
+                    property.m_city=pResult[@"city"];
+                }
+                if (pResult[@"description"] != [NSNull null])
+                {
+                    property.m_description=pResult[@"description"];
+                }
+                if (pResult[@"houseNumber"] != [NSNull null])
+                {
+                    property.m_houseNumber=pResult[@"houseNumber"];
+                }
+                if (pResult[@"latLong"] != [NSNull null])
+                {
+                    property.m_latLong=pResult[@"latLong"];
+                }
+                if (pResult[@"numberOfBaths"] != [NSNull null])
+                {
+                    property.m_numberOfBaths=pResult[@"numberOfBaths"];
+                }
+                if (pResult[@"numberOfBedrooms"] != [NSNull null])
+                {
+                    property.m_numberOfBedrooms=pResult[@"numberOfBedrooms"];
+                }
+                if (pResult[@"postCode"] != [NSNull null])
+                {
+                    property.m_postCode=pResult[@"postCode"];
+                }
+                if (pResult[@"propertySize"] != [NSNull null])
+                {
+                    property.m_propertySize=pResult[@"propertySize"];
+                }
+                if (pResult[@"propertyType"] != [NSNull null])
+                {
+                    property.m_propertyType=pResult[@"propertyType"];
+                }
+                if (pResult[@"street"] != [NSNull null])
+                {
+                    property.m_street=pResult[@"street"];
+                }
+                if (pResult[@"unit"] != [NSNull null])
+                {
+                    property.m_unit=pResult[@"unit"];
+                }
+                if (pResult[@"user"] != [NSNull null])
+                {
+                    property.user=pResult[@"user"];
+                }
+                if (pResult[@"propertyImgArr"] != [NSNull null])
+                {
+                    property.propertyImages=pResult[@"propertyImgArr"];
+                }
+
+                [propertyListArr addObject:property];
+            }
+//            for (int i=0; i<[propertyListArr count]; i++) {
+//                PropertyList *property= (PropertyList *)[propertyListArr objectAtIndex:i];
+//                NSLog(@"latLong>>> %@",property.m_latLong);
+//            }
+            
+            [self reportSuccess:propertyListArr];
+        }else
+        {
+            [self reportFailure:error];
+        }
             /*
             NSArray *arr= (NSArray *) comment[@"propertyImgArr"];
             for (PFObject *imgs in arr)
@@ -345,25 +425,8 @@ static ParseLayerService *instance = nil;
                 [view setFile:file];
                 [view loadInBackground];
             }*/
-        }
+        
     }];
-    /*
-    PFUser *cUser = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
-    
-    [query whereKey:@"user" equalTo:cUser];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
-     {
-         if ([result count]!=0)
-         {
-             [self reportSuccess:result];
-         }
-         else
-         {
-             [self reportFailure:error];
-         }
-     }];
-     */
 }
 
 ////////////////////////////////

@@ -11,7 +11,9 @@
 #import "AQAddPropertyViewController.h"
 #import "AQViewProperty.h"
 #import "AQPropertListViewController.h"
-@interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate>
+#import "PropertyList.h"
+
+@interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate>
 {
     int ZOOM_LEVEL;
     CustomPinView *selectedPin;
@@ -23,6 +25,9 @@
 @property(nonatomic,strong) AQPropertListViewController *propertyListVC;
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
 @property(nonatomic,strong) NSMutableArray *annotationArray;
+@property(nonatomic,strong) PropertyList *property;
+
+@property(strong,nonatomic) CLLocationManager *locationManager;
 @end
 
 @implementation AQHomeViewController
@@ -41,12 +46,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
      [self customizeHeaderBar];
-     self.propertyListArr=[[NSMutableArray alloc]initWithArray:[GlobalInstance loadPlistfile:@"propertyTypeList" forKey:@"Station"]];
+//  self.propertyListArr=[[NSMutableArray alloc]initWithArray:[GlobalInstance loadPlistfile:@"propertyTypeList" forKey:@"Station"]];
     
-    ZOOM_LEVEL= 11.0;
-    CLLocationCoordinate2D centerCoord = { 13.754741, 100.512811 };
-    [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
-    [self performSelector:@selector(populateMap) withObject:self afterDelay:0.1];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -66,32 +67,41 @@
     
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
-/*
--(void)tabbarCustomization
+-(void) getCurrentLocation
 {
-//    [self.listPropertyBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,RGB(34, 141, 187), NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
-    [self.listPropertyBarItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} forState:UIControlStateNormal];
-}*/
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
+    
+}
+
+
+-(void) displayPinAnnotation:(CLLocationCoordinate2D) coor
+{
+    //Lower value zoom OUT
+    //Higher value zoom IN
+    ZOOM_LEVEL= 13.0;
+    CLLocationCoordinate2D centerCoord = { coor.latitude, coor.longitude };
+    [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:YES];
+    [self performSelector:@selector(populateMap) withObject:self afterDelay:0.1];
+    
+}
 -(void) fetchPropertyList
 {
     ParseLayerService *request=[[ParseLayerService alloc] init];
     [request fetchProperty];
     [request setCompletionBlock:^(id results)
     {
-             
+        
+        self.propertyListArr=[[NSMutableArray alloc] initWithArray:results];
+        NSLog(@"self.propertyListArr %d",[self.propertyListArr count]);
+        [self getCurrentLocation];
+        
     }];
     [request setFailedBlock:^(NSError *error)
      {
@@ -208,24 +218,33 @@
     // get the annotation
     for (int i=0;i< [self.propertyListArr count]; i++)
     {
-        NSDictionary *storeDic = (NSDictionary *)[self.propertyListArr objectAtIndex:i];
-        double lat = [[storeDic objectForKey:@"lat"] doubleValue];
-        double lng = [[storeDic objectForKey:@"lon"] doubleValue];
+        PropertyList *property= (PropertyList *)[self.propertyListArr objectAtIndex:i];
+        
+        NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:property.propertyImages];
+        NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
+        NSArray *latlongArr = [property.m_latLong componentsSeparatedByString: @","];
+        NSString *latStr=[latlongArr objectAtIndex:0];
+        NSString *longStr=[latlongArr objectAtIndex:1];
+        double lat = [latStr doubleValue];
+        double lng = [longStr doubleValue];
+        
+        NSLog(@"lat %f",lat);
+        NSLog(@"lng %f",lng);
+
+        CLLocationCoordinate2D curLocation;
+        curLocation.latitude = lat;
+        curLocation.longitude = lng;
         
         NSString *infoTitle = @"Title";
         NSString *desc = @"Desc";
         
-        CLLocationCoordinate2D curLocation;
-        curLocation.latitude = lat;
-        curLocation.longitude = lng;
-
         MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
-        
         curAnnotation.annType = i;
         curAnnotation.annIndex = i;
-        curAnnotation.data = storeDic;
-        curAnnotation.mPinIcon=[storeDic objectForKey:@"pinImg"];
+        curAnnotation.file=dImagesDict[@"propertyImg"];
         [self.mapView addAnnotation:curAnnotation];
+        
+      
     }
 
 }
@@ -305,14 +324,30 @@
 
     UIImage *customImg = [UIImage imageNamed:@"map_pin.png"];
     //CGRect customImgViewRect = CGRectMake(0, 0, customImg.size.width, customImg.size.height);
-    
-    UIImageView *customImgView = [[UIImageView alloc] init];
+    PFImageView *customImgView = [[PFImageView alloc] init];
     customImgView.frame = CGRectMake(2, 1, 30, 30);
     [customImgView setBackgroundColor:[UIColor redColor]];
     customImgView.layer.cornerRadius = customImgView.frame.size.width / 2;
     customImgView.clipsToBounds = YES;
-    [customImgView setImage:[UIImage imageNamed:@"login_screen_background.png"]];
     customImgView.alpha = 1;
+    NSLog(@"myMapAnnotation.file %@",myMapAnnotation.file);
+    [customImgView setFile:myMapAnnotation.file];
+    [customImgView loadInBackground:^(UIImage *image, NSError *error) {
+        if (!error)
+        {
+            NSLog(@"success");
+        }else
+        {
+             NSLog(@"error");
+        }
+    }];
+//    UIImageView *customImgView = [[UIImageView alloc] init];
+//    customImgView.frame = CGRectMake(2, 1, 30, 30);
+//    [customImgView setBackgroundColor:[UIColor redColor]];
+//    customImgView.layer.cornerRadius = customImgView.frame.size.width / 2;
+//    customImgView.clipsToBounds = YES;
+//    [customImgView setImage:[UIImage imageNamed:@"login_screen_background.png"]];
+//    customImgView.alpha = 1;
     
     //set the pinView
     pinView.image = customImg;
@@ -360,4 +395,27 @@
     
 }
 
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+    UIAlertView *errorAlert = [[UIAlertView alloc]
+                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    [self.locationManager stopUpdatingLocation];
+    CLLocationCoordinate2D coordinates = self.locationManager.location.coordinate;
+//    CLLocationCoordinate2D zoomLocation;
+//    zoomLocation.latitude = coordinates.latitude;
+//    zoomLocation.longitude= coordinates.longitude;
+//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1609.344,1609.344);
+//    [self.mapView setRegion:viewRegion animated:YES];
+    [self displayPinAnnotation:coordinates];
+    
+}
 @end
