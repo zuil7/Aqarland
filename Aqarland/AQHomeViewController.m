@@ -50,10 +50,16 @@
     
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self fetchPropertyList];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+}
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self fetchPropertyList];
+   
 }
 - (void)didReceiveMemoryWarning
 {
@@ -87,7 +93,7 @@
     //Higher value zoom IN
     ZOOM_LEVEL= 13.0;
     CLLocationCoordinate2D centerCoord = { coor.latitude, coor.longitude };
-    [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:YES];
+    [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
     [self performSelector:@selector(populateMap) withObject:self afterDelay:0.1];
     
 }
@@ -257,7 +263,7 @@
 {
     
     CustomPinView *pinview = selectedPin;
-    pinview.image = [UIImage imageNamed:@"map_pin.png"];
+    //pinview.image = [UIImage imageNamed:@"map_pin.png"];
     
     
      //---print out the region span - aka zoom level---

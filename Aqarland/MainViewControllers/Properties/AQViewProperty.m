@@ -10,6 +10,9 @@
 #import "ReflectionView.h"
 
 @interface AQViewProperty ()
+{
+    int ZOOM_LEVEL;
+}
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) NSMutableArray *imagesArr;
 @end
@@ -56,6 +59,10 @@
     self.imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
     [self.carousel reloadData];
     [self.carousel scrollToItemAtIndex:0 duration:0.0f];
+    
+    [self performSelector:@selector(populateMap) withObject:self afterDelay:0.1];
+    
+    [self fillData];
    
 }
 - (void)viewDidLayoutSubviews
@@ -134,6 +141,27 @@
     
 }
 
+-(void) fillData
+{
+    [self.townHouseLbl setText:[NSString stringWithFormat:@"%@, %@",self.propertyDetails.m_propertyType,self.propertyDetails.m_propertySize]];
+    PFUser *user=[PFUser currentUser];
+    
+    [self.contactPerson setText:[NSString stringWithFormat:@"Contact %@",user[@"name"]]];
+    [self.priceLbl setText:@""];
+    [self.bathRoomLbl setText:self.propertyDetails.m_numberOfBaths];
+    [self.bedRoomLbl setText:self.propertyDetails.m_numberOfBedrooms];
+    [self.addressLbl setText:[NSString stringWithFormat:@"%@, %@, %@, %@, %@",
+                              self.propertyDetails.m_houseNumber,
+                              self.propertyDetails.m_building,
+                              self.propertyDetails.m_street,
+                              self.propertyDetails.m_city,
+                              self.propertyDetails.m_postCode]];
+    [self.amenitiesLbl setText:self.propertyDetails.m_amenities];
+    [self.descriptionLbl setText:self.propertyDetails.m_description];
+    
+   
+}
+
 #pragma mark iCarousel methods
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
@@ -182,6 +210,171 @@
     [view update];
     return view;
    
+}
+
+////////////////////////////////////
+#pragma mark - MapViewDelegate
+////////////////////////////////////
+
+- (void)populateMap
+{
+
+        [self.mapView removeAnnotations:self.mapView.annotations];
+    
+        NSLog(@"[self.aStations count] %@",self.propertyDetails);
+
+    // get the annotation
+        NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
+        NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
+        NSArray *latlongArr = [self.propertyDetails.m_latLong componentsSeparatedByString: @","];
+        NSString *latStr=[latlongArr objectAtIndex:0];
+        NSString *longStr=[latlongArr objectAtIndex:1];
+        double lat = [latStr doubleValue];
+        double lng = [longStr doubleValue];
+    
+        ZOOM_LEVEL= 13.0;
+        CLLocationCoordinate2D centerCoord = { lat, lng };
+        [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
+    
+        CLLocationCoordinate2D curLocation;
+        curLocation.latitude = lat;
+        curLocation.longitude = lng;
+        
+        NSString *infoTitle = @"Title";
+        NSString *desc = @"Desc";
+        
+        MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
+    
+        curAnnotation.file=dImagesDict[@"propertyImg"];
+        [self.mapView addAnnotation:curAnnotation];
+    
+    
+}
+
+////////////////////////////////////
+#pragma mark - MapView
+////////////////////////////////////
+
+-(void)mapView:(MKMapView *)mv regionWillChangeAnimated:(BOOL)animated
+{
+        
+    //---print out the region span - aka zoom level---
+    /* MKCoordinateRegion region = self.mapView.region;
+     NSLog(@"latitude delta:%f", region.span.latitudeDelta);
+     NSLog(@"longitude delta:%f", region.span.longitudeDelta);
+     double centerLatitude= self.mapView.centerCoordinate.latitude;
+     double centerLongitude= self.mapView.centerCoordinate.longitude;
+     NSLog(@"latitude delta:%f", centerLatitude);
+     NSLog(@"longitude delta:%f", centerLongitude);
+     MKZoomScale currentZoomScale = self.mapView.bounds.size.width / self.mapView.visibleMapRect.size.width;
+     NSLog(@"current zoom scale is %f",currentZoomScale);
+     */
+    
+}
+
+
+- (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views
+{
+    
+    
+    CGRect visibleRect = [self.mapView annotationVisibleRect];
+    
+    for(MKAnnotationView *view in views)
+    {
+        if([view isKindOfClass:[MapAnnotation class]])
+        {
+            CGRect endFrame = view.frame;
+            
+            CGRect startFrame = endFrame;
+            
+            startFrame.origin.y = visibleRect.origin.y - startFrame.size.height;
+            view.frame = startFrame;
+            
+            [UIView beginAnimations:@"drop" context:NULL];
+            [UIView setAnimationDuration:2];
+            
+            
+            view.frame = endFrame;
+            [UIView commitAnimations];
+        }
+    }
+    
+    
+    
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mpView
+            viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    static NSString *defaultPinID = @"ReusedPin";
+    
+    CustomPinView *pinView = nil;
+    pinView = (CustomPinView *)[mpView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+    
+    if(! pinView)
+    {
+        pinView = [[CustomPinView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPinID] ;
+    }
+    
+    MapAnnotation *myMapAnnotation = (MapAnnotation *)annotation;
+    
+    //=== PinView customization
+    
+    UIImage *customImg = [UIImage imageNamed:@"map_pin.png"];
+    PFImageView *customImgView = [[PFImageView alloc] init];
+    customImgView.frame = CGRectMake(2, 1, 30, 30);
+    [customImgView setBackgroundColor:[UIColor clearColor]];
+    customImgView.layer.cornerRadius = customImgView.frame.size.width / 2;
+    customImgView.clipsToBounds = YES;
+    customImgView.alpha = 1;
+    NSLog(@"myMapAnnotation.file %@",myMapAnnotation.file);
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.alpha = 1.0;
+    activityIndicator.center = CGPointMake(customImgView.bounds.size.width / 2.0, customImgView.bounds.size.height / 2.0);
+    activityIndicator.hidesWhenStopped = NO;
+    [customImgView addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
+    [customImgView setFile:myMapAnnotation.file];
+    [customImgView loadInBackground:^(UIImage *image, NSError *error) {
+        if (!error)
+        {
+            [activityIndicator removeFromSuperview];
+        }else
+        {
+            [activityIndicator removeFromSuperview];
+            [GlobalInstance showAlert:iErrorInfo message:[error description]];
+        }
+    }];
+    pinView.image = customImg;
+    pinView.canShowCallout = NO;
+    pinView.tag=myMapAnnotation.annIndex;
+    
+    
+    [pinView addSubview:customImgView];
+    
+    return pinView;
+}
+
+
+- (void)mapView:(MKMapView *)amapView didSelectAnnotationView:(MKAnnotationView *)aview
+{
+    NSLog(@"aview.tag %d",aview.tag);
+    MapAnnotation *annotation = (MapAnnotation*) aview.annotation;
+    
+    // new
+    CGPoint annoPoint = [self.mapView convertCoordinate:annotation.coordinate toPointToView:amapView];
+    [self.mapView setCenterCoordinate:[self.mapView convertPoint:annoPoint toCoordinateFromView:amapView] animated:YES];
+    
+    NSLog(@"Index %d",annotation.annIndex);
+   
+    
+    
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)aview {
+    
 }
 
 

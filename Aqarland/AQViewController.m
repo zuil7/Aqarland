@@ -45,7 +45,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-     [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
+    [self.uETxtField setText:@""];
+    [self.uPTxtField setText:@""];
+    
 #warning mark Put NSUSERDEFAULTS HERE
     if([self checkUserDefaults])
     {

@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
 #import "PropertyList.h"
+#import <MapKit/MapKit.h>
+#import "MKMapView+ZoomLevel.h"
+#import "MapAnnotation.h"
+#import "CustomPinView.h"
 
 @interface AQViewProperty : UIViewController<iCarouselDataSource, iCarouselDelegate>
 
@@ -17,4 +21,15 @@
 
 @property (assign, nonatomic) NSInteger nIndex;
 @property (strong, nonatomic) PropertyList *propertyDetails;
+
+@property (weak, nonatomic) IBOutlet UILabel *townHouseLbl;
+@property (weak, nonatomic) IBOutlet UILabel *priceLbl;
+@property (weak, nonatomic) IBOutlet UILabel *bathRoomLbl;
+@property (weak, nonatomic) IBOutlet UILabel *bedRoomLbl;
+@property (weak, nonatomic) IBOutlet UILabel *addressLbl;
+@property (weak, nonatomic) IBOutlet UILabel *amenitiesLbl;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionLbl;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *contactPerson;
+
 @end

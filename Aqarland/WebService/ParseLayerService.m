@@ -106,9 +106,15 @@ static ParseLayerService *instance = nil;
     post[@"postCode"]=profileInfo[@"PostCode"];
     post[@"latLong"]=profileInfo[@"LatLong"];
     
+    
+    
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
+            PFRelation *relation = [cUser relationForKey:@"userProfile"];
+            [relation addObject:post];
+            [cUser saveInBackground];
+            
             [self reportSuccess:[NSNumber numberWithBool:succeeded]];
         }
         else
@@ -129,6 +135,7 @@ static ParseLayerService *instance = nil;
     cUser[@"email"]=profileInfo[@"email"];
     cUser[@"name"]= profileInfo[@"name"];
     cUser[@"loginType"] =profileInfo[@"loginType"];
+   
     [cUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         if(succeeded)
@@ -145,11 +152,15 @@ static ParseLayerService *instance = nil;
                      post[@"user"] = cUser;
                      post[@"fullName"] = profileInfo[@"name"];
                      [post setObject:profileInfo[@"imgFile"] forKey:@"userAvatar"];
+                                        
                      [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                       {
                           if (!error)
                           {
                               PFUser *user=[PFUser currentUser];
+                              PFRelation *relation = [user relationForKey:@"userProfile"];
+                              [relation addObject:post];
+                              [user saveInBackground];
                               NSLog(@"user %@",user);
                               [self reportSuccess:user];
                           }
@@ -266,12 +277,16 @@ static ParseLayerService *instance = nil;
                               NSData *imageData = [NSData dataWithContentsOfURL:pictureURL];
                               PFFile *imageFile = [PFFile fileWithName:@"avatar.png" data:imageData];
                               [post setObject:imageFile forKey:@"userAvatar"];
+                              
                               [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                                {
                                    if (!error)
                                    {
                                        PFUser *user=[PFUser currentUser];
-                                       NSLog(@"user %@",user);
+                                       PFRelation *relation = [user relationForKey:@"userProfile"];
+                                       [relation addObject:post];
+                                       [user saveInBackground];
+                                       
                                        [self reportSuccess:user];
                                    }
                                    else
@@ -322,9 +337,9 @@ static ParseLayerService *instance = nil;
 ////////////////////////////////
 -(void) fetchProperty
 {
-    PFUser *cUser = [PFUser currentUser];
+    //PFUser *cUser = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
-    [query whereKey:@"user" equalTo:cUser];
+    //[query whereKey:@"user" equalTo:cUser];
     // Retrieve the most recent ones
     [query orderByDescending:@"createdAt"];
     
