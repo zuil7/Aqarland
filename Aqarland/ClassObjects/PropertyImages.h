@@ -12,7 +12,7 @@
 @interface PropertyImages : NSObject
 
 @property (nonatomic, strong) NSString *m_objectID;
-@property (nonatomic, strong) UIImage *m_propertyImg;
+@property (nonatomic, strong) PFFile *m_propertyImg;
 //@property (nonatomic, strong) PropertyList *propertyList;
 
 @end

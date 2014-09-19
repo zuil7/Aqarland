@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
+#import "PropertyList.h"
 
 @interface AQViewProperty : UIViewController<iCarouselDataSource, iCarouselDelegate>
 
 @property (nonatomic, strong) IBOutlet iCarousel *carousel;
 @property (weak, nonatomic) IBOutlet UIScrollView *propertySV;
+
+@property (assign, nonatomic) NSInteger nIndex;
+@property (strong, nonatomic) PropertyList *propertyDetails;
 @end

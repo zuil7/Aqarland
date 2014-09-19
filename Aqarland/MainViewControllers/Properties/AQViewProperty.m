@@ -11,6 +11,7 @@
 
 @interface AQViewProperty ()
 @property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) NSMutableArray *imagesArr;
 @end
 
 @implementation AQViewProperty
@@ -32,11 +33,12 @@
     //data of some kind - don't store data in your item views
     //or the recycling mechanism will destroy your data once
     //your item views move off-screen
-    self.items = [NSMutableArray array];
-    for (int i = 0; i < 10; i++)
-    {
-        [self.items addObject:@(i)];
-    }
+//    self.items = [NSMutableArray array];
+//    for (int i = 0; i < 2; i++)
+//    {
+//        [self.items addObject:@(i)];
+//    }
+    
 }
 
 - (void)viewDidLoad
@@ -50,7 +52,11 @@
     [self.view addGestureRecognizer:tap];
     [self customizeHeaderBar];
     self.carousel.type = iCarouselTypeCoverFlow2;
-    NSLog(@"self.items %@",self.items);
+    
+    self.imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
+    [self.carousel reloadData];
+    [self.carousel scrollToItemAtIndex:0 duration:0.0f];
+   
 }
 - (void)viewDidLayoutSubviews
 {
@@ -63,16 +69,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
@@ -142,44 +138,50 @@
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    //return the total number of items in the carousel
-    return [self.items count];
+    return [self.imagesArr count];
 }
 
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(ReflectionView *)view
 {
-    UILabel *label = nil;
     
+     PFImageView *customImgView = [[PFImageView alloc] init];
     //create new view if no view is available for recycling
     if (view == nil)
     {
         view = [[ReflectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 195.0f, 195.0f)];
-        label = [[UILabel alloc] initWithFrame:view.bounds];
-		label.backgroundColor = [UIColor lightGrayColor];
-		label.layer.borderColor = [UIColor whiteColor].CGColor;
-        label.layer.borderWidth = 4.0f;
-        label.layer.cornerRadius = 8.0f;
-        label.textAlignment = NSTextAlignmentCenter;
-		label.font = [label.font fontWithSize:50];
-        label.tag = 9999;
-		[view addSubview:label];
+      
+        customImgView.frame = view.frame;
+        [customImgView setBackgroundColor:[UIColor clearColor]];
+        NSDictionary *dictImg=[self.imagesArr objectAtIndex:index];
         
-        //set up content
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.alpha = 1.0;
+        activityIndicator.center = CGPointMake(customImgView.bounds.size.width / 2.0, customImgView.bounds.size.height / 2.0);
+        activityIndicator.hidesWhenStopped = NO;
+        [customImgView addSubview:activityIndicator];
+        [activityIndicator startAnimating];
+        [view addSubview:customImgView];
+        
+        [customImgView setFile:dictImg[@"propertyImg"]];
+        [customImgView loadInBackground:^(UIImage *image, NSError *error) {
+            if (!error)
+            {
+                [activityIndicator removeFromSuperview];
+            }else
+            {
+                [activityIndicator removeFromSuperview];
+                [GlobalInstance showAlert:iErrorInfo message:[error description]];
+            }
+        }];
+        
     }
     else
     {
-        //get a reference to the label in the recycled view
-        label = (UILabel *)[view viewWithTag:1];
+        
     }
-    
-    //set item label
-    //remember to always set any properties of your carousel item
-    //views outside of the `if (view == nil) {...}` check otherwise
-    //you'll get weird issues with carousel item content appearing
-    //in the wrong place in the carousel
-    label.text = [self.items[index] stringValue];
-    
+    [view update];
     return view;
+   
 }
 
 

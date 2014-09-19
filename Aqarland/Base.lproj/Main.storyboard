@@ -1866,7 +1866,7 @@
                                     <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q8S-Um-Dr0" customClass="iCarousel">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="233"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" red="0.96078431369999995" green="0.54901960780000003" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="zrq-Af-Aa6" id="yMb-GH-Zou"/>
                                             <outlet property="delegate" destination="zrq-Af-Aa6" id="eEu-xh-CHl"/>

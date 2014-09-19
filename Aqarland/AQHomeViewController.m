@@ -326,30 +326,30 @@
     //CGRect customImgViewRect = CGRectMake(0, 0, customImg.size.width, customImg.size.height);
     PFImageView *customImgView = [[PFImageView alloc] init];
     customImgView.frame = CGRectMake(2, 1, 30, 30);
-    [customImgView setBackgroundColor:[UIColor redColor]];
+    [customImgView setBackgroundColor:[UIColor clearColor]];
     customImgView.layer.cornerRadius = customImgView.frame.size.width / 2;
     customImgView.clipsToBounds = YES;
     customImgView.alpha = 1;
     NSLog(@"myMapAnnotation.file %@",myMapAnnotation.file);
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.alpha = 1.0;
+    activityIndicator.center = CGPointMake(customImgView.bounds.size.width / 2.0, customImgView.bounds.size.height / 2.0);
+    activityIndicator.hidesWhenStopped = NO;
+    [customImgView addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    
     [customImgView setFile:myMapAnnotation.file];
     [customImgView loadInBackground:^(UIImage *image, NSError *error) {
         if (!error)
         {
-            NSLog(@"success");
+            [activityIndicator removeFromSuperview];
         }else
         {
-             NSLog(@"error");
+            [activityIndicator removeFromSuperview];
+            [GlobalInstance showAlert:iErrorInfo message:[error description]];
         }
     }];
-//    UIImageView *customImgView = [[UIImageView alloc] init];
-//    customImgView.frame = CGRectMake(2, 1, 30, 30);
-//    [customImgView setBackgroundColor:[UIColor redColor]];
-//    customImgView.layer.cornerRadius = customImgView.frame.size.width / 2;
-//    customImgView.clipsToBounds = YES;
-//    [customImgView setImage:[UIImage imageNamed:@"login_screen_background.png"]];
-//    customImgView.alpha = 1;
-    
-    //set the pinView
     pinView.image = customImg;
     pinView.canShowCallout = NO;
     pinView.tag=myMapAnnotation.annIndex;
@@ -377,15 +377,15 @@
     CGPoint annoPoint = [self.mapView convertCoordinate:annotation.coordinate toPointToView:amapView];
  
     
-    //   annoPoint.x += 100;
     [self.mapView setCenterCoordinate:[self.mapView convertPoint:annoPoint toCoordinateFromView:amapView] animated:YES];
   
 //    {
 //    CustomPinView *pinview = (CustomPinView*)aview;
 //    pinview.image = [UIImage imageNamed:@"map_pin.png"];
 //    }
-    
+    NSLog(@"Index %d",annotation.annIndex);
     self.viewProperty=[GlobalInstance loadStoryBoardId:sViewPropertyVC];
+    self.viewProperty.propertyDetails=[self.propertyListArr objectAtIndex:annotation.annIndex];
     [self.navigationController pushViewController:self.viewProperty animated:YES];
 
     
