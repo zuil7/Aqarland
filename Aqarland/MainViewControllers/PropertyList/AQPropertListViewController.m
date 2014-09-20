@@ -9,10 +9,12 @@
 #import "AQPropertListViewController.h"
 #import "AQPropertyListCell.h"
 #import "AQPropertyListStepTwoVC.h"
+#import "AQPropertyTableViewController.h"
 
 @interface AQPropertListViewController ()
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
 @property(nonatomic,strong) AQPropertyListStepTwoVC *propertyListTwo;
+@property(nonatomic,strong) AQPropertyTableViewController *tableProperty;
 @end
 
 @implementation AQPropertListViewController
@@ -31,6 +33,9 @@
     [super viewDidLoad];
     [self customizeHeaderBar];
     self.propertyListArr=[[NSMutableArray alloc] initWithArray:[GlobalInstance loadPlistfile:@"sideMenuList" forKey:@"sideMenuList"]];
+    self.tableProperty=[GlobalInstance loadStoryBoardId:sPropertyTableVC];
+    [self.tableProperty.view setFrame:CGRectMake(0, 101, 320, 467)];
+    [self.view addSubview:self.tableProperty.view];
 
 }
 

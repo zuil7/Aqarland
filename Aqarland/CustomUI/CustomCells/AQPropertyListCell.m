@@ -31,11 +31,11 @@
     // Configure the view for the selected state
 }
 
--(void) bind:(NSArray *) arr Idx:(NSInteger) idx
+-(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx
 {
 //    NSDictionary *tempDict=[arr objectAtIndex:idx];
 //    [self.iconImg setImage:[UIImage imageNamed:tempDict[@"icon"]]];
-//    [self.txtLbl setText:tempDict[@"textTitle"]];
+    [self.placeLbl setText:dict[@"city"]];
     
 }
 @end

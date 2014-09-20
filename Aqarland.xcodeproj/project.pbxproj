@@ -35,6 +35,7 @@
 		B7A2F7BB19C81AE500BC3C3C /* blank_button_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A2F7B719C81AE500BC3C3C /* blank_button_active@2x.png */; };
 		B7A2F7BC19C81AE500BC3C3C /* blank_button_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A2F7B819C81AE500BC3C3C /* blank_button_inactive.png */; };
 		B7A2F7BD19C81AE500BC3C3C /* blank_button_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A2F7B919C81AE500BC3C3C /* blank_button_inactive@2x.png */; };
+		B7A39C8D19CC202F005FBEE6 /* AQPropertyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A39C8C19CC202F005FBEE6 /* AQPropertyTableViewController.m */; };
 		B7A43B081988A2A800180532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B071988A2A800180532 /* Foundation.framework */; };
 		B7A43B0A1988A2A800180532 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B091988A2A800180532 /* CoreGraphics.framework */; };
 		B7A43B0C1988A2A800180532 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B0B1988A2A800180532 /* UIKit.framework */; };
@@ -299,6 +300,8 @@
 		B7A2F7B719C81AE500BC3C3C /* blank_button_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank_button_active@2x.png"; sourceTree = "<group>"; };
 		B7A2F7B819C81AE500BC3C3C /* blank_button_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank_button_inactive.png; sourceTree = "<group>"; };
 		B7A2F7B919C81AE500BC3C3C /* blank_button_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank_button_inactive@2x.png"; sourceTree = "<group>"; };
+		B7A39C8B19CC202F005FBEE6 /* AQPropertyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyTableViewController.h; sourceTree = "<group>"; };
+		B7A39C8C19CC202F005FBEE6 /* AQPropertyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyTableViewController.m; sourceTree = "<group>"; };
 		B7A43B041988A2A800180532 /* Aqarland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqarland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7A43B071988A2A800180532 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B7A43B091988A2A800180532 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1243,6 +1246,8 @@
 				B7A2F7B119C8121C00BC3C3C /* AQPropertyListStepTwoVC.m */,
 				B7A2F7B319C816C000BC3C3C /* AQPropertyListOptionViewController.h */,
 				B7A2F7B419C816C000BC3C3C /* AQPropertyListOptionViewController.m */,
+				B7A39C8B19CC202F005FBEE6 /* AQPropertyTableViewController.h */,
+				B7A39C8C19CC202F005FBEE6 /* AQPropertyTableViewController.m */,
 			);
 			path = PropertyList;
 			sourceTree = "<group>";
@@ -1642,6 +1647,7 @@
 				B7A83CC9199A14A000B4B0C6 /* CustomFontsLabel.m in Sources */,
 				B7A83CCC199A163200B4B0C6 /* CustomFontsButton.m in Sources */,
 				B7A43B181988A2A800180532 /* AQAppDelegate.m in Sources */,
+				B7A39C8D19CC202F005FBEE6 /* AQPropertyTableViewController.m in Sources */,
 				B79B3A0519C2FA9100F2DEDD /* ReflectionView.m in Sources */,
 				B788325D19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m in Sources */,
 				B7A43B1E1988A2A800180532 /* AQViewController.m in Sources */,

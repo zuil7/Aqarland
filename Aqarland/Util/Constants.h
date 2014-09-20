@@ -69,7 +69,9 @@
 #define sViewPropertyVC             @"ViewPropertyVC"
 #define sPropertyListVC             @"PropertyListVC"
 #define sPropertyListStepTwoVC      @"PropertyListStepTwoVC"
-#define sPropertyListOptionVC      @"PropertyListOptionVC"
+#define sPropertyListOptionVC       @"PropertyListOptionVC"
+#define sPropertyTableVC       @"sPropertyTableView"
+
 
 //Parse Class Name
 #define pUser               @"User"

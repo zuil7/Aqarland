@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PropertyList.h"
 
 @interface AQPropertyListCell : UITableViewCell
 
--(void) bind:(NSArray *) arr Idx:(NSInteger) idx;
+@property (weak, nonatomic) IBOutlet UILabel *placeLbl;
+-(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx;
 
 @end
