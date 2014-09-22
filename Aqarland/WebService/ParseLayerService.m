@@ -545,6 +545,7 @@ static ParseLayerService *instance = nil;
     post[@"numberOfBedrooms"]=propertyDetails[@"numberOfBedrooms"];
     post[@"numberOfBaths"]=propertyDetails[@"numberOfBaths"];
     post[@"amenities"]=propertyDetails[@"amenities"];
+    post[@"price"]=propertyDetails[@"price"];
     post[@"description"]=propertyDetails[@"description"];
     
     post[@"user"] = cUser;

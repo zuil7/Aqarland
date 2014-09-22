@@ -18,4 +18,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *nBathsTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *amenitiesTxtField;
 @property (weak, nonatomic) IBOutlet UITextView *descTxtView;
+@property (weak, nonatomic) IBOutlet UITextField *priceLbl;
 @end

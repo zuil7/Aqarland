@@ -68,6 +68,7 @@
         self.nBedroomsTxtField.text.length!=0 &&
         self.nBathsTxtField.text.length!=0 &&
         self.amenitiesTxtField.text.length!=0 &&
+        self.priceLbl.text.length!=0 &&
         self.descTxtView.text.length!=0 ) {
         return 1;
     }else
@@ -142,6 +143,7 @@
         [self.propertyAddress setValue:self.nBedroomsTxtField.text forKey:@"numberOfBedrooms"];
         [self.propertyAddress setValue:self.nBathsTxtField.text forKey:@"numberOfBaths"];
         [self.propertyAddress setValue:self.amenitiesTxtField.text forKey:@"amenities"];
+        [self.propertyAddress setValue:self.priceLbl.text forKey:@"price"];
         [self.propertyAddress setValue:self.descTxtView.text forKey:@"description"];
         NSLog(@"self.propertyAddress %@",self.propertyAddress);
         
