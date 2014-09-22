@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *m_numberOfBedrooms;
 @property (nonatomic, strong) NSString *m_numberOfBaths;
 @property (nonatomic, strong) NSString *m_amenities;
+@property (nonatomic, strong) NSString *m_price;
 @property (nonatomic, strong) NSString *m_description;
 @property (nonatomic, strong) AQUser *user;
 @property (nonatomic, strong) NSString *m_building;

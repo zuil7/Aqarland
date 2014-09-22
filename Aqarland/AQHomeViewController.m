@@ -262,7 +262,7 @@
 -(void)mapView:(MKMapView *)mv regionWillChangeAnimated:(BOOL)animated
 {
     
-    CustomPinView *pinview = selectedPin;
+    //CustomPinView *pinview = selectedPin;
     //pinview.image = [UIImage imageNamed:@"map_pin.png"];
     
     

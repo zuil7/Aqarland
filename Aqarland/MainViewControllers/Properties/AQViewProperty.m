@@ -147,7 +147,7 @@
     PFUser *user=[PFUser currentUser];
     
     [self.contactPerson setText:[NSString stringWithFormat:@"Contact %@",user[@"name"]]];
-    [self.priceLbl setText:@""];
+    [self.priceLbl setText:[NSString stringWithFormat:@"$ %@",self.propertyDetails.m_price]];
     [self.bathRoomLbl setText:self.propertyDetails.m_numberOfBaths];
     [self.bedRoomLbl setText:self.propertyDetails.m_numberOfBedrooms];
     [self.addressLbl setText:[NSString stringWithFormat:@"%@, %@, %@, %@, %@",
