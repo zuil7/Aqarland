@@ -11,7 +11,7 @@
 #import "AQPropertyListStepTwoVC.h"
 #import "AQPropertyTableViewController.h"
 
-@interface AQPropertListViewController ()
+@interface AQPropertListViewController ()<PropertyTableViewDelegate>
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
 @property(nonatomic,strong) AQPropertyListStepTwoVC *propertyListTwo;
 @property(nonatomic,strong) AQPropertyTableViewController *tableProperty;
@@ -34,6 +34,7 @@
     [self customizeHeaderBar];
     self.propertyListArr=[[NSMutableArray alloc] initWithArray:[GlobalInstance loadPlistfile:@"sideMenuList" forKey:@"sideMenuList"]];
     self.tableProperty=[GlobalInstance loadStoryBoardId:sPropertyTableVC];
+    [self.tableProperty setPropertyDelegate:self];
     [self.tableProperty.view setFrame:CGRectMake(0, 101, 320, 467)];
     [self.view addSubview:self.tableProperty.view];
 
@@ -109,4 +110,16 @@
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;
 }
+///////////////////////////////////////////
+#pragma mark - PropertyTableViewDelegate
+///////////////////////////////////////////
+- (void)didtapcell:(int) nIdx
+{
+    NSLog(@"nIdx %d",nIdx);
+    self.propertyListTwo=[GlobalInstance loadStoryBoardId:sPropertyListStepTwoVC];
+    [self.navigationController pushViewController:self.propertyListTwo animated:YES];
+    
+
+}
+
 @end

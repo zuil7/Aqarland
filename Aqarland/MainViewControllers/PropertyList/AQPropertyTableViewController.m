@@ -20,7 +20,10 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        //self.className = @"Todo";
+        self.pullToRefreshEnabled = YES;
+        self.paginationEnabled = NO;
+        self.objectsPerPage = 25;
     }
     return self;
 }
@@ -72,4 +75,12 @@
     }    
     return query;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int idx=indexPath.row;
+    [self.propertyDelegate didtapcell:idx];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 @end
