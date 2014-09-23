@@ -34,6 +34,7 @@
 -(void)initialize
 {
     [self sizeToFit];
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
      if (IQ_IS_IOS7_OR_GREATER)
     {
@@ -69,28 +70,31 @@
 -(CGSize)sizeThatFits:(CGSize)size
 {
     CGSize sizeThatFit = [super sizeThatFits:size];
-    
-    UIView *view = [[self viewController] view];
-    
-    if (view)
-    {
-        //Issue #52 fix
-        sizeThatFit.width = [[[self viewController] view] width];
-    }
+
+    sizeThatFit.height = 44;
     
     return sizeThatFit;
 }
 
 //To resize IQToolbar on device rotation.
-- (void) layoutSubviews
+//- (void) layoutSubviews
+//{
+//    [super layoutSubviews];
+//    CGRect origFrame = self.frame;
+//    [self sizeToFit];
+//    CGRect newFrame = self.frame;
+//    newFrame.origin.y += origFrame.size.height - newFrame.size.height;
+//    self.frame = newFrame;
+//}
+
+-(void)setTintColor:(UIColor *)tintColor
 {
-    [super layoutSubviews];
-    
-    CGRect origFrame = self.frame;
-    [self sizeToFit];
-    CGRect newFrame = self.frame;
-    newFrame.origin.y += origFrame.size.height - newFrame.size.height;
-    self.frame = newFrame;
+    [super setTintColor:tintColor];
+
+    for (UIBarButtonItem *item in self.items)
+    {
+        [item setTintColor:tintColor];
+    }
 }
 
 -(void)setTitleFont:(UIFont *)titleFont

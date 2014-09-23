@@ -10,4 +10,6 @@
 
 @interface AQPropertyListOptionViewController : UIViewController
 
+@property(nonatomic,strong) NSMutableArray *arrayResult;
+@property(nonatomic,strong) NSString *strCity;
 @end

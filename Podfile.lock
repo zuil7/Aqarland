@@ -21,11 +21,11 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.1.2)
-  - Facebook-iOS-SDK (3.17.0):
+  - Facebook-iOS-SDK (3.18.0):
     - Bolts
   - HockeySDK (3.5.5)
   - iCarousel (1.8)
-  - IQKeyboardManager (3.0.6)
+  - IQKeyboardManager (3.1.1)
   - MBProgressHUD (0.8)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
@@ -36,7 +36,7 @@ DEPENDENCIES:
   - AFNetworking (= 2.3.1)
   - HockeySDK (= 3.5.5)
   - iCarousel (= 1.8)
-  - IQKeyboardManager (= 3.0.6)
+  - IQKeyboardManager (= 3.1.1)
   - MBProgressHUD (= 0.8)
   - Parse (= 1.2.19)
   - RMPickerViewController (= 1.2.0)
@@ -45,10 +45,10 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   Bolts: 2635e8698a630774689441047f3465d78c48d485
-  Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
+  Facebook-iOS-SDK: fa12c51cc57bfb6f92e47793c9d4d2c65bc92741
   HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
   iCarousel: cf77aea48dfcde9a0cd85569a1d8a9b6dd543bd7
-  IQKeyboardManager: 3381092a6728e3565a6ad5051c44386be36bd990
+  IQKeyboardManager: 79ab3bc740f6bd30eadf9b0d217020941c0926e4
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
   RMPickerViewController: 9e976b3c4bc09bd7d546306f0e6dacc19ce6c496

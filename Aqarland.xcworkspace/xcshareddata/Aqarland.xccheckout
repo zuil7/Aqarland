@@ -10,29 +10,29 @@
 	<string>Aqarland</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8C678A05-255B-44E0-AA66-844D121FBFBF</key>
+		<key>4ADF3C890C5EDAC7A8B44BAD883E30A40F5026CA</key>
 		<string>https://github.com/TheCloudGroup/aqarland.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Aqarland.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8C678A05-255B-44E0-AA66-844D121FBFBF</key>
+		<key>4ADF3C890C5EDAC7A8B44BAD883E30A40F5026CA</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/TheCloudGroup/aqarland.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8C678A05-255B-44E0-AA66-844D121FBFBF</string>
+	<string>4ADF3C890C5EDAC7A8B44BAD883E30A40F5026CA</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8C678A05-255B-44E0-AA66-844D121FBFBF</string>
+			<string>4ADF3C890C5EDAC7A8B44BAD883E30A40F5026CA</string>
 			<key>IDESourceControlWCCName</key>
 			<string>aqarland</string>
 		</dict>

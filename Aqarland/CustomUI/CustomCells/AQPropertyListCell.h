@@ -12,6 +12,6 @@
 @interface AQPropertyListCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *placeLbl;
--(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx;
+-(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx :(NSString *) flag;
 
 @end

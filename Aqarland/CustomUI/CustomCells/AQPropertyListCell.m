@@ -31,11 +31,17 @@
     // Configure the view for the selected state
 }
 
--(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx
+-(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx :(NSString *) flag;
 {
 //    NSDictionary *tempDict=[arr objectAtIndex:idx];
 //    [self.iconImg setImage:[UIImage imageNamed:tempDict[@"icon"]]];
-    [self.placeLbl setText:dict[@"city"]];
+    if ([flag isEqualToString:@"City"])
+    {
+        [self.placeLbl setText:dict[@"city"]];
+    }else
+    {
+        [self.placeLbl setText:dict[@"street"]];
+    }
     
 }
 @end

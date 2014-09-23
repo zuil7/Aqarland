@@ -36,7 +36,7 @@ typedef void(^AQFailedBlock)(NSError *error);
 //FetchProperty
 -(void) fetchProperty;
 -(void) fetchPropertyPerUser;
-
+-(void) fetchPropertyPerCity:(NSString *) cityStr;
 //AddProperty
 -(void) addProperty:(NSDictionary *) propertyDetails;
 -(void) updateProperty:(NSDictionary *) propertyDetails :(NSString *) propertyObjID;

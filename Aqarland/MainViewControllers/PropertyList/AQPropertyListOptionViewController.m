@@ -7,9 +7,10 @@
 //
 
 #import "AQPropertyListOptionViewController.h"
+#import "AQViewMapViewController.h"
 
 @interface AQPropertyListOptionViewController ()
-
+@property(nonatomic,strong) AQViewMapViewController *viewInMapVC;
 @end
 
 @implementation AQPropertyListOptionViewController
@@ -69,7 +70,10 @@
     
     }else
     {
-        [self.navigationController popToRootViewControllerAnimated:NO];
+        self.viewInMapVC=[GlobalInstance loadStoryBoardId:sPropertyViewInMapVC];
+        self.viewInMapVC.propertyListArr=self.arrayResult;
+        self.viewInMapVC.strCity=self.strCity;
+        [self.navigationController pushViewController:self.viewInMapVC animated:YES];
     }
 }
 @end

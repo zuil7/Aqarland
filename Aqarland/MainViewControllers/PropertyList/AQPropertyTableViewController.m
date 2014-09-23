@@ -12,6 +12,7 @@
 @interface AQPropertyTableViewController ()
 
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
+@property(nonatomic,strong) NSMutableArray *distinctCity;
 @end
 
 @implementation AQPropertyTableViewController
@@ -31,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.distinctCity=[[NSMutableArray alloc] init];
+    
     self.propertyListArr=[[NSMutableArray alloc] initWithArray:[GlobalInstance loadPlistfile:@"sideMenuList" forKey:@"sideMenuList"]];
 }
 
@@ -42,6 +45,16 @@
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.distinctCity count];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
                         object:(PFObject *)object
@@ -50,12 +63,13 @@
     AQPropertyListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    NSLog(@"object>>> %@",object);
-    NSDictionary *propertyDict = [self.objects objectAtIndex:indexPath.row];
-    // Configure the cell...
-    [cell bind:propertyDict Idx:indexPath.row];
-
     
+    NSMutableDictionary *propertyDict=[[NSMutableDictionary alloc] init];
+    NSString *strCity= [self.distinctCity objectAtIndex:indexPath.row];
+    [propertyDict setObject:strCity forKey:@"city"];
+    // Configure the cell...
+    [cell bind:propertyDict Idx:indexPath.row :self.flagStr];
+
     return cell;
 }
 
@@ -64,23 +78,46 @@
 - (PFQuery *)queryForTable
 {
     PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
-    [query orderByDescending:@"createdAt"];
+   
+
+    if ([self.flagStr isEqualToString:@"City"])
+    {
+        [query orderByDescending:@"createdAt"];
+        //query.limit = 10;
+        [query includeKey:@"propertyImgArr"];
+        if ([self.objects count] == 0) {
+            query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        }
+    }else
+    {
+        NSLog(@"self.StreetStr %@",self.StreetStr);
+        [query whereKey:@"city" equalTo:self.StreetStr];
+        [query orderByDescending:@"createdAt"];
+        //query.limit = 10;
+        [query includeKey:@"propertyImgArr"];
+        if ([self.objects count] == 0) {
+            query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        }
+
+
+    }
     
-    
-    //query.limit = 10;
-    [query includeKey:@"propertyImgArr"];
-    
-    if ([self.objects count] == 0) {
-        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    }    
     return query;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int idx=indexPath.row;
-    [self.propertyDelegate didtapcell:idx];
+    AQPropertyListCell *cell = (AQPropertyListCell *)[tableView cellForRowAtIndexPath:indexPath];
+    int idx=(int)indexPath.row;
+    [self.propertyDelegate didtapcell:idx :cell.placeLbl.text];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)objectsDidLoad:(NSError *)error
+{
+    [super objectsDidLoad:error];
+    self.distinctCity= [self.objects valueForKeyPath:@"@distinctUnionOfObjects.city"];
+    NSLog(@"self.distinctCity %@",self.distinctCity);
 }
 
 @end

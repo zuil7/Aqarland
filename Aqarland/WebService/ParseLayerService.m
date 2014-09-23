@@ -529,6 +529,99 @@ static ParseLayerService *instance = nil;
     }];
 }
 
+-(void) fetchPropertyPerCity:(NSString *) cityStr
+{
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query whereKey:@"city" equalTo:cityStr];
+    [query orderByDescending:@"createdAt"];
+    //query.limit = 10;
+    [query includeKey:@"propertyImgArr"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+    {
+        if(!error)
+        {
+            NSMutableArray *propertyListArr=[[NSMutableArray alloc] init];
+            for (PFObject *pResult in result)
+            {
+                PropertyList *property=[[PropertyList alloc] init];
+                NSLog(@"comment %@",pResult);
+                if (pResult[@"amenities"] != [NSNull null])
+                {
+                    property.m_amenities=pResult[@"amenities"];
+                }
+                if (pResult[@"building"] != [NSNull null])
+                {
+                    property.m_building=pResult[@"building"];
+                }
+                if (pResult[@"city"] != [NSNull null])
+                {
+                    property.m_city=pResult[@"city"];
+                }
+                if (pResult[@"description"] != [NSNull null])
+                {
+                    property.m_description=pResult[@"description"];
+                }
+                if (pResult[@"houseNumber"] != [NSNull null])
+                {
+                    property.m_houseNumber=pResult[@"houseNumber"];
+                }
+                if (pResult[@"latLong"] != [NSNull null])
+                {
+                    property.m_latLong=pResult[@"latLong"];
+                }
+                if (pResult[@"numberOfBaths"] != [NSNull null])
+                {
+                    property.m_numberOfBaths=pResult[@"numberOfBaths"];
+                }
+                if (pResult[@"numberOfBedrooms"] != [NSNull null])
+                {
+                    property.m_numberOfBedrooms=pResult[@"numberOfBedrooms"];
+                }
+                if (pResult[@"postCode"] != [NSNull null])
+                {
+                    property.m_postCode=pResult[@"postCode"];
+                }
+                if (pResult[@"propertySize"] != [NSNull null])
+                {
+                    property.m_propertySize=pResult[@"propertySize"];
+                }
+                if (pResult[@"propertyType"] != [NSNull null])
+                {
+                    property.m_propertyType=pResult[@"propertyType"];
+                }
+                if (pResult[@"street"] != [NSNull null])
+                {
+                    property.m_street=pResult[@"street"];
+                }
+                if (pResult[@"unit"] != [NSNull null])
+                {
+                    property.m_unit=pResult[@"unit"];
+                }
+                if (pResult[@"price"] != [NSNull null])
+                {
+                    property.m_price=pResult[@"price"];
+                }
+                if (pResult[@"user"] != [NSNull null])
+                {
+                    property.user=pResult[@"user"];
+                }
+                if (pResult[@"propertyImgArr"] != [NSNull null])
+                {
+                    property.propertyImages=pResult[@"propertyImgArr"];
+                }
+                
+                [propertyListArr addObject:property];
+            }
+            
+            [self reportSuccess:propertyListArr];
+        }else
+        {
+              [self reportFailure:error];
+        }
+        
+    }];
+}
+
 ////////////////////////////////
 #pragma mark - Add Property
 ////////////////////////////////
@@ -605,59 +698,6 @@ static ParseLayerService *instance = nil;
 ////////////////////////////////
 -(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID
 {
-//    NSMutableArray *arrayImg=[[NSMutableArray alloc] init];
-//    PFUser *cUser = [PFUser currentUser];
-//    NSLog(@"cUser %@",cUser);
-//    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
-//    [query whereKey:@"objectId" equalTo:objID];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
-//     {
-//         if([result count]!=0)
-//         {
-//             for (int i=0; i<[listImages count]; i++)
-//             {
-//                 if (i!=0)
-//                 {
-//                     UIImage *image=(UIImage *)[listImages objectAtIndex:i];
-//                     NSData *imageData = UIImagePNGRepresentation(image);
-//                     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-//                     PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
-//                     NSString *strID;
-//                     userPhoto[@"propertyImg"]  = imageFile;
-//                     for (PFObject *object in result)
-//                     {
-//                         userPhoto[@"propertyList"] = object;
-//                         strID=[object objectId];
-//                     }
-//                     NSLog(@"strID %@",strID);
-//                     userPhoto[@"user"]=cUser;
-//                     [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-//                      {
-//                          if(error)
-//                          {
-//                              [self reportFailure:error];
-//                              
-//                          }else
-//                          {
-//                              PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
-//                              [query getObjectInBackgroundWithId:strID block:^(PFObject *result, NSError *error) {
-//                                  PFRelation *relation = [result relationForKey:@"propertyImages"];
-//                                  [relation addObject:userPhoto];
-//                                  [result saveInBackground];
-//                                  
-//                              }];
-//                              NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:
-//                              strID,@"propertyObjID",
-//                              [NSNumber numberWithBool:succeeded],@"flag",
-//                              nil];
-//                              [self reportSuccess:dict];
-//                          }
-//                      }];
-//                     
-//                 }
-//             }
-//         }
-//     }];
     
     PFUser *cUser = [PFUser currentUser];
     NSLog(@"cUser %@",cUser);

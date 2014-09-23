@@ -244,6 +244,7 @@
 		B7EE299E19B0673A0085DC0D /* PFTwitterUtils+NativeTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE299319B0673A0085DC0D /* PFTwitterUtils+NativeTwitter.m */; };
 		B7EE299F19B0673A0085DC0D /* TWAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE299619B0673A0085DC0D /* TWAPIManager.m */; };
 		B7EE29A019B0673A0085DC0D /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE299819B0673A0085DC0D /* TWSignedRequest.m */; };
+		B7F506C519D14DFC0035C44F /* AQViewMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -552,6 +553,8 @@
 		B7EE299619B0673A0085DC0D /* TWAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWAPIManager.m; sourceTree = "<group>"; };
 		B7EE299719B0673A0085DC0D /* TWSignedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSignedRequest.h; sourceTree = "<group>"; };
 		B7EE299819B0673A0085DC0D /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
+		B7F506C319D14DFC0035C44F /* AQViewMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQViewMapViewController.h; sourceTree = "<group>"; };
+		B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQViewMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1248,6 +1251,8 @@
 				B7A2F7B419C816C000BC3C3C /* AQPropertyListOptionViewController.m */,
 				B7A39C8B19CC202F005FBEE6 /* AQPropertyTableViewController.h */,
 				B7A39C8C19CC202F005FBEE6 /* AQPropertyTableViewController.m */,
+				B7F506C319D14DFC0035C44F /* AQViewMapViewController.h */,
+				B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */,
 			);
 			path = PropertyList;
 			sourceTree = "<group>";
@@ -1653,6 +1658,7 @@
 				B7A43B1E1988A2A800180532 /* AQViewController.m in Sources */,
 				B7A43B621988A41C00180532 /* AQSideMenuViewController.m in Sources */,
 				B7A43B531988A35B00180532 /* Global.m in Sources */,
+				B7F506C519D14DFC0035C44F /* AQViewMapViewController.m in Sources */,
 				B7A83CD6199B3C1D00B4B0C6 /* AQSearchViewController.m in Sources */,
 				B7EE298119B05BE20085DC0D /* UserProfile.m in Sources */,
 				B7A43B141988A2A800180532 /* main.m in Sources */,

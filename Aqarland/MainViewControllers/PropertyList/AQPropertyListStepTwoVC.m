@@ -9,10 +9,13 @@
 #import "AQPropertyListStepTwoVC.h"
 #import "AQPropertyListCell.h"
 #import "AQPropertyListOptionViewController.h"
+#import "AQPropertyTableViewController.h"
 
-@interface AQPropertyListStepTwoVC ()
+@interface AQPropertyListStepTwoVC ()<PropertyTableViewDelegate>
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
-@property(nonatomic,strong) AQPropertyListOptionViewController *propertyListOptVC;
+@property(nonatomic,strong) AQPropertyListOptionViewController *
+propertyListOptVC;
+@property(nonatomic,strong) AQPropertyTableViewController *tableProperty;
 @end
 
 @implementation AQPropertyListStepTwoVC
@@ -32,6 +35,13 @@
     // Do any additional setup after loading the view.
     self.propertyListArr=[[NSMutableArray alloc] initWithArray:[GlobalInstance loadPlistfile:@"sideMenuList" forKey:@"sideMenuList"]];
     [self customizeHeaderBar];
+    
+    self.tableProperty=[GlobalInstance loadStoryBoardId:sPropertyTableVC];
+    [self.tableProperty setPropertyDelegate:self];
+    self.tableProperty.flagStr=@"Street";
+     self.tableProperty.StreetStr=self.StreetStr;
+    [self.tableProperty.view setFrame:CGRectMake(0, 101, 320, 467)];
+    [self.view addSubview:self.tableProperty.view];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,7 +94,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     // Configure the cell...
-    [cell bind:self.propertyListArr Idx:indexPath.row];
+    //[cell bind:self.propertyListArr Idx:indexPath.row];
     
     return cell;
 }

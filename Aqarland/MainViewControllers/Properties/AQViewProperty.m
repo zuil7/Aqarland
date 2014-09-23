@@ -360,7 +360,7 @@
 
 - (void)mapView:(MKMapView *)amapView didSelectAnnotationView:(MKAnnotationView *)aview
 {
-    NSLog(@"aview.tag %d",aview.tag);
+    //NSLog(@"aview.tag %d",aview.tag);
     MapAnnotation *annotation = (MapAnnotation*) aview.annotation;
     
     // new

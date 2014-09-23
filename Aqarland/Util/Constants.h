@@ -70,7 +70,9 @@
 #define sPropertyListVC             @"PropertyListVC"
 #define sPropertyListStepTwoVC      @"PropertyListStepTwoVC"
 #define sPropertyListOptionVC       @"PropertyListOptionVC"
-#define sPropertyTableVC       @"sPropertyTableView"
+#define sPropertyTableVC            @"sPropertyTableView"
+#define sPropertyViewInMapVC            @"sViewInMap"
+
 
 
 //Parse Class Name

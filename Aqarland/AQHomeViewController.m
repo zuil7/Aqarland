@@ -13,7 +13,7 @@
 #import "AQPropertListViewController.h"
 #import "PropertyList.h"
 
-@interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate>
+@interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate,MBProgressHUDDelegate>
 {
     int ZOOM_LEVEL;
     CustomPinView *selectedPin;
@@ -26,6 +26,7 @@
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
 @property(nonatomic,strong) NSMutableArray *annotationArray;
 @property(nonatomic,strong) PropertyList *property;
+@property (nonatomic, strong) MBProgressHUD *HUD;
 
 @property(strong,nonatomic) CLLocationManager *locationManager;
 @end
@@ -95,10 +96,21 @@
     CLLocationCoordinate2D centerCoord = { coor.latitude, coor.longitude };
     [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
     [self performSelector:@selector(populateMap) withObject:self afterDelay:0.1];
+    [self.HUD hide:YES];
     
 }
 -(void) fetchPropertyList
 {
+    self.HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:self.HUD];
+    
+    self.HUD.delegate = self;
+    self.HUD.labelText = @"Loading Location";
+    self.HUD.square = YES;
+    [self.HUD show:YES];
+
+    
+    
     ParseLayerService *request=[[ParseLayerService alloc] init];
     [request fetchProperty];
     [request setCompletionBlock:^(id results)

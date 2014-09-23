@@ -1,5 +1,5 @@
 //
-// KeyboardManager.h
+// KeyboardManager.m
 // https://github.com/hackiftekhar/IQKeyboardManager
 // Copyright (c) 2013-14 Iftekhar Qurashi.
 //
@@ -27,6 +27,8 @@
 #import "IQUIWindow+Hierarchy.h"
 #import "IQNSArray+Sort.h"
 #import "IQToolbar.h"
+#import "IQBarButtonItem.h"
+#import "IQKeyboardManagerConstantsInternal.h"
 
 #import <UIKit/UITapGestureRecognizer.h>
 #import <UIKit/UITextField.h>
@@ -39,7 +41,7 @@
 //Remove compiler warning
 -(void)previousAction:(id)segmentedControl;
 -(void)nextAction:(id)segmentedControl;
--(void)doneAction:(UIBarButtonItem*)barButton;
+-(void)doneAction:(IQBarButtonItem*)barButton;
 
 @end
 
@@ -91,7 +93,7 @@
     NSInteger animationCurve;
     
 	/*! To save UITextField/UITextView object voa textField/textView notifications. */
-    UIView *_textFieldView;
+    __weak UIView *_textFieldView;
     
     /*! To save keyboard size. */
     CGSize kbSize;
@@ -100,7 +102,7 @@
 	NSNotification *kbShowNotification;
     
     /*! Variable to save lastScrollView that was scrolled. */
-    UIScrollView *lastScrollView;
+    __weak UIScrollView *lastScrollView;
     
     /*! LastScrollView's initial contentOffset. */
     CGPoint startingContentOffset;
@@ -308,6 +310,11 @@ Class EKPlaceholderTextViewClass;
     //  Getting topMost ViewController.
     UIViewController *controller = [[self keyWindow] topMostController];
     
+    if (IQ_IS_IOS8_OR_GREATER)
+    {
+        frame.size = controller.view.size;
+    }
+
     //  If can't get rootViewController then printing warning to user.
     if (controller == nil)  NSLog(@"%@",IQLocalizedString(@"You must set UIWindow.rootViewController in your AppDelegate to work with IQKeyboardManager", nil));
     
@@ -432,7 +439,13 @@ Class EKPlaceholderTextViewClass;
         CGFloat initialMove = move;
         
         CGFloat adjustment = 5;
-        switch ([rootController interfaceOrientation])
+        
+        UIInterfaceOrientation interfaceOrientation;
+        
+        if (IQ_IS_IOS8_OR_GREATER)  interfaceOrientation = UIInterfaceOrientationPortrait;
+        else                        interfaceOrientation = [rootController interfaceOrientation];
+        
+        switch (interfaceOrientation)
         {
             case UIInterfaceOrientationLandscapeLeft:
                 adjustment += [[UIApplication sharedApplication] statusBarFrame].size.width;
@@ -501,7 +514,12 @@ Class EKPlaceholderTextViewClass;
         if (move>=0)
         {
             //  adjusting rootViewRect
-            switch (rootController.interfaceOrientation)
+            UIInterfaceOrientation interfaceOrientation;
+            
+            if (IQ_IS_IOS8_OR_GREATER)  interfaceOrientation = UIInterfaceOrientationPortrait;
+            else                        interfaceOrientation = [rootController interfaceOrientation];
+            
+            switch (interfaceOrientation)
             {
                 case UIInterfaceOrientationLandscapeLeft:       rootViewRect.origin.x -= move;  break;
                 case UIInterfaceOrientationLandscapeRight:      rootViewRect.origin.x += move;  break;
@@ -516,10 +534,15 @@ Class EKPlaceholderTextViewClass;
         //  Negative
         else
         {
-            CGFloat disturbDistance;
+            CGFloat disturbDistance = 0;
             
             //  Calculating disturbed distance
-			switch (rootController.interfaceOrientation)
+            UIInterfaceOrientation interfaceOrientation;
+            
+            if (IQ_IS_IOS8_OR_GREATER)  interfaceOrientation = UIInterfaceOrientationPortrait;
+            else                        interfaceOrientation = [rootController interfaceOrientation];
+            
+            switch (interfaceOrientation)
             {
                 case UIInterfaceOrientationLandscapeLeft:
                     disturbDistance = CGRectGetMinX(rootViewRect)-CGRectGetMinX(topViewBeginRect);
@@ -542,7 +565,12 @@ Class EKPlaceholderTextViewClass;
             if(disturbDistance<0)
             {
                 //  adjusting rootViewRect
-                switch (rootController.interfaceOrientation)
+                UIInterfaceOrientation interfaceOrientation;
+                
+                if (IQ_IS_IOS8_OR_GREATER)  interfaceOrientation = UIInterfaceOrientationPortrait;
+                else                        interfaceOrientation = [rootController interfaceOrientation];
+                
+                switch (interfaceOrientation)
                 {
                     case UIInterfaceOrientationLandscapeLeft:       rootViewRect.origin.x -= MAX(move, disturbDistance);  break;
                     case UIInterfaceOrientationLandscapeRight:      rootViewRect.origin.x += MAX(move, disturbDistance);  break;
@@ -657,7 +685,12 @@ Class EKPlaceholderTextViewClass;
     kbSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     
     // Adding Keyboard distance from textField.
-    switch ([[[self keyWindow] topMostController] interfaceOrientation])
+    UIInterfaceOrientation interfaceOrientation;
+    
+    if (IQ_IS_IOS8_OR_GREATER)  interfaceOrientation = UIInterfaceOrientationPortrait;
+    else                        interfaceOrientation = [[[self keyWindow] topMostController] interfaceOrientation];
+    
+    switch (interfaceOrientation)
     {
         case UIInterfaceOrientationLandscapeLeft:
             kbSize.width += _keyboardDistanceFromTextField;
@@ -909,7 +942,7 @@ Class EKPlaceholderTextViewClass;
 }
 
 /*!	doneAction. Resigning current textField. */
--(void)doneAction:(UIBarButtonItem*)barButton
+-(void)doneAction:(IQBarButtonItem*)barButton
 {
     if (_shouldPlayInputClicks)
     {

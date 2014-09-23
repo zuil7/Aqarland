@@ -10,11 +10,15 @@
 #import "AQPropertyListCell.h"
 #import "AQPropertyListStepTwoVC.h"
 #import "AQPropertyTableViewController.h"
+#import "AQPropertyListOptionViewController.h"
 
 @interface AQPropertListViewController ()<PropertyTableViewDelegate>
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
 @property(nonatomic,strong) AQPropertyListStepTwoVC *propertyListTwo;
 @property(nonatomic,strong) AQPropertyTableViewController *tableProperty;
+@property(nonatomic,strong) AQPropertyListOptionViewController *
+propertyListOptVC;
+
 @end
 
 @implementation AQPropertListViewController
@@ -35,6 +39,7 @@
     self.propertyListArr=[[NSMutableArray alloc] initWithArray:[GlobalInstance loadPlistfile:@"sideMenuList" forKey:@"sideMenuList"]];
     self.tableProperty=[GlobalInstance loadStoryBoardId:sPropertyTableVC];
     [self.tableProperty setPropertyDelegate:self];
+    self.tableProperty.flagStr=@"City";
     [self.tableProperty.view setFrame:CGRectMake(0, 101, 320, 467)];
     [self.view addSubview:self.tableProperty.view];
 
@@ -93,7 +98,7 @@
      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     // Configure the cell...
-    [cell bind:self.propertyListArr Idx:indexPath.row];
+    //[cell bind:self.propertyListArr Idx:indexPath.row];
     
     return cell;
 }
@@ -113,11 +118,31 @@
 ///////////////////////////////////////////
 #pragma mark - PropertyTableViewDelegate
 ///////////////////////////////////////////
-- (void)didtapcell:(int) nIdx
+- (void)didtapcell:(int) nIdx :(NSString *) cityStr
 {
-    NSLog(@"nIdx %d",nIdx);
-    self.propertyListTwo=[GlobalInstance loadStoryBoardId:sPropertyListStepTwoVC];
-    [self.navigationController pushViewController:self.propertyListTwo animated:YES];
+//    NSLog(@"nIdx %d",nIdx);
+//    NSLog(@"cityStr %@",cityStr);
+//    self.propertyListTwo=[GlobalInstance loadStoryBoardId:sPropertyListStepTwoVC];
+//    self.propertyListTwo.StreetStr=cityStr;
+//    [self.navigationController pushViewController:self.propertyListTwo animated:YES];
+    [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+    ParseLayerService *request=[[ParseLayerService alloc] init];
+    [request fetchPropertyPerCity:cityStr];
+    [request setCompletionBlock:^(id results)
+     {
+          [MBProgressHUD hideAllHUDsForView:GlobalInstance.navController.view animated:YES];
+         self.propertyListOptVC=[GlobalInstance loadStoryBoardId:sPropertyListOptionVC];
+         self.propertyListOptVC.arrayResult=[NSMutableArray arrayWithArray:results];
+         self.propertyListOptVC.strCity=cityStr;
+         [self.navigationController pushViewController:self.propertyListOptVC animated:YES];
+         
+     }];
+    [request setFailedBlock:^(NSError *error)
+     {
+         [GlobalInstance showAlert:iErrorInfo message:[error description]];
+     }];
+
+    
     
 
 }

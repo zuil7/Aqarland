@@ -1,7 +1,9 @@
 IQKeyboardManager
 ==========================
 
-Often while developing an app, We ran into an issues where the iPhone UIKeyboard slide up and cover the `UITextField/UITextView`.
+Often while developing an app, We ran into an issues where the iPhone UIKeyboard slide up and cover the `UITextField/UITextView`. `IQKeyboardManager` allows you to prevent issues of the keyboard sliding up and covering a text field without needing you to enter any code. One of the Speciality of this Library is `It Works Automatically`. `ZERO LINE OF CODE`, `No More imports`, `No More Subclasses`, `No More Manual Work`. To use `IQKeyboardManager` you simply need to add the framework to your project or add the source files to your project.
+
+`IQKeyboardManager` works on all orientations, and with the toolbar. There are also nice optional features allowing you to customize the distance from the text field, add the next/previous done button as a keyboard UIToolbar, play sounds when the user navigations through the form and more.
 
 ## Screen Shot
 [![image](./KeyboardTextFieldDemo/Screenshot/IQKeyboardManagerScreenshot.png)](http://youtu.be/6nhLw6hju2A)
@@ -36,7 +38,48 @@ Manual Management:-
 
 #### UINavigationBar:-
 
-1) If you don't want to hide the default UINavigationBar of UINavigationController when keyboardManager slides up the view, then just change the UIView class to UIScrollView from the storyboard or xib.
+  If you don't want to hide the default UINavigationBar of UINavigationController when keyboardManager slides up the view, then just change the UIView class to UIScrollView from the storyboard or xib.
+
+[![image](./KeyboardTextFieldDemo/Screenshot/UINavigationBarExample.png)]
+
+
+  If you are not using storyboard or xib and creating your view programmatically. Then you need to override '-(void)loadView' method of UIViewController, and need to set an UIScrollView instance to self.view.
+
+    -(void)loadView
+    {
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        self.view = scrollView;
+    }
+ 
+#### Keyboard Return Key Handling
+  If you would like to implement keyboard `Return Key` as `Next` button, then you can use `IQKeyboardReturnKeyHandler`.
+  
+  1) Create an instance variable of `IQKeyboardReturnKeyHandler` and instantiate it in `viewDidLoad` with ViewController object like this:-
+  
+```
+@implementation ViewController
+{
+    IQKeyboardReturnKeyHandler *returnKeyHandler;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
+}
+```
+   It assign all the responderView delegates to self, and change keybord Return Key to Next key.
+
+2) set instance variable to nil in `dealloc` method.
+
+```
+-(void)dealloc
+{
+    returnKeyHandler = nil;
+}
+```
+
 
 #### UIToolbar(IQToolbar):-
 

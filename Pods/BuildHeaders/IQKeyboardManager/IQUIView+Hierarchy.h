@@ -1,1 +1,1 @@
-../../IQKeyboardManager/KeyboardTextFieldDemo/IQKeyBoardManager/IQUIView+Hierarchy.h
+../../IQKeyboardManager/IQKeyBoardManager/IQUIView+Hierarchy.h
