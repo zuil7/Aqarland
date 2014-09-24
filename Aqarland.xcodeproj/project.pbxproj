@@ -245,6 +245,7 @@
 		B7EE29A019B0673A0085DC0D /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE299819B0673A0085DC0D /* TWSignedRequest.m */; };
 		B7F506C519D14DFC0035C44F /* AQViewMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */; };
 		FBAF2E1719D2FD5E00D5B01E /* AQProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBAF2E1619D2FD5E00D5B01E /* AQProfileViewController.m */; };
+		FBAF2E1A19D3129300D5B01E /* AQCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FBAF2E1919D3129300D5B01E /* AQCircleButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -555,6 +556,8 @@
 		B7F506C319D14DFC0035C44F /* AQViewMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQViewMapViewController.h; sourceTree = "<group>"; };
 		B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQViewMapViewController.m; sourceTree = "<group>"; };
 		FBAF2E1619D2FD5E00D5B01E /* AQProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQProfileViewController.m; sourceTree = "<group>"; };
+		FBAF2E1819D3129300D5B01E /* AQCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQCircleButton.h; sourceTree = SOURCE_ROOT; };
+		FBAF2E1919D3129300D5B01E /* AQCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQCircleButton.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -740,6 +743,8 @@
 		B7A43B3D1988A35B00180532 /* CustomButtons */ = {
 			isa = PBXGroup;
 			children = (
+				FBAF2E1819D3129300D5B01E /* AQCircleButton.h */,
+				FBAF2E1919D3129300D5B01E /* AQCircleButton.m */,
 			);
 			path = CustomButtons;
 			sourceTree = "<group>";
@@ -1645,6 +1650,7 @@
 				B7EE299C19B0673A0085DC0D /* OAuth+Additions.m in Sources */,
 				B7EE299E19B0673A0085DC0D /* PFTwitterUtils+NativeTwitter.m in Sources */,
 				B7A83C701999FDEF00B4B0C6 /* AQSupportViewController.m in Sources */,
+				FBAF2E1A19D3129300D5B01E /* AQCircleButton.m in Sources */,
 				B7948F94198A3A4C00936E16 /* CustomPinView.m in Sources */,
 				B7EE298419B05BF50085DC0D /* AQUser.m in Sources */,
 				B7EE299B19B0673A0085DC0D /* NSData+Base64.m in Sources */,

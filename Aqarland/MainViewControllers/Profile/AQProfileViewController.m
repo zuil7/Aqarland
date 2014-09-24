@@ -7,6 +7,7 @@
 //
 
 #import "AQProfileViewController.h"
+#import "AQCircleButton.h"
 
 @interface AQProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -14,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *emailAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *officeAddressLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *profilePicButton;
+@property (weak, nonatomic) IBOutlet AQCircleButton *profilePicButton;
 @property (weak, nonatomic) IBOutlet UITextField *contactNumberTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailAddressTextField;
 @property (weak, nonatomic) IBOutlet UITextView *officeAddressTextView;
@@ -51,6 +52,8 @@
     self.emailAddressTextField.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
     self.officeAddressTextView.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
     self.officeAddressTextView.textColor = [UIColor lightGrayColor];
+
+    [self.profilePicButton drawCircleButton:[UIColor lightGrayColor]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
