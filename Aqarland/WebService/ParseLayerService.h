@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserProfile.h"
 
 typedef void(^AQResultBlock)(id results);
 typedef void(^AQFailedBlock)(NSError *error);
 
 @interface ParseLayerService : NSObject
+
++ (ParseLayerService *) sharedInstance;
 
 - (void)setCompletionBlock:(AQResultBlock)aCompletionBlock;
 - (void)setFailedBlock:(AQFailedBlock)aFailedBlock;
@@ -24,7 +27,7 @@ typedef void(^AQFailedBlock)(NSError *error);
 -(void) signUp:(NSDictionary *) profileInfo;
 -(void) createAccount:(NSDictionary *) profileInfo;
 -(void) createAccountViaFB:(NSDictionary *) profileInfo;
-
+- (UserProfile *)fetchCurrentUserProfile;
 
 //Twitter
 - (void) loginUserWithAccount:(ACAccount *)twitterAccount;

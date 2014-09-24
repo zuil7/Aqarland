@@ -201,7 +201,6 @@
 		B7A83C581999DD2000B4B0C6 /* done_button_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83C541999DD2000B4B0C6 /* done_button_inactive@2x.png */; };
 		B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C5A1999E01500B4B0C6 /* AQSideMenuCell.m */; };
 		B7A83C5E1999E24A00B4B0C6 /* sideMenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7A83C5D1999E24A00B4B0C6 /* sideMenuList.plist */; };
-		B7A83C671999F57800B4B0C6 /* AQProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C661999F57800B4B0C6 /* AQProfileViewController.m */; };
 		B7A83C6A1999FDD600B4B0C6 /* AQPropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C691999FDD600B4B0C6 /* AQPropertiesViewController.m */; };
 		B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C6C1999FDE300B4B0C6 /* AQMyChatViewController.m */; };
 		B7A83C701999FDEF00B4B0C6 /* AQSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83C6F1999FDEF00B4B0C6 /* AQSupportViewController.m */; };
@@ -245,6 +244,7 @@
 		B7EE299F19B0673A0085DC0D /* TWAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE299619B0673A0085DC0D /* TWAPIManager.m */; };
 		B7EE29A019B0673A0085DC0D /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE299819B0673A0085DC0D /* TWSignedRequest.m */; };
 		B7F506C519D14DFC0035C44F /* AQViewMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */; };
+		FBAF2E1719D2FD5E00D5B01E /* AQProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBAF2E1619D2FD5E00D5B01E /* AQProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -486,7 +486,6 @@
 		B7A83C5A1999E01500B4B0C6 /* AQSideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSideMenuCell.m; sourceTree = "<group>"; };
 		B7A83C5D1999E24A00B4B0C6 /* sideMenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sideMenuList.plist; sourceTree = "<group>"; };
 		B7A83C651999F57800B4B0C6 /* AQProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQProfileViewController.h; sourceTree = "<group>"; };
-		B7A83C661999F57800B4B0C6 /* AQProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQProfileViewController.m; sourceTree = "<group>"; };
 		B7A83C681999FDD600B4B0C6 /* AQPropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertiesViewController.h; sourceTree = "<group>"; };
 		B7A83C691999FDD600B4B0C6 /* AQPropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertiesViewController.m; sourceTree = "<group>"; };
 		B7A83C6B1999FDE300B4B0C6 /* AQMyChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQMyChatViewController.h; sourceTree = "<group>"; };
@@ -555,6 +554,7 @@
 		B7EE299819B0673A0085DC0D /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
 		B7F506C319D14DFC0035C44F /* AQViewMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQViewMapViewController.h; sourceTree = "<group>"; };
 		B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQViewMapViewController.m; sourceTree = "<group>"; };
+		FBAF2E1619D2FD5E00D5B01E /* AQProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1180,7 +1180,7 @@
 			isa = PBXGroup;
 			children = (
 				B7A83C651999F57800B4B0C6 /* AQProfileViewController.h */,
-				B7A83C661999F57800B4B0C6 /* AQProfileViewController.m */,
+				FBAF2E1619D2FD5E00D5B01E /* AQProfileViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1634,10 +1634,10 @@
 				B79B3A0119C2F9F800F2DEDD /* AQViewProperty.m in Sources */,
 				B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */,
 				B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */,
+				FBAF2E1719D2FD5E00D5B01E /* AQProfileViewController.m in Sources */,
 				B7EE297B19B05B1F0085DC0D /* PropertyList.m in Sources */,
 				B7EE297E19B05BC30085DC0D /* PropertyImages.m in Sources */,
 				B7A2F7AF19C80CEB00BC3C3C /* AQPropertyListCell.m in Sources */,
-				B7A83C671999F57800B4B0C6 /* AQProfileViewController.m in Sources */,
 				B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */,
 				B7974E6D19A3530B00CDB6DE /* AQUploadPhoto.m in Sources */,
 				B7948F96198A3A4C00936E16 /* MKMapView+ZoomLevel.m in Sources */,

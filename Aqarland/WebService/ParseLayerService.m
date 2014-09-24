@@ -19,15 +19,12 @@
 
 static ParseLayerService *instance = nil;
 
-@implementation ParseLayerService
-
-{
+@implementation ParseLayerService {
     AQResultBlock completionBlock;
     AQFailedBlock failureBlock;
 }
 
-+ (ParseLayerService *) sharedInstance
-{
++ (ParseLayerService *) sharedInstance {
     static dispatch_once_t disLock = 0;
     
     if (instance == nil) {
@@ -317,17 +314,14 @@ static ParseLayerService *instance = nil;
 ////////////////////////////////
 #pragma mark - Login Request
 ////////////////////////////////
-- (void) requestLogin:(NSString *)username passWord:(NSString *) pass;
-{
+- (void) requestLogin:(NSString *)username passWord:(NSString *) pass {
     [PFUser logInWithUsernameInBackground:username password:pass
                                     block:^(PFUser *user, NSError *error)
      {
          NSLog(@"user %@",user);
-        if (user)
-        {
+        if (user) {
             [self reportSuccess:user];
-        } else
-        {
+        } else {
             [self reportFailure:error];
         }
     }];
@@ -762,6 +756,14 @@ static ParseLayerService *instance = nil;
          }
      }];
 
+}
+
+- (UserProfile *)fetchCurrentUserProfile {
+    UserProfile *userProfile;
+    PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    userProfile = [[query findObjects] objectAtIndex:0];
+    return userProfile;
 }
 
 @end
