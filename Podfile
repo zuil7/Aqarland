@@ -10,6 +10,7 @@ pod 'MBProgressHUD',            '0.8'
 pod 'RMPickerViewController',   '1.2.0'
 pod 'HockeySDK',                '3.5.5'
 pod 'iCarousel',                '1.8'
+pod 'SDWebImage',               '3.7.1'
 end
 
 target "AqarlandTests" do

@@ -11,6 +11,7 @@
 #import <Accounts/Accounts.h>
 #import "FHSTwitterEngine.h"
 #import "PropertyList.h"
+#import "AQUser.h"
 
 #define mSuccess [NSNumber numberWithBool:1]
 #define mFailed  [NSNumber numberWithBool:0]
@@ -22,6 +23,8 @@ static ParseLayerService *instance = nil;
 @implementation ParseLayerService {
     AQResultBlock completionBlock;
     AQFailedBlock failureBlock;
+    UserProfile *userProfile;
+    AQUser *aqUser;
 }
 
 + (ParseLayerService *) sharedInstance {
@@ -758,12 +761,20 @@ static ParseLayerService *instance = nil;
 
 }
 
-- (UserProfile *)fetchCurrentUserProfile {
-    UserProfile *userProfile;
+- (NSDictionary *)fetchCurrentUserProfile {
+    NSDictionary *userDictionary = [[NSDictionary alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     userProfile = [[query findObjects] objectAtIndex:0];
-    return userProfile;
+
+    query = [PFQuery queryWithClassName:pUser];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    aqUser = [[query findObjects] objectAtIndex:0];
+    
+    [userDictionary setValue:userProfile forKey:pUserProfile];
+    [userDictionary setValue:aqUser forKey:pUser];
+    
+    return userDictionary;
 }
 
 @end

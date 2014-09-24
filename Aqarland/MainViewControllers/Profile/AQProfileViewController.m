@@ -30,6 +30,7 @@
     UIBarButtonItem *rightBarButtonItem;
     NSMutableString *addressPlaceHolder;
     NSData *selectedProfilePic;
+    NSDictionary *userDictionary;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -89,8 +90,6 @@
     navigationBarTitleLabel.font = [UIFont fontWithName: @"Roboto-Light" size:18.0f];
     navigationBarTitleLabel.textAlignment = NSTextAlignmentCenter;
     navigationBarTitleLabel.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = navigationBarTitleLabel;
-    navigationBarTitleLabel.text = @"";
     [navigationBarTitleLabel sizeToFit];
     
     editButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -111,11 +110,22 @@
 }
 
 - (void)updatePlaceHolders {
-    userProfile = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
+    //userProfile = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
+    userDictionary = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
+    NSLog(@"userDictionary : %@", userDictionary);
     
-    NSLog(@"userProfile : %@", userProfile);
     
     navigationBarTitleLabel.text = [userProfile valueForKey:@"fullName"];
+    self.navigationItem.titleView = navigationBarTitleLabel;
+    
+    if ([userProfile valueForKey:@"userAvatar"]) {
+        PFFile *file = [userProfile valueForKey:@"userAvatar"];
+        [file getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            UIImage *thumbnailImage = [UIImage imageWithData:imageData];
+            self.profilePicButton.imageView.image = thumbnailImage;
+        }];
+    }
+    
     self.contactNumberTextField.placeholder = [userProfile valueForKey:@"phoneNumber"];
     self.emailAddressTextField.placeholder = @"Email Address";
     
