@@ -8,6 +8,7 @@
 
 #import "AQProfileViewController.h"
 #import "AQCircleButton.h"
+#import "AMBCircularButton.h"
 
 @interface AQProfileViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -15,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *emailAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *officeAddressLabel;
 
-@property (weak, nonatomic) IBOutlet AQCircleButton *profilePicButton;
+@property (strong, nonatomic) IBOutlet AMBCircularButton *profilePicButton;
 @property (weak, nonatomic) IBOutlet UITextField *contactNumberTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailAddressTextField;
 @property (weak, nonatomic) IBOutlet UITextView *officeAddressTextView;
@@ -31,6 +32,7 @@
     NSMutableString *addressPlaceHolder;
     NSData *selectedProfilePic;
     NSDictionary *userDictionary;
+    PFImageView *pfImageView;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -54,10 +56,11 @@
     self.officeAddressTextView.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
     self.officeAddressTextView.textColor = [UIColor lightGrayColor];
 
-    [self.profilePicButton drawCircleButton:[UIColor lightGrayColor]];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+    [self.profilePicButton setImage:[UIImage imageNamed:@"emptyProfileImage"] forState:UIControlStateNormal];
+    [self.profilePicButton setImage:[UIImage imageNamed:@"emptyProfileImage"] forState:UIControlStateSelected];
+    [self.profilePicButton setImage:[UIImage imageNamed:@"emptyProfileImage"] forState:UIControlStateDisabled];
+    
+    pfImageView = [[PFImageView alloc] initWithFrame:self.profilePicButton.frame];
     [self updatePlaceHolders];
 }
 
@@ -85,13 +88,6 @@
         self.navigationItem.leftBarButtonItem = barButtonItem;
     }
     
-    navigationBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    navigationBarTitleLabel.backgroundColor = [UIColor clearColor];
-    navigationBarTitleLabel.font = [UIFont fontWithName: @"Roboto-Light" size:18.0f];
-    navigationBarTitleLabel.textAlignment = NSTextAlignmentCenter;
-    navigationBarTitleLabel.textColor = [UIColor whiteColor];
-    [navigationBarTitleLabel sizeToFit];
-    
     editButton = [UIButton buttonWithType:UIButtonTypeCustom];
     editButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 32.0f);
     editButton.titleLabel.font = [UIFont fontWithName: @"Roboto-Light" size:18.0f];
@@ -110,19 +106,25 @@
 }
 
 - (void)updatePlaceHolders {
-    //userProfile = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
-    userDictionary = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
-    NSLog(@"userDictionary : %@", userDictionary);
+    userProfile = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
+    //userDictionary = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
+    NSLog(@"userProfile : %@", userProfile);
     
-    
+    navigationBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    navigationBarTitleLabel.backgroundColor = [UIColor clearColor];
+    navigationBarTitleLabel.font = [UIFont fontWithName: @"Roboto-Regular" size:18.0f];
+    navigationBarTitleLabel.textAlignment = NSTextAlignmentCenter;
+    navigationBarTitleLabel.textColor = [UIColor whiteColor];
     navigationBarTitleLabel.text = [userProfile valueForKey:@"fullName"];
+    [navigationBarTitleLabel sizeToFit];
     self.navigationItem.titleView = navigationBarTitleLabel;
     
     if ([userProfile valueForKey:@"userAvatar"]) {
-        PFFile *file = [userProfile valueForKey:@"userAvatar"];
-        [file getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            UIImage *thumbnailImage = [UIImage imageWithData:imageData];
-            self.profilePicButton.imageView.image = thumbnailImage;
+        PFFile *imageFile = [userProfile valueForKey:@"userAvatar"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            [self.profilePicButton setImage:pfImageView.image forState:UIControlStateNormal];
+            [self.profilePicButton setImage:pfImageView.image forState:UIControlStateSelected];
+            [self.profilePicButton setImage:pfImageView.image forState:UIControlStateDisabled];
         }];
     }
     
@@ -184,6 +186,8 @@
         controller.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
         controller.delegate = self;
         [self.navigationController presentViewController:controller animated:YES completion:nil];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:nil message:@"No camera available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
 
@@ -243,9 +247,18 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [self.navigationController dismissViewControllerAnimated: YES completion: nil];
-    UIImage *image = [info valueForKey: UIImagePickerControllerOriginalImage];
-    selectedProfilePic = UIImageJPEGRepresentation(image, 0.1);
-    self.profilePicButton.imageView.image = [UIImage imageWithData:selectedProfilePic];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(99.0f, 90.0f));
+    [image drawInRect:CGRectMake(0.0f, 0.0f, 99.0f, 90.0f)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    pfImageView.image = newImage;
+    [self.profilePicButton setImage:pfImageView.image forState:UIControlStateNormal];
+    [self.profilePicButton setImage:pfImageView.image forState:UIControlStateSelected];
+    [self.profilePicButton setImage:pfImageView.image forState:UIControlStateDisabled];
+    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker; {

@@ -245,6 +245,7 @@
 		B7EE29A019B0673A0085DC0D /* TWSignedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EE299819B0673A0085DC0D /* TWSignedRequest.m */; };
 		B7F506C519D14DFC0035C44F /* AQViewMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */; };
 		FB06525719D31EC50084CBD5 /* AQCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FB06525619D31EC50084CBD5 /* AQCircleButton.m */; };
+		FB97933B19D488E200C0C18A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB97933A19D488E200C0C18A /* QuartzCore.framework */; };
 		FBAF2E1719D2FD5E00D5B01E /* AQProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBAF2E1619D2FD5E00D5B01E /* AQProfileViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -557,6 +558,7 @@
 		B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQViewMapViewController.m; sourceTree = "<group>"; };
 		FB06525519D31EC50084CBD5 /* AQCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQCircleButton.h; path = Aqarland/CustomUI/CustomButton/AQCircleButton.h; sourceTree = SOURCE_ROOT; };
 		FB06525619D31EC50084CBD5 /* AQCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQCircleButton.m; path = Aqarland/CustomUI/CustomButton/AQCircleButton.m; sourceTree = SOURCE_ROOT; };
+		FB97933A19D488E200C0C18A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FBAF2E1619D2FD5E00D5B01E /* AQProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -565,6 +567,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB97933B19D488E200C0C18A /* QuartzCore.framework in Frameworks */,
 				B7974E7219A4842D00CDB6DE /* MobileCoreServices.framework in Frameworks */,
 				B7AABE021990CF2D00DEADAD /* Social.framework in Frameworks */,
 				B7AABE001990CF2500DEADAD /* Accounts.framework in Frameworks */,
@@ -655,6 +658,7 @@
 		B7A43B061988A2A800180532 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FB97933A19D488E200C0C18A /* QuartzCore.framework */,
 				B7974E7119A4842D00CDB6DE /* MobileCoreServices.framework */,
 				B7AABE011990CF2D00DEADAD /* Social.framework */,
 				B7AABDFF1990CF2500DEADAD /* Accounts.framework */,

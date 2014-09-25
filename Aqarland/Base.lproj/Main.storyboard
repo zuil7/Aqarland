@@ -243,15 +243,17 @@
                                 <rect key="frame" x="0.0" y="256" width="320" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQf-V8-gDX" customClass="AQCircleButton">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQf-V8-gDX" customClass="AMBCircularButton">
                                 <rect key="frame" x="110.5" y="80" width="99" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.1019607843" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="emptyProfileImage">
+                                <state key="normal" image="emptyProfileImage" backgroundImage="emptyProfileImage">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled" image="emptyProfileImage" backgroundImage="emptyProfileImage"/>
+                                <state key="selected" image="emptyProfileImage" backgroundImage="emptyProfileImage"/>
                                 <connections>
-                                    <action selector="didTapProfilePicButton:" destination="8Kt-vm-0vp" eventType="touchUpInside" id="kov-MU-o4o"/>
+                                    <action selector="didTapProfilePicButton:" destination="8Kt-vm-0vp" eventType="touchUpInside" id="3Cy-FL-KjY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -268,7 +270,7 @@
                         <outlet property="emailAddressTextField" destination="Xer-eQ-Y8J" id="7ZE-pv-pAO"/>
                         <outlet property="officeAddressLabel" destination="Vba-7r-Ary" id="jWH-RY-nG7"/>
                         <outlet property="officeAddressTextView" destination="gUS-GA-ZuP" id="cmF-Pd-BRC"/>
-                        <outlet property="profilePicButton" destination="kQf-V8-gDX" id="etr-0h-phw"/>
+                        <outlet property="profilePicButton" destination="kQf-V8-gDX" id="Rmx-zb-uuv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Be5-yv-90M" userLabel="First Responder" sceneMemberID="firstResponder"/>
