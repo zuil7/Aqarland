@@ -30,6 +30,9 @@ PODS:
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
   - RMPickerViewController (1.2.0)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.7.1)
   - ViewDeck (2.2.11)
 
 DEPENDENCIES:
@@ -40,6 +43,7 @@ DEPENDENCIES:
   - MBProgressHUD (= 0.8)
   - Parse (= 1.2.19)
   - RMPickerViewController (= 1.2.0)
+  - SDWebImage (= 3.7.1)
   - ViewDeck (= 2.2.11)
 
 SPEC CHECKSUMS:
@@ -52,6 +56,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
   RMPickerViewController: 9e976b3c4bc09bd7d546306f0e6dacc19ce6c496
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   ViewDeck: 2f38c054dfe8e69af4877c006785996faa277902
 
 COCOAPODS: 0.33.1

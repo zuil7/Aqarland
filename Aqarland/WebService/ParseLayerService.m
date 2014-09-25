@@ -11,6 +11,7 @@
 #import <Accounts/Accounts.h>
 #import "FHSTwitterEngine.h"
 #import "PropertyList.h"
+#import "AQUser.h"
 
 #define mSuccess [NSNumber numberWithBool:1]
 #define mFailed  [NSNumber numberWithBool:0]
@@ -19,15 +20,14 @@
 
 static ParseLayerService *instance = nil;
 
-@implementation ParseLayerService
-
-{
+@implementation ParseLayerService {
     AQResultBlock completionBlock;
     AQFailedBlock failureBlock;
+    UserProfile *userProfile;
+    AQUser *aqUser;
 }
 
-+ (ParseLayerService *) sharedInstance
-{
++ (ParseLayerService *) sharedInstance {
     static dispatch_once_t disLock = 0;
     
     if (instance == nil) {
@@ -317,17 +317,14 @@ static ParseLayerService *instance = nil;
 ////////////////////////////////
 #pragma mark - Login Request
 ////////////////////////////////
-- (void) requestLogin:(NSString *)username passWord:(NSString *) pass;
-{
+- (void) requestLogin:(NSString *)username passWord:(NSString *) pass {
     [PFUser logInWithUsernameInBackground:username password:pass
                                     block:^(PFUser *user, NSError *error)
      {
          NSLog(@"user %@",user);
-        if (user)
-        {
+        if (user) {
             [self reportSuccess:user];
-        } else
-        {
+        } else {
             [self reportFailure:error];
         }
     }];
@@ -762,6 +759,22 @@ static ParseLayerService *instance = nil;
          }
      }];
 
+}
+
+- (NSDictionary *)fetchCurrentUserProfile {
+    NSDictionary *userDictionary = [[NSDictionary alloc] init];
+    PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    userProfile = [[query findObjects] objectAtIndex:0];
+
+    query = [PFQuery queryWithClassName:pUser];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    aqUser = [[query findObjects] objectAtIndex:0];
+    
+    [userDictionary setValue:userProfile forKey:pUserProfile];
+    [userDictionary setValue:aqUser forKey:pUser];
+    
+    return userDictionary;
 }
 
 @end
