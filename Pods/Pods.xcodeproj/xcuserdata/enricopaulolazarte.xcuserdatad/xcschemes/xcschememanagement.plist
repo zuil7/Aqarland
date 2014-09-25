@@ -6,143 +6,133 @@
 	<dict>
 		<key>HockeySDKResources.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>Pods-Aqarland-AFNetworking.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Aqarland-AMBCircularButton.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-Aqarland-Bolts.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-Aqarland-Facebook-iOS-SDK.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-Aqarland-HockeySDK.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Pods-Aqarland-IQKeyboardManager.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Pods-Aqarland-MBProgressHUD.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>Pods-Aqarland-Parse.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>Pods-Aqarland-RMPickerViewController.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>Pods-Aqarland-SDWebImage.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-Aqarland-ViewDeck.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>Pods-Aqarland-iCarousel.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>Pods-Aqarland.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3810E3396611418DAEF8AD07</key>
+		<key>0C134D4FB1544C4CB28CB2A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D1830909AD34B58A637DDF1</key>
+		<key>1892CD4D43574F12BD60542A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62501226F95644FE971A964A</key>
+		<key>5BC48B20733943E6A1A11F91</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6282B760C5104D858EC842FE</key>
+		<key>A25066DA9EF449DDB1FF3FCA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6544160E5EB64982B6EE3640</key>
+		<key>ADE4CBB713974A52B6F6D7E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D461E0F2859419F8233BEF9</key>
+		<key>B2AA9098653E4E619CC11AAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>70F823BA80D94BD59A57CD83</key>
+		<key>BC4C2488BA34428B82D70128</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7CE842A85B7E40B48A44FBDE</key>
+		<key>C6FD5832E1554CB5A5382C23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AA457EC4156646509E62ED48</key>
+		<key>CB9205F0314F491B85B74320</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ACDE185B96F141FA912A87D4</key>
+		<key>CC7402EDC402440FBFB9289B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1817EC74CB34006912E2343</key>
+		<key>DB20CF9FFDBC4108AD92AEF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CE29F899F9894F1EBEFBC000</key>
+		<key>EC1C542B0EEB47F7BF004F89</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D47159A368FD4BAC97E0ED9B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F8EAEEFF90C74F7D9DFC4549</key>
+		<key>F7C8E22148F746E3943FB7BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
