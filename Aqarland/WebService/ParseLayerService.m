@@ -761,20 +761,20 @@ static ParseLayerService *instance = nil;
 
 }
 
-- (NSDictionary *)fetchCurrentUserProfile {
-    NSDictionary *userDictionary = [[NSDictionary alloc] init];
+- (UserProfile *)fetchCurrentUserProfile {
+//    NSDictionary *userDictionary = [[NSDictionary alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     userProfile = [[query findObjects] objectAtIndex:0];
 
-    query = [PFQuery queryWithClassName:pUser];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
-    aqUser = [[query findObjects] objectAtIndex:0];
+//    query = [PFQuery queryWithClassName:pUser];
+//    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+//    aqUser = [[query findObjects] objectAtIndex:0];
     
-    [userDictionary setValue:userProfile forKey:pUserProfile];
-    [userDictionary setValue:aqUser forKey:pUser];
+//    [userDictionary setValue:userProfile forKey:pUserProfile];
+//    [userDictionary setValue:aqUser forKey:pUser];
     
-    return userDictionary;
+    return userProfile;
 }
 
 @end

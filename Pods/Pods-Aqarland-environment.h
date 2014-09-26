@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// AMBCircularButton
+#define COCOAPODS_POD_AVAILABLE_AMBCircularButton
+#define COCOAPODS_VERSION_MAJOR_AMBCircularButton 0
+#define COCOAPODS_VERSION_MINOR_AMBCircularButton 0
+#define COCOAPODS_VERSION_PATCH_AMBCircularButton 3
+
 // Bolts
 #define COCOAPODS_POD_AVAILABLE_Bolts
 #define COCOAPODS_VERSION_MAJOR_Bolts 1

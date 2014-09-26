@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D461E0F2859419F8233BEF9"
-               BuildableName = "libPods-Aqarland-SDWebImage.a"
-               BlueprintName = "Pods-Aqarland-SDWebImage"
+               BlueprintIdentifier = "3810E3396611418DAEF8AD07"
+               BuildableName = "libPods-Aqarland-AMBCircularButton.a"
+               BlueprintName = "Pods-Aqarland-AMBCircularButton"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
