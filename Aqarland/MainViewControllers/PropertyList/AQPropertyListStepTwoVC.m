@@ -9,13 +9,13 @@
 #import "AQPropertyListStepTwoVC.h"
 #import "AQPropertyListCell.h"
 #import "AQPropertyListOptionViewController.h"
-#import "AQPropertyTableViewController.h"
+#import "AQViewProperty.h"
 
-@interface AQPropertyListStepTwoVC ()<PropertyTableViewDelegate>
-@property(nonatomic,strong) NSMutableArray *propertyListArr;
+@interface AQPropertyListStepTwoVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong) AQPropertyListOptionViewController *
 propertyListOptVC;
-@property(nonatomic,strong) AQPropertyTableViewController *tableProperty;
+@property(nonatomic,strong) AQViewProperty *viewProperty;
+
 @end
 
 @implementation AQPropertyListStepTwoVC
@@ -33,15 +33,12 @@ propertyListOptVC;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.propertyListArr=[[NSMutableArray alloc] initWithArray:[GlobalInstance loadPlistfile:@"sideMenuList" forKey:@"sideMenuList"]];
+    //self.propertyListArr=[NSMutableArray array];
+//    self.propertyListArr=[[NSMutableArray alloc] initWithArray:[GlobalInstance loadPlistfile:@"sideMenuList" forKey:@"sideMenuList"]];
     [self customizeHeaderBar];
+    NSLog(@"self.propertyListArr %@",self.propertyListArr);
     
-    self.tableProperty=[GlobalInstance loadStoryBoardId:sPropertyTableVC];
-    [self.tableProperty setPropertyDelegate:self];
-    self.tableProperty.flagStr=@"Street";
-     self.tableProperty.StreetStr=self.StreetStr;
-    [self.tableProperty.view setFrame:CGRectMake(0, 101, 320, 467)];
-    [self.view addSubview:self.tableProperty.view];
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +51,7 @@ propertyListOptVC;
 ////////////////////////////////////
 -(void) customizeHeaderBar
 {
-    [self.navigationItem setTitle:@"Property List"];
+    [self.navigationItem setTitle:@"View in List"];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     
@@ -93,16 +90,24 @@ propertyListOptVC;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+    PropertyList *property= (PropertyList *)[self.propertyListArr objectAtIndex:indexPath.row];
+    NSLog(@"property %@",property.m_houseNumber);
     // Configure the cell...
-    //[cell bind:self.propertyListArr Idx:indexPath.row];
+    NSString *address=[NSString stringWithFormat:@"%@, %@, %@",
+                       property.m_street,
+                       property.m_city,
+                       property.m_postCode];
+    [cell bindWithLocalData:address Idx:indexPath.row];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.propertyListOptVC=[GlobalInstance loadStoryBoardId:sPropertyListOptionVC];
-    [self.navigationController pushViewController:self.propertyListOptVC animated:YES];
+    self.viewProperty=[GlobalInstance loadStoryBoardId:sViewPropertyVC];
+    self.viewProperty.propertyDetails=[self.propertyListArr objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:self.viewProperty animated:YES];
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

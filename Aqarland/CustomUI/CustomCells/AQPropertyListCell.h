@@ -13,5 +13,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *placeLbl;
 -(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx :(NSString *) flag;
-
+-(void) bindWithLocalData:(NSString *) address Idx:(NSInteger) idx;
 @end

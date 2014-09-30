@@ -44,4 +44,15 @@
     }
     
 }
+
+-(void) bindWithLocalData:(NSString *) address Idx:(NSInteger) idx;
+{
+    //    NSDictionary *tempDict=[arr objectAtIndex:idx];
+    //    [self.iconImg setImage:[UIImage imageNamed:tempDict[@"icon"]]];
+    NSLog(@"address %@",address);
+    [self.placeLbl setText:address];
+    
+    
+}
+
 @end

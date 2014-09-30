@@ -8,9 +8,11 @@
 
 #import "AQPropertyListOptionViewController.h"
 #import "AQViewMapViewController.h"
+#import "AQPropertyListStepTwoVC.h"
 
 @interface AQPropertyListOptionViewController ()
 @property(nonatomic,strong) AQViewMapViewController *viewInMapVC;
+@property(nonatomic,strong) AQPropertyListStepTwoVC *viewInListVC;
 @end
 
 @implementation AQPropertyListOptionViewController
@@ -67,7 +69,10 @@
 {
     if([sender tag]==0)
     {
-    
+        self.viewInListVC=[GlobalInstance loadStoryBoardId:sPropertyListStepTwoVC];
+        self.viewInListVC.propertyListArr=self.arrayResult;
+        self.viewInListVC.strCity=self.strCity;
+        [self.navigationController pushViewController:self.viewInListVC animated:YES];
     }else
     {
         self.viewInMapVC=[GlobalInstance loadStoryBoardId:sPropertyViewInMapVC];

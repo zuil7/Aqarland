@@ -1254,14 +1254,14 @@
 			children = (
 				B7C6DB2019C8022D00A6AADC /* AQPropertListViewController.h */,
 				B7C6DB2119C8022D00A6AADC /* AQPropertListViewController.m */,
-				B7A2F7B019C8121C00BC3C3C /* AQPropertyListStepTwoVC.h */,
-				B7A2F7B119C8121C00BC3C3C /* AQPropertyListStepTwoVC.m */,
 				B7A2F7B319C816C000BC3C3C /* AQPropertyListOptionViewController.h */,
 				B7A2F7B419C816C000BC3C3C /* AQPropertyListOptionViewController.m */,
 				B7A39C8B19CC202F005FBEE6 /* AQPropertyTableViewController.h */,
 				B7A39C8C19CC202F005FBEE6 /* AQPropertyTableViewController.m */,
 				B7F506C319D14DFC0035C44F /* AQViewMapViewController.h */,
 				B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */,
+				B7A2F7B019C8121C00BC3C3C /* AQPropertyListStepTwoVC.h */,
+				B7A2F7B119C8121C00BC3C3C /* AQPropertyListStepTwoVC.m */,
 			);
 			path = PropertyList;
 			sourceTree = "<group>";

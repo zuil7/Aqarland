@@ -69,7 +69,14 @@
     [propertyDict setObject:strCity forKey:@"city"];
     // Configure the cell...
     [cell bind:propertyDict Idx:indexPath.row :self.flagStr];
+    
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row)
+    {
+        //end of loading
+         [MBProgressHUD hideAllHUDsForView:GlobalInstance.navController.view animated:YES];
+    }
 
+    
     return cell;
 }
 
@@ -77,9 +84,9 @@
 
 - (PFQuery *)queryForTable
 {
+    [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
     PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
    
-
     if ([self.flagStr isEqualToString:@"City"])
     {
         [query orderByDescending:@"createdAt"];
@@ -118,6 +125,7 @@
     [super objectsDidLoad:error];
     self.distinctCity= [self.objects valueForKeyPath:@"@distinctUnionOfObjects.city"];
     NSLog(@"self.distinctCity %@",self.distinctCity);
+    
 }
 
 @end

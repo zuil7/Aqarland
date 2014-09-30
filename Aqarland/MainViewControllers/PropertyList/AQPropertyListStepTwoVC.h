@@ -11,4 +11,6 @@
 @interface AQPropertyListStepTwoVC : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *propertyListTbl;
 @property (nonatomic,strong) NSString *StreetStr;
+@property(nonatomic,strong) NSMutableArray *propertyListArr;
+@property(nonatomic,strong) NSString *strCity;
 @end
