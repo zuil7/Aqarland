@@ -83,8 +83,11 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startUpdatingLocation];
+    if(IS_OS_8_OR_LATER) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
     
+    [self.locationManager startUpdatingLocation];
 }
 
 
@@ -274,8 +277,8 @@
 -(void)mapView:(MKMapView *)mv regionWillChangeAnimated:(BOOL)animated
 {
     
-    //CustomPinView *pinview = selectedPin;
-    //pinview.image = [UIImage imageNamed:@"map_pin.png"];
+    CustomPinView *pinview = selectedPin;
+    pinview.image = [UIImage imageNamed:@"map_pin.png"];
     
     
      //---print out the region span - aka zoom level---

@@ -171,7 +171,12 @@
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
+    if(IS_OS_8_OR_LATER) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    
     [self.locationManager startUpdatingLocation];
+
 }
 
 - (void)delayedReverseGeocodeLocation {
