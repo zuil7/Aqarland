@@ -139,7 +139,7 @@ propertyListOptVC;
      }];
     [request setFailedBlock:^(NSError *error)
      {
-         [GlobalInstance showAlert:iErrorInfo message:[error description]];
+         [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
      }];
 
     

@@ -127,7 +127,7 @@
             [request setFailedBlock:^(NSError *error)
             {
                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-                [GlobalInstance showAlert:iErrorInfo message:[error description]];
+                [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
             }];
         }
     }else

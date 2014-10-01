@@ -236,7 +236,7 @@
         }else
         {
             [activityIndicator removeFromSuperview];
-            [GlobalInstance showAlert:iErrorInfo message:[error description]];
+            [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
         }
     }];
     pinView.image = customImg;

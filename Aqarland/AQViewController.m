@@ -177,7 +177,7 @@
             [request setFailedBlock:^(NSError *error)
             {
                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-                [GlobalInstance showAlert:iErrorInfo message:[error description]];
+                [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
             }];
             
         } else if ([[[[error userInfo] objectForKey:@"error"] objectForKey:@"type"]
@@ -189,7 +189,7 @@
         } else
         {
             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-            [GlobalInstance showAlert:iErrorInfo message:[error description]];
+            [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
         }
     }];
 }
@@ -403,7 +403,7 @@
             [request setFailedBlock:^(NSError *error)
              {
                  [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-                 [GlobalInstance showAlert:iErrorInfo message:[error description]];
+                 [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
              }];
             
         }
@@ -452,7 +452,7 @@
     [request setFailedBlock:^(NSError *error)
      {
          [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-         [GlobalInstance showAlert:iErrorInfo message:[error description]];
+         [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
      }];
 }
 
