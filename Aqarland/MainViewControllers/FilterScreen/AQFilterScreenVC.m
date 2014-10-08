@@ -99,9 +99,9 @@
     [pickerVC show];
 }
 
--(IBAction) slider_changedValue:(id) sender
+-(IBAction) slider_changedValue:(UISlider *) sender
 {
-
+    [self.sliderVal setText:[NSString stringWithFormat:@"0 to %.2f",sender.value]];
 }
 
 ////////////////////////

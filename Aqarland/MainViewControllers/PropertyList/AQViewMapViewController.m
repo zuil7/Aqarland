@@ -253,7 +253,7 @@
 
 
 - (void)mapView:(MKMapView *)amapView didSelectAnnotationView:(MKAnnotationView *)aview {
-    NSLog(@"aview.tag %d",aview.tag);
+    NSLog(@"aview.tag %ld",(long)aview.tag);
     
     //    CustomPinView *pinview = selectedPin;
     //    pinview.image = [UIImage imageNamed:@"map_pin.png"];
