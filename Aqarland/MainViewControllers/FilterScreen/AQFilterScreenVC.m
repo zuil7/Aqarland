@@ -101,7 +101,7 @@
 
 -(IBAction) slider_changedValue:(UISlider *) sender
 {
-    [self.sliderVal setText:[NSString stringWithFormat:@"0 to %.2f",sender.value]];
+    [self.sliderVal setText:[NSString stringWithFormat:@"0 to %.0f sqm",sender.value]];
 }
 
 ////////////////////////
