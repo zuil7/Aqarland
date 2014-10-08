@@ -218,24 +218,25 @@
 
 - (void)populateMap
 {
-
-        [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView removeAnnotations:self.mapView.annotations];
     
-        NSLog(@"[self.aStations count] %@",self.propertyDetails);
-
+    NSLog(@"[self.aStations count] %@",self.propertyDetails);
+    
     // get the annotation
-        NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
+    NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
+    if([imagesArr count]!=0)
+    {
         NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
         NSArray *latlongArr = [self.propertyDetails.m_latLong componentsSeparatedByString: @","];
         NSString *latStr=[latlongArr objectAtIndex:0];
         NSString *longStr=[latlongArr objectAtIndex:1];
         double lat = [latStr doubleValue];
         double lng = [longStr doubleValue];
-    
+        
         ZOOM_LEVEL= 13.0;
         CLLocationCoordinate2D centerCoord = { lat, lng };
         [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
-    
+        
         CLLocationCoordinate2D curLocation;
         curLocation.latitude = lat;
         curLocation.longitude = lng;
@@ -244,13 +245,12 @@
         NSString *desc = @"Desc";
         
         MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
-    
+        
         curAnnotation.file=dImagesDict[@"propertyImg"];
         [self.mapView addAnnotation:curAnnotation];
-    
-    
+        
+    }
 }
-
 ////////////////////////////////////
 #pragma mark - MapView
 ////////////////////////////////////

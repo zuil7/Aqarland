@@ -47,4 +47,6 @@ typedef void(^AQFailedBlock)(NSError *error);
 //UploadImages
 -(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID;
 
+//Filtering
+-(void) fetchLocationByCity;
 @end

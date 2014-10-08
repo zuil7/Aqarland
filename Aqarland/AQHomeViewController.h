@@ -14,10 +14,8 @@
 
 @interface AQHomeViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
-
-@property (weak, nonatomic) IBOutlet UITabBarItem *listPropertyBarItem;
-@property (weak, nonatomic) IBOutlet UITabBarItem *addPropertyBarItem;
-@property (weak, nonatomic) IBOutlet UITabBarItem *myChatBarItem;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (weak, nonatomic) IBOutlet UIButton *filterBtn;
+@property (weak, nonatomic) IBOutlet UIButton *propertyTypeBtn;
 @end

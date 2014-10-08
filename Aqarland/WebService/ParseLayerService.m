@@ -761,6 +761,39 @@ static ParseLayerService *instance = nil;
 
 }
 
+////////////////////////////////
+#pragma mark - Filtering
+////////////////////////////////
+-(void) fetchLocationByCity
+{
+    
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query selectKeys:@[@"city"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+     {
+         if (!error)
+         {
+             NSMutableArray *locationCityArr=[[NSMutableArray alloc] init];
+             for (PFObject *pResult in result)
+             {
+                 NSString *cityStr;
+                 if (pResult[@"city"] != [NSNull null])
+                 {
+                     cityStr=pResult[@"city"];
+                 }
+                 
+                 [locationCityArr addObject:cityStr];
+             }
+             NSArray *newArr =  [[NSSet setWithArray:locationCityArr] allObjects];
+             [self reportSuccess:newArr];
+             
+         }else
+         {
+             [self reportFailure:error];
+         }
+     }];
+}
+
 - (UserProfile *)fetchCurrentUserProfile {
 //    NSDictionary *userDictionary = [[NSDictionary alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:pUserProfile];

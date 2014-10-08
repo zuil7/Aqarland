@@ -12,6 +12,7 @@
 #import "AQViewProperty.h"
 #import "AQPropertListViewController.h"
 #import "PropertyList.h"
+#import "AQFilterScreenVC.h"
 
 @interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate,MBProgressHUDDelegate>
 {
@@ -23,6 +24,7 @@
 @property(nonatomic,strong) AQSearchViewController *searchVC;
 @property(nonatomic,strong) AQViewProperty *viewProperty;
 @property(nonatomic,strong) AQPropertListViewController *propertyListVC;
+@property(nonatomic,strong) AQFilterScreenVC *filterVC;
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
 @property(nonatomic,strong) NSMutableArray *annotationArray;
 @property(nonatomic,strong) PropertyList *property;
@@ -169,6 +171,46 @@
 ////////////////////////////////////
 #pragma mark - Action
 ////////////////////////////////////
+-(IBAction)filterOption_touchedup_Inside:(id)sender
+{
+    //    self.viewProperty=[GlobalInstance loadStoryBoardId:sViewPropertyVC];
+    //    [self.navigationController pushViewController:self.viewProperty animated:YES];
+    if(self.filterBtn.tag==[sender tag])
+    {
+        [self.filterBtn setSelected:YES];
+        [self.propertyTypeBtn setSelected:NO];
+        
+        
+        self.filterVC=[GlobalInstance loadStoryBoardId:sPropertyFilterVC];
+        
+        
+        double delayInSeconds = 0.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+                       {
+                           UIGraphicsBeginImageContext(CGSizeMake(self.navigationController.view.frame.size.width,self.navigationController.view.frame.size.height));
+                           CGContextRef context = UIGraphicsGetCurrentContext();
+                           [self.navigationController.view.layer renderInContext:context];
+                           UIImage *screenShot = UIGraphicsGetImageFromCurrentImageContext();
+                           UIGraphicsEndImageContext();
+                           
+                           self.filterVC.imageScreen=screenShot;
+                           [self.navigationController addChildViewController:self.filterVC];
+                           self.filterVC.view.frame = self.view.bounds;
+                           [self.navigationController.view addSubview:self.filterVC.view];
+                           [self.filterVC didMoveToParentViewController:self];
+                       });
+        
+        
+        
+    }else
+    {
+        [self.filterBtn setSelected:NO];
+        [self.propertyTypeBtn setSelected:YES];
+        
+    }
+    
+}
 -(IBAction)viewPropertyList:(id)sender
 {
     self.viewProperty=[GlobalInstance loadStoryBoardId:sViewPropertyVC];
@@ -242,32 +284,35 @@
         PropertyList *property= (PropertyList *)[self.propertyListArr objectAtIndex:i];
         
         NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:property.propertyImages];
-        NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
-        NSArray *latlongArr = [property.m_latLong componentsSeparatedByString: @","];
-        NSString *latStr=[latlongArr objectAtIndex:0];
-        NSString *longStr=[latlongArr objectAtIndex:1];
-        double lat = [latStr doubleValue];
-        double lng = [longStr doubleValue];
+        if([imagesArr count]!=0)
+        {
+            NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
+            NSArray *latlongArr = [property.m_latLong componentsSeparatedByString: @","];
+            NSString *latStr=[latlongArr objectAtIndex:0];
+            NSString *longStr=[latlongArr objectAtIndex:1];
+            double lat = [latStr doubleValue];
+            double lng = [longStr doubleValue];
+            
+            NSLog(@"lat %f",lat);
+            NSLog(@"lng %f",lng);
+            
+            CLLocationCoordinate2D curLocation;
+            curLocation.latitude = lat;
+            curLocation.longitude = lng;
+            
+            NSString *infoTitle = @"Title";
+            NSString *desc = @"Desc";
+            
+            MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
+            curAnnotation.annType = i;
+            curAnnotation.annIndex = i;
+            curAnnotation.file=dImagesDict[@"propertyImg"];
+            [self.mapView addAnnotation:curAnnotation];
+        }
         
-        NSLog(@"lat %f",lat);
-        NSLog(@"lng %f",lng);
-
-        CLLocationCoordinate2D curLocation;
-        curLocation.latitude = lat;
-        curLocation.longitude = lng;
         
-        NSString *infoTitle = @"Title";
-        NSString *desc = @"Desc";
-        
-        MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
-        curAnnotation.annType = i;
-        curAnnotation.annIndex = i;
-        curAnnotation.file=dImagesDict[@"propertyImg"];
-        [self.mapView addAnnotation:curAnnotation];
-        
-      
     }
-
+    
 }
 
 ////////////////////////////////////
