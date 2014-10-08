@@ -23,7 +23,7 @@ static ParseLayerService *instance = nil;
 @implementation ParseLayerService {
     AQResultBlock completionBlock;
     AQFailedBlock failureBlock;
-    UserProfile *userProfile;
+    UserProfile *pfUserProfile;
     AQUser *aqUser;
 }
 
@@ -794,20 +794,19 @@ static ParseLayerService *instance = nil;
      }];
 }
 
-- (UserProfile *)fetchCurrentUserProfile {
-//    NSDictionary *userDictionary = [[NSDictionary alloc] init];
+- (NSMutableDictionary *)fetchCurrentUserProfile {
+    NSMutableDictionary *userDictionary = [[NSMutableDictionary alloc] init];
     PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
-    userProfile = [[query findObjects] objectAtIndex:0];
-
-//    query = [PFQuery queryWithClassName:pUser];
-//    [query whereKey:@"user" equalTo:[PFUser currentUser]];
-//    aqUser = [[query findObjects] objectAtIndex:0];
+    pfUserProfile = [[query findObjects] objectAtIndex:0];
     
-//    [userDictionary setValue:userProfile forKey:pUserProfile];
-//    [userDictionary setValue:aqUser forKey:pUser];
+    PFUser *currentUser = [PFUser currentUser];
+    NSLog(@"currentUser : %@", currentUser);
     
-    return userProfile;
+    [userDictionary setObject:pfUserProfile forKey:pUserProfile];
+    [userDictionary setObject:[PFUser currentUser] forKey:pUser];
+    
+    return userDictionary;
 }
 
 @end

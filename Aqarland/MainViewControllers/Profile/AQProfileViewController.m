@@ -25,13 +25,15 @@
 
 @implementation AQProfileViewController {
     UserProfile *userProfile;
+    PFUser *pfUser;
+    
     UILabel *navigationBarTitleLabel;
     UIButton *editButton;
     UIButton *saveButton;
     UIBarButtonItem *rightBarButtonItem;
     NSMutableString *addressPlaceHolder;
     NSData *selectedProfilePic;
-    NSDictionary *userDictionary;
+    NSMutableDictionary *userDictionary;
     PFImageView *pfImageView;
 }
 
@@ -48,14 +50,6 @@
     // Do any additional setup after loading the view.
     [self customizeHeaderBar];
     
-    self.contactNumberLabel.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
-    self.emailAddressLabel.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
-    self.officeAddressLabel.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
-    self.contactNumberTextField.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
-    self.emailAddressTextField.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
-    self.officeAddressTextView.font = [UIFont fontWithName: @"Roboto-Light" size:15.0f];
-    self.officeAddressTextView.textColor = [UIColor lightGrayColor];
-
     [self.profilePicButton setImage:[UIImage imageNamed:@"emptyProfileImage"] forState:UIControlStateNormal];
     [self.profilePicButton setImage:[UIImage imageNamed:@"emptyProfileImage"] forState:UIControlStateSelected];
     [self.profilePicButton setImage:[UIImage imageNamed:@"emptyProfileImage"] forState:UIControlStateDisabled];
@@ -106,9 +100,9 @@
 }
 
 - (void)updatePlaceHolders {
-    userProfile = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
-    //userDictionary = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
-    NSLog(@"userProfile : %@", userProfile);
+    userDictionary = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
+    userProfile = [userDictionary objectForKey:pUserProfile];
+    pfUser = [userDictionary objectForKey:pUser];
     
     navigationBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     navigationBarTitleLabel.backgroundColor = [UIColor clearColor];
@@ -118,10 +112,12 @@
     navigationBarTitleLabel.text = [userProfile valueForKey:@"fullName"];
     [navigationBarTitleLabel sizeToFit];
     self.navigationItem.titleView = navigationBarTitleLabel;
+    self.officeAddressTextView.textColor = [UIColor lightGrayColor];
     
     if ([userProfile valueForKey:@"userAvatar"]) {
         PFFile *imageFile = [userProfile valueForKey:@"userAvatar"];
         [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            pfImageView.image = [UIImage imageWithData:imageData];
             [self.profilePicButton setImage:pfImageView.image forState:UIControlStateNormal];
             [self.profilePicButton setImage:pfImageView.image forState:UIControlStateSelected];
             [self.profilePicButton setImage:pfImageView.image forState:UIControlStateDisabled];
@@ -129,17 +125,29 @@
     }
     
     self.contactNumberTextField.placeholder = [userProfile valueForKey:@"phoneNumber"];
-    self.emailAddressTextField.placeholder = @"Email Address";
+    self.emailAddressTextField.placeholder = [pfUser valueForKey:@"email"];
     
     addressPlaceHolder = [[NSMutableString alloc] init];
-    if ([userProfile valueForKey:@"address"]) {
-        [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"address"]]];
+    if ([[userProfile valueForKey:@"address"] length] > 0) {
+        if ([[userProfile valueForKey:@"address"] rangeOfString:@","].location == NSNotFound) {
+            [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"address"]]];
+        } else {
+            [addressPlaceHolder appendString:[userProfile valueForKey:@"address"]];
+        }
     }
-    if ([userProfile valueForKey:@"city"]) {
-        [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"city"]]];
+    if ([[userProfile valueForKey:@"city"] length] > 0) {
+        if ([[userProfile valueForKey:@"city"] rangeOfString:@","].location == NSNotFound) {
+            [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"city"]]];
+        } else {
+            [addressPlaceHolder appendString:[userProfile valueForKey:@"city"]];
+        }
     }
-    if ([userProfile valueForKey:@"country"]) {
-        [addressPlaceHolder appendString:[userProfile valueForKey:@"country"]];
+    if ([[userProfile valueForKey:@"country"] length] > 0) {
+        if ([[userProfile valueForKey:@"country"] rangeOfString:@","].location == NSNotFound) {
+            [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"country"]]];
+        } else {
+            [addressPlaceHolder appendString:[userProfile valueForKey:@"country"]];
+        }
     }
     
     self.officeAddressTextView.text = addressPlaceHolder;
@@ -149,9 +157,49 @@
     [self enableInputFields];
     [self switchToSaveMode];
 }
+
 - (void)didTapSaveButton {
-    [self switchToEditMode];
-    [self disableInputFields];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+    hud.labelText = @"Saving...";
+    
+    NSData *imageData = UIImagePNGRepresentation(pfImageView.image);
+    PFFile *pfImageFile = [PFFile fileWithName:@"avatar.png" data:imageData];
+    
+    pfUser.email = (self.emailAddressTextField.text.length > 0) ? self.emailAddressTextField.text: self.emailAddressTextField.placeholder;
+    
+    if (self.officeAddressTextView.text.length > 0) {
+        [userProfile setValue:self.officeAddressTextView.text forKey:@"address"];
+        [userProfile setValue:@"" forKey:@"city"];
+        [userProfile setValue:@"" forKey:@"country"];
+    }
+    
+    if (self.contactNumberTextField.text.length > 0) {
+        [userProfile setValue:self.contactNumberTextField.text forKey:@"phoneNumber"];
+    }
+    
+    [userProfile setValue:pfUser forKey:@"user"];
+    PFObject *post = [PFObject objectWithClassName:pUserProfile];
+    post = (PFObject *)userProfile;
+    [post setObject:pfImageFile forKey:@"userAvatar"];
+    [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            PFRelation *relation = [pfUser relationForKey:pUserProfile];
+            [relation addObject:post];
+            [pfUser saveInBackground];
+            
+            [self switchToEditMode];
+            [self disableInputFields];
+            [self updatePlaceHolders];
+            [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+        } else {
+            [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+            [GlobalInstance showAlert:iErrorInfo message:[error description]];
+        }
+    }];
+    
+    
+    
+    //[[ParseLayerService sharedInstance] updateUserProfile:userProfile pfUser:pfUser];
 }
 
 - (void)switchToEditMode {
@@ -258,11 +306,22 @@
     [self.profilePicButton setImage:pfImageView.image forState:UIControlStateNormal];
     [self.profilePicButton setImage:pfImageView.image forState:UIControlStateSelected];
     [self.profilePicButton setImage:pfImageView.image forState:UIControlStateDisabled];
-    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker; {
     [self.navigationController dismissViewControllerAnimated: YES completion: nil];
+}
+
+#pragma mark - ParseLayerServiceDelegate
+
+- (void)parseLayerServiceDidSave:(ParseLayerService *)parseLayerService isSuccessful:(BOOL)success {
+    if (success) {
+        [self switchToEditMode];
+        [self disableInputFields];
+        [[[UIAlertView alloc] initWithTitle:@"Success" message:@"Profile updated." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unable to save. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
 }
 
 @end
