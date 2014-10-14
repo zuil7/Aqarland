@@ -6,3 +6,7 @@
 #
 # Pods/
 
+.DS_Store
+
+#Xcode 6
+xcuserdata/
