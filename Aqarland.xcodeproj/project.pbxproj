@@ -1879,7 +1879,7 @@
 				INFOPLIST_FILE = "Aqarland/Aqarland-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c54c5ae0-bc93-4f96-9124-b88a6d993310";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1897,7 +1897,7 @@
 				INFOPLIST_FILE = "Aqarland/Aqarland-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c54c5ae0-bc93-4f96-9124-b88a6d993310";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
