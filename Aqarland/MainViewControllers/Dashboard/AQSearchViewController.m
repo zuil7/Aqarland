@@ -7,13 +7,15 @@
 //
 
 #import "AQSearchViewController.h"
+#import "AQViewProperty.h"
 #import "IQKeyboardManager.h"
 #import "PropertyList.h"
 
 @interface AQSearchViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *seachedLocations;
-@property (strong, nonatomic) NSMutableArray *filteredseachedLocations;
+@property (strong, nonatomic) NSMutableArray *filteredSearchedPropertyLocations;
+@property (strong, nonatomic) AQViewProperty *viewProperty;
 
 @end
 
@@ -39,7 +41,8 @@
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
    // [self customizeHeaderBar];
-    self.filteredseachedLocations = [[NSMutableArray alloc] init];
+    self.viewProperty = [[AQViewProperty alloc] init];
+    self.filteredSearchedPropertyLocations = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -77,12 +80,6 @@
     }
 }
 
-- (void)reloadData {
-//    inSearchMode = NO;
-//    self.seachedLocations = originalData;
-//    [self.tableView reloadData];
-}
-
 - (void)fetchDataForSearch {
     [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
     ParseLayerService *request = [[ParseLayerService alloc] init];
@@ -90,7 +87,6 @@
     [request setCompletionBlock:^(id results) {
         properties = [[NSMutableArray alloc] initWithArray:results];
         [self.searchTbl reloadData];
-        NSLog(@"properties : %@", properties);
         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
      }];
     [request setFailedBlock:^(NSError *error) {
@@ -102,15 +98,13 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger numberOfRows = 0;
     if (inSearchMode) {
-        numberOfRows = self.filteredseachedLocations.count;
-    } else {
-        numberOfRows = properties.count;
+        numberOfRows = self.filteredSearchedPropertyLocations.count;
     }
     return numberOfRows;
 }
@@ -124,7 +118,7 @@
     
     NSString *propertyString;
     if (inSearchMode) {
-        PropertyList *propertyList = [self.filteredseachedLocations objectAtIndex:indexPath.row];
+        PropertyList *propertyList = [self.filteredSearchedPropertyLocations objectAtIndex:indexPath.row];
         NSMutableString *address = [[NSMutableString alloc] initWithString:[propertyList valueForKey:@"m_houseNumber"]];
         [address appendString:[propertyList valueForKey:@"m_building"]];
         [address appendString:@", "];
@@ -145,8 +139,10 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 26.0f;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.viewProperty = [GlobalInstance loadStoryBoardId:sViewPropertyVC];
+    self.viewProperty.propertyDetails = [self.filteredSearchedPropertyLocations objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:self.viewProperty animated:YES];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -165,7 +161,7 @@
         inSearchMode = NO;
     } else {
         inSearchMode = YES;
-        [self.filteredseachedLocations removeAllObjects];
+        [self.filteredSearchedPropertyLocations removeAllObjects];
         for (PropertyList *property in properties) {
             isSearchTextFound = NO;
             
@@ -198,7 +194,7 @@
             }
             
             if (isSearchTextFound) {
-                [self.filteredseachedLocations addObject:property];
+                [self.filteredSearchedPropertyLocations addObject:property];
             }
         }
     }
