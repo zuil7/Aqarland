@@ -140,6 +140,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.searchVCDelegate showNavigationBar];
     self.viewProperty = [GlobalInstance loadStoryBoardId:sViewPropertyVC];
     self.viewProperty.propertyDetails = [self.filteredSearchedPropertyLocations objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:self.viewProperty animated:YES];
