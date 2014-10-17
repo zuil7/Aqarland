@@ -33,12 +33,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self customizeHeaderBar];
-    [self setupUserInterfaceComponents];
-    [self fetchProperties];
     propertyList = [[NSMutableArray alloc] init];
     propertyListDetails = [[NSMutableArray alloc] init];
     self.viewProperty = [[AQViewProperty alloc] init];
+    
+    [self customizeHeaderBar];
+    [self setupUserInterfaceComponents];
+    [self fetchProperties];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +62,7 @@
 ////////////////////////////////////
 -(void) customizeHeaderBar
 {
-    [self.navigationItem setTitle:@"My Properties"];
+    [self.navigationItem setTitle:@"My Property List"];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     
@@ -132,6 +133,7 @@
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = [propertyList objectAtIndex:indexPath.row];
     
