@@ -139,7 +139,7 @@
     {
 
         [self.propertyAddress setValue:self.propertyTypeLbl.text forKey:@"propertyType"];
-        [self.propertyAddress setValue:self.areaTxtField.text forKey:@"propertySize"];
+        [self.propertyAddress setValue:self.areaTxtField.text forKey:@"nPropertySize"];
         [self.propertyAddress setValue:self.nBedroomsTxtField.text forKey:@"numberOfBedrooms"];
         [self.propertyAddress setValue:self.nBathsTxtField.text forKey:@"numberOfBaths"];
         [self.propertyAddress setValue:self.amenitiesTxtField.text forKey:@"amenities"];

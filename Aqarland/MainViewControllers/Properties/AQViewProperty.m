@@ -143,7 +143,7 @@
 
 -(void) fillData
 {
-    [self.townHouseLbl setText:[NSString stringWithFormat:@"%@, %@",self.propertyDetails.m_propertyType,self.propertyDetails.m_propertySize]];
+    [self.townHouseLbl setText:[NSString stringWithFormat:@"%@, %@ sqm",self.propertyDetails.m_propertyType,self.propertyDetails.m_propertySize]];
     PFObject *user=(PFObject *)self.propertyDetails.user;
     
     [self.contactPerson setText:[NSString stringWithFormat:@"Contact %@",user[@"name"]]];

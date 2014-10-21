@@ -387,9 +387,9 @@ static ParseLayerService *instance = nil;
                  {
                      property.m_postCode=pResult[@"postCode"];
                  }
-                 if (pResult[@"propertySize"] != [NSNull null])
+                 if (pResult[@"nPropertySize"] != [NSNull null])
                  {
-                     property.m_propertySize=pResult[@"propertySize"];
+                     property.m_propertySize=pResult[@"nPropertySize"];
                  }
                  if (pResult[@"propertyType"] != [NSNull null])
                  {
@@ -486,9 +486,9 @@ static ParseLayerService *instance = nil;
                 {
                     property.m_postCode=pResult[@"postCode"];
                 }
-                if (pResult[@"propertySize"] != [NSNull null])
+                if (pResult[@"nPropertySize"] != [NSNull null])
                 {
-                    property.m_propertySize=pResult[@"propertySize"];
+                    property.m_propertySize=pResult[@"nPropertySize"];
                 }
                 if (pResult[@"propertyType"] != [NSNull null])
                 {
@@ -583,9 +583,9 @@ static ParseLayerService *instance = nil;
                 {
                     property.m_postCode=pResult[@"postCode"];
                 }
-                if (pResult[@"propertySize"] != [NSNull null])
+                if (pResult[@"nPropertySize"] != [NSNull null])
                 {
-                    property.m_propertySize=pResult[@"propertySize"];
+                    property.m_propertySize=pResult[@"nPropertySize"];
                 }
                 if (pResult[@"propertyType"] != [NSNull null])
                 {
@@ -645,7 +645,8 @@ static ParseLayerService *instance = nil;
     post[@"postCode"]=propertyDetails[@"postcode"];
     
     post[@"propertyType"]=propertyDetails[@"propertyType"];
-    post[@"propertySize"]=propertyDetails[@"propertySize"];
+    float fPropertySize=[propertyDetails[@"nPropertySize"] floatValue];
+    post[@"nPropertySize"]=[NSNumber numberWithFloat:fPropertySize];
     post[@"numberOfBedrooms"]=propertyDetails[@"numberOfBedrooms"];
     post[@"numberOfBaths"]=propertyDetails[@"numberOfBaths"];
     post[@"amenities"]=propertyDetails[@"amenities"];
