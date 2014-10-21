@@ -819,4 +819,33 @@ static ParseLayerService *instance = nil;
     return userDictionary;
 }
 
+////////////////////////////////
+#pragma mark - Filter Search
+////////////////////////////////
+-(void) FilterSearch:(NSDictionary *) dict
+{
+    
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query whereKey:@"city" equalTo:dict[@"city"]];
+    [query whereKey:@"propertyType" equalTo:dict[@"pType"]];
+    float val=[dict[@"pSize"] floatValue];
+    [query whereKey:@"nPropertySize" lessThanOrEqualTo:@(val)];
+    
+    [query includeKey:@"propertyImgArr"];
+    [query includeKey:@"user"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+     {
+         if (!error)
+         {
+             NSLog(@"result %lu",(unsigned long)[result count]);
+             [self reportSuccess:result];
+             
+         }else
+         {
+            [self reportFailure:error];
+         }
+     }];
+
+}
 @end

@@ -50,4 +50,6 @@ typedef void(^AQFailedBlock)(NSError *error);
 
 //Filtering
 -(void) fetchLocationByCity;
+-(void) FilterSearch:(NSDictionary *) dict;
+
 @end

@@ -128,6 +128,7 @@
     }];
     [request setFailedBlock:^(NSError *error)
      {
+         [self.HUD hide:YES];
          [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
     }];
 }
