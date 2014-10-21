@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NSString *m_description;
 @property (nonatomic, strong) AQUser *user;
 @property (nonatomic, strong) NSString *m_building;
-@property (nonatomic, strong) NSString *m_propertySize;
+@property (nonatomic, strong) NSNumber *m_propertySize;
 @property (nonatomic, strong) NSString *m_latLong;
 @property (nonatomic, strong) NSMutableArray *propertyImages;
 

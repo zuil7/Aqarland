@@ -340,6 +340,7 @@ static ParseLayerService *instance = nil;
     [query orderByDescending:@"createdAt"];
     //query.limit = 10;
     [query includeKey:@"propertyImgArr"];
+    [query includeKey:@"user"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
      {
          
