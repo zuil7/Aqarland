@@ -438,6 +438,7 @@ static ParseLayerService *instance = nil;
     // Only retrieve the last ten
     //query.limit = 10;
     [query includeKey:@"propertyImgArr"];
+    [query includeKey:@"user"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
     {
         
@@ -513,7 +514,10 @@ static ParseLayerService *instance = nil;
                 {
                     property.propertyImages=pResult[@"propertyImgArr"];
                 }
-
+                if(pResult[@"user"])
+                {
+                    property.user=pResult[@"user"];
+                }
                 [propertyListArr addObject:property];
             }
             
@@ -533,6 +537,7 @@ static ParseLayerService *instance = nil;
     [query orderByDescending:@"createdAt"];
     //query.limit = 10;
     [query includeKey:@"propertyImgArr"];
+    [query includeKey:@"user"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
     {
         if(!error)
@@ -606,6 +611,11 @@ static ParseLayerService *instance = nil;
                 {
                     property.propertyImages=pResult[@"propertyImgArr"];
                 }
+                if(pResult[@"user"])
+                {
+                    property.user=pResult[@"user"];
+                }
+               
                 
                 [propertyListArr addObject:property];
             }
