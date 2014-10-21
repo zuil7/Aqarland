@@ -412,6 +412,10 @@ static ParseLayerService *instance = nil;
                  {
                      property.propertyImages=pResult[@"propertyImgArr"];
                  }
+                 if (pResult[@"price"] != [NSNull null])
+                 {
+                     property.m_price=pResult[@"price"];
+                 }
                  
                  [propertyListArr addObject:property];
              }
