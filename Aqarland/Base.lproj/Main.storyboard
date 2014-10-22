@@ -1878,12 +1878,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pec-ji-FbI">
-                                            <rect key="frame" x="31" y="11" width="238" height="18"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Luzon Avenue, Hippodromesdsdsdszxz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pec-ji-FbI">
+                                            <rect key="frame" x="31" y="8" width="257" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="side_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="em3-JJ-Iyt">
+                                            <rect key="frame" x="287" y="11" width="20" height="20"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mhd-3t-tK4">
                                             <rect key="frame" x="32" y="41" width="272" height="1"/>
                                             <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -2072,10 +2075,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7S-hS-pMk">
-                                                    <rect key="frame" x="31" y="10" width="238" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="EPK-zk-l48"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="31" y="10" width="258" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2084,15 +2084,21 @@
                                                     <rect key="frame" x="32" y="41" width="272" height="1"/>
                                                     <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="side_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="mU7-Ig-tgK">
+                                                    <rect key="frame" x="290" y="12" width="20" height="20"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="8EV-PW-Guw" secondAttribute="trailing" constant="8" id="8DN-EI-Vye"/>
-                                                <constraint firstItem="Q7S-hS-pMk" firstAttribute="top" secondItem="2eR-HL-6lJ" secondAttribute="topMargin" constant="2" id="8zG-KC-Ofb"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Q7S-hS-pMk" secondAttribute="trailing" constant="43" id="bga-t1-lyC"/>
-                                                <constraint firstItem="8EV-PW-Guw" firstAttribute="leading" secondItem="2eR-HL-6lJ" secondAttribute="leadingMargin" constant="24" id="cq8-6s-Ld3"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="8EV-PW-Guw" secondAttribute="bottom" constant="-7" id="eTG-Oa-CLK"/>
-                                                <constraint firstItem="Q7S-hS-pMk" firstAttribute="leading" secondItem="2eR-HL-6lJ" secondAttribute="leadingMargin" constant="23" id="nR8-VQ-gwl"/>
-                                                <constraint firstItem="8EV-PW-Guw" firstAttribute="top" secondItem="Q7S-hS-pMk" secondAttribute="bottom" constant="7" id="rBY-IB-uAW"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8EV-PW-Guw" secondAttribute="bottom" constant="-7" id="2aT-3Z-jJv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8EV-PW-Guw" secondAttribute="trailing" constant="8" id="3JQ-pN-j7c"/>
+                                                <constraint firstItem="Q7S-hS-pMk" firstAttribute="leading" secondItem="2eR-HL-6lJ" secondAttribute="leadingMargin" constant="23" id="9W1-kV-iIm"/>
+                                                <constraint firstItem="8EV-PW-Guw" firstAttribute="top" secondItem="mU7-Ig-tgK" secondAttribute="bottom" constant="9" id="IgB-FI-1ra"/>
+                                                <constraint firstItem="mU7-Ig-tgK" firstAttribute="centerY" secondItem="Q7S-hS-pMk" secondAttribute="centerY" id="JjR-F3-fqb"/>
+                                                <constraint firstItem="8EV-PW-Guw" firstAttribute="top" secondItem="Q7S-hS-pMk" secondAttribute="bottom" constant="7" id="RMS-wH-nM4"/>
+                                                <constraint firstItem="mU7-Ig-tgK" firstAttribute="leading" secondItem="Q7S-hS-pMk" secondAttribute="trailing" constant="1" id="WCp-ee-Klg"/>
+                                                <constraint firstItem="Q7S-hS-pMk" firstAttribute="top" secondItem="2eR-HL-6lJ" secondAttribute="topMargin" constant="2" id="bRg-Q9-qn3"/>
+                                                <constraint firstItem="Q7S-hS-pMk" firstAttribute="centerX" secondItem="2eR-HL-6lJ" secondAttribute="centerX" id="zgq-Oa-qrN"/>
+                                                <constraint firstItem="8EV-PW-Guw" firstAttribute="leading" secondItem="2eR-HL-6lJ" secondAttribute="leadingMargin" constant="24" id="zv8-2l-BCz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2363,6 +2369,7 @@
         <image name="search_button_active.png" width="544" height="82"/>
         <image name="search_button_inactive.png" width="272" height="41"/>
         <image name="separator" width="1" height="1"/>
+        <image name="side_arrow.png" width="20" height="20"/>
         <image name="signup_button_active.png" width="136" height="43"/>
         <image name="signup_button_inactive.png" width="136" height="43"/>
         <image name="twitter_icon_inactive.png" width="25" height="25"/>

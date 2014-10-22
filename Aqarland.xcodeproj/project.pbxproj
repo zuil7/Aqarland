@@ -65,6 +65,8 @@
 		B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A43B7B1988C8E700180532 /* AQSignUpViewController.m */; };
 		B7A43B8D198A23CB00180532 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B8C198A23CB00180532 /* CoreLocation.framework */; };
 		B7A43B8F198A23D100180532 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B8E198A23D100180532 /* MapKit.framework */; };
+		B7A7511F19F74F39002F973F /* side_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A7511D19F74F39002F973F /* side_arrow.png */; };
+		B7A7512019F74F39002F973F /* side_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A7511E19F74F39002F973F /* side_arrow@2x.png */; };
 		B7A83B841998B86500B4B0C6 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83AD71998B86400B4B0C6 /* logo.png */; };
 		B7A83B851998B86500B4B0C6 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83AD81998B86400B4B0C6 /* logo@2x.png */; };
 		B7A83B861998B86500B4B0C6 /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83AD91998B86400B4B0C6 /* splash_screen.png */; };
@@ -358,6 +360,8 @@
 		B7A43B7B1988C8E700180532 /* AQSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSignUpViewController.m; sourceTree = "<group>"; };
 		B7A43B8C198A23CB00180532 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B7A43B8E198A23D100180532 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B7A7511D19F74F39002F973F /* side_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = side_arrow.png; sourceTree = "<group>"; };
+		B7A7511E19F74F39002F973F /* side_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "side_arrow@2x.png"; sourceTree = "<group>"; };
 		B7A83AD71998B86400B4B0C6 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		B7A83AD81998B86400B4B0C6 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		B7A83AD91998B86400B4B0C6 /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen.png; sourceTree = "<group>"; };
@@ -1098,6 +1102,8 @@
 		B7A83B4C1998B86500B4B0C6 /* 07 - Add Property */ = {
 			isa = PBXGroup;
 			children = (
+				B7A7511D19F74F39002F973F /* side_arrow.png */,
+				B7A7511E19F74F39002F973F /* side_arrow@2x.png */,
 				B7EE296C19AF0BA10085DC0D /* confirm_location_button_active.png */,
 				B7EE296D19AF0BA10085DC0D /* confirm_location_button_inactive.png */,
 				B7974E7319A49A7F00CDB6DE /* remove_icon.png */,
@@ -1541,6 +1547,7 @@
 				B7A83C401999B4E200B4B0C6 /* Login-Screen-2.png in Resources */,
 				B7A83C281998C19D00B4B0C6 /* city_view_icon.png in Resources */,
 				B7A83B881998B86500B4B0C6 /* splash_screen_1136.png in Resources */,
+				B7A7512019F74F39002F973F /* side_arrow@2x.png in Resources */,
 				B7A83BA81998B86500B4B0C6 /* line_seperator.png in Resources */,
 				B7A83C171998B86500B4B0C6 /* chat_agent_button@2x.png in Resources */,
 				B7A83B9C1998B86500B4B0C6 /* city_view_icon@2x.png in Resources */,
@@ -1558,6 +1565,7 @@
 				B7A83BD41998B86500B4B0C6 /* filter_button.png in Resources */,
 				B7A83C4A1999B4E200B4B0C6 /* login_screen_background_1136.png in Resources */,
 				B7A83B9E1998B86500B4B0C6 /* close_navigation_icon@2x.png in Resources */,
+				B7A7511F19F74F39002F973F /* side_arrow.png in Resources */,
 				B7A83C581999DD2000B4B0C6 /* done_button_inactive@2x.png in Resources */,
 				B7A83C291998C19D00B4B0C6 /* earth_view_icon.png in Resources */,
 				B7A83C181998B86500B4B0C6 /* chat_agent_button_active.png in Resources */,

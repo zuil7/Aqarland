@@ -88,7 +88,7 @@ propertyListOptVC;
     static NSString *CellIdentifier = @"propertyCell";
     AQPropertyListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     PropertyList *property= (PropertyList *)[self.propertyListArr objectAtIndex:indexPath.row];
     NSLog(@"property %@",property.m_houseNumber);
