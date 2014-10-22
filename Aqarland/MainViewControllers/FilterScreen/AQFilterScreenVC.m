@@ -10,7 +10,7 @@
 #import "FXBlurView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RMPickerViewController.h"
-
+#import "AQFilterSearchResult.h"
 #define blurValue 6.0
 #define r0 @"0"
 #define r1 @"1"
@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet FXBlurView *blurView;
 @property(nonatomic,strong) NSArray *locationList;
 @property(nonatomic,strong) NSArray *propertyList;
+@property(nonatomic,strong) AQFilterSearchResult *searchFilterResult;
 @end
 
 @implementation AQFilterScreenVC
@@ -71,6 +72,7 @@
     {
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
+        [self.filterDelegate resetButton];
     }
 
 }
@@ -140,6 +142,18 @@
         [request setCompletionBlock:^(id results)
          {
              [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             
+             NSArray *arr=[NSArray arrayWithArray:results];
+             if([arr count]!=0)
+             {
+                 self.searchFilterResult=[GlobalInstance loadStoryBoardId:sSearchFilterResultVC];
+                 UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self.searchFilterResult];
+                 self.searchFilterResult.resultArr=[NSMutableArray arrayWithArray:arr];
+                 [GlobalInstance.navController presentViewController:nc animated:YES completion:nil];
+             }else
+             {
+                 [GlobalInstance showAlert:iInformation message:@"No result found"];
+             }
          }];
         [request setFailedBlock:^(NSError *error)
          {
@@ -157,15 +171,6 @@
 -(NSString *) checkTextField
 {
     
-    
-//    if (self.locationBtn.titleLabel.text.length!=0 &&
-//        self.propertyType.titleLabel.text.length!=0 &&
-//        self.pSizeSlider.value !=0) {
-//        return 1;
-//    }else
-//    {
-//        return 0;
-//    }
     
     if (![self.locationBtn.titleLabel.text isEqualToString:@"Location"] &&
         ![self.propertyType.titleLabel.text isEqualToString:@"Property Type"])

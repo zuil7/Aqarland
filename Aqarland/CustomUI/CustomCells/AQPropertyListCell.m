@@ -31,7 +31,7 @@
     // Configure the view for the selected state
 }
 
--(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx :(NSString *) flag;
+-(void) bind:(NSDictionary *) dict Idx:(NSInteger) idx :(NSString *) flag
 {
 //    NSDictionary *tempDict=[arr objectAtIndex:idx];
 //    [self.iconImg setImage:[UIImage imageNamed:tempDict[@"icon"]]];

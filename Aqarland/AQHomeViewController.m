@@ -14,7 +14,7 @@
 #import "PropertyList.h"
 #import "AQFilterScreenVC.h"
 
-@interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate,MBProgressHUDDelegate>
+@interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate,MBProgressHUDDelegate,AQFilterResultDelegate>
 {
     int ZOOM_LEVEL;
     CustomPinView *selectedPin;
@@ -174,8 +174,6 @@
 ////////////////////////////////////
 -(IBAction)filterOption_touchedup_Inside:(id)sender
 {
-    //    self.viewProperty=[GlobalInstance loadStoryBoardId:sViewPropertyVC];
-    //    [self.navigationController pushViewController:self.viewProperty animated:YES];
     if(self.filterBtn.tag==[sender tag])
     {
         [self.filterBtn setSelected:YES];
@@ -183,8 +181,7 @@
         
         
         self.filterVC=[GlobalInstance loadStoryBoardId:sPropertyFilterVC];
-        
-        
+        [self.filterVC setFilterDelegate:self];
         double delayInSeconds = 0.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
@@ -486,4 +483,9 @@
     [self displayPinAnnotation:coordinates];
     
 }
+
+- (void)resetButton
+{
+    [self.filterBtn setSelected:NO];
+    [self.propertyTypeBtn setSelected:NO];}
 @end

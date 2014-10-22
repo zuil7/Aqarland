@@ -67,6 +67,10 @@
 		B7A43B8F198A23D100180532 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7A43B8E198A23D100180532 /* MapKit.framework */; };
 		B7A7511F19F74F39002F973F /* side_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A7511D19F74F39002F973F /* side_arrow.png */; };
 		B7A7512019F74F39002F973F /* side_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A7511E19F74F39002F973F /* side_arrow@2x.png */; };
+		B7A7512619F75948002F973F /* AQFilterSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A7512519F75948002F973F /* AQFilterSearchResult.m */; };
+		B7A7512919F7A194002F973F /* AQFilterResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A7512819F7A194002F973F /* AQFilterResultCell.m */; };
+		B7A7512C19F7AD31002F973F /* close_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A7512A19F7AD31002F973F /* close_btn.png */; };
+		B7A7512D19F7AD31002F973F /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A7512B19F7AD31002F973F /* close_btn@2x.png */; };
 		B7A83B841998B86500B4B0C6 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83AD71998B86400B4B0C6 /* logo.png */; };
 		B7A83B851998B86500B4B0C6 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83AD81998B86400B4B0C6 /* logo@2x.png */; };
 		B7A83B861998B86500B4B0C6 /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83AD91998B86400B4B0C6 /* splash_screen.png */; };
@@ -362,6 +366,12 @@
 		B7A43B8E198A23D100180532 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B7A7511D19F74F39002F973F /* side_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = side_arrow.png; sourceTree = "<group>"; };
 		B7A7511E19F74F39002F973F /* side_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "side_arrow@2x.png"; sourceTree = "<group>"; };
+		B7A7512419F75948002F973F /* AQFilterSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQFilterSearchResult.h; sourceTree = "<group>"; };
+		B7A7512519F75948002F973F /* AQFilterSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQFilterSearchResult.m; sourceTree = "<group>"; };
+		B7A7512719F7A194002F973F /* AQFilterResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQFilterResultCell.h; sourceTree = "<group>"; };
+		B7A7512819F7A194002F973F /* AQFilterResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQFilterResultCell.m; sourceTree = "<group>"; };
+		B7A7512A19F7AD31002F973F /* close_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_btn.png; sourceTree = "<group>"; };
+		B7A7512B19F7AD31002F973F /* close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn@2x.png"; sourceTree = "<group>"; };
 		B7A83AD71998B86400B4B0C6 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		B7A83AD81998B86400B4B0C6 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		B7A83AD91998B86400B4B0C6 /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen.png; sourceTree = "<group>"; };
@@ -616,6 +626,8 @@
 			children = (
 				B79120F619E52EB4005EC610 /* AQFilterScreenVC.h */,
 				B79120F719E52EB4005EC610 /* AQFilterScreenVC.m */,
+				B7A7512419F75948002F973F /* AQFilterSearchResult.h */,
+				B7A7512519F75948002F973F /* AQFilterSearchResult.m */,
 			);
 			path = FilterScreen;
 			sourceTree = "<group>";
@@ -796,6 +808,8 @@
 				B7A83C5A1999E01500B4B0C6 /* AQSideMenuCell.m */,
 				B7A2F7AD19C80CEB00BC3C3C /* AQPropertyListCell.h */,
 				B7A2F7AE19C80CEB00BC3C3C /* AQPropertyListCell.m */,
+				B7A7512719F7A194002F973F /* AQFilterResultCell.h */,
+				B7A7512819F7A194002F973F /* AQFilterResultCell.m */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -1102,6 +1116,8 @@
 		B7A83B4C1998B86500B4B0C6 /* 07 - Add Property */ = {
 			isa = PBXGroup;
 			children = (
+				B7A7512A19F7AD31002F973F /* close_btn.png */,
+				B7A7512B19F7AD31002F973F /* close_btn@2x.png */,
 				B7A7511D19F74F39002F973F /* side_arrow.png */,
 				B7A7511E19F74F39002F973F /* side_arrow@2x.png */,
 				B7EE296C19AF0BA10085DC0D /* confirm_location_button_active.png */,
@@ -1567,6 +1583,7 @@
 				B7A83B9E1998B86500B4B0C6 /* close_navigation_icon@2x.png in Resources */,
 				B7A7511F19F74F39002F973F /* side_arrow.png in Resources */,
 				B7A83C581999DD2000B4B0C6 /* done_button_inactive@2x.png in Resources */,
+				B7A7512D19F7AD31002F973F /* close_btn@2x.png in Resources */,
 				B7A83C291998C19D00B4B0C6 /* earth_view_icon.png in Resources */,
 				B7A83C181998B86500B4B0C6 /* chat_agent_button_active.png in Resources */,
 				B7A83BC71998B86500B4B0C6 /* clear_filter_inactive.png in Resources */,
@@ -1615,6 +1632,7 @@
 				B7A83BB21998B86500B4B0C6 /* Regsitration-Screen-2.png in Resources */,
 				B7A83BD31998B86500B4B0C6 /* filter_box_background@2x.png in Resources */,
 				B7A83BFF1998B86500B4B0C6 /* remove_icon@2x.png in Resources */,
+				B7A7512C19F7AD31002F973F /* close_btn.png in Resources */,
 				B7A83BE81998B86500B4B0C6 /* mychats_icon.png in Resources */,
 				B7948F9F198A3D6900936E16 /* dashboard_map_icn_station_selector@2x.png in Resources */,
 				B7A83BD71998B86500B4B0C6 /* filter_button_active@2x.png in Resources */,
@@ -1691,6 +1709,7 @@
 				B7A43B7C1988C8E700180532 /* AQSignUpViewController.m in Sources */,
 				B7974E5519A331BF00CDB6DE /* AQCustomFontsTextView.m in Sources */,
 				B7EE29A019B0673A0085DC0D /* TWSignedRequest.m in Sources */,
+				B7A7512619F75948002F973F /* AQFilterSearchResult.m in Sources */,
 				B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */,
 				B7EE299A19B0673A0085DC0D /* FHSTwitterEngine.m in Sources */,
 				B79B3A0119C2F9F800F2DEDD /* AQViewProperty.m in Sources */,
@@ -1705,6 +1724,7 @@
 				B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */,
 				B7974E6D19A3530B00CDB6DE /* AQUploadPhoto.m in Sources */,
 				B7948F96198A3A4C00936E16 /* MKMapView+ZoomLevel.m in Sources */,
+				B7A7512919F7A194002F973F /* AQFilterResultCell.m in Sources */,
 				B7EE299D19B0673A0085DC0D /* OAuthCore.m in Sources */,
 				B7EE299C19B0673A0085DC0D /* OAuth+Additions.m in Sources */,
 				B7EE299E19B0673A0085DC0D /* PFTwitterUtils+NativeTwitter.m in Sources */,

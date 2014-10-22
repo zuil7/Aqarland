@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AQFilterResultDelegate <NSObject>
+@optional
+- (void)resetButton;
+@end
+
 @interface AQFilterScreenVC : UIViewController
 
 @property (nonatomic,strong) UIImage *imageScreen;
@@ -19,4 +24,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *propertyType;
 @property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 
+@property (nonatomic, unsafe_unretained) id<AQFilterResultDelegate> filterDelegate;
 @end
