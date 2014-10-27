@@ -85,13 +85,13 @@
     ParseLayerService *request = [[ParseLayerService alloc] init];
     [request fetchProperty];
     [request setCompletionBlock:^(id results) {
+        [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
         properties = [[NSMutableArray alloc] initWithArray:results];
         [self.searchTbl reloadData];
-        [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
      }];
     [request setFailedBlock:^(NSError *error) {
-         [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+        [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
      }];
 }
 
@@ -157,40 +157,41 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSString *lowerCaseSearchString = searchText;
     BOOL isSearchTextFound;
-    if ([searchText isEqual:nil] || [searchText isEqualToString:@""]) {
+    if ([searchBar.text isEqual:nil] || [searchBar.text isEqualToString:@""]) {
         inSearchMode = NO;
     } else {
         inSearchMode = YES;
         [self.filteredSearchedPropertyLocations removeAllObjects];
         for (PropertyList *property in properties) {
             isSearchTextFound = NO;
-            
-            if ([[property valueForKey:@"m_amenities"] rangeOfString:searchText].location != NSNotFound) {
+            NSLog(@"property : %@", property);
+            if ([[[property valueForKey:@"m_amenities"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_building"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_building"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_city"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_city"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_description"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_description"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_houseNumber"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_houseNumber"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_numberOfBaths"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_numberOfBaths"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_numberOfBedrooms"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_numberOfBedrooms"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_postCode"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_postCode"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_price"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_price"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_propertySize"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[[property valueForKey:@"m_propertySize"] stringValue] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_propertyType"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_propertyType"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_street"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_street"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
-            } else if ([[property valueForKey:@"m_unit"] rangeOfString:searchText].location != NSNotFound) {
+            } else if ([[[property valueForKey:@"m_unit"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
                 isSearchTextFound = YES;
             }
             
