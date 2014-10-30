@@ -129,6 +129,7 @@
     [request setFailedBlock:^(NSError *error)
      {
          [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+         [self.HUD hide:YES];
     }];
 }
 -(void) customizeHeaderBar
