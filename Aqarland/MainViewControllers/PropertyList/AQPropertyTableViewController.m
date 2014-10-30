@@ -62,7 +62,7 @@
     static NSString *CellIdentifier = @"propertyCell";
     AQPropertyListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     NSMutableDictionary *propertyDict=[[NSMutableDictionary alloc] init];
     NSString *strCity= [self.distinctCity objectAtIndex:indexPath.row];

@@ -73,8 +73,9 @@
 #define sPropertyListStepTwoVC      @"PropertyListStepTwoVC"
 #define sPropertyListOptionVC       @"PropertyListOptionVC"
 #define sPropertyTableVC            @"sPropertyTableView"
-#define sPropertyViewInMapVC            @"sViewInMap"
+#define sPropertyViewInMapVC        @"sViewInMap"
 #define sPropertyFilterVC           @"filterScreenVC"
+#define sSearchFilterResultVC      @"filterSearchResult"
 
 
 //Parse Class Name
@@ -92,4 +93,5 @@
 #define iSearchImg              @"search_icon.png"
 #define iFavoriteImg            @"favorites_icon.png"
 #define iShareImg               @"share_icon.png"
+#define iCloseImg               @"close_btn.png"
 #endif

@@ -340,6 +340,7 @@ static ParseLayerService *instance = nil;
     [query orderByDescending:@"createdAt"];
     //query.limit = 10;
     [query includeKey:@"propertyImgArr"];
+    [query includeKey:@"user"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
      {
          
@@ -387,9 +388,9 @@ static ParseLayerService *instance = nil;
                  {
                      property.m_postCode=pResult[@"postCode"];
                  }
-                 if (pResult[@"propertySize"] != [NSNull null])
+                 if (pResult[@"nPropertySize"] != [NSNull null])
                  {
-                     property.m_propertySize=pResult[@"propertySize"];
+                     property.m_propertySize=pResult[@"nPropertySize"];
                  }
                  if (pResult[@"propertyType"] != [NSNull null])
                  {
@@ -410,6 +411,10 @@ static ParseLayerService *instance = nil;
                  if (pResult[@"propertyImgArr"] != [NSNull null])
                  {
                      property.propertyImages=pResult[@"propertyImgArr"];
+                 }
+                 if (pResult[@"price"] != [NSNull null])
+                 {
+                     property.m_price=pResult[@"price"];
                  }
                  
                  [propertyListArr addObject:property];
@@ -438,6 +443,7 @@ static ParseLayerService *instance = nil;
     // Only retrieve the last ten
     //query.limit = 10;
     [query includeKey:@"propertyImgArr"];
+    [query includeKey:@"user"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
     {
         
@@ -485,9 +491,9 @@ static ParseLayerService *instance = nil;
                 {
                     property.m_postCode=pResult[@"postCode"];
                 }
-                if (pResult[@"propertySize"] != [NSNull null])
+                if (pResult[@"nPropertySize"] != [NSNull null])
                 {
-                    property.m_propertySize=pResult[@"propertySize"];
+                    property.m_propertySize=pResult[@"nPropertySize"];
                 }
                 if (pResult[@"propertyType"] != [NSNull null])
                 {
@@ -513,7 +519,10 @@ static ParseLayerService *instance = nil;
                 {
                     property.propertyImages=pResult[@"propertyImgArr"];
                 }
-
+                if(pResult[@"user"])
+                {
+                    property.user=pResult[@"user"];
+                }
                 [propertyListArr addObject:property];
             }
             
@@ -533,6 +542,7 @@ static ParseLayerService *instance = nil;
     [query orderByDescending:@"createdAt"];
     //query.limit = 10;
     [query includeKey:@"propertyImgArr"];
+    [query includeKey:@"user"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
     {
         if(!error)
@@ -578,9 +588,9 @@ static ParseLayerService *instance = nil;
                 {
                     property.m_postCode=pResult[@"postCode"];
                 }
-                if (pResult[@"propertySize"] != [NSNull null])
+                if (pResult[@"nPropertySize"] != [NSNull null])
                 {
-                    property.m_propertySize=pResult[@"propertySize"];
+                    property.m_propertySize=pResult[@"nPropertySize"];
                 }
                 if (pResult[@"propertyType"] != [NSNull null])
                 {
@@ -606,6 +616,11 @@ static ParseLayerService *instance = nil;
                 {
                     property.propertyImages=pResult[@"propertyImgArr"];
                 }
+                if(pResult[@"user"])
+                {
+                    property.user=pResult[@"user"];
+                }
+               
                 
                 [propertyListArr addObject:property];
             }
@@ -635,7 +650,8 @@ static ParseLayerService *instance = nil;
     post[@"postCode"]=propertyDetails[@"postcode"];
     
     post[@"propertyType"]=propertyDetails[@"propertyType"];
-    post[@"propertySize"]=propertyDetails[@"propertySize"];
+    float fPropertySize=[propertyDetails[@"nPropertySize"] floatValue];
+    post[@"nPropertySize"]=[NSNumber numberWithFloat:fPropertySize];
     post[@"numberOfBedrooms"]=propertyDetails[@"numberOfBedrooms"];
     post[@"numberOfBaths"]=propertyDetails[@"numberOfBaths"];
     post[@"amenities"]=propertyDetails[@"amenities"];
@@ -809,4 +825,105 @@ static ParseLayerService *instance = nil;
     return userDictionary;
 }
 
+////////////////////////////////
+#pragma mark - Filter Search
+////////////////////////////////
+-(void) FilterSearch:(NSDictionary *) dict
+{
+    
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query whereKey:@"city" equalTo:dict[@"city"]];
+    [query whereKey:@"propertyType" equalTo:dict[@"pType"]];
+    float val=[dict[@"pSize"] floatValue];
+    [query whereKey:@"nPropertySize" lessThanOrEqualTo:@(val)];
+    
+    [query includeKey:@"propertyImgArr"];
+    [query includeKey:@"user"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+     {
+         if(!error)
+         {
+             
+             NSMutableArray *propertyListArr=[[NSMutableArray alloc] init];
+             for (PFObject *pResult in result)
+             {
+                 PropertyList *property=[[PropertyList alloc] init];
+                 NSLog(@"comment %@",pResult);
+                 if (pResult[@"amenities"] != [NSNull null])
+                 {
+                     property.m_amenities=pResult[@"amenities"];
+                 }
+                 if (pResult[@"building"] != [NSNull null])
+                 {
+                     property.m_building=pResult[@"building"];
+                 }
+                 if (pResult[@"city"] != [NSNull null])
+                 {
+                     property.m_city=pResult[@"city"];
+                 }
+                 if (pResult[@"description"] != [NSNull null])
+                 {
+                     property.m_description=pResult[@"description"];
+                 }
+                 if (pResult[@"houseNumber"] != [NSNull null])
+                 {
+                     property.m_houseNumber=pResult[@"houseNumber"];
+                 }
+                 if (pResult[@"latLong"] != [NSNull null])
+                 {
+                     property.m_latLong=pResult[@"latLong"];
+                 }
+                 if (pResult[@"numberOfBaths"] != [NSNull null])
+                 {
+                     property.m_numberOfBaths=pResult[@"numberOfBaths"];
+                 }
+                 if (pResult[@"numberOfBedrooms"] != [NSNull null])
+                 {
+                     property.m_numberOfBedrooms=pResult[@"numberOfBedrooms"];
+                 }
+                 if (pResult[@"postCode"] != [NSNull null])
+                 {
+                     property.m_postCode=pResult[@"postCode"];
+                 }
+                 if (pResult[@"nPropertySize"] != [NSNull null])
+                 {
+                     property.m_propertySize=pResult[@"nPropertySize"];
+                 }
+                 if (pResult[@"propertyType"] != [NSNull null])
+                 {
+                     property.m_propertyType=pResult[@"propertyType"];
+                 }
+                 if (pResult[@"street"] != [NSNull null])
+                 {
+                     property.m_street=pResult[@"street"];
+                 }
+                 if (pResult[@"unit"] != [NSNull null])
+                 {
+                     property.m_unit=pResult[@"unit"];
+                 }
+                 if (pResult[@"user"] != [NSNull null])
+                 {
+                     property.user=pResult[@"user"];
+                 }
+                 if (pResult[@"propertyImgArr"] != [NSNull null])
+                 {
+                     property.propertyImages=pResult[@"propertyImgArr"];
+                 }
+                 if (pResult[@"price"] != [NSNull null])
+                 {
+                     property.m_price=pResult[@"price"];
+                 }
+                 
+                 [propertyListArr addObject:property];
+             }
+             
+             [self reportSuccess:propertyListArr];
+         }else
+         {
+             [self reportFailure:error];
+         }
+     }];
+
+}
 @end

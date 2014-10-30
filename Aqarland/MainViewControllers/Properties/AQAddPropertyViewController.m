@@ -124,9 +124,9 @@
 
 -(BOOL) checkTextField
 {
-    if (self.unitTxtField.text.length!=0 &&
+    if (//self.unitTxtField.text.length!=0 &&
         self.houseNumTxtField.text.length!=0 &&
-        self.bldgTxtField.text.length!=0 &&
+        //self.bldgTxtField.text.length!=0 &&
         self.streetTxtField.text.length!=0 &&
         self.cityTxtField.text.length!=0 &&
         self.postCodeTxtField.text.length!=0 ) {

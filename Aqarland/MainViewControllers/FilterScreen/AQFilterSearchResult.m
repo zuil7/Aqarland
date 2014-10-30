@@ -1,72 +1,70 @@
 //
-//  AQPropertyListStepTwoVC.m
+//  AQFilterSearchResult.m
 //  Aqarland
 //
-//  Created by Louise on 16/9/14.
+//  Created by Louise on 22/10/14.
 //  Copyright (c) 2014 Louise. All rights reserved.
 //
 
-#import "AQPropertyListStepTwoVC.h"
-#import "AQPropertyListCell.h"
-#import "AQPropertyListOptionViewController.h"
+#import "AQFilterSearchResult.h"
+#import "AQFilterResultCell.h"
+#import "PropertyList.h"
 #import "AQViewProperty.h"
+@interface AQFilterSearchResult ()
 
-@interface AQPropertyListStepTwoVC ()<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,strong) AQPropertyListOptionViewController *
-propertyListOptVC;
 @property(nonatomic,strong) AQViewProperty *viewProperty;
-
 @end
 
-@implementation AQPropertyListStepTwoVC
+@implementation AQFilterSearchResult
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //self.propertyListArr=[NSMutableArray array];
-//    self.propertyListArr=[[NSMutableArray alloc] initWithArray:[GlobalInstance loadPlistfile:@"sideMenuList" forKey:@"sideMenuList"]];
     [self customizeHeaderBar];
-    NSLog(@"self.propertyListArr %@",self.propertyListArr);
-    
-   
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
 -(void) customizeHeaderBar
 {
-    [self.navigationItem setTitle:@"View in List"];
+    [self.navigationItem setTitle:@"Search Result"];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {
-        UIImage *backImage = [UIImage imageNamed:iBackArrowImg];
+        UIImage *backImage = [UIImage imageNamed:iCloseImg];
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        backBtn.frame = CGRectMake(0,0,22,32);
+        backBtn.frame = CGRectMake(0,0,22,22);
         [backBtn setImage:backImage forState:UIControlStateNormal];
         
-        [backBtn addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        [backBtn addTarget:self action:@selector(closePressed:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
         [self.navigationItem setLeftBarButtonItem:barButtonItem];
+        
     }
+}
+
+- (void)closePressed:(UIBarButtonItem *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 ///////////////////////////////////////////////
@@ -80,17 +78,16 @@ propertyListOptVC;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.propertyListArr count];
+    return [self.resultArr count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"propertyCell";
-    AQPropertyListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"filterResultCell";
+    AQFilterResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    PropertyList *property= (PropertyList *)[self.propertyListArr objectAtIndex:indexPath.row];
+   
+    PropertyList *property= (PropertyList *)[self.resultArr objectAtIndex:indexPath.row];
     NSLog(@"property %@",property.m_houseNumber);
     // Configure the cell...
     NSString *address=[NSString stringWithFormat:@"%@, %@, %@",
@@ -104,10 +101,11 @@ propertyListOptVC;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     self.viewProperty=[GlobalInstance loadStoryBoardId:sViewPropertyVC];
-    self.viewProperty.propertyDetails=[self.propertyListArr objectAtIndex:indexPath.row];
+    self.viewProperty.propertyDetails=[self.resultArr objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:self.viewProperty animated:YES];
-
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -116,4 +114,5 @@ propertyListOptVC;
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;
 }
+
 @end

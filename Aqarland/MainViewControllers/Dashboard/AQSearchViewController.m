@@ -87,14 +87,14 @@
     ParseLayerService *request = [[ParseLayerService alloc] init];
     [request fetchProperty];
     [request setCompletionBlock:^(id results) {
+        [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
         properties = [[NSMutableArray alloc] initWithArray:results];
         [self saveLocationAddressesWithArray:properties];
         [self.searchTbl reloadData];
-        [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
      }];
     [request setFailedBlock:^(NSError *error) {
-         [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+        [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
      }];
 }
 

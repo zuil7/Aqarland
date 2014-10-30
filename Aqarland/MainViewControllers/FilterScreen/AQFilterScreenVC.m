@@ -10,8 +10,12 @@
 #import "FXBlurView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RMPickerViewController.h"
-
+#import "AQFilterSearchResult.h"
 #define blurValue 6.0
+#define r0 @"0"
+#define r1 @"1"
+#define r2 @"2"
+#define r3 @"3"
 
 @interface AQFilterScreenVC ()<RMPickerViewControllerDelegate>
 {
@@ -20,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet FXBlurView *blurView;
 @property(nonatomic,strong) NSArray *locationList;
 @property(nonatomic,strong) NSArray *propertyList;
+@property(nonatomic,strong) AQFilterSearchResult *searchFilterResult;
 @end
 
 @implementation AQFilterScreenVC
@@ -44,6 +49,7 @@
      }];
     [request setFailedBlock:^(NSError *error)
      {
+          [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
          [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
      }];
     
@@ -66,6 +72,7 @@
     {
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
+        [self.filterDelegate resetButton];
     }
 
 }
@@ -101,9 +108,87 @@
 
 -(IBAction) slider_changedValue:(UISlider *) sender
 {
-    [self.sliderVal setText:[NSString stringWithFormat:@"0 to %.0f sqm",sender.value]];
+    [self.sliderVal setText:[NSString stringWithFormat:@"%.0f sqm",sender.value]];
 }
 
+-(IBAction)clearFields:(id)sender
+{
+    [self.locationBtn setTitle:@"Location" forState:UIControlStateNormal];
+    [self.propertyType setTitle:@"Property Type" forState:UIControlStateNormal];
+    [self.pSizeSlider setValue:0.0];
+    [self.sliderVal setText:@"0 sqm"];
+    
+}
+
+-(IBAction)searchFilter_touchedup_inside:(id)sender
+{
+    if([[self checkTextField] isEqualToString:r1])
+    {
+         [GlobalInstance showAlert:iInformation message:@"Please complete the textfield"];
+    }else if([[self checkTextField] isEqualToString:r3])
+    {
+         [GlobalInstance showAlert:iInformation message:@"Sqm cannot be Zero"];
+    }else
+    {
+        [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+        
+        NSMutableDictionary *dict=[NSMutableDictionary dictionary];
+        dict[@"city"] = self.locationBtn.titleLabel.text;
+        dict[@"pType"] = self.propertyType.titleLabel.text;
+        dict[@"pSize"] = [NSString stringWithFormat:@"%.2f",self.pSizeSlider.value];
+        NSLog(@"dict %@",dict);
+        ParseLayerService *request=[[ParseLayerService alloc] init];
+        [request FilterSearch:dict];
+        [request setCompletionBlock:^(id results)
+         {
+             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             
+             NSArray *arr=[NSArray arrayWithArray:results];
+             if([arr count]!=0)
+             {
+                 self.searchFilterResult=[GlobalInstance loadStoryBoardId:sSearchFilterResultVC];
+                 UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self.searchFilterResult];
+                 self.searchFilterResult.resultArr=[NSMutableArray arrayWithArray:arr];
+                 [GlobalInstance.navController presentViewController:nc animated:YES completion:nil];
+             }else
+             {
+                 [GlobalInstance showAlert:iInformation message:@"No result found"];
+             }
+         }];
+        [request setFailedBlock:^(NSError *error)
+         {
+              [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+         }];
+
+    }
+  
+    
+}
+////////////////////////////////////
+#pragma mark - Logic
+////////////////////////////////////
+-(NSString *) checkTextField
+{
+    
+    
+    if (![self.locationBtn.titleLabel.text isEqualToString:@"Location"] &&
+        ![self.propertyType.titleLabel.text isEqualToString:@"Property Type"])
+    {
+         if(self.pSizeSlider.value !=0)
+         {
+             return r0;
+         }else
+         {
+             return r3;
+         }
+        
+    }else
+    {
+        return r1;
+    }
+    return r0;
+}
 ////////////////////////
 #pragma mark - RMPickerViewController Delegates
 ////////////////////////
