@@ -14,6 +14,7 @@
 @interface AQSearchViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *seachedLocations;
+@property (strong, nonatomic) NSMutableArray *locationAddresses;
 @property (strong, nonatomic) NSMutableArray *filteredSearchedPropertyLocations;
 @property (strong, nonatomic) AQViewProperty *viewProperty;
 
@@ -34,6 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [[IQKeyboardManager sharedManager] setEnable:NO];
     [self.searchBar becomeFirstResponder];
     [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
@@ -87,12 +89,31 @@
     [request setCompletionBlock:^(id results) {
         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
         properties = [[NSMutableArray alloc] initWithArray:results];
+        [self saveLocationAddressesWithArray:properties];
         [self.searchTbl reloadData];
      }];
     [request setFailedBlock:^(NSError *error) {
         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
         [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
      }];
+}
+
+- (void)saveLocationAddressesWithArray:(NSArray *)locations {
+    
+    self.locationAddresses = [NSMutableArray arrayWithCapacity:locations.count];
+
+    for (PropertyList *propertyList in locations) {
+        NSMutableString *address = [[NSMutableString alloc] initWithString:[propertyList valueForKey:@"m_houseNumber"]];
+        [address appendString:[propertyList valueForKey:@"m_building"]];
+        [address appendString:@", "];
+        [address appendString:[propertyList valueForKey:@"m_street"]];
+        [address appendString:@", "];
+        [address appendString:[propertyList valueForKey:@"m_city"]];
+        [address appendString:@" "];
+        [address appendString:[propertyList valueForKey:@"m_postCode"]];
+
+        [self.locationAddresses addObject:address];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -105,6 +126,8 @@
     NSInteger numberOfRows = 0;
     if (inSearchMode) {
         numberOfRows = self.filteredSearchedPropertyLocations.count;
+    } else {
+        numberOfRows = properties.count;
     }
     return numberOfRows;
 }
@@ -116,23 +139,23 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    NSString *propertyString;
+    PropertyList *propertyList;
     if (inSearchMode) {
-        PropertyList *propertyList = [self.filteredSearchedPropertyLocations objectAtIndex:indexPath.row];
-        NSMutableString *address = [[NSMutableString alloc] initWithString:[propertyList valueForKey:@"m_houseNumber"]];
-        [address appendString:[propertyList valueForKey:@"m_building"]];
-        [address appendString:@", "];
-        [address appendString:[propertyList valueForKey:@"m_street"]];
-        [address appendString:@", "];
-        [address appendString:[propertyList valueForKey:@"m_city"]];
-        [address appendString:@" "];
-        [address appendString:[propertyList valueForKey:@"m_postCode"]];
-        
-        propertyString = address;
+        propertyList = [self.filteredSearchedPropertyLocations objectAtIndex:indexPath.row];
     } else {
-        propertyString = @"";
+        propertyList = [properties objectAtIndex:indexPath.row];
     }
-    cell.textLabel.text = propertyString;
+    
+    NSMutableString *address = [[NSMutableString alloc] initWithString:[propertyList valueForKey:@"m_houseNumber"]];
+    [address appendString:[propertyList valueForKey:@"m_building"]];
+    [address appendString:@", "];
+    [address appendString:[propertyList valueForKey:@"m_street"]];
+    [address appendString:@", "];
+    [address appendString:[propertyList valueForKey:@"m_city"]];
+    [address appendString:@" "];
+    [address appendString:[propertyList valueForKey:@"m_postCode"]];
+    
+    cell.textLabel.text = address;
     
     return cell;
 }
@@ -142,7 +165,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.searchVCDelegate showNavigationBar];
     self.viewProperty = [GlobalInstance loadStoryBoardId:sViewPropertyVC];
-    self.viewProperty.propertyDetails = [self.filteredSearchedPropertyLocations objectAtIndex:indexPath.row];
+    
+    if (inSearchMode) {
+        self.viewProperty.propertyDetails = [self.filteredSearchedPropertyLocations objectAtIndex:indexPath.row];
+    } else {
+        self.viewProperty.propertyDetails = [properties objectAtIndex:indexPath.row];
+    }
     [self.navigationController pushViewController:self.viewProperty animated:YES];
 }
 
@@ -157,48 +185,23 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSString *lowerCaseSearchString = searchText;
-    BOOL isSearchTextFound;
-    if ([searchBar.text isEqual:nil] || [searchBar.text isEqualToString:@""]) {
+
+    if ([searchText isEqual:nil] || [searchText isEqualToString:@""]) {
         inSearchMode = NO;
     } else {
         inSearchMode = YES;
         [self.filteredSearchedPropertyLocations removeAllObjects];
-        for (PropertyList *property in properties) {
-            isSearchTextFound = NO;
-            NSLog(@"property : %@", property);
-            if ([[[property valueForKey:@"m_amenities"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_building"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_city"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_description"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_houseNumber"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_numberOfBaths"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_numberOfBedrooms"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_postCode"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_price"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[[property valueForKey:@"m_propertySize"] stringValue] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_propertyType"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_street"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            } else if ([[[property valueForKey:@"m_unit"] lowercaseString] rangeOfString:lowerCaseSearchString].location != NSNotFound) {
-                isSearchTextFound = YES;
-            }
-            
-            if (isSearchTextFound) {
-                [self.filteredSearchedPropertyLocations addObject:property];
-            }
+        
+        NSString *match = [NSString stringWithFormat:@"*%@*",searchText];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF like[cd] %@", match];
+        NSArray *results = [self.locationAddresses filteredArrayUsingPredicate:predicate];
+        
+        
+        for (NSString *matchingString in results) {
+            NSInteger index = [self.locationAddresses indexOfObject:matchingString];
+            [self.filteredSearchedPropertyLocations addObject:properties[index]];
         }
+        
     }
     [self.searchTbl reloadData];
 }
