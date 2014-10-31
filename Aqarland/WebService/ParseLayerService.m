@@ -314,6 +314,40 @@ static ParseLayerService *instance = nil;
     }];
     
 }
+
+////////////////////////////////
+#pragma mark - User Profile
+////////////////////////////////
+
+- (void)fetchCurrentUserProfile {
+    PFUser *user = [PFUser currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
+    [query whereKey:@"user" equalTo:user];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (objects.count > 0) {
+                pfUserProfile = objects[0];
+                
+                NSMutableDictionary *userDictionary = [[NSMutableDictionary alloc] init];
+                [userDictionary setObject:pfUserProfile forKey:pUserProfile];
+                [userDictionary setObject:[PFUser currentUser] forKey:pUser];
+                
+                [self reportSuccess:userDictionary];
+            } else {
+                NSError *error;
+                NSMutableDictionary *errorDetails = [[NSMutableDictionary alloc] init];
+                NSString *errorMsg = @"Unable to fetch user info. Please try again.";
+                [errorDetails setValue:errorMsg forKey:NSLocalizedDescriptionKey];
+                error = [NSError errorWithDomain:@"Error" code:500 userInfo:errorDetails];
+                
+                [self reportFailure:error];
+            }
+        } else {
+            [self reportFailure:error];
+        }
+    }];
+}
+
 ////////////////////////////////
 #pragma mark - Login Request
 ////////////////////////////////
@@ -810,20 +844,7 @@ static ParseLayerService *instance = nil;
      }];
 }
 
-- (NSMutableDictionary *)fetchCurrentUserProfile {
-    NSMutableDictionary *userDictionary = [[NSMutableDictionary alloc] init];
-    PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
-    pfUserProfile = [[query findObjects] objectAtIndex:0];
-    
-    PFUser *currentUser = [PFUser currentUser];
-    NSLog(@"currentUser : %@", currentUser);
-    
-    [userDictionary setObject:pfUserProfile forKey:pUserProfile];
-    [userDictionary setObject:[PFUser currentUser] forKey:pUser];
-    
-    return userDictionary;
-}
+
 
 ////////////////////////////////
 #pragma mark - Filter Search
