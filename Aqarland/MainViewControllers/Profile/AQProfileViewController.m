@@ -55,6 +55,11 @@
     [self.profilePicButton setImage:[UIImage imageNamed:@"emptyProfileImage"] forState:UIControlStateDisabled];
     
     pfImageView = [[PFImageView alloc] initWithFrame:self.profilePicButton.frame];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self updatePlaceHolders];
 }
 
@@ -100,57 +105,75 @@
 }
 
 - (void)updatePlaceHolders {
-    userDictionary = [[ParseLayerService sharedInstance] fetchCurrentUserProfile];
-    userProfile = [userDictionary objectForKey:pUserProfile];
-    pfUser = [userDictionary objectForKey:pUser];
-    
-    navigationBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    navigationBarTitleLabel.backgroundColor = [UIColor clearColor];
-    navigationBarTitleLabel.font = [UIFont fontWithName: @"Roboto-Regular" size:18.0f];
-    navigationBarTitleLabel.textAlignment = NSTextAlignmentCenter;
-    navigationBarTitleLabel.textColor = [UIColor whiteColor];
-    navigationBarTitleLabel.text = [userProfile valueForKey:@"fullName"];
-    [navigationBarTitleLabel sizeToFit];
-    self.navigationItem.titleView = navigationBarTitleLabel;
-    self.officeAddressTextView.textColor = [UIColor lightGrayColor];
-    
-    if ([userProfile valueForKey:@"userAvatar"]) {
-        PFFile *imageFile = [userProfile valueForKey:@"userAvatar"];
-        [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            pfImageView.image = [UIImage imageWithData:imageData];
-            [self.profilePicButton setImage:pfImageView.image forState:UIControlStateNormal];
-            [self.profilePicButton setImage:pfImageView.image forState:UIControlStateSelected];
-            [self.profilePicButton setImage:pfImageView.image forState:UIControlStateDisabled];
-        }];
-    }
-    
-    self.contactNumberTextField.placeholder = [userProfile valueForKey:@"phoneNumber"];
-    self.emailAddressTextField.placeholder = [pfUser valueForKey:@"email"];
-    
-    addressPlaceHolder = [[NSMutableString alloc] init];
-    if ([[userProfile valueForKey:@"address"] length] > 0) {
-        if ([[userProfile valueForKey:@"address"] rangeOfString:@","].location == NSNotFound) {
-            [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"address"]]];
-        } else {
-            [addressPlaceHolder appendString:[userProfile valueForKey:@"address"]];
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+
+    ParseLayerService *request = [[ParseLayerService alloc] init];
+    [request fetchCurrentUserProfile];
+    [request setCompletionBlock:^(id results) {
+        [MBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+
+        userDictionary = (NSMutableDictionary *)results;
+        
+        userProfile = [userDictionary objectForKey:pUserProfile];
+        pfUser = [userDictionary objectForKey:pUser];
+        
+        navigationBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        navigationBarTitleLabel.backgroundColor = [UIColor clearColor];
+        navigationBarTitleLabel.font = [UIFont fontWithName: @"Roboto-Regular" size:18.0f];
+        navigationBarTitleLabel.textAlignment = NSTextAlignmentCenter;
+        navigationBarTitleLabel.textColor = [UIColor whiteColor];
+        navigationBarTitleLabel.text = pfUser[@"name"];
+        [navigationBarTitleLabel sizeToFit];
+        self.navigationItem.titleView = navigationBarTitleLabel;
+        self.officeAddressTextView.textColor = [UIColor lightGrayColor];
+        
+        if ([userProfile valueForKey:@"userAvatar"]) {
+            PFFile *imageFile = [userProfile valueForKey:@"userAvatar"];
+            [imageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                pfImageView.image = [UIImage imageWithData:imageData];
+                [self.profilePicButton setImage:pfImageView.image forState:UIControlStateNormal];
+                [self.profilePicButton setImage:pfImageView.image forState:UIControlStateSelected];
+                [self.profilePicButton setImage:pfImageView.image forState:UIControlStateDisabled];
+            }];
         }
-    }
-    if ([[userProfile valueForKey:@"city"] length] > 0) {
-        if ([[userProfile valueForKey:@"city"] rangeOfString:@","].location == NSNotFound) {
-            [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"city"]]];
-        } else {
-            [addressPlaceHolder appendString:[userProfile valueForKey:@"city"]];
+        
+        self.contactNumberTextField.placeholder = [userProfile valueForKey:@"phoneNumber"];
+        self.emailAddressTextField.placeholder = [pfUser valueForKey:@"email"];
+        
+        addressPlaceHolder = [[NSMutableString alloc] init];
+        if ([[userProfile valueForKey:@"address"] length] > 0) {
+            if ([[userProfile valueForKey:@"address"] rangeOfString:@","].location == NSNotFound) {
+                [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"address"]]];
+            } else {
+                [addressPlaceHolder appendString:[userProfile valueForKey:@"address"]];
+            }
         }
-    }
-    if ([[userProfile valueForKey:@"country"] length] > 0) {
-        if ([[userProfile valueForKey:@"country"] rangeOfString:@","].location == NSNotFound) {
-            [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"country"]]];
-        } else {
-            [addressPlaceHolder appendString:[userProfile valueForKey:@"country"]];
+        if ([[userProfile valueForKey:@"city"] length] > 0) {
+            if ([[userProfile valueForKey:@"city"] rangeOfString:@","].location == NSNotFound) {
+                [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"city"]]];
+            } else {
+                [addressPlaceHolder appendString:[userProfile valueForKey:@"city"]];
+            }
         }
-    }
+        if ([[userProfile valueForKey:@"country"] length] > 0) {
+            if ([[userProfile valueForKey:@"country"] rangeOfString:@","].location == NSNotFound) {
+                [addressPlaceHolder appendString:[NSString stringWithFormat:@"%@, ", [userProfile valueForKey:@"country"]]];
+            } else {
+                [addressPlaceHolder appendString:[userProfile valueForKey:@"country"]];
+            }
+        }
+        
+        self.officeAddressTextView.text = addressPlaceHolder;
+
+    }];
+    [request setFailedBlock:^(NSError *error) {
+        [MBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Unable to fetch user information" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil, nil];
+        [alert show];
+
+    }];
     
-    self.officeAddressTextView.text = addressPlaceHolder;
 }
 
 - (void)didTapEditButton {

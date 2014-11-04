@@ -126,8 +126,6 @@
     NSInteger numberOfRows = 0;
     if (inSearchMode) {
         numberOfRows = self.filteredSearchedPropertyLocations.count;
-    } else {
-        numberOfRows = properties.count;
     }
     return numberOfRows;
 }
@@ -142,8 +140,6 @@
     PropertyList *propertyList;
     if (inSearchMode) {
         propertyList = [self.filteredSearchedPropertyLocations objectAtIndex:indexPath.row];
-    } else {
-        propertyList = [properties objectAtIndex:indexPath.row];
     }
     
     NSMutableString *address = [[NSMutableString alloc] initWithString:[propertyList valueForKey:@"m_houseNumber"]];
