@@ -75,7 +75,8 @@
 #define sPropertyTableVC            @"sPropertyTableView"
 #define sPropertyViewInMapVC        @"sViewInMap"
 #define sPropertyFilterVC           @"filterScreenVC"
-#define sSearchFilterResultVC      @"filterSearchResult"
+#define sPropertyFilterTypeVC       @"filterPropertyTypeVC"
+#define sSearchFilterResultVC       @"filterSearchResult"
 
 
 //Parse Class Name
