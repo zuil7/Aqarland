@@ -12,9 +12,10 @@
 #import "AQViewProperty.h"
 #import "AQPropertListViewController.h"
 #import "PropertyList.h"
+#import "AQFilterProperTypeVC.h"
 #import "AQFilterScreenVC.h"
 
-@interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate,MBProgressHUDDelegate,AQFilterResultDelegate>
+@interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate,MBProgressHUDDelegate,AQFilterResultDelegate, AQFilterProperTypeVCDelegate>
 {
     int ZOOM_LEVEL;
     CustomPinView *selectedPin;
@@ -25,6 +26,7 @@
 @property(nonatomic,strong) AQViewProperty *viewProperty;
 @property(nonatomic,strong) AQPropertListViewController *propertyListVC;
 @property(nonatomic,strong) AQFilterScreenVC *filterVC;
+@property(nonatomic,strong) AQFilterProperTypeVC *filterPropertyTypeVC;
 @property(nonatomic,strong) NSMutableArray *propertyListArr;
 @property(nonatomic,strong) NSMutableArray *annotationArray;
 @property(nonatomic,strong) PropertyList *property;
@@ -206,7 +208,24 @@
     {
         [self.filterBtn setSelected:NO];
         [self.propertyTypeBtn setSelected:YES];
-        
+        self.filterPropertyTypeVC=[GlobalInstance loadStoryBoardId:sPropertyFilterTypeVC];
+        [self.filterPropertyTypeVC setFilterDelegate:self];
+        double delayInSeconds = 0.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+                       {
+                           UIGraphicsBeginImageContext(CGSizeMake(self.navigationController.view.frame.size.width,self.navigationController.view.frame.size.height));
+                           CGContextRef context = UIGraphicsGetCurrentContext();
+                           [self.navigationController.view.layer renderInContext:context];
+                           UIImage *screenShot = UIGraphicsGetImageFromCurrentImageContext();
+                           UIGraphicsEndImageContext();
+                           
+                           self.filterPropertyTypeVC.imageScreen=screenShot;
+                           [self.navigationController addChildViewController:self.filterPropertyTypeVC];
+                           self.filterPropertyTypeVC.view.frame = self.view.frame;
+                           [self.navigationController.view addSubview:self.filterPropertyTypeVC.view];
+                           [self.filterPropertyTypeVC didMoveToParentViewController:self];
+                       });
     }
     
 }
@@ -488,5 +507,10 @@
 - (void)resetButton
 {
     [self.filterBtn setSelected:NO];
-    [self.propertyTypeBtn setSelected:NO];}
+}
+
+- (void)filterPropertyTypeVCDidEndPresenting
+{
+    [self.propertyTypeBtn setSelected:NO];
+}
 @end

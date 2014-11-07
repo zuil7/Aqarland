@@ -45,11 +45,17 @@
    // [self customizeHeaderBar];
     self.viewProperty = [[AQViewProperty alloc] init];
     self.filteredSearchedPropertyLocations = [[NSMutableArray alloc] init];
+    [self fetchDataForSearch];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self fetchDataForSearch];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
