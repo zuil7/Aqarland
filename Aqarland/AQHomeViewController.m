@@ -53,13 +53,21 @@
      [self customizeHeaderBar];
 //  self.propertyListArr=[[NSMutableArray alloc]initWithArray:[GlobalInstance loadPlistfile:@"propertyTypeList" forKey:@"Station"]];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(fetchNewProperty)
+                                                 name:nsFetchProperty
+                                               object:nil];
+    
+    [self fetchPropertyList];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self fetchPropertyList];
-    [self.mapView removeAnnotations:self.mapView.annotations];
+//    [self fetchPropertyList];
+//    [self.mapView removeAnnotations:self.mapView.annotations];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -82,6 +90,12 @@
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
+-(void)fetchNewProperty
+{
+    [self fetchPropertyList];
+    [self.mapView removeAnnotations:self.mapView.annotations];
+}
+
 -(void) getCurrentLocation
 {
     self.locationManager = [[CLLocationManager alloc] init];
@@ -196,10 +210,10 @@
                            UIGraphicsEndImageContext();
                            
                            self.filterVC.imageScreen=screenShot;
-                           [self.navigationController addChildViewController:self.filterVC];
+                           //[self.navigationController addChildViewController:self.filterVC];
                            self.filterVC.view.frame = self.view.bounds;
                            [self.navigationController.view addSubview:self.filterVC.view];
-                           [self.filterVC didMoveToParentViewController:self];
+                           //[self.filterVC didMoveToParentViewController:self];
                        });
         
         
@@ -221,10 +235,10 @@
                            UIGraphicsEndImageContext();
                            
                            self.filterPropertyTypeVC.imageScreen=screenShot;
-                           [self.navigationController addChildViewController:self.filterPropertyTypeVC];
+                           //[self.navigationController addChildViewController:self.filterPropertyTypeVC];
                            self.filterPropertyTypeVC.view.frame = self.view.frame;
                            [self.navigationController.view addSubview:self.filterPropertyTypeVC.view];
-                           [self.filterPropertyTypeVC didMoveToParentViewController:self];
+                           //[self.filterPropertyTypeVC didMoveToParentViewController:self];
                        });
     }
     

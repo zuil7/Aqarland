@@ -71,7 +71,7 @@
     if(!CGRectContainsPoint(self.filterView.frame, touchPoint))
     {
         [self.view removeFromSuperview];
-        [self removeFromParentViewController];
+        //[self removeFromParentViewController];
         [self.filterDelegate resetButton];
     }
 

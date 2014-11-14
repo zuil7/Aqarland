@@ -95,4 +95,7 @@
 #define iFavoriteImg            @"favorites_icon.png"
 #define iShareImg               @"share_icon.png"
 #define iCloseImg               @"close_btn.png"
+
+//Notification
+#define nsFetchProperty @"fetchNewProperty"
 #endif
