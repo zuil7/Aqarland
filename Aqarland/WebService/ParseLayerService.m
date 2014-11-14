@@ -586,6 +586,10 @@ static ParseLayerService *instance = nil;
             {
                 PropertyList *property=[[PropertyList alloc] init];
                 NSLog(@"comment %@",pResult);
+                if ([pResult objectId].length!=0)
+                {
+                    property.m_objectID=[pResult objectId];
+                }
                 if (pResult[@"amenities"] != [NSNull null])
                 {
                     property.m_amenities=pResult[@"amenities"];
@@ -666,6 +670,57 @@ static ParseLayerService *instance = nil;
         }
         
     }];
+}
+
+-(void) fetchFavorites
+{
+    PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
+    //[query whereKey:@"city" equalTo:cityStr];
+    //[query orderByDescending:@"createdAt"];
+    //query.limit = 10;
+    //[query includeKey:@"propertyImgArr"];
+    //[query includeKey:@"user"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+     {
+         NSLog(@"result %@",result);
+         
+     }];
+}
+-(void) addFavorites:(PropertyList *) pList
+{
+    PFUser *cUser = [PFUser currentUser];
+    
+    PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
+    NSLog(@"query %@",query);
+    [query whereKey:@"user" equalTo:cUser];
+    [query includeKey:@"favoriteArray"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+     {
+         NSLog(@"result %@",result);
+         if(!error && result.count!=0)
+         {
+             for (PFObject *pResult in result)
+             {
+                 if ([pResult objectId].length!=0)
+                 {
+                     [query getObjectInBackgroundWithId:[pResult objectId] block:^(PFObject *result, NSError *error)
+                      {
+                          
+                          NSLog(@"userProfile %@",result);
+                          //                        NSMutableArray *array =  [NSMutableArray array];
+                          //                         [array addObject:pList];
+                          //                         result[@"favoriteArray"]=array;
+                          //                         [result saveInBackground];
+                      }];
+                     
+                 }
+                 
+             }
+             
+             
+         }
+     }];
+    
 }
 
 ////////////////////////////////

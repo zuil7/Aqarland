@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UserProfile.h"
+#import "PropertyList.h"
 
 typedef void(^AQResultBlock)(id results);
 typedef void(^AQFailedBlock)(NSError *error);
@@ -41,6 +42,9 @@ typedef void(^AQFailedBlock)(NSError *error);
 -(void) fetchProperty;
 -(void) fetchPropertyPerUser;
 -(void) fetchPropertyPerCity:(NSString *) cityStr;
+-(void) fetchFavorites;
+-(void) addFavorites:(PropertyList *) pList;
+
 //AddProperty
 -(void) addProperty:(NSDictionary *) propertyDetails;
 -(void) updateProperty:(NSDictionary *) propertyDetails :(NSString *) propertyObjID;
