@@ -15,6 +15,8 @@
 }
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) NSMutableArray *imagesArr;
+@property (nonatomic, strong) UIButton *favoriteBtn;
+@property (nonatomic, strong) UIButton *shareBtn;
 @end
 
 @implementation AQViewProperty
@@ -60,6 +62,23 @@
     [self.carousel reloadData];
     [self.carousel scrollToItemAtIndex:0 duration:0.0f];
     
+    [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+    ParseLayerService *request =[[ParseLayerService alloc] init];
+    [request checkifFavorites:self.propertyDetails];
+    [request setCompletionBlock:^(id results)
+     {
+         [self.favoriteBtn setSelected:YES];
+         [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImgYellow] forState:UIControlStateSelected];
+         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+     }];
+    [request setFailedBlock:^(NSError *error)
+     {
+         [self.favoriteBtn setSelected:NO];
+         [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImg] forState:UIControlStateNormal];
+         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+        // [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+     }];
+    
     [self performSelector:@selector(populateMap) withObject:self afterDelay:0.1];
     
     [self fillData];
@@ -101,24 +120,24 @@
     if ([self.navigationItem respondsToSelector:@selector(rightBarButtonItems)])
     {
         UIImage *favoriteImage = [UIImage imageNamed:iFavoriteImg];
-        UIButton *favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        favoriteBtn.frame = CGRectMake(0,0,22,22);
-        [favoriteBtn setImage:favoriteImage forState:UIControlStateNormal];
+        self.favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.favoriteBtn.frame = CGRectMake(0,0,22,22);
+        [self.favoriteBtn setImage:favoriteImage forState:UIControlStateNormal];
         
-        [favoriteBtn addTarget:self action:@selector(favorites_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
+        [self.favoriteBtn addTarget:self action:@selector(favorites_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
         
         
         
         UIImage *shareImage = [UIImage imageNamed:iShareImg];
-        UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        shareBtn.frame = CGRectMake(0,0,22,22);
-        [shareBtn setImage:shareImage forState:UIControlStateNormal];
+        self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.shareBtn.frame = CGRectMake(0,0,22,22);
+        [self.shareBtn setImage:shareImage forState:UIControlStateNormal];
         
-        [shareBtn addTarget:self action:@selector(share_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
+        [self.shareBtn addTarget:self action:@selector(share_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
         
-        UIBarButtonItem *favoriteButtonItem = [[UIBarButtonItem alloc] initWithCustomView:favoriteBtn];
+        UIBarButtonItem *favoriteButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.favoriteBtn];
         
-        UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareBtn];
+        UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareBtn];
         
         self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:favoriteButtonItem, shareButtonItem, nil];
         
@@ -133,17 +152,42 @@
 
 -(void)favorites_touchedup_inside:(id) sender
 {
-    ParseLayerService *request =[[ParseLayerService alloc] init];
-    [request addFavorites:self.propertyDetails];
-    [request setCompletionBlock:^(id results)
-     {
-         //[MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-     }];
-    [request setFailedBlock:^(NSError *error)
-     {
-         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-         [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
-     }];
+    if(![sender isSelected])
+    {
+      
+            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+            ParseLayerService *request =[[ParseLayerService alloc] init];
+            [request addFavorites:self.propertyDetails];
+            [request setCompletionBlock:^(id results)
+             {
+                 [self.favoriteBtn setSelected:YES];
+                 [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImgYellow] forState:UIControlStateSelected];
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             }];
+            [request setFailedBlock:^(NSError *error)
+             {
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+             }];
+
+    }else
+    {
+        [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+        ParseLayerService *request =[[ParseLayerService alloc] init];
+        [request removeFavorites:self.propertyDetails];
+        [request setCompletionBlock:^(id results)
+         {
+             [self.favoriteBtn setSelected:NO];
+             [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImg] forState:UIControlStateNormal];
+             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+         }];
+        [request setFailedBlock:^(NSError *error)
+         {
+             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+         }];
+
+    }
 
 }
 

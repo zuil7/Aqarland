@@ -489,6 +489,10 @@ static ParseLayerService *instance = nil;
             {
                 PropertyList *property=[[PropertyList alloc] init];
                 NSLog(@"comment %@",pResult);
+                if ([pResult objectId].length!=0)
+                {
+                    property.m_objectID=[pResult objectId];
+                }
                 if (pResult[@"amenities"] != [NSNull null])
                 {
                     property.m_amenities=pResult[@"amenities"];
@@ -672,57 +676,183 @@ static ParseLayerService *instance = nil;
     }];
 }
 
--(void) fetchFavorites
+
+-(void) checkifFavorites:(PropertyList *) pList
 {
-    PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
-    //[query whereKey:@"city" equalTo:cityStr];
-    //[query orderByDescending:@"createdAt"];
-    //query.limit = 10;
-    //[query includeKey:@"propertyImgArr"];
-    //[query includeKey:@"user"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+    __block NSMutableArray *arrayTmp=[[NSMutableArray alloc] init];
+    __block PFObject *resultList;
+
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query getObjectInBackgroundWithId:pList.m_objectID block:^(PFObject *result, NSError *error)
      {
-         NSLog(@"result %@",result);
+         PFUser *cUser = [PFUser currentUser];
+         resultList=result;
+         NSLog(@"resultList ID %@",[resultList objectId]);
+         PFQuery *queryUser = [PFQuery queryWithClassName:pUserProfile];
+         [queryUser whereKey:@"user" equalTo:cUser];
+         [queryUser findObjectsInBackgroundWithBlock:^(NSArray *userResult, NSError *error)
+          {
+              if(!error && userResult.count!=0)
+              {
+                  for (int i=0; i<[userResult count]; i++)
+                  {
+                      NSDictionary *dict=[userResult objectAtIndex:i];
+                      arrayTmp=[NSMutableArray arrayWithArray:dict[@"favoriteArray"]];
+                      NSLog(@"arrayTmp %@",arrayTmp);
+                      
+                       NSArray *arr=[arrayTmp filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"objectId=%@",[resultList objectId]]];
+                       NSLog(@"arr %@",arr);
+                      if ([arr count]!=0)
+                      {
+                          [self reportSuccess:[NSNumber numberWithBool:YES]];
+                      }else
+                      {
+                          [self reportFailure:error];
+                      }
+                      
+                  }
+                
+              }
+              
+          }];
          
      }];
+     
+     
+
 }
+
 -(void) addFavorites:(PropertyList *) pList
 {
-    PFUser *cUser = [PFUser currentUser];
-    
-    PFQuery *query = [PFQuery queryWithClassName:pUserProfile];
-    NSLog(@"query %@",query);
-    [query whereKey:@"user" equalTo:cUser];
-    [query includeKey:@"favoriteArray"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+  
+    __block NSMutableArray *arrayTmp=[[NSMutableArray alloc] init];
+    __block PFObject *resultList;
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query getObjectInBackgroundWithId:pList.m_objectID block:^(PFObject *result, NSError *error)
      {
-         NSLog(@"result %@",result);
-         if(!error && result.count!=0)
-         {
-             for (PFObject *pResult in result)
-             {
-                 if ([pResult objectId].length!=0)
-                 {
-                     [query getObjectInBackgroundWithId:[pResult objectId] block:^(PFObject *result, NSError *error)
-                      {
-                          
-                          NSLog(@"userProfile %@",result);
-                          //                        NSMutableArray *array =  [NSMutableArray array];
-                          //                         [array addObject:pList];
-                          //                         result[@"favoriteArray"]=array;
-                          //                         [result saveInBackground];
-                      }];
-                     
-                 }
-                 
-             }
-             
-             
-         }
+         PFUser *cUser = [PFUser currentUser];
+         resultList=result;
+         NSLog(@"resultList ID %@",[resultList objectId]);
+         PFQuery *queryUser = [PFQuery queryWithClassName:pUserProfile];
+         [queryUser whereKey:@"user" equalTo:cUser];
+         [queryUser findObjectsInBackgroundWithBlock:^(NSArray *userResult, NSError *error)
+          {
+              NSLog(@"userResult %@",userResult);
+              if(!error && userResult.count!=0)
+              {
+                  NSString *objStr;
+                  for (PFObject *pResultObj in userResult)
+                  {
+                      objStr=[pResultObj objectId];
+                  }
+                  
+                  for (int i=0; i<[userResult count]; i++)
+                  {
+                      NSDictionary *dict=[userResult objectAtIndex:i];
+                      arrayTmp=[NSMutableArray arrayWithArray:dict[@"favoriteArray"]];
+                  }
+                  
+                     NSArray *arr=[arrayTmp filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"objectId=%@",[resultList objectId]]];
+                      NSLog(@"arr %@",arr);
+                          if([arr count]==0)
+                          {
+                              [arrayTmp addObject:resultList];
+                              NSLog(@"arrayTmp %@",arrayTmp);
+                              PFQuery *query1 = [PFQuery queryWithClassName:pUserProfile];
+                              [query1 getObjectInBackgroundWithId:objStr block:^(PFObject *userProfileResult, NSError *error)
+                               {
+                                   userProfileResult[@"favoriteArray"] = arrayTmp;
+                                   [userProfileResult saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                                    {
+                                        if (!error)
+                                        {
+                                            NSLog(@"userProfileResult %@",userProfileResult);
+                                            NSDictionary *dict= (NSDictionary *)userProfileResult;
+                                            NSArray *arr=dict[@"favoriteArray"];
+                                            NSLog(@"arr count %d",[arr count]);
+                                            [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                                        }
+                                        else
+                                        {
+                                            [self reportFailure:error];
+                                        }
+                                    }];
+                               }];
+                          }else
+                          {
+                               [self reportSuccess:[NSNumber numberWithBool:YES]];
+                          }
+              }
+          }];
      }];
     
 }
+-(void) removeFavorites:(PropertyList *) pList
+{
+    __block NSMutableArray *arrayTmp=[[NSMutableArray alloc] init];
+    __block PFObject *resultList;
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query getObjectInBackgroundWithId:pList.m_objectID block:^(PFObject *result, NSError *error)
+     {
+         PFUser *cUser = [PFUser currentUser];
+         resultList=result;
+         NSLog(@"resultList ID %@",[resultList objectId]);
+         PFQuery *queryUser = [PFQuery queryWithClassName:pUserProfile];
+         [queryUser whereKey:@"user" equalTo:cUser];
+         [queryUser findObjectsInBackgroundWithBlock:^(NSArray *userResult, NSError *error)
+          {
+              NSLog(@"userResult %@",userResult);
+              if(!error && userResult.count!=0)
+              {
+                  NSString *objStr;
+                  for (PFObject *pResultObj in userResult)
+                  {
+                      objStr=[pResultObj objectId];
+                  }
+                  
+                  for (int i=0; i<[userResult count]; i++)
+                  {
+                      NSDictionary *dict=[userResult objectAtIndex:i];
+                      arrayTmp=[NSMutableArray arrayWithArray:dict[@"favoriteArray"]];
+                  }
+                  
+                  NSArray *arr=[arrayTmp filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"objectId=%@",[resultList objectId]]];
+                  NSLog(@"arr %@",arr);
+                  if([arr count]!=0)
+                  {
+                      [arrayTmp removeObjectsInArray:[arrayTmp filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"objectId=%@",[resultList objectId]]]];
+                      NSLog(@"arrayTmp %@",arrayTmp);
+                      PFQuery *query1 = [PFQuery queryWithClassName:pUserProfile];
+                      [query1 getObjectInBackgroundWithId:objStr block:^(PFObject *userProfileResult, NSError *error)
+                       {
+                           userProfileResult[@"favoriteArray"] = arrayTmp;
+                           [userProfileResult saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                            {
+                                if (!error)
+                                {
+                                    NSLog(@"userProfileResult %@",userProfileResult);
+                                    NSDictionary *dict= (NSDictionary *)userProfileResult;
+                                    NSArray *arr=dict[@"favoriteArray"];
+                                    NSLog(@"arr count %d",[arr count]);
+                                    [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                                }
+                                else
+                                {
+                                    [self reportFailure:error];
+                                }
+                            }];
+                       }];
+                  }else
+                  {
+                      [self reportSuccess:[NSNumber numberWithBool:YES]];
+                  }
+              }
+          }];
+     }];
+    
 
+
+}
 ////////////////////////////////
 #pragma mark - Add Property
 ////////////////////////////////

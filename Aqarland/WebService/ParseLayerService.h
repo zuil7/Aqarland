@@ -42,8 +42,9 @@ typedef void(^AQFailedBlock)(NSError *error);
 -(void) fetchProperty;
 -(void) fetchPropertyPerUser;
 -(void) fetchPropertyPerCity:(NSString *) cityStr;
--(void) fetchFavorites;
+-(void) checkifFavorites:(PropertyList *) pList;
 -(void) addFavorites:(PropertyList *) pList;
+-(void) removeFavorites:(PropertyList *) pList;
 
 //AddProperty
 -(void) addProperty:(NSDictionary *) propertyDetails;

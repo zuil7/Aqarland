@@ -66,6 +66,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"self.propertyListArr %@",self.propertyListArr);
 //    [self fetchPropertyList];
 //    [self.mapView removeAnnotations:self.mapView.annotations];
 }

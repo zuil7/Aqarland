@@ -93,6 +93,7 @@
 #define iMenuImg                @"dashboard_icon.png"
 #define iSearchImg              @"search_icon.png"
 #define iFavoriteImg            @"favorites_icon.png"
+#define iFavoriteImgYellow      @"favorites_icon_yellow.png"
 #define iShareImg               @"share_icon.png"
 #define iCloseImg               @"close_btn.png"
 

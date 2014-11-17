@@ -13,6 +13,8 @@
 		B73C05AA19A1E8BD0048FE8A /* type_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = B73C05A819A1E8BD0048FE8A /* type_fill.png */; };
 		B73C05AB19A1E8BD0048FE8A /* type_fill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B73C05A919A1E8BD0048FE8A /* type_fill@2x.png */; };
 		B788325D19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B788325C19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m */; };
+		B78ED0D81A199D64007BBA0F /* favorites_icon_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = B78ED0D61A199D64007BBA0F /* favorites_icon_yellow.png */; };
+		B78ED0D91A199D64007BBA0F /* favorites_icon_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B78ED0D71A199D64007BBA0F /* favorites_icon_yellow@2x.png */; };
 		B79120F119E52CE2005EC610 /* property_type_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B79120ED19E52CE1005EC610 /* property_type_active.png */; };
 		B79120F219E52CE2005EC610 /* property_type_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B79120EE19E52CE1005EC610 /* property_type_active@2x.png */; };
 		B79120F319E52CE2005EC610 /* search_button_active.png in Resources */ = {isa = PBXBuildFile; fileRef = B79120EF19E52CE1005EC610 /* search_button_active.png */; };
@@ -284,6 +286,8 @@
 		B73C05A919A1E8BD0048FE8A /* type_fill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "type_fill@2x.png"; sourceTree = "<group>"; };
 		B788325B19ADBBA700FD2219 /* AQMapConfirmLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQMapConfirmLocationViewController.h; sourceTree = "<group>"; };
 		B788325C19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQMapConfirmLocationViewController.m; sourceTree = "<group>"; };
+		B78ED0D61A199D64007BBA0F /* favorites_icon_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites_icon_yellow.png; sourceTree = "<group>"; };
+		B78ED0D71A199D64007BBA0F /* favorites_icon_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites_icon_yellow@2x.png"; sourceTree = "<group>"; };
 		B79120ED19E52CE1005EC610 /* property_type_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = property_type_active.png; sourceTree = "<group>"; };
 		B79120EE19E52CE1005EC610 /* property_type_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "property_type_active@2x.png"; sourceTree = "<group>"; };
 		B79120EF19E52CE1005EC610 /* search_button_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_button_active.png; sourceTree = "<group>"; };
@@ -1153,6 +1157,8 @@
 		B7A83B591998B86500B4B0C6 /* 08 - Property Details */ = {
 			isa = PBXGroup;
 			children = (
+				B78ED0D61A199D64007BBA0F /* favorites_icon_yellow.png */,
+				B78ED0D71A199D64007BBA0F /* favorites_icon_yellow@2x.png */,
 				B7A83B5A1998B86500B4B0C6 /* bathtub_icon.png */,
 				B7A83B5B1998B86500B4B0C6 /* bathtub_icon@2x.png */,
 				B7A83B5C1998B86500B4B0C6 /* bed_icon.png */,
@@ -1527,6 +1533,7 @@
 				B7A83BE01998B86500B4B0C6 /* search_bar.png in Resources */,
 				B7A83BDA1998B86500B4B0C6 /* map_pin.png in Resources */,
 				B7A83BC91998B86500B4B0C6 /* Dashboard-Screen-2.png in Resources */,
+				B78ED0D91A199D64007BBA0F /* favorites_icon_yellow@2x.png in Resources */,
 				B7A83BB41998B86500B4B0C6 /* Regsitration-Screen-3.png in Resources */,
 				B7A83BA11998B86500B4B0C6 /* confirm_button_inactive.png in Resources */,
 				B7A83B841998B86500B4B0C6 /* logo.png in Resources */,
@@ -1584,6 +1591,7 @@
 				B7A83C481999B4E200B4B0C6 /* login_screen_background.png in Resources */,
 				B7A83C051998B86500B4B0C6 /* delete_icon@2x.png in Resources */,
 				B7A83BEE1998B86500B4B0C6 /* settings_icon.png in Resources */,
+				B78ED0D81A199D64007BBA0F /* favorites_icon_yellow.png in Resources */,
 				B7A83BF21998B86500B4B0C6 /* support_icon.png in Resources */,
 				B7A2F7BA19C81AE500BC3C3C /* blank_button_active.png in Resources */,
 				B7BEAC0019A204E700CCFC29 /* description_fill_text.png in Resources */,
