@@ -386,6 +386,10 @@ static ParseLayerService *instance = nil;
              {
                  PropertyList *property=[[PropertyList alloc] init];
                  NSLog(@"comment %@",pResult);
+                 if ([pResult objectId].length!=0)
+                 {
+                     property.m_objectID=[pResult objectId];
+                 }
                  if (pResult[@"amenities"] != [NSNull null])
                  {
                      property.m_amenities=pResult[@"amenities"];
@@ -1056,6 +1060,10 @@ static ParseLayerService *instance = nil;
              {
                  PropertyList *property=[[PropertyList alloc] init];
                  NSLog(@"comment %@",pResult);
+                 if ([pResult objectId].length!=0)
+                 {
+                     property.m_objectID=[pResult objectId];
+                 }
                  if (pResult[@"amenities"] != [NSNull null])
                  {
                      property.m_amenities=pResult[@"amenities"];
@@ -1149,6 +1157,10 @@ static ParseLayerService *instance = nil;
              {
                  PropertyList *property=[[PropertyList alloc] init];
                  NSLog(@"comment %@",pResult);
+                 if ([pResult objectId].length!=0)
+                 {
+                     property.m_objectID=[pResult objectId];
+                 }
                  if (pResult[@"amenities"] != [NSNull null])
                  {
                      property.m_amenities=pResult[@"amenities"];

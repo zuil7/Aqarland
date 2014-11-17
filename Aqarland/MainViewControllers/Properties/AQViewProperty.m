@@ -62,20 +62,20 @@
     [self.carousel reloadData];
     [self.carousel scrollToItemAtIndex:0 duration:0.0f];
     
-    [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     ParseLayerService *request =[[ParseLayerService alloc] init];
     [request checkifFavorites:self.propertyDetails];
     [request setCompletionBlock:^(id results)
      {
          [self.favoriteBtn setSelected:YES];
          [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImgYellow] forState:UIControlStateSelected];
-         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
      }];
     [request setFailedBlock:^(NSError *error)
      {
          [self.favoriteBtn setSelected:NO];
          [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImg] forState:UIControlStateNormal];
-         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         // [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
      }];
     
@@ -155,35 +155,35 @@
     if(![sender isSelected])
     {
       
-            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+            [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
             ParseLayerService *request =[[ParseLayerService alloc] init];
             [request addFavorites:self.propertyDetails];
             [request setCompletionBlock:^(id results)
              {
                  [self.favoriteBtn setSelected:YES];
                  [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImgYellow] forState:UIControlStateSelected];
-                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
              }];
             [request setFailedBlock:^(NSError *error)
              {
-                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                  [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
              }];
 
     }else
     {
-        [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         ParseLayerService *request =[[ParseLayerService alloc] init];
         [request removeFavorites:self.propertyDetails];
         [request setCompletionBlock:^(id results)
          {
              [self.favoriteBtn setSelected:NO];
              [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImg] forState:UIControlStateNormal];
-             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
          }];
         [request setFailedBlock:^(NSError *error)
          {
-             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
              [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
          }];
 
