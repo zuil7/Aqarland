@@ -29,7 +29,7 @@ typedef void(^AQFailedBlock)(NSError *error);
 -(void) createAccount:(NSDictionary *) profileInfo;
 -(void) createAccountViaFB:(NSDictionary *) profileInfo;
 - (void) fetchCurrentUserProfile;
-- (void) updateUserProfile:(UserProfile *)userProfile pfUser:(PFUser *)pfUser;
+//- (void) updateUserProfile:(UserProfile *)userProfile pfUser:(PFUser *)pfUser;
 
 //Twitter
 - (void) loginUserWithAccount:(ACAccount *)twitterAccount;

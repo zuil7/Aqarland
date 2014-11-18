@@ -771,9 +771,6 @@ static ParseLayerService *instance = nil;
                                         if (!error)
                                         {
                                             NSLog(@"userProfileResult %@",userProfileResult);
-                                            NSDictionary *dict= (NSDictionary *)userProfileResult;
-                                            NSArray *arr=dict[@"favoriteArray"];
-                                            NSLog(@"arr count %d",[arr count]);
                                             [self reportSuccess:[NSNumber numberWithBool:succeeded]];
                                         }
                                         else
@@ -835,9 +832,6 @@ static ParseLayerService *instance = nil;
                                 if (!error)
                                 {
                                     NSLog(@"userProfileResult %@",userProfileResult);
-                                    NSDictionary *dict= (NSDictionary *)userProfileResult;
-                                    NSArray *arr=dict[@"favoriteArray"];
-                                    NSLog(@"arr count %d",[arr count]);
                                     [self reportSuccess:[NSNumber numberWithBool:succeeded]];
                                 }
                                 else
