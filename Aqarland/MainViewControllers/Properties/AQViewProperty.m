@@ -9,7 +9,7 @@
 #import "AQViewProperty.h"
 #import "ReflectionView.h"
 
-@interface AQViewProperty ()
+@interface AQViewProperty ()<MBProgressHUDDelegate>
 {
     int ZOOM_LEVEL;
 }
@@ -61,6 +61,7 @@
     self.imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
     [self.carousel reloadData];
     [self.carousel scrollToItemAtIndex:0 duration:0.0f];
+    
     
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     ParseLayerService *request =[[ParseLayerService alloc] init];
@@ -155,35 +156,54 @@
     if(![sender isSelected])
     {
       
-            [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:hud];
+
+        hud.delegate = self;
+        hud.labelText = @"Adding as Favorites";
+        hud.square = NO;
+        [hud show:YES];
+
             ParseLayerService *request =[[ParseLayerService alloc] init];
             [request addFavorites:self.propertyDetails];
             [request setCompletionBlock:^(id results)
              {
                  [self.favoriteBtn setSelected:YES];
                  [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImgYellow] forState:UIControlStateSelected];
-                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                 [hud hide:YES];
              }];
             [request setFailedBlock:^(NSError *error)
              {
-                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                 [hud hide:YES];
                  [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
              }];
 
     }else
     {
-        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        //[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:hud];
+
+        hud.delegate = self;
+        hud.labelText = @"Removing as Favorites";
+        hud.square = NO;
+        [hud show:YES];
+        
         ParseLayerService *request =[[ParseLayerService alloc] init];
         [request removeFavorites:self.propertyDetails];
         [request setCompletionBlock:^(id results)
          {
              [self.favoriteBtn setSelected:NO];
              [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImg] forState:UIControlStateNormal];
-             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+              [hud hide:YES];
+             NSMutableDictionary *dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                        [NSNumber numberWithInteger:self.nIndex],@"idx",
+                                        self.propertyDetails,@"propertyObj",nil];
+             [[NSNotificationCenter defaultCenter] postNotificationName:nsUpdateFavorites object:dict];
          }];
         [request setFailedBlock:^(NSError *error)
          {
-             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+              [hud hide:YES];
              [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
          }];
 

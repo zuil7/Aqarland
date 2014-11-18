@@ -98,5 +98,6 @@
 #define iCloseImg               @"close_btn.png"
 
 //Notification
-#define nsFetchProperty @"fetchNewProperty"
+#define nsFetchProperty   @"fetchNewProperty"
+#define nsUpdateFavorites @"updateFavorites"
 #endif

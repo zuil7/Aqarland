@@ -853,8 +853,122 @@ static ParseLayerService *instance = nil;
               }
           }];
      }];
-    
+}
 
+-(void) fetchUserFavorites
+{
+    PFUser *cUser = [PFUser currentUser];
+    PFQuery *queryUser = [PFQuery queryWithClassName:pUserProfile];
+    [queryUser whereKey:@"user" equalTo:cUser];
+    [queryUser includeKey:@"favoriteArray"];
+    [queryUser includeKey:@"favoriteArray.propertyImgArr"];
+    [queryUser includeKey:@"favoriteArray.user"];
+    [queryUser findObjectsInBackgroundWithBlock:^(NSArray *userResult, NSError *error)
+     {
+         NSLog(@"userResult %@",userResult);
+         if(!error && userResult.count!=0)
+         {
+             for (int i=0; i<[userResult count]; i++)
+             {
+                 NSDictionary *dict=[userResult objectAtIndex:i];
+                 NSLog(@"dict %@",dict);
+                 NSArray *tempArr=[NSArray arrayWithArray:dict[@"favoriteArray"]];
+                
+                 if ([tempArr count]!=0)
+                 {
+                     NSMutableArray *propertyListArr=[[NSMutableArray alloc] init];
+                     for (PFObject *pResult in tempArr)
+                     {
+                         PropertyList *property=[[PropertyList alloc] init];
+                         NSLog(@"comment %@",pResult);
+                         if ([pResult objectId].length!=0)
+                         {
+                             property.m_objectID=[pResult objectId];
+                         }
+                         if (pResult[@"amenities"] != [NSNull null])
+                         {
+                             property.m_amenities=pResult[@"amenities"];
+                         }
+                         if (pResult[@"building"] != [NSNull null])
+                         {
+                             property.m_building=pResult[@"building"];
+                         }
+                         if (pResult[@"city"] != [NSNull null])
+                         {
+                             property.m_city=pResult[@"city"];
+                         }
+                         if (pResult[@"description"] != [NSNull null])
+                         {
+                             property.m_description=pResult[@"description"];
+                         }
+                         if (pResult[@"houseNumber"] != [NSNull null])
+                         {
+                             property.m_houseNumber=pResult[@"houseNumber"];
+                         }
+                         if (pResult[@"latLong"] != [NSNull null])
+                         {
+                             property.m_latLong=pResult[@"latLong"];
+                         }
+                         if (pResult[@"numberOfBaths"] != [NSNull null])
+                         {
+                             property.m_numberOfBaths=pResult[@"numberOfBaths"];
+                         }
+                         if (pResult[@"numberOfBedrooms"] != [NSNull null])
+                         {
+                             property.m_numberOfBedrooms=pResult[@"numberOfBedrooms"];
+                         }
+                         if (pResult[@"postCode"] != [NSNull null])
+                         {
+                             property.m_postCode=pResult[@"postCode"];
+                         }
+                         if (pResult[@"nPropertySize"] != [NSNull null])
+                         {
+                             property.m_propertySize=pResult[@"nPropertySize"];
+                         }
+                         if (pResult[@"propertyType"] != [NSNull null])
+                         {
+                             property.m_propertyType=pResult[@"propertyType"];
+                         }
+                         if (pResult[@"street"] != [NSNull null])
+                         {
+                             property.m_street=pResult[@"street"];
+                         }
+                         if (pResult[@"unit"] != [NSNull null])
+                         {
+                             property.m_unit=pResult[@"unit"];
+                         }
+                         if (pResult[@"user"] != [NSNull null])
+                         {
+                             NSLog(@"User %@",pResult[@"user"]);
+                             property.user=pResult[@"user"];
+                         }
+                         if (pResult[@"propertyImgArr"] != [NSNull null])
+                         {
+                             NSLog(@"propertyImgArr %@",pResult[@"propertyImgArr"]);
+                             property.propertyImages=pResult[@"propertyImgArr"];
+                         }
+                         if (pResult[@"price"] != [NSNull null])
+                         {
+                             property.m_price=pResult[@"price"];
+                         }
+                         
+                         [propertyListArr addObject:property];
+                     }
+                     
+                      [self reportSuccess:propertyListArr];
+                     break;
+                 }
+                 else
+                 {
+                      [self reportFailure:error];
+                 }
+                 
+                 
+
+             }
+         }
+         
+     }];
 
 }
 ////////////////////////////////

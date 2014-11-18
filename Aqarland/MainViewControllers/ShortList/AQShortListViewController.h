@@ -10,4 +10,7 @@
 
 @interface AQShortListViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *favoriteTbl;
+@property(nonatomic,strong) NSMutableArray *propertyListArr;
+
 @end
