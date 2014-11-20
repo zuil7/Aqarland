@@ -14,6 +14,11 @@
 #import "MapAnnotation.h"
 #import "CustomPinView.h"
 
+@protocol AQMyPropertyDelegate <NSObject>
+@optional
+- (void)updateMyPropertyList:(NSInteger )nDx;
+@end
+
 @interface AQViewProperty : UIViewController<iCarouselDataSource, iCarouselDelegate>
 
 @property (nonatomic, strong) IBOutlet iCarousel *carousel;
@@ -31,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionLbl;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *contactPerson;
+@property (assign, nonatomic) BOOL isUserDetails;
+@property (weak) id <AQMyPropertyDelegate> delegate;
 
 
 @end

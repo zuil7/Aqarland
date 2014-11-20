@@ -46,6 +46,7 @@ typedef void(^AQFailedBlock)(NSError *error);
 -(void) addFavorites:(PropertyList *) pList;
 -(void) removeFavorites:(PropertyList *) pList;
 -(void) fetchUserFavorites;
+-(void) deleteProperty:(PropertyList *) pList;
 //AddProperty
 -(void) addProperty:(NSDictionary *) propertyDetails;
 -(void) updateProperty:(NSDictionary *) propertyDetails :(NSString *) propertyObjID;

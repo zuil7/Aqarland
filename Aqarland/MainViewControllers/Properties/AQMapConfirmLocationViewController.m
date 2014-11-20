@@ -86,6 +86,7 @@
              if ([results boolValue]==1)
              {
                   [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 [[NSNotificationCenter defaultCenter] postNotificationName:nsFetchProperty object:nil];
                  [self.navigationController popToRootViewControllerAnimated:YES];
              }
          }];

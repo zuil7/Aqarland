@@ -62,24 +62,28 @@
     [self.carousel reloadData];
     [self.carousel scrollToItemAtIndex:0 duration:0.0f];
     
+    if(self.isUserDetails)
+    {
     
-    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    ParseLayerService *request =[[ParseLayerService alloc] init];
-    [request checkifFavorites:self.propertyDetails];
-    [request setCompletionBlock:^(id results)
-     {
-         [self.favoriteBtn setSelected:YES];
-         [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImgYellow] forState:UIControlStateSelected];
-         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-     }];
-    [request setFailedBlock:^(NSError *error)
-     {
-         [self.favoriteBtn setSelected:NO];
-         [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImg] forState:UIControlStateNormal];
-         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-        // [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
-     }];
-    
+    }else
+    {
+        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        ParseLayerService *request =[[ParseLayerService alloc] init];
+        [request checkifFavorites:self.propertyDetails];
+        [request setCompletionBlock:^(id results)
+         {
+             [self.favoriteBtn setSelected:YES];
+             [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImgYellow] forState:UIControlStateSelected];
+             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+         }];
+        [request setFailedBlock:^(NSError *error)
+         {
+             [self.favoriteBtn setSelected:NO];
+             [self.favoriteBtn setImage:[UIImage imageNamed:iFavoriteImg] forState:UIControlStateNormal];
+             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+            // [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+         }];
+    }
     [self performSelector:@selector(populateMap) withObject:self afterDelay:0.1];
     
     [self fillData];
@@ -120,35 +124,71 @@
     }
     if ([self.navigationItem respondsToSelector:@selector(rightBarButtonItems)])
     {
-        UIImage *favoriteImage = [UIImage imageNamed:iFavoriteImg];
-        self.favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.favoriteBtn.frame = CGRectMake(0,0,22,22);
-        [self.favoriteBtn setImage:favoriteImage forState:UIControlStateNormal];
         
-        [self.favoriteBtn addTarget:self action:@selector(favorites_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        
-        UIImage *shareImage = [UIImage imageNamed:iShareImg];
-        self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.shareBtn.frame = CGRectMake(0,0,22,22);
-        [self.shareBtn setImage:shareImage forState:UIControlStateNormal];
-        
-        [self.shareBtn addTarget:self action:@selector(share_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem *favoriteButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.favoriteBtn];
-        
-        UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareBtn];
-        
-        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:favoriteButtonItem, shareButtonItem, nil];
-        
-        
+        if(self.isUserDetails)
+        {
+            UIImage *deleteImage = [UIImage imageNamed:iDeleteImg];
+            UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            deleteBtn.frame = CGRectMake(0,0,22,22);
+            [deleteBtn setImage:deleteImage forState:UIControlStateNormal];
+            
+            [deleteBtn addTarget:self action:@selector(deleteProperty_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIBarButtonItem *deleteBtnItem = [[UIBarButtonItem alloc] initWithCustomView:deleteBtn];
+
+            UIImage *shareImage = [UIImage imageNamed:iShareImg];
+            self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.shareBtn.frame = CGRectMake(0,0,22,22);
+            [self.shareBtn setImage:shareImage forState:UIControlStateNormal];
+            
+            [self.shareBtn addTarget:self action:@selector(share_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareBtn];
+            
+            
+            self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:deleteBtnItem, shareButtonItem, nil];
+            
+        }else
+        {
+            UIImage *favoriteImage = [UIImage imageNamed:iFavoriteImg];
+            self.favoriteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.favoriteBtn.frame = CGRectMake(0,0,22,22);
+            [self.favoriteBtn setImage:favoriteImage forState:UIControlStateNormal];
+            
+            [self.favoriteBtn addTarget:self action:@selector(favorites_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIBarButtonItem *favoriteButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.favoriteBtn];
+            
+            UIImage *shareImage = [UIImage imageNamed:iShareImg];
+            self.shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.shareBtn.frame = CGRectMake(0,0,22,22);
+            [self.shareBtn setImage:shareImage forState:UIControlStateNormal];
+            
+            [self.shareBtn addTarget:self action:@selector(share_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareBtn];
+            
+            self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:favoriteButtonItem, shareButtonItem, nil];
+
+        }
+
     }
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *) sender
 {
     [self.view endEditing:YES];
+}
+
+-(void)deleteProperty_touchedup_inside:(id) sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iInformation
+                                                    message:@"You sure you want to delete this property"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Ok",nil];
+    [alert show];
+
 }
 
 -(void)favorites_touchedup_inside:(id) sender
@@ -451,6 +491,33 @@
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)aview {
     
 }
+////////////////////////////
+#pragma mark - UIAlertViewDelegate
+///////////////////////////
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        NSLog(@"Cancel");
+    }else
+    {
+        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        ParseLayerService *request =[[ParseLayerService alloc] init];
+        [request deleteProperty:self.propertyDetails];
+        [request setCompletionBlock:^(id results)
+         {
+           
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+               [self.delegate updateMyPropertyList:self.nIndex];
+             [self.navigationController popToRootViewControllerAnimated:YES];
+         }];
+        [request setFailedBlock:^(NSError *error)
+         {
+          
+             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+              [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+         }];
 
-
+    }
+}
 @end

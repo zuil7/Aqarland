@@ -965,6 +965,200 @@ static ParseLayerService *instance = nil;
      }];
 
 }
+
+-(void) deleteProperty:(PropertyList *) pList
+{
+    __block NSMutableArray *arrayTmp=[[NSMutableArray alloc] init];
+    NSLog(@"object ID %@",pList.m_objectID);
+    PFUser *cUser = [PFUser currentUser];
+    PFQuery *queryUser = [PFQuery queryWithClassName:pUserProfile];
+    [queryUser whereKey:@"user" equalTo:cUser];
+    [queryUser getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+     {
+        NSLog(@"object %@",object);
+        arrayTmp= [NSMutableArray arrayWithArray:object[@"favoriteArray"]];
+        NSLog(@"arrayTmp %@",arrayTmp);
+        if([arrayTmp count]!=0)
+        {
+            NSArray *arr=[arrayTmp filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"objectId=%@",pList.m_objectID]];
+            NSLog(@"arr %@",arr);
+            if([arr count]!=0)
+            {
+                [arrayTmp removeObjectsInArray:[arrayTmp filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"objectId=%@",pList.m_objectID]]];
+                object[@"favoriteArray"]=arrayTmp;
+
+                //Query in Property List
+                PFQuery *queryPropertyList = [PFQuery queryWithClassName:pPropertyList];
+                [queryPropertyList whereKey:@"objectId" equalTo:pList.m_objectID];
+                [queryPropertyList getFirstObjectInBackgroundWithBlock:^(PFObject *objectProperty, NSError *error)
+                 {
+                     //Deleting all images under property object ID
+                     PFQuery *queryPropertyImage = [PFQuery queryWithClassName:pPropertyImage];
+                     [queryPropertyImage whereKey:@"propertyList" equalTo:objectProperty];
+                     [queryPropertyImage findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+                      {
+                          for (PFObject *obj in objects)
+                          {
+                              [obj deleteInBackground];
+                          }
+                     }];
+
+                     [objectProperty deleteInBackground];
+                     
+                 }];
+                
+                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                {
+                    if (!error)
+                    {
+                          [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                    }else
+                    {
+                        [self reportFailure:error];
+
+                    }
+                }];
+                
+            }else
+            {
+                //Not Favorite
+                
+                //Query in Property List
+                PFQuery *queryPropertyList = [PFQuery queryWithClassName:pPropertyList];
+                [queryPropertyList whereKey:@"objectId" equalTo:pList.m_objectID];
+                [queryPropertyList getFirstObjectInBackgroundWithBlock:^(PFObject *objectProperty, NSError *error)
+                 {
+                     //Deleting all images under property object ID
+                     PFQuery *queryPropertyImage = [PFQuery queryWithClassName:pPropertyImage];
+                     [queryPropertyImage whereKey:@"propertyList" equalTo:objectProperty];
+                     [queryPropertyImage findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+                      {
+                          for (PFObject *obj in objects)
+                          {
+                              [obj deleteInBackground];
+                          }
+                      }];
+                     
+                     [objectProperty deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                         if(!error)
+                         {
+                             [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                         }else
+                         {
+                          [self reportFailure:error];
+                         }
+                     }];
+                     
+                 }];
+                
+            }
+            
+            
+        }
+    }];
+    
+//    [queryUser get:^(NSArray *userResult, NSError *error)
+//     {
+//         
+//         if (!error)
+//         {
+//             for (int i=0; i<[userResult count]; i++)
+//             {
+//                 NSDictionary *dict=[userResult objectAtIndex:i];
+//                 NSLog(@"dict %@",dict);
+//                 arrayTmp= [NSMutableArray arrayWithArray:dict[@"favoriteArray"]];
+//                  NSLog(@"tempArr %@",arrayTmp);
+//                 if([arrayTmp count]!=0)
+//                 {
+//                 
+//                      NSArray *arr=[arrayTmp filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"objectId=%@",pList.m_objectID]];
+//                     
+//                 }
+//             }
+//         }
+//         [self reportSuccess:[NSNumber numberWithBool:1]];
+//     }];
+//    
+    
+    
+    /*
+    __block PFObject *propertyListObj;
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query includeKey:@"user"];
+    [query includeKey:@"propertyImgArr"];
+    [query whereKey:@"objectId" equalTo:pList.m_objectID];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully %@", result);
+            // Do something with the found objects
+            for (int i=0; i<[result count]; i++)
+            {
+                NSDictionary *dict=[result objectAtIndex:i];
+                 NSLog(@"dict %@", dict);
+                propertyListObj=[result objectAtIndex:i];
+                PFObject *userObj=dict[@"user"];
+                
+                NSArray *imgArr=dict[@"propertyImgArr"];
+                for (PFObject *imgObj in imgArr)
+                {
+                    [imgObj deleteInBackground];
+                }
+                
+                NSLog(@"userObj %@",[userObj objectId]);
+                PFRelation *relation = [userObj relationForKey:@"userProfile"];
+                
+                PFQuery *querytemp = relation.query;
+                [query includeKey:@"favoriteArray"];
+                [querytemp whereKey:@"user" equalTo:userObj];
+                [querytemp findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+                {
+                    NSLog(@"result %@",result);
+                    NSLog(@"result %d",[result count]);
+                    if(!error)
+                    {
+                        for (int i=0; i<[result count]; i++)
+                        {
+                            NSDictionary *dict=[result objectAtIndex:i];
+                            NSArray *tempArr=dict[@"favoriteArray"];
+                          
+                            NSLog(@"tempArr %@",tempArr);
+                                for (PFObject *favoriteObj in tempArr)
+                                {
+                                    [favoriteObj deleteInBackground];
+                                }
+                        }
+                    }else
+                        
+                    {
+                         [self reportFailure:error];
+                    }
+                    
+                    
+                    
+                }];
+
+                
+                NSLog(@"relation %@", relation);
+                [propertyListObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                {
+                    if (!error)
+                    {
+                        [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                    }else
+                    {
+                      [self reportFailure:error];
+                    }
+                    
+                }];
+            }
+        } else
+        {
+            [self reportFailure:error];
+        }
+    }];*/
+
+}
 ////////////////////////////////
 #pragma mark - Add Property
 ////////////////////////////////
@@ -1056,7 +1250,7 @@ static ParseLayerService *instance = nil;
                  if (i!=0)
                  {
                      UIImage *image=(UIImage *)[listImages objectAtIndex:i];
-                     NSData *imageData = UIImagePNGRepresentation(image);
+                     NSData *imageData = UIImageJPEGRepresentation(image,0.8);
                      PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
                      PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
                      NSString *strID;

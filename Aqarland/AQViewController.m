@@ -49,14 +49,14 @@
     [self.uETxtField setText:@""];
     [self.uPTxtField setText:@""];
     
-#warning mark Put NSUSERDEFAULTS HERE
+//#warning mark Put NSUSERDEFAULTS HERE
     if([self checkUserDefaults])
     {
         //[self LoadDashboard];
         [self.navigationController pushViewController:self.viewDeckVC animated:NO];
         
     }
-#warning mark Put NSUSERDEFAULTS HERE
+//#warning mark Put NSUSERDEFAULTS HERE
 }
 - (void)didReceiveMemoryWarning
 {

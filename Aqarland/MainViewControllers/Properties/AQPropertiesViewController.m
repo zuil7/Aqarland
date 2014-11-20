@@ -10,7 +10,7 @@
 #import "PropertyList.h"
 #import "AQViewProperty.h"
 
-@interface AQPropertiesViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface AQPropertiesViewController () <UITableViewDataSource, UITableViewDelegate,AQMyPropertyDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) AQViewProperty *viewProperty;
 
@@ -95,6 +95,8 @@
 }
 
 - (void)fetchProperties {
+    
+    [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
     ParseLayerService *request = [[ParseLayerService alloc] init];
     [request fetchPropertyPerUser];
     [request setCompletionBlock:^(id results) {
@@ -146,8 +148,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.viewProperty = [GlobalInstance loadStoryBoardId:sViewPropertyVC];
     self.viewProperty.propertyDetails = [propertyListDetails objectAtIndex:indexPath.row];
+    self.viewProperty.isUserDetails=YES;
+    self.viewProperty.nIndex=indexPath.row;
+    [self.viewProperty setDelegate:self];
     [self.navigationController pushViewController:self.viewProperty animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+- (void)updateMyPropertyList:(NSInteger )nDx
+{
+    [propertyList removeObjectAtIndex:nDx];
+    [self.tableView reloadData];
+}
 
 @end
