@@ -53,6 +53,7 @@ typedef void(^AQFailedBlock)(NSError *error);
 
 //UploadImages
 -(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID;
+- (void)deleteImage:(PropertyImages *)image fromProperty:(PropertyList *)propertyList;
 
 //Filtering
 -(void) fetchLocationByCity;

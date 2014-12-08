@@ -229,12 +229,34 @@
 
 -(void) deleteImg:(id)sender
 {
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    [indexSet addIndex:[sender tag]];
-    [self.imageList removeObjectsAtIndexes:indexSet];
-    NSLog(@"self.imageList %@",self.imageList);
-    [self.photoCV reloadData];
-    
+    if (self.propertyDetails) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        NSInteger index = [sender tag] - 1;
+        PropertyImages *propertyImage = propertImages[index];
+        ParseLayerService *request = [[ParseLayerService alloc] init];
+        [request deleteImage:propertyImage fromProperty:self.propertyDetails];
+        [request setCompletionBlock:^(id results) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+            [indexSet addIndex:[sender tag]];
+            [self.imageList removeObjectsAtIndexes:indexSet];
+            NSLog(@"self.imageList %@",self.imageList);
+            [self.photoCV reloadData];
+
+        }];
+        [request setFailedBlock:^(NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        }];
+    }
+    else
+    {
+        NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+        [indexSet addIndex:[sender tag]];
+        [self.imageList removeObjectsAtIndexes:indexSet];
+        NSLog(@"self.imageList %@",self.imageList);
+        [self.photoCV reloadData];
+
+    }
 }
 -(void) cameraLaunch
 {

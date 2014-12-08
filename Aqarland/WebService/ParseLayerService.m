@@ -1302,6 +1302,24 @@ static ParseLayerService *instance = nil;
 
 }
 
+- (void)deleteImage:(PropertyImages *)image fromProperty:(PropertyList *)propertyList {
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyImage];
+    [query whereKey:@"objectId" equalTo:[image valueForKey:@"objectId"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                [object delete];
+            }
+            [self reportSuccess:nil];
+        }
+        else
+        {
+            [self reportFailure:error];
+        }
+    }];
+
+}
+
 ////////////////////////////////
 #pragma mark - Filtering
 ////////////////////////////////
