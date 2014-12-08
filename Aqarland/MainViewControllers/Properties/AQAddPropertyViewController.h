@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class PropertyList;
+
 @interface AQAddPropertyViewController : UIViewController
 
+@property (strong, nonatomic) PropertyList *propertyDetails;
 @property (weak, nonatomic) IBOutlet UITextField *unitTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *houseNumTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *bldgTxtField;

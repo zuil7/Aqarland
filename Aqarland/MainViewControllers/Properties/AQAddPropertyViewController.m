@@ -40,6 +40,18 @@
     [self customizeHeaderBar];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.propertyDetails) {
+        self.unitTxtField.text = self.propertyDetails.m_unit;
+        self.houseNumTxtField.text = self.propertyDetails.m_houseNumber;
+        self.bldgTxtField.text = self.propertyDetails.m_building;
+        self.streetTxtField.text = self.propertyDetails.m_street;
+        self.cityTxtField.text = self.propertyDetails.m_city;
+        self.postCodeTxtField.text = self.propertyDetails.m_postCode;
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -57,6 +69,13 @@
 }
 */
 
+////////////////////////////////////
+#pragma mark - Setters
+////////////////////////////////////
+
+- (void)setPropertyDetails:(PropertyList *)propertyDetails {
+    _propertyDetails = propertyDetails;
+}
 
 ////////////////////////////////////
 #pragma mark - Logic
@@ -111,9 +130,9 @@
         self.propertyDictionary[@"street"] = self.streetTxtField.text;
         self.propertyDictionary[@"city"] = self.cityTxtField.text;
         self.propertyDictionary[@"postcode"] = self.postCodeTxtField.text;
-        
         self.propertyDetailsVC=[GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];
         self.propertyDetailsVC.propertyAddress=self.propertyDictionary;
+        self.propertyDetailsVC.propertyDetails = self.propertyDetails;
         [self.navigationController pushViewController:self.propertyDetailsVC animated:YES];
     }else
     {
