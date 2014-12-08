@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class PropertyList;
 @interface AQPropertyUploadPhoto : UIViewController
-
+@property (strong, nonatomic) PropertyList *propertyDetails;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCV;
 @property (strong, nonatomic) NSString *propertyObjID;
+@property (nonatomic, strong) NSMutableArray *imageList;
+
+
 @end

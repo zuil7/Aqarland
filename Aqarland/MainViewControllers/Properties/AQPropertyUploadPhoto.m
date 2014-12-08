@@ -9,6 +9,7 @@
 #import "AQPropertyUploadPhoto.h"
 #import "AQUploadPhoto.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "PropertyImages.h"
 #import "AQMapConfirmLocationViewController.h"
 
 #define defaultImage @"add_property_icon.png"
@@ -16,12 +17,13 @@
 
 @interface AQPropertyUploadPhoto ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIActionSheetDelegate,MBProgressHUDDelegate>
 
-@property (nonatomic, strong) NSMutableArray *imageList;
 @property (nonatomic, strong) MBProgressHUD *HUD;
 @property (nonatomic, strong) AQMapConfirmLocationViewController *mapConfirmVC;
 @end
 
-@implementation AQPropertyUploadPhoto
+@implementation AQPropertyUploadPhoto {
+    NSMutableArray *propertImages;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,7 +40,6 @@
     // Do any additional setup after loading the view.
     [self customizeHeaderBar];
     self.imageList=[[NSMutableArray alloc] initWithCapacity:6];
-    [self.imageList addObject:defaultImage];
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:self.HUD];
@@ -51,6 +52,24 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.imageList addObject:defaultImage];
+    if (self.propertyDetails) {
+        propertImages = [NSMutableArray array];
+        for (PropertyImages *propertyImage in self.propertyDetails.propertyImages) {
+            PFFile *imageFile = [propertyImage valueForKey:@"propertyImg"];
+            NSData *imageData = [imageFile getData];
+            if (imageData) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                [self.imageList addObject:image];
+                [propertImages addObject:propertyImage];
+            }
+        }
+        [self.photoCV reloadData];
+    }
 }
 
 /*
