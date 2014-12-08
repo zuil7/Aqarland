@@ -17,6 +17,7 @@
 @protocol AQMyPropertyDelegate <NSObject>
 @optional
 - (void)updateMyPropertyList:(NSInteger )nDx;
+- (void)editMyPropertyList:(PropertyList *)propertyList;
 @end
 
 @interface AQViewProperty : UIViewController<iCarouselDataSource, iCarouselDelegate>
@@ -35,7 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *amenitiesLbl;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionLbl;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UILabel *contactPerson;
+@property (weak, nonatomic) IBOutlet UIButton *contactPerson;
 @property (assign, nonatomic) BOOL isUserDetails;
 @property (weak) id <AQMyPropertyDelegate> delegate;
 

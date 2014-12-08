@@ -8,6 +8,7 @@
 
 #import "AQViewProperty.h"
 #import "ReflectionView.h"
+#import "AQAddPropertyViewController.h"
 
 @interface AQViewProperty ()<MBProgressHUDDelegate>
 {
@@ -15,8 +16,10 @@
 }
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) NSMutableArray *imagesArr;
+@property (nonatomic, strong) AQAddPropertyViewController *addPropertyViewController;
 @property (nonatomic, strong) UIButton *favoriteBtn;
 @property (nonatomic, strong) UIButton *shareBtn;
+
 @end
 
 @implementation AQViewProperty
@@ -145,7 +148,6 @@
             
             UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareBtn];
             
-            
             self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:deleteBtnItem, shareButtonItem, nil];
             
         }else
@@ -254,14 +256,21 @@
 -(void)share_touchedup_inside:(id) sender
 {
     
+    
 }
 
 -(void) fillData
 {
     [self.townHouseLbl setText:[NSString stringWithFormat:@"%@, %@ sqm",self.propertyDetails.m_propertyType,self.propertyDetails.m_propertySize]];
     PFObject *user=(PFObject *)self.propertyDetails.user;
+    NSString *contactPersonText = @"Edit Property";
+    self.contactPerson.enabled = YES;
+    if (!self.isUserDetails) {
+        self.contactPerson.enabled = NO;
+        contactPersonText = [NSString stringWithFormat:@"Contact %@",user[@"name"]];
+    }
     
-    [self.contactPerson setText:[NSString stringWithFormat:@"Contact %@",user[@"name"]]];
+    [self.contactPerson setTitle:contactPersonText forState:UIControlStateNormal];
     [self.priceLbl setText:[NSString stringWithFormat:@"$ %@",self.propertyDetails.m_price]];
     [self.bathRoomLbl setText:self.propertyDetails.m_numberOfBaths];
     [self.bedRoomLbl setText:self.propertyDetails.m_numberOfBedrooms];
@@ -326,6 +335,20 @@
     return view;
    
 }
+////////////////////////////////////
+#pragma mark - IBActions
+////////////////////////////////////
+
+- (IBAction)edit_property_btn_touch_up_inside:(id)sender {
+    self.addPropertyViewController = [GlobalInstance loadStoryBoardId:sAddPropertyVC];
+    self.addPropertyViewController.propertyDetails = self.propertyDetails;
+    [self.navigationController pushViewController:self.addPropertyViewController animated:YES];
+
+//    if ([self.delegate respondsToSelector:@selector(editMyPropertyList:)]) {
+//        [self.delegate editMyPropertyList:self.propertyDetails];
+//    }
+}
+
 
 ////////////////////////////////////
 #pragma mark - MapViewDelegate
