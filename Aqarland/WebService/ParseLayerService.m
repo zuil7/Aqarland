@@ -1232,6 +1232,24 @@ static ParseLayerService *instance = nil;
     }];
 }
 ////////////////////////////////
+#pragma mark - Property Images
+////////////////////////////////
+
+- (void) propertyImagesForPropertyList:(PropertyList *)propertyList {
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyImage];
+    PFObject *property = [PFObject objectWithoutDataWithClassName:pPropertyList objectId:propertyList.m_objectID];
+    [query whereKey:@"propertyList" equalTo:property];
+    [query includeKey:@"propertyList"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            [self reportSuccess:objects];
+        } else {
+            [self reportFailure:error];
+        }
+    }];
+}
+
+////////////////////////////////
 #pragma mark - Upload Images
 ////////////////////////////////
 -(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID
