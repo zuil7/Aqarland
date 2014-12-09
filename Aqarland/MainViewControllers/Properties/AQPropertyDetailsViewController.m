@@ -159,8 +159,33 @@
         [self.propertyAddress setValue:self.priceLbl.text forKey:@"price"];
         [self.propertyAddress setValue:self.descTxtView.text forKey:@"description"];
         NSLog(@"self.propertyAddress %@",self.propertyAddress);
+        if (self.propertyDetails) {
+            [self.propertyAddress setValue:self.propertyDetails.m_objectID forKey:@"objectId"];
+        }
         
-        if (!self.propertyDetails) {
+        if (self.propertyDetails) {
+            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+            ParseLayerService *request=[[ParseLayerService alloc] init];
+            [request updatePropertyList:self.propertyDetails withDetails:self.propertyAddress];
+            [request setCompletionBlock:^(id success)
+             {
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 if ([success boolValue]) {
+                     self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
+                     self.propertyUploadVC.propertyObjID=self.propertyDetails.m_objectID;
+                     self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
+                     self.propertyUploadVC.propertyDetails = self.propertyDetails;
+                     [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
+                 }
+             }];
+            [request setFailedBlock:^(NSError *error)
+             {
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+             }];
+        }
+        else
+        {
             [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
             ParseLayerService *request=[[ParseLayerService alloc] init];
             [request addProperty:self.propertyAddress];
@@ -183,14 +208,6 @@
                  [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
                  [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
              }];
-        }
-        else
-        {
-            self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
-            self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
-            self.propertyUploadVC.propertyDetails = self.propertyDetails;
-            [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
-
         }
     }else
     {
