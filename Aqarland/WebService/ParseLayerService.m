@@ -1231,6 +1231,47 @@ static ParseLayerService *instance = nil;
         
     }];
 }
+
+- (void) updatePropertyList:(PropertyList *)propertyList withDetails:(NSDictionary *)propertyDetails {
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query getObjectWithId:propertyList.m_objectID];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            if (object) {
+                
+                object[@"amenities"] = propertyDetails[@"amenities"];
+                object[@"building"] = propertyDetails[@"bldg"];
+                object[@"city"] = propertyDetails[@"city"];
+                object[@"description"] = propertyDetails[@"description"];
+                object[@"houseNumber"] = propertyDetails[@"houseNum"];
+                float fPropertySize=[propertyDetails[@"nPropertySize"] floatValue];
+                object[@"nPropertySize"] = [NSNumber numberWithFloat:fPropertySize];
+                object[@"numberOfBaths"] = propertyDetails[@"numberOfBaths"];
+                object[@"numberOfBedrooms"] = propertyDetails[@"numberOfBedrooms"];
+                object[@"postCode"] = propertyDetails[@"postcode"];
+                object[@"propertyType"] = propertyDetails[@"propertyType"];
+                object[@"street"] = propertyDetails[@"street"];
+                object[@"unit"] = propertyDetails[@"unit"];
+                object[@"price"] = propertyDetails[@"price"];
+                object[@"updatedAt"] = [NSDate date];
+                
+                [object saveEventually:^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                    } else {
+                        [self reportFailure:error];;
+                    }
+                }];
+            }
+        }
+        else
+        {
+            [self reportFailure:error];;
+        }
+        
+    }];
+}
+
 ////////////////////////////////
 #pragma mark - Property Images
 ////////////////////////////////
