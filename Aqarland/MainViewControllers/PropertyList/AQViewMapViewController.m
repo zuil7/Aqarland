@@ -132,8 +132,18 @@
             MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
             curAnnotation.annType = i;
             curAnnotation.annIndex = i;
-            curAnnotation.file=dImagesDict[@"propertyImg"];
-            [self.mapView addAnnotation:curAnnotation];
+            
+            ParseLayerService *request = [[ParseLayerService alloc] init];
+            [request propertyImagesForPropertyList:property];
+            [request setCompletionBlock:^(id results) {
+                NSArray *images = (NSArray *)results;
+                PropertyImages *propertyImage = (PropertyImages *)images[0];
+                curAnnotation.file=propertyImage.m_propertyImg;
+                [self.mapView addAnnotation:curAnnotation];
+            }];
+            [request setFailedBlock:^(NSError *error) {
+                
+            }];
         }
     }
     

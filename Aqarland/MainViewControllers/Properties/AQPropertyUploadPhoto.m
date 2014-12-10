@@ -9,6 +9,7 @@
 #import "AQPropertyUploadPhoto.h"
 #import "AQUploadPhoto.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "PropertyImages.h"
 #import "AQMapConfirmLocationViewController.h"
 
 #define defaultImage @"add_property_icon.png"
@@ -16,12 +17,15 @@
 
 @interface AQPropertyUploadPhoto ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIActionSheetDelegate,MBProgressHUDDelegate>
 
-@property (nonatomic, strong) NSMutableArray *imageList;
 @property (nonatomic, strong) MBProgressHUD *HUD;
 @property (nonatomic, strong) AQMapConfirmLocationViewController *mapConfirmVC;
 @end
 
-@implementation AQPropertyUploadPhoto
+@implementation AQPropertyUploadPhoto {
+    NSMutableArray *propertyImages;
+    NSMutableArray *newPropertyImages;
+    BOOL isOnEditMode;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,12 +42,33 @@
     // Do any additional setup after loading the view.
     [self customizeHeaderBar];
     self.imageList=[[NSMutableArray alloc] initWithCapacity:6];
-    [self.imageList addObject:defaultImage];
-    
     self.HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	[self.navigationController.view addSubview:self.HUD];
-	
-    
+    [self.imageList addObject:defaultImage];
+    if (self.propertyDetails) {
+        isOnEditMode = YES;
+        newPropertyImages = [NSMutableArray array];
+        propertyImages = [NSMutableArray array];
+        ParseLayerService *request = [[ParseLayerService alloc] init];
+        [request propertyImagesForPropertyList:self.propertyDetails];
+        [request setCompletionBlock:^(id results) {
+            NSArray *images = (NSArray *)results;
+            for (PropertyImages *propertyImage in images) {
+                if ([propertyImage valueForKey:@"propertyImg"] != [NSNull null]) {
+                    PFFile *imageFile = [propertyImage valueForKey:@"propertyImg"];
+                    NSData *imageData = [imageFile getData];
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    [self.imageList addObject:image];
+                    [propertyImages addObject:propertyImage];
+                }
+            }
+            [self.photoCV reloadData];
+
+        }];
+        [request setFailedBlock:^(NSError *error) {
+            
+        }];
+    }
 }
 
 
@@ -51,6 +76,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 /*
@@ -107,7 +136,14 @@
 -(void) uploadImages:(id) sender
 {
      __block int ctr=0;
-    if([self.imageList count]>1)
+    if (isOnEditMode && newPropertyImages.count <= 0 && self.imageList.count > 1) {
+        self.mapConfirmVC=[GlobalInstance loadStoryBoardId:sPropertyConfirmLocVC];
+        self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:1];
+        self.mapConfirmVC.strPropertyID=self.propertyDetails.m_objectID;
+        self.mapConfirmVC.propertyDetails = self.propertyDetails;
+        [self.navigationController pushViewController:self.mapConfirmVC animated:YES];
+
+    } else if([self.imageList count]>1)
     {
         self.HUD.delegate = self;
         self.HUD.labelText = @"Uploading";
@@ -115,8 +151,15 @@
         self.HUD.square = YES;
         [self.HUD show:YES];
         
+        NSMutableArray *imagesToUpload;
+        if (isOnEditMode) {
+            imagesToUpload = newPropertyImages;
+        } else {
+            imagesToUpload = self.imageList;
+            [imagesToUpload removeObjectAtIndex:0];
+        }
         ParseLayerService *request=[[ParseLayerService alloc] init];
-        [request uploadImages:self.imageList :self.propertyObjID];
+        [request uploadImages:imagesToUpload :self.propertyObjID];
         [request setCompletionBlock:^(id results)
          {
              NSDictionary *dict=(NSDictionary *) results;
@@ -126,18 +169,17 @@
              {
                  ctr=ctr+1;
                  
-                 self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %lu",ctr,(unsigned long)[self.imageList count]-1];
-                 if(ctr==[self.imageList count]-1)
+                 self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %lu",ctr,(unsigned long)[imagesToUpload count]];
+                 if(ctr==[imagesToUpload count])
                  {
                      self.mapConfirmVC=[GlobalInstance loadStoryBoardId:sPropertyConfirmLocVC];
                      self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:1];
                      NSLog(@"propertyList %@",propertyID);
                      self.mapConfirmVC.strPropertyID=propertyID;
+                     self.mapConfirmVC.propertyDetails = self.propertyDetails;
                      [self.navigationController pushViewController:self.mapConfirmVC animated:YES];
                      [self.HUD hide:YES];
                  }
-
-                 
              }
          }];
         [request setFailedBlock:^(NSError *error)
@@ -210,12 +252,37 @@
 
 -(void) deleteImg:(id)sender
 {
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    [indexSet addIndex:[sender tag]];
-    [self.imageList removeObjectsAtIndexes:indexSet];
-    NSLog(@"self.imageList %@",self.imageList);
-    [self.photoCV reloadData];
-    
+    if (self.propertyDetails) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        NSInteger index = [sender tag] - 1;
+        PropertyImages *propertyImage = propertyImages[index];
+        ParseLayerService *request = [[ParseLayerService alloc] init];
+        [request deleteImage:propertyImage fromProperty:self.propertyDetails];
+        [request setCompletionBlock:^(id results) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+            [indexSet addIndex:[sender tag]];
+            if ([newPropertyImages containsObject:self.imageList[index]]) {
+                [newPropertyImages removeObject:self.imageList[index]];
+            }
+            [self.imageList removeObjectsAtIndexes:indexSet];
+            NSLog(@"self.imageList %@",self.imageList);
+            [self.photoCV reloadData];
+
+        }];
+        [request setFailedBlock:^(NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        }];
+    }
+    else
+    {
+        NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+        [indexSet addIndex:[sender tag]];
+        [self.imageList removeObjectsAtIndexes:indexSet];
+        NSLog(@"self.imageList %@",self.imageList);
+        [self.photoCV reloadData];
+
+    }
 }
 -(void) cameraLaunch
 {
@@ -337,6 +404,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         if([self.imageList count]<=5)
         {
             [self.imageList insertObject:image atIndex:1];
+            [newPropertyImages addObject:image];
             [self.photoCV reloadData];
         }else
         {

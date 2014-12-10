@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class PropertyList;
 @interface AQPropertyDetailsViewController : UIViewController
 
 @property (strong, nonatomic) NSMutableDictionary *propertyAddress;
-
+@property (strong, nonatomic) PropertyList *propertyDetails;
 @property (weak, nonatomic) IBOutlet UILabel *propertyTypeLbl;
 @property (weak, nonatomic) IBOutlet UITextField *areaTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *nBedroomsTxtField;

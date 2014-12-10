@@ -46,6 +46,15 @@
     [self.propertyPic setImage:self.propertyImg];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.propertyDetails) {
+        self.streetTxtField.text = self.propertyDetails.m_street;
+        self.cityTxtField.text = self.propertyDetails.m_city;
+        self.postCodeTxtField.text = self.propertyDetails.m_postCode;
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -78,21 +87,20 @@
         [self.AddressDict setValue:latLongVal forKey:@"latLong"];
         
         NSLog(@"self.AddressDict %@",self.AddressDict);
-        
         ParseLayerService *request=[[ParseLayerService alloc] init];
         [request updateProperty:self.AddressDict :self.strPropertyID];
         [request setCompletionBlock:^(id results)
          {
              if ([results boolValue]==1)
              {
-                  [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
                  [[NSNotificationCenter defaultCenter] postNotificationName:nsFetchProperty object:nil];
                  [self.navigationController popToRootViewControllerAnimated:YES];
              }
          }];
         [request setFailedBlock:^(NSError *error)
          {
-            [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
              [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
          }];
     }else

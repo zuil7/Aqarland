@@ -1231,74 +1231,147 @@ static ParseLayerService *instance = nil;
         
     }];
 }
+
+- (void) updatePropertyList:(PropertyList *)propertyList withDetails:(NSDictionary *)propertyDetails {
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query getObjectWithId:propertyList.m_objectID];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            if (object) {
+                
+                object[@"amenities"] = propertyDetails[@"amenities"];
+                object[@"building"] = propertyDetails[@"bldg"];
+                object[@"city"] = propertyDetails[@"city"];
+                object[@"description"] = propertyDetails[@"description"];
+                object[@"houseNumber"] = propertyDetails[@"houseNum"];
+                float fPropertySize=[propertyDetails[@"nPropertySize"] floatValue];
+                object[@"nPropertySize"] = [NSNumber numberWithFloat:fPropertySize];
+                object[@"numberOfBaths"] = propertyDetails[@"numberOfBaths"];
+                object[@"numberOfBedrooms"] = propertyDetails[@"numberOfBedrooms"];
+                object[@"postCode"] = propertyDetails[@"postcode"];
+                object[@"propertyType"] = propertyDetails[@"propertyType"];
+                object[@"street"] = propertyDetails[@"street"];
+                object[@"unit"] = propertyDetails[@"unit"];
+                object[@"price"] = propertyDetails[@"price"];
+                object[@"updatedAt"] = [NSDate date];
+                
+                [object saveEventually:^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        [self reportSuccess:[NSNumber numberWithBool:succeeded]];
+                    } else {
+                        [self reportFailure:error];;
+                    }
+                }];
+            }
+        }
+        else
+        {
+            [self reportFailure:error];;
+        }
+        
+    }];
+}
+
+////////////////////////////////
+#pragma mark - Property Images
+////////////////////////////////
+
+- (void) propertyImagesForPropertyList:(PropertyList *)propertyList {
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyImage];
+    PFObject *property = [PFObject objectWithoutDataWithClassName:pPropertyList objectId:propertyList.m_objectID];
+    [query whereKey:@"propertyList" equalTo:property];
+    [query includeKey:@"propertyList"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            [self reportSuccess:objects];
+        } else {
+            [self reportFailure:error];
+        }
+    }];
+}
+
 ////////////////////////////////
 #pragma mark - Upload Images
 ////////////////////////////////
 -(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID
 {
-    
     PFUser *cUser = [PFUser currentUser];
     NSLog(@"cUser %@",cUser);
     PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
     [query whereKey:@"objectId" equalTo:objID];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error)
+    [query findObjectsInBackgroundWithBlock:^(NSArray *result, NSError *error){
+     if([result count]!=0)
      {
-         if([result count]!=0)
+         for (int i=0; i<[listImages count]; i++)
          {
-             for (int i=0; i<[listImages count]; i++)
-             {
-                 if (i!=0)
+             UIImage *image=(UIImage *)[listImages objectAtIndex:i];
+             if ([image isKindOfClass:[UIImage class]]) {
+                 NSData *imageData = UIImageJPEGRepresentation(image,0.8);
+                 PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+                 PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
+                 NSString *strID;
+                 userPhoto[@"propertyImg"]  = imageFile;
+                 for (PFObject *object in result)
                  {
-                     UIImage *image=(UIImage *)[listImages objectAtIndex:i];
-                     NSData *imageData = UIImageJPEGRepresentation(image,0.8);
-                     PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
-                     PFObject *userPhoto = [PFObject objectWithClassName:pPropertyImage];
-                     NSString *strID;
-                     userPhoto[@"propertyImg"]  = imageFile;
-                     for (PFObject *object in result)
-                     {
-                         userPhoto[@"propertyList"] = object;
-                         strID=[object objectId];
-                     }
-                     NSLog(@"strID %@",strID);
-                     userPhoto[@"user"]=cUser;
-                     [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-                      {
-                          if(error)
-                          {
-                              [self reportFailure:error];
-                              
-                          }else
-                          {
-                              PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
-                              [query getObjectInBackgroundWithId:strID block:^(PFObject *result, NSError *error) {
-                                  PFRelation *relation = [result relationForKey:@"propertyImages"];
-                                  [relation addObject:userPhoto];
-
-                                  NSMutableArray *array =  [NSMutableArray array];
-                                  array = [result[@"propertyImgArr"] mutableCopy];
-                                  if(!array)
-                                  {
-                                        array =  [NSMutableArray array];
-                                  }
-                                  [array addObject:userPhoto];
-                                  result[@"propertyImgArr"] = array;
-                                  [result saveInBackground];
-
-                                  
-                              }];
-                              NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:
-                                                  strID,@"propertyObjID",
-                                                  [NSNumber numberWithBool:succeeded],@"flag",
-                                                  nil];
-                              [self reportSuccess:dict];
-                          }
-                      }];
-                     
+                     userPhoto[@"propertyList"] = object;
+                     strID=[object objectId];
                  }
+                 NSLog(@"strID %@",strID);
+                 userPhoto[@"user"]=cUser;
+                 [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                  {
+                      if(error)
+                      {
+                          [self reportFailure:error];
+                          
+                      }else
+                      {
+                          PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+                          [query getObjectInBackgroundWithId:strID block:^(PFObject *result, NSError *error) {
+                              PFRelation *relation = [result relationForKey:@"propertyImages"];
+                              [relation addObject:userPhoto];
+                              
+                              NSMutableArray *array =  [NSMutableArray array];
+                              array = [result[@"propertyImgArr"] mutableCopy];
+                              if(!array)
+                              {
+                                  array =  [NSMutableArray array];
+                              }
+                              [array addObject:userPhoto];
+                              result[@"propertyImgArr"] = array;
+                              [result saveInBackground];
+                              
+                              
+                          }];
+                          NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:
+                                              strID,@"propertyObjID",
+                                              [NSNumber numberWithBool:succeeded],@"flag",
+                                              nil];
+                          [self reportSuccess:dict];
+                      }
+                  }];
+                }
              }
-         }
-     }];
+        }
+    }];
+
+}
+
+- (void)deleteImage:(PropertyImages *)image fromProperty:(PropertyList *)propertyList {
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyImage];
+    [query whereKey:@"objectId" equalTo:[image valueForKey:@"objectId"]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                [object delete];
+            }
+            [self reportSuccess:nil];
+        }
+        else
+        {
+            [self reportFailure:error];
+        }
+    }];
 
 }
 

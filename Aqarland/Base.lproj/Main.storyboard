@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Kd5-aF-ir1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Kd5-aF-ir1">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2023,27 +2024,32 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TvM-jq-r6X">
                                 <rect key="frame" x="0.0" y="64" width="320" height="37"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMz-Zw-KHC" customClass="RobotoLight">
-                                        <rect key="frame" x="42" y="4" width="248" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvo-5l-5xc">
+                                        <rect key="frame" x="0.0" y="4" width="320" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="edit_property_btn_touch_up_inside:" destination="zrq-Af-Aa6" eventType="touchUpInside" id="A5l-nN-TLz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhQ-VC-HOD">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhQ-VC-HOD">
                                 <rect key="frame" x="0.0" y="100" width="320" height="568"/>
                                 <subviews>
-                                    <view autoresizesSubviews="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q8S-Um-Dr0" customClass="iCarousel">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="233"/>
+                                    <view autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q8S-Um-Dr0" customClass="iCarousel">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="226"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="zrq-Af-Aa6" id="yMb-GH-Zou"/>
                                             <outlet property="delegate" destination="zrq-Af-Aa6" id="eEu-xh-CHl"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UZw-Cj-TFI">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UZw-Cj-TFI">
                                         <rect key="frame" x="0.0" y="234" width="320" height="137"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Townhouse 125sqm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQJ-SO-c2C" customClass="RobotoMedium">
@@ -2085,12 +2091,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ydo-4L-pKF">
-                                        <rect key="frame" x="0.0" y="371" width="320" height="263"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="zrq-Af-Aa6" id="0AI-ux-LNX"/>
-                                        </connections>
-                                    </mapView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amenities" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfW-Vl-Hwt" customClass="RobotoMedium">
                                         <rect key="frame" x="94" y="633" width="132" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2102,14 +2102,28 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAy-DZ-sah" customClass="RobotoLightTxtView">
-                                        <rect key="frame" x="7" y="697" width="307" height="128"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ydo-4L-pKF">
+                                        <rect key="frame" x="0.0" y="379" width="320" height="200"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="zrq-Af-Aa6" id="0AI-ux-LNX"/>
+                                        </connections>
+                                    </mapView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Q8S-Um-Dr0" firstAttribute="leading" secondItem="nhQ-VC-HOD" secondAttribute="leading" id="0k6-6U-pZQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ydo-4L-pKF" secondAttribute="trailing" id="FM5-73-eGH"/>
+                                    <constraint firstItem="Ydo-4L-pKF" firstAttribute="top" secondItem="UZw-Cj-TFI" secondAttribute="bottom" constant="8" id="JWd-db-4eB"/>
+                                    <constraint firstItem="Q8S-Um-Dr0" firstAttribute="top" secondItem="nhQ-VC-HOD" secondAttribute="top" id="Uel-LH-DtQ"/>
+                                    <constraint firstItem="UZw-Cj-TFI" firstAttribute="top" secondItem="Q8S-Um-Dr0" secondAttribute="bottom" constant="8" id="pe4-u6-wQ7"/>
+                                    <constraint firstItem="Ydo-4L-pKF" firstAttribute="leading" secondItem="nhQ-VC-HOD" secondAttribute="leading" id="t38-kH-iuz"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q8S-Um-Dr0" secondAttribute="trailing" id="wns-dM-PA5"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="zrq-Af-Aa6" id="W9k-8F-1L8"/>
                                 </connections>
@@ -2127,7 +2141,7 @@
                         <outlet property="bathRoomLbl" destination="F8C-hH-dhZ" id="COO-Fw-u3E"/>
                         <outlet property="bedRoomLbl" destination="Nd3-7s-vrS" id="itd-g6-zWk"/>
                         <outlet property="carousel" destination="Q8S-Um-Dr0" id="CJQ-7o-c9S"/>
-                        <outlet property="contactPerson" destination="OMz-Zw-KHC" id="UOp-iJ-ulK"/>
+                        <outlet property="contactPerson" destination="Rvo-5l-5xc" id="q0I-Os-mjn"/>
                         <outlet property="descriptionLbl" destination="YAy-DZ-sah" id="DJ1-LX-26C"/>
                         <outlet property="mapView" destination="Ydo-4L-pKF" id="FBc-EK-oXa"/>
                         <outlet property="priceLbl" destination="fPN-Cz-hTb" id="2rp-Xd-ESj"/>

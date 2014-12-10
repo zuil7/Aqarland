@@ -320,32 +320,68 @@
     {
         PropertyList *property= (PropertyList *)[self.propertyListArr objectAtIndex:i];
         
-        NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:property.propertyImages];
-        if([imagesArr count]!=0)
-        {
-            NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
-            NSArray *latlongArr = [property.m_latLong componentsSeparatedByString: @","];
-            NSString *latStr=[latlongArr objectAtIndex:0];
-            NSString *longStr=[latlongArr objectAtIndex:1];
-            double lat = [latStr doubleValue];
-            double lng = [longStr doubleValue];
+        ParseLayerService *request = [[ParseLayerService alloc] init];
+        [request propertyImagesForPropertyList:property];
+        [request setCompletionBlock:^(id results) {
+            NSArray *images = (NSArray *)results;
+            for (PFObject *propertyImage in images) {
+                if (![propertyImage isEqual:[NSNull null]]) {
+                    NSArray *latlongArr = [property.m_latLong componentsSeparatedByString: @","];
+                    NSString *latStr=[latlongArr objectAtIndex:0];
+                    NSString *longStr=[latlongArr objectAtIndex:1];
+                    double lat = [latStr doubleValue];
+                    double lng = [longStr doubleValue];
+                    
+                    NSLog(@"lat %f",lat);
+                    NSLog(@"lng %f",lng);
+                    
+                    CLLocationCoordinate2D curLocation;
+                    curLocation.latitude = lat;
+                    curLocation.longitude = lng;
+                    
+                    NSString *infoTitle = @"Title";
+                    NSString *desc = @"Desc";
+                    
+                    MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
+                    curAnnotation.annType = i;
+                    curAnnotation.annIndex = i;
+                    curAnnotation.file= propertyImage[@"propertyImg"];
+                    [self.mapView addAnnotation:curAnnotation];
+                    
+                    continue;
+                }
+            }
+        }];
+        [request setFailedBlock:^(NSError *error) {
             
-            NSLog(@"lat %f",lat);
-            NSLog(@"lng %f",lng);
-            
-            CLLocationCoordinate2D curLocation;
-            curLocation.latitude = lat;
-            curLocation.longitude = lng;
-            
-            NSString *infoTitle = @"Title";
-            NSString *desc = @"Desc";
-            
-            MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
-            curAnnotation.annType = i;
-            curAnnotation.annIndex = i;
-            curAnnotation.file=dImagesDict[@"propertyImg"];
-            [self.mapView addAnnotation:curAnnotation];
-        }
+        }];
+        
+//        NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:property.propertyImages];
+//        if([imagesArr count]!=0)
+//        {
+//            NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
+//            NSArray *latlongArr = [property.m_latLong componentsSeparatedByString: @","];
+//            NSString *latStr=[latlongArr objectAtIndex:0];
+//            NSString *longStr=[latlongArr objectAtIndex:1];
+//            double lat = [latStr doubleValue];
+//            double lng = [longStr doubleValue];
+//            
+//            NSLog(@"lat %f",lat);
+//            NSLog(@"lng %f",lng);
+//            
+//            CLLocationCoordinate2D curLocation;
+//            curLocation.latitude = lat;
+//            curLocation.longitude = lng;
+//            
+//            NSString *infoTitle = @"Title";
+//            NSString *desc = @"Desc";
+//            
+//            MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
+//            curAnnotation.annType = i;
+//            curAnnotation.annIndex = i;
+//            curAnnotation.file= (dImagesDict[@"propertyImg"] != [NSNull null]) ? dImagesDict[@"propertyImg"] : nil;
+//            [self.mapView addAnnotation:curAnnotation];
+//        }
         
         
     }

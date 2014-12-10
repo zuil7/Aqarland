@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+@class PropertyList;
+
 @interface AQMapConfirmLocationViewController : UIViewController<MKMapViewDelegate,CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property(nonatomic,strong) NSMutableDictionary *dictionaryAddress;
 @property(nonatomic,strong) UIImage *propertyImg;
 @property(nonatomic,strong) NSString *strPropertyID;
+@property(nonatomic, strong) PropertyList *propertyDetails;
 
 @property (weak, nonatomic) IBOutlet UIView *pinView;
 @property (weak, nonatomic) IBOutlet UIImageView *propertyPic;

@@ -8,6 +8,7 @@
 
 #import "AQViewProperty.h"
 #import "ReflectionView.h"
+#import "AQAddPropertyViewController.h"
 
 @interface AQViewProperty ()<MBProgressHUDDelegate>
 {
@@ -15,8 +16,10 @@
 }
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) NSMutableArray *imagesArr;
+@property (nonatomic, strong) AQAddPropertyViewController *addPropertyViewController;
 @property (nonatomic, strong) UIButton *favoriteBtn;
 @property (nonatomic, strong) UIButton *shareBtn;
+
 @end
 
 @implementation AQViewProperty
@@ -58,12 +61,10 @@
     [self customizeHeaderBar];
     self.carousel.type = iCarouselTypeCoverFlow2;
     
-    self.imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
-    [self.carousel reloadData];
-    [self.carousel scrollToItemAtIndex:0 duration:0.0f];
-    
+    [self propertyImagesForPropertyList:self.propertyDetails];
     if(self.isUserDetails)
     {
+        
     
     }else
     {
@@ -103,6 +104,21 @@
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
+
+- (void) propertyImagesForPropertyList:(PropertyList *)propertyList {
+    ParseLayerService *request = [[ParseLayerService alloc] init];
+    [request propertyImagesForPropertyList:propertyList];
+    [request setCompletionBlock:^(id results) {
+        NSArray *images = (NSArray *)results;
+        self.imagesArr = [images mutableCopy];
+        [self.carousel reloadData];
+        [self.carousel scrollToItemAtIndex:0 duration:0.0f];
+    }];
+    [request setFailedBlock:^(NSError *error) {
+        [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+    }];
+}
+
 -(void) customizeHeaderBar
 {
     [self.navigationItem setTitle:@"Unit Number"];
@@ -144,7 +160,6 @@
             [self.shareBtn addTarget:self action:@selector(share_touchedup_inside:) forControlEvents:UIControlEventTouchUpInside];
             
             UIBarButtonItem *shareButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareBtn];
-            
             
             self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:deleteBtnItem, shareButtonItem, nil];
             
@@ -254,14 +269,21 @@
 -(void)share_touchedup_inside:(id) sender
 {
     
+    
 }
 
 -(void) fillData
 {
     [self.townHouseLbl setText:[NSString stringWithFormat:@"%@, %@ sqm",self.propertyDetails.m_propertyType,self.propertyDetails.m_propertySize]];
     PFObject *user=(PFObject *)self.propertyDetails.user;
+    NSString *contactPersonText = @"Edit Property";
+    self.contactPerson.enabled = YES;
+    if (!self.isUserDetails) {
+        self.contactPerson.enabled = NO;
+        contactPersonText = [NSString stringWithFormat:@"Contact %@",user[@"name"]];
+    }
     
-    [self.contactPerson setText:[NSString stringWithFormat:@"Contact %@",user[@"name"]]];
+    [self.contactPerson setTitle:contactPersonText forState:UIControlStateNormal];
     [self.priceLbl setText:[NSString stringWithFormat:@"$ %@",self.propertyDetails.m_price]];
     [self.bathRoomLbl setText:self.propertyDetails.m_numberOfBaths];
     [self.bedRoomLbl setText:self.propertyDetails.m_numberOfBedrooms];
@@ -295,28 +317,33 @@
       
         customImgView.frame = view.frame;
         [customImgView setBackgroundColor:[UIColor clearColor]];
-        NSDictionary *dictImg=[self.imagesArr objectAtIndex:index];
-        
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        activityIndicator.alpha = 1.0;
-        activityIndicator.center = CGPointMake(customImgView.bounds.size.width / 2.0, customImgView.bounds.size.height / 2.0);
-        activityIndicator.hidesWhenStopped = NO;
-        [customImgView addSubview:activityIndicator];
-        [activityIndicator startAnimating];
-        [view addSubview:customImgView];
-        
-        [customImgView setFile:dictImg[@"propertyImg"]];
-        [customImgView loadInBackground:^(UIImage *image, NSError *error) {
-            if (!error)
-            {
-                [activityIndicator removeFromSuperview];
-            }else
-            {
-                [activityIndicator removeFromSuperview];
-                [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+        if (self.imagesArr) {
+
+            if (self.imagesArr[index] != [NSNull null]) {
+                
+                NSDictionary *dictImg=[self.imagesArr objectAtIndex:index];
+
+                UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                activityIndicator.alpha = 1.0;
+                activityIndicator.center = CGPointMake(customImgView.bounds.size.width / 2.0, customImgView.bounds.size.height / 2.0);
+                activityIndicator.hidesWhenStopped = NO;
+                [customImgView addSubview:activityIndicator];
+                [activityIndicator startAnimating];
+                [view addSubview:customImgView];
+                
+                [customImgView setFile:dictImg[@"propertyImg"]];
+                [customImgView loadInBackground:^(UIImage *image, NSError *error) {
+                    if (!error)
+                    {
+                        [activityIndicator removeFromSuperview];
+                    }else
+                    {
+                        [activityIndicator removeFromSuperview];
+                        [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+                    }
+                }];
             }
-        }];
-        
+        }
     }
     else
     {
@@ -326,6 +353,20 @@
     return view;
    
 }
+////////////////////////////////////
+#pragma mark - IBActions
+////////////////////////////////////
+
+- (IBAction)edit_property_btn_touch_up_inside:(id)sender {
+    self.addPropertyViewController = [GlobalInstance loadStoryBoardId:sAddPropertyVC];
+    self.addPropertyViewController.propertyDetails = self.propertyDetails;
+    [self.navigationController pushViewController:self.addPropertyViewController animated:YES];
+
+//    if ([self.delegate respondsToSelector:@selector(editMyPropertyList:)]) {
+//        [self.delegate editMyPropertyList:self.propertyDetails];
+//    }
+}
+
 
 ////////////////////////////////////
 #pragma mark - MapViewDelegate
@@ -337,34 +378,69 @@
     
     NSLog(@"[self.aStations count] %@",self.propertyDetails);
     
-    // get the annotation
-    NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
-    if([imagesArr count]!=0)
-    {
-        NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
-        NSArray *latlongArr = [self.propertyDetails.m_latLong componentsSeparatedByString: @","];
-        NSString *latStr=[latlongArr objectAtIndex:0];
-        NSString *longStr=[latlongArr objectAtIndex:1];
-        double lat = [latStr doubleValue];
-        double lng = [longStr doubleValue];
+    ParseLayerService *request = [[ParseLayerService alloc] init];
+    [request propertyImagesForPropertyList:self.propertyDetails];
+    [request setCompletionBlock:^(id results) {
+        NSArray *images = (NSArray *)results;
+        for (PFObject *propertyImage in images) {
+            if (![propertyImage isEqual:[NSNull null]]) {
+                NSArray *latlongArr = [self.propertyDetails.m_latLong componentsSeparatedByString: @","];
+                NSString *latStr=[latlongArr objectAtIndex:0];
+                NSString *longStr=[latlongArr objectAtIndex:1];
+                double lat = [latStr doubleValue];
+                double lng = [longStr doubleValue];
+                
+                NSLog(@"lat %f",lat);
+                NSLog(@"lng %f",lng);
+                
+                CLLocationCoordinate2D curLocation;
+                curLocation.latitude = lat;
+                curLocation.longitude = lng;
+                
+                NSString *infoTitle = @"Title";
+                NSString *desc = @"Desc";
+                
+                MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
+                curAnnotation.annType = lat;
+                curAnnotation.annIndex = lng;
+                curAnnotation.file= propertyImage[@"propertyImg"];
+                [self.mapView addAnnotation:curAnnotation];
+                
+                continue;
+            }
+        }
+    }];
+    [request setFailedBlock:^(NSError *error) {
         
-        ZOOM_LEVEL= 13.0;
-        CLLocationCoordinate2D centerCoord = { lat, lng };
-        [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
-        
-        CLLocationCoordinate2D curLocation;
-        curLocation.latitude = lat;
-        curLocation.longitude = lng;
-        
-        NSString *infoTitle = @"Title";
-        NSString *desc = @"Desc";
-        
-        MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
-        
-        curAnnotation.file=dImagesDict[@"propertyImg"];
-        [self.mapView addAnnotation:curAnnotation];
-        
-    }
+    }];
+//    // get the annotation
+//    NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:self.propertyDetails.propertyImages];
+//    if([imagesArr count]!=0)
+//    {
+//        NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
+//        NSArray *latlongArr = [self.propertyDetails.m_latLong componentsSeparatedByString: @","];
+//        NSString *latStr=[latlongArr objectAtIndex:0];
+//        NSString *longStr=[latlongArr objectAtIndex:1];
+//        double lat = [latStr doubleValue];
+//        double lng = [longStr doubleValue];
+//        
+//        ZOOM_LEVEL= 13.0;
+//        CLLocationCoordinate2D centerCoord = { lat, lng };
+//        [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
+//        
+//        CLLocationCoordinate2D curLocation;
+//        curLocation.latitude = lat;
+//        curLocation.longitude = lng;
+//        
+//        NSString *infoTitle = @"Title";
+//        NSString *desc = @"Desc";
+//        
+//        MapAnnotation *curAnnotation = [[MapAnnotation alloc] initWithCoordinate:curLocation title:infoTitle subTitle:desc];
+//        
+//        curAnnotation.file= (imagesArr[0] != [NSNull null]) ? dImagesDict[@"propertyImg"] : nil;
+//        [self.mapView addAnnotation:curAnnotation];
+//        
+//    }
 }
 ////////////////////////////////////
 #pragma mark - MapView

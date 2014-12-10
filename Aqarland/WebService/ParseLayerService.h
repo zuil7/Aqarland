@@ -50,9 +50,14 @@ typedef void(^AQFailedBlock)(NSError *error);
 //AddProperty
 -(void) addProperty:(NSDictionary *) propertyDetails;
 -(void) updateProperty:(NSDictionary *) propertyDetails :(NSString *) propertyObjID;
+-(void) updatePropertyList:(PropertyList *)propertyList withDetails:(NSDictionary *)propertyDetails;
+
+//Property Images
+- (void) propertyImagesForPropertyList:(PropertyList *)propertyList;
 
 //UploadImages
 -(void) uploadImages:(NSMutableArray *) listImages :(NSString *) objID;
+- (void)deleteImage:(PropertyImages *)image fromProperty:(PropertyList *)propertyList;
 
 //Filtering
 -(void) fetchLocationByCity;
