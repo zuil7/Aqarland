@@ -112,7 +112,7 @@
         NSMutableArray *imagesArr=[[NSMutableArray alloc] initWithArray:property.propertyImages];
         if([imagesArr count]!=0)
         {
-            NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
+            //NSDictionary *dImagesDict= [imagesArr objectAtIndex:0];
             NSArray *latlongArr = [property.m_latLong componentsSeparatedByString: @","];
             NSString *latStr=[latlongArr objectAtIndex:0];
             NSString *longStr=[latlongArr objectAtIndex:1];
