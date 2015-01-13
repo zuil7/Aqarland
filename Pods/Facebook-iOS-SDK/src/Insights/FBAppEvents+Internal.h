@@ -99,7 +99,6 @@ FBSDK_EXTERN NSString *const FBAppEventsNativeLoginDialogEndTime;
 
 FBSDK_EXTERN NSString *const FBAppEventsWebLoginE2E;
 
-FBSDK_EXTERN NSString *const FBAppEventNameFBLikeControlCannotPresentDialog;
 FBSDK_EXTERN NSString *const FBAppEventNameFBLikeControlDidDisable;
 FBSDK_EXTERN NSString *const FBAppEventNameFBLikeControlDidLike;
 FBSDK_EXTERN NSString *const FBAppEventNameFBLikeControlDidPresentDialog;
@@ -124,6 +123,11 @@ typedef NS_ENUM(NSUInteger, FBAppEventsFlushReason) {
               valueToSum:(NSNumber *)valueToSum
               parameters:(NSDictionary *)parameters
                  session:(FBSession *)session;
+
++ (void)logImplicitPurchaseEvent:(NSString *)eventName
+                      valueToSum:(NSNumber *)valueToSum
+                      parameters:(NSDictionary *)parameters
+                         session:(FBSession *)session;
 
 + (FBRequest *)customAudienceThirdPartyIDRequest:(FBSession *)session;
 

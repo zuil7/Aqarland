@@ -276,11 +276,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34618C7ACFF98FE49CF83766 /* Pods-Aqarland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aqarland.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aqarland/Pods-Aqarland.release.xcconfig"; sourceTree = "<group>"; };
 		758E95541A091E7200A80608 /* AQFilterProperTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQFilterProperTypeVC.h; sourceTree = "<group>"; };
 		758E95551A091E7200A80608 /* AQFilterProperTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQFilterProperTypeVC.m; sourceTree = "<group>"; };
 		759175D71A0A73CB000EA709 /* AQPropertyTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyTypeCell.h; sourceTree = "<group>"; };
 		759175D81A0A73CB000EA709 /* AQPropertyTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPropertyTypeCell.m; sourceTree = "<group>"; };
-		9529DA1ECBA845959C7ED5E2 /* Pods-Aqarland.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aqarland.xcconfig"; path = "Pods/Pods-Aqarland.xcconfig"; sourceTree = "<group>"; };
 		A5927B457B6A417681F471E3 /* libPods-Aqarland.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aqarland.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B73C05A819A1E8BD0048FE8A /* type_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = type_fill.png; sourceTree = "<group>"; };
 		B73C05A919A1E8BD0048FE8A /* type_fill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "type_fill@2x.png"; sourceTree = "<group>"; };
@@ -594,6 +594,7 @@
 		B7EE299819B0673A0085DC0D /* TWSignedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSignedRequest.m; sourceTree = "<group>"; };
 		B7F506C319D14DFC0035C44F /* AQViewMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQViewMapViewController.h; sourceTree = "<group>"; };
 		B7F506C419D14DFC0035C44F /* AQViewMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQViewMapViewController.m; sourceTree = "<group>"; };
+		B86408272156A56BC624617D /* Pods-Aqarland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aqarland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aqarland/Pods-Aqarland.debug.xcconfig"; sourceTree = "<group>"; };
 		FB06525519D31EC50084CBD5 /* AQCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AQCircleButton.h; path = Aqarland/CustomUI/CustomButton/AQCircleButton.h; sourceTree = SOURCE_ROOT; };
 		FB06525619D31EC50084CBD5 /* AQCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AQCircleButton.m; path = Aqarland/CustomUI/CustomButton/AQCircleButton.m; sourceTree = SOURCE_ROOT; };
 		FB97933A19D488E200C0C18A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -702,7 +703,7 @@
 				B7A43B2C1988A2A800180532 /* AqarlandTests */,
 				B7A43B061988A2A800180532 /* Frameworks */,
 				B7A43B051988A2A800180532 /* Products */,
-				9529DA1ECBA845959C7ED5E2 /* Pods-Aqarland.xcconfig */,
+				EFAD61E0AE082C1BF13315F2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1403,6 +1404,15 @@
 			path = TwitterReverseAuth;
 			sourceTree = "<group>";
 		};
+		EFAD61E0AE082C1BF13315F2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B86408272156A56BC624617D /* Pods-Aqarland.debug.xcconfig */,
+				34618C7ACFF98FE49CF83766 /* Pods-Aqarland.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1695,7 +1705,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Aqarland-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aqarland/Pods-Aqarland-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EAC6A5D290CC448187882ABB /* Check Pods Manifest.lock */ = {
@@ -1916,7 +1926,7 @@
 		};
 		B7A43B371988A2A800180532 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9529DA1ECBA845959C7ED5E2 /* Pods-Aqarland.xcconfig */;
+			baseConfigurationReference = B86408272156A56BC624617D /* Pods-Aqarland.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1934,7 +1944,7 @@
 		};
 		B7A43B381988A2A800180532 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9529DA1ECBA845959C7ED5E2 /* Pods-Aqarland.xcconfig */;
+			baseConfigurationReference = 34618C7ACFF98FE49CF83766 /* Pods-Aqarland.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

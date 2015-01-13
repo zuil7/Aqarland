@@ -9,8 +9,11 @@
 #import "AQViewProperty.h"
 #import "ReflectionView.h"
 #import "AQAddPropertyViewController.h"
+#import "KxMenu.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import <MessageUI/MessageUI.h>
 
-@interface AQViewProperty ()<MBProgressHUDDelegate>
+@interface AQViewProperty ()<MBProgressHUDDelegate,MFMailComposeViewControllerDelegate>
 {
     int ZOOM_LEVEL;
 }
@@ -268,10 +271,141 @@
 
 -(void)share_touchedup_inside:(id) sender
 {
+    NSArray *menuItems =
+    @[
+      [KxMenuItem menuItem:@"Share to Facebook"
+                     image:nil
+                    target:self
+                    action:@selector(fbShare:)],
+      [KxMenuItem menuItem:@"Send to Email"
+                     image:nil
+                    target:self
+                    action:@selector(sendToEmail:)]
+      ];
+    KxMenuItem *first = menuItems[0];
+    first.foreColor = [UIColor colorWithRed:255.0/255.0f green:255.0/255.0f blue:225/255.0f alpha:1.0];
+    first.alignment = NSTextAlignmentCenter;
     
+    [KxMenu showMenuInView:self.navigationController.view
+                  fromRect:self.shareBtn.frame
+                 menuItems:menuItems];
+}
+- (NSDictionary*)parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
+    }
+    return params;
+}
+-(void)fbShare:(id) sender
+{
+    double delayInSeconds = 0.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+                   {
+                       UIGraphicsBeginImageContext(CGSizeMake(self.propertySV.frame.size.width,self.propertySV.frame.size.height));
+                       CGContextRef context = UIGraphicsGetCurrentContext();
+                       [self.propertySV.layer renderInContext:context];
+                       UIImage *screenShot = UIGraphicsGetImageFromCurrentImageContext();
+                       UIGraphicsEndImageContext();
+                       
+                       FBPhotoParams *params = [[FBPhotoParams alloc] init];
+                       params.photos = @[screenShot];
+                       
+                       [FBDialogs presentShareDialogWithPhotoParams:params
+                                                        clientState:nil
+                                                            handler:^(FBAppCall *call, NSDictionary *results, NSError *error)
+                        {
+                            NSLog(@"results %@",results);
+                            NSString *result=results[@"completionGesture"];
+                            if ([result isEqualToString:@"post"])
+                            {
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iInformation message:@"Photo Successfully Posted" delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil];
+                                
+                                [alert show];
+                               
+                                
+                            } else
+                            {
+                                if(error)
+                                {
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iErrorInfo message:error.description delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil];
+                                    
+                                    [alert show];
+                                }
+                            }
+                        }];
+
+                   });
+
+}
+
+-(void)sendToEmail:(id) sender
+{
+    double delayInSeconds = 0.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+                   {
+                       UIGraphicsBeginImageContext(CGSizeMake(self.propertySV.frame.size.width,self.propertySV.frame.size.height));
+                       CGContextRef context = UIGraphicsGetCurrentContext();
+                       [self.propertySV.layer renderInContext:context];
+                       UIImage *screenShot = UIGraphicsGetImageFromCurrentImageContext();
+                       UIGraphicsEndImageContext();
+                       
+                       NSString *emailTitle = @"Check this out";
+                       // Email Content
+                       NSString *messageBody = @"Check this Property";
+                       // To address
+                       
+                       MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+                       if ([MFMailComposeViewController canSendMail])
+                       {
+                           mc.mailComposeDelegate = self;
+                           [mc setSubject:emailTitle];
+                           [mc setMessageBody:messageBody isHTML:NO];
+
+                           NSData *imgData= UIImageJPEGRepresentation(screenShot,1.0);
+                           NSString *filename = @"propertyImg";
+                           NSString *mimeType = @"image/jpeg";;
+                      
+                           [mc addAttachmentData:imgData mimeType:mimeType fileName:filename];
+                           [GlobalInstance.navController presentViewController:mc animated:YES completion:NULL];
+                       }
+                });
     
 }
 
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iInformation
+                                                            message:@"Mail Successfully Sent" delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil];
+            
+            [alert show];
+            }
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    // Close the Mail Interface
+    [GlobalInstance.navController dismissViewControllerAnimated:YES completion:NULL];
+}
 -(void) fillData
 {
     [self.townHouseLbl setText:[NSString stringWithFormat:@"%@, %@ sqm",self.propertyDetails.m_propertyType,self.propertyDetails.m_propertySize]];

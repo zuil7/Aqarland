@@ -1,0 +1,1 @@
+PODS_AQARLAND_ICAROUSEL_OTHER_LDFLAGS = -framework "QuartzCore"

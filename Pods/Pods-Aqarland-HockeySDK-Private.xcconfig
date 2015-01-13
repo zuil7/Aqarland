@@ -1,6 +1,0 @@
-#include "Pods-Aqarland-HockeySDK.xcconfig"
-FRAMEWORK_SEARCH_PATHS = ${PODS_AQARLAND_HOCKEYSDK_FRAMEWORK_SEARCH_PATHS}
-GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1 ${PODS_AQARLAND_HOCKEYSDK_GCC_PREPROCESSOR_DEFINITIONS}
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/HockeySDK" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/AMBCircularButton" "${PODS_ROOT}/Headers/Bolts" "${PODS_ROOT}/Headers/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/HockeySDK" "${PODS_ROOT}/Headers/IQKeyboardManager" "${PODS_ROOT}/Headers/MBProgressHUD" "${PODS_ROOT}/Headers/Parse" "${PODS_ROOT}/Headers/RMPickerViewController" "${PODS_ROOT}/Headers/SDWebImage" "${PODS_ROOT}/Headers/ViewDeck" "${PODS_ROOT}/Headers/iCarousel"
-OTHER_LDFLAGS = -ObjC ${PODS_AQARLAND_HOCKEYSDK_OTHER_LDFLAGS}
-PODS_ROOT = ${SRCROOT}

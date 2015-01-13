@@ -22,12 +22,13 @@ PODS:
     - AFNetworking/NSURLSession
   - AMBCircularButton (0.0.3):
     - SDWebImage
-  - Bolts (1.1.2)
-  - Facebook-iOS-SDK (3.18.0):
-    - Bolts
+  - Bolts (1.1.3)
+  - Facebook-iOS-SDK (3.22.0):
+    - Bolts (~> 1.0)
   - HockeySDK (3.5.5)
   - iCarousel (1.8)
   - IQKeyboardManager (3.1.1)
+  - KxMenu (1)
   - MBProgressHUD (0.8)
   - Parse (1.2.19):
     - Facebook-iOS-SDK (~> 3.11)
@@ -43,6 +44,7 @@ DEPENDENCIES:
   - HockeySDK (= 3.5.5)
   - iCarousel (= 1.8)
   - IQKeyboardManager (= 3.1.1)
+  - KxMenu (= 1)
   - MBProgressHUD (= 0.8)
   - Parse (= 1.2.19)
   - RMPickerViewController (= 1.2.0)
@@ -52,15 +54,16 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   AMBCircularButton: 4a8a685d2ca94fa9b5d6d9de23fb88e5afb8a2a3
-  Bolts: 2635e8698a630774689441047f3465d78c48d485
-  Facebook-iOS-SDK: fa12c51cc57bfb6f92e47793c9d4d2c65bc92741
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  Facebook-iOS-SDK: 0eda8ff7120aada0a9c5f98552f7625da6c3440a
   HockeySDK: f9af97c2f5df4eb6ca6d2a9c408f2ff498edd608
   iCarousel: cf77aea48dfcde9a0cd85569a1d8a9b6dd543bd7
   IQKeyboardManager: 79ab3bc740f6bd30eadf9b0d217020941c0926e4
+  KxMenu: e281f1699a2181287de6eb1ebec2ea60a86559fa
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   Parse: ffebaecaddd32cb52671010f81567c298ff93d04
   RMPickerViewController: 9e976b3c4bc09bd7d546306f0e6dacc19ce6c496
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   ViewDeck: 2f38c054dfe8e69af4877c006785996faa277902
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.2

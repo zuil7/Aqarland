@@ -12,6 +12,7 @@ pod 'HockeySDK',                '3.5.5'
 pod 'iCarousel',                '1.8'
 pod 'AMBCircularButton',        '0.0.3'
 pod 'SDWebImage',               '3.7.1'
+pod 'KxMenu',                  '1'
 end
 
 target "AqarlandTests" do
