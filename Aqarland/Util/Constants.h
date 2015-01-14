@@ -77,6 +77,8 @@
 #define sPropertyFilterVC           @"filterScreenVC"
 #define sPropertyFilterTypeVC       @"filterPropertyTypeVC"
 #define sSearchFilterResultVC       @"filterSearchResult"
+#define sImageViewer                @"sImageViewer"
+
 
 
 //Parse Class Name

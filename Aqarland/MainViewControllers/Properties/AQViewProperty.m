@@ -12,11 +12,14 @@
 #import "KxMenu.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <MessageUI/MessageUI.h>
+#import "AQViewPropertyImageViewer.h"
 
 @interface AQViewProperty ()<MBProgressHUDDelegate,MFMailComposeViewControllerDelegate>
 {
     int ZOOM_LEVEL;
 }
+
+@property (nonatomic, assign) BOOL wrap;
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) NSMutableArray *imagesArr;
 @property (nonatomic, strong) AQAddPropertyViewController *addPropertyViewController;
@@ -62,7 +65,7 @@
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
     [self customizeHeaderBar];
-    self.carousel.type = iCarouselTypeCoverFlow2;
+    self.carousel.type = iCarouselTypeLinear;
     
     [self propertyImagesForPropertyList:self.propertyDetails];
     if(self.isUserDetails)
@@ -440,14 +443,14 @@
     return [self.imagesArr count];
 }
 
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(ReflectionView *)view
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
 {
     
      PFImageView *customImgView = [[PFImageView alloc] init];
     //create new view if no view is available for recycling
     if (view == nil)
     {
-        view = [[ReflectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 195.0f, 195.0f)];
+        view = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 195.0f, 195.0f)];
       
         customImgView.frame = view.frame;
         [customImgView setBackgroundColor:[UIColor clearColor]];
@@ -483,10 +486,79 @@
     {
         
     }
-    [view update];
+    //[view update];
     return view;
    
 }
+
+- (CGFloat)carousel:(__unused iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
+{
+    //customize carousel display
+    switch (option)
+    {
+        case iCarouselOptionWrap:
+        {
+            //normally you would hard-code this to YES or NO
+            return self.wrap;
+        }
+        case iCarouselOptionSpacing:
+        {
+            //add a bit of spacing between the item views
+            return value * 1.05f;
+        }
+        case iCarouselOptionFadeMax:
+        {
+            if (self.carousel.type == iCarouselTypeCustom)
+            {
+                //set opacity based on distance from camera
+                return 0.0f;
+            }
+            return value;
+        }
+        case iCarouselOptionShowBackfaces:
+        case iCarouselOptionRadius:
+        case iCarouselOptionAngle:
+        case iCarouselOptionArc:
+        case iCarouselOptionTilt:
+        case iCarouselOptionCount:
+        case iCarouselOptionFadeMin:
+        case iCarouselOptionFadeMinAlpha:
+        case iCarouselOptionFadeRange:
+        case iCarouselOptionOffsetMultiplier:
+        case iCarouselOptionVisibleItems:
+        {
+            return value;
+        }
+    }
+}
+
+#pragma mark iCarousel taps
+
+- (void)carousel:(__unused iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
+{
+      NSDictionary *dictImg=[self.imagesArr objectAtIndex:index];
+     NSLog(@"self.imagesArr %@",self.imagesArr);
+     NSLog(@"property img %@",dictImg[@"propertyImg"]);
+    
+    NSMutableArray *arrImg=[[NSMutableArray alloc] init];
+    
+    for (int i=0;i<[self.imagesArr count]; i++)
+    {
+        NSDictionary *dictImg=[self.imagesArr objectAtIndex:i];
+        PFFile *imageFile = dictImg[@"propertyImg"];
+        NSData *imageData = [imageFile getData];
+        UIImage *image = [UIImage imageWithData:imageData];
+        [arrImg addObject:image];
+
+    }
+    AQViewPropertyImageViewer *viewProperty=[GlobalInstance loadStoryBoardId:sImageViewer];
+    viewProperty.idx=index;
+    viewProperty.ImgArr=arrImg;
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:viewProperty];
+    [GlobalInstance.navController presentViewController:nc animated:YES completion:nil];
+
+}
+
 ////////////////////////////////////
 #pragma mark - IBActions
 ////////////////////////////////////

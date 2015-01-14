@@ -233,6 +233,8 @@
 		B7A83CDA199B71E000B4B0C6 /* searchBarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83CD8199B71E000B4B0C6 /* searchBarBg@2x.png */; };
 		B7AABE001990CF2500DEADAD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABDFF1990CF2500DEADAD /* Accounts.framework */; };
 		B7AABE021990CF2D00DEADAD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABE011990CF2D00DEADAD /* Social.framework */; };
+		B7AF57771A662EAB00F640F3 /* AQViewPropertyImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF57761A662EAB00F640F3 /* AQViewPropertyImageViewer.m */; };
+		B7AF577A1A66483600F640F3 /* AQPhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF57791A66483600F640F3 /* AQPhotoViewer.m */; };
 		B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF8B98199CAA9300663A3E /* AQAddPropertyViewController.m */; };
 		B7AF8B9C199DE67F00663A3E /* AQPropertyDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF8B9B199DE67F00663A3E /* AQPropertyDetailsViewController.m */; };
 		B7AF8BA1199DF8E500663A3E /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AF8B9D199DF8E500663A3E /* home_icon.png */; };
@@ -551,6 +553,10 @@
 		B7A83CD8199B71E000B4B0C6 /* searchBarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarBg@2x.png"; sourceTree = "<group>"; };
 		B7AABDFF1990CF2500DEADAD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B7AABE011990CF2D00DEADAD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		B7AF57751A662EAB00F640F3 /* AQViewPropertyImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQViewPropertyImageViewer.h; sourceTree = "<group>"; };
+		B7AF57761A662EAB00F640F3 /* AQViewPropertyImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQViewPropertyImageViewer.m; sourceTree = "<group>"; };
+		B7AF57781A66483600F640F3 /* AQPhotoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPhotoViewer.h; sourceTree = "<group>"; };
+		B7AF57791A66483600F640F3 /* AQPhotoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQPhotoViewer.m; sourceTree = "<group>"; };
 		B7AF8B97199CAA9300663A3E /* AQAddPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQAddPropertyViewController.h; sourceTree = "<group>"; };
 		B7AF8B98199CAA9300663A3E /* AQAddPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQAddPropertyViewController.m; sourceTree = "<group>"; };
 		B7AF8B9A199DE67F00663A3E /* AQPropertyDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQPropertyDetailsViewController.h; sourceTree = "<group>"; };
@@ -683,6 +689,8 @@
 			children = (
 				B7974E6B19A3530B00CDB6DE /* AQUploadPhoto.h */,
 				B7974E6C19A3530B00CDB6DE /* AQUploadPhoto.m */,
+				B7AF57781A66483600F640F3 /* AQPhotoViewer.h */,
+				B7AF57791A66483600F640F3 /* AQPhotoViewer.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1286,6 +1294,8 @@
 				B788325C19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m */,
 				B79B39FF19C2F9F800F2DEDD /* AQViewProperty.h */,
 				B79B3A0019C2F9F800F2DEDD /* AQViewProperty.m */,
+				B7AF57751A662EAB00F640F3 /* AQViewPropertyImageViewer.h */,
+				B7AF57761A662EAB00F640F3 /* AQViewPropertyImageViewer.m */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -1738,6 +1748,7 @@
 				B7974E5519A331BF00CDB6DE /* AQCustomFontsTextView.m in Sources */,
 				B7EE29A019B0673A0085DC0D /* TWSignedRequest.m in Sources */,
 				B7A7512619F75948002F973F /* AQFilterSearchResult.m in Sources */,
+				B7AF577A1A66483600F640F3 /* AQPhotoViewer.m in Sources */,
 				B7AF8B99199CAA9300663A3E /* AQAddPropertyViewController.m in Sources */,
 				B7EE299A19B0673A0085DC0D /* FHSTwitterEngine.m in Sources */,
 				B79B3A0119C2F9F800F2DEDD /* AQViewProperty.m in Sources */,
@@ -1745,6 +1756,7 @@
 				FB06525719D31EC50084CBD5 /* AQCircleButton.m in Sources */,
 				B7A83C6D1999FDE300B4B0C6 /* AQMyChatViewController.m in Sources */,
 				B7A83C5B1999E01500B4B0C6 /* AQSideMenuCell.m in Sources */,
+				B7AF57771A662EAB00F640F3 /* AQViewPropertyImageViewer.m in Sources */,
 				FBAF2E1719D2FD5E00D5B01E /* AQProfileViewController.m in Sources */,
 				758E95561A091E7200A80608 /* AQFilterProperTypeVC.m in Sources */,
 				B7EE297B19B05B1F0085DC0D /* PropertyList.m in Sources */,
