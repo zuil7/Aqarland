@@ -2500,7 +2500,7 @@
                                         <color key="textColor" red="0.1333333333" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="loQ-cf-KI9">
+                                    <slider hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="loQ-cf-KI9">
                                         <rect key="frame" x="13" y="105" width="269" height="31"/>
                                         <color key="minimumTrackTintColor" red="0.1333333333" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -2543,12 +2543,18 @@
                                             <action selector="searchFilter_touchedup_inside:" destination="1bB-3u-ATj" eventType="touchUpInside" id="7I1-s7-LGL"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 sqm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaD-3p-DIk" customClass="RobotoLight">
-                                        <rect key="frame" x="170" y="67" width="110" height="32"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sqm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaD-3p-DIk" customClass="RobotoLight">
+                                        <rect key="frame" x="150" y="100" width="52" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.1333333333" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BNP-di-s2y">
+                                        <rect key="frame" x="37" y="102" width="110" height="30"/>
+                                        <color key="textColor" red="0.1333333333" green="0.55294117649999996" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2567,6 +2573,7 @@
                         <outlet property="propertyType" destination="p81-7z-zic" id="0zw-lH-CKz"/>
                         <outlet property="searchBtn" destination="yJO-2V-1v2" id="ba7-7W-C0H"/>
                         <outlet property="sliderVal" destination="eaD-3p-DIk" id="TZd-Ei-jrP"/>
+                        <outlet property="sqmTxtField" destination="BNP-di-s2y" id="5D5-s2-Mre"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EhX-jo-iAz" userLabel="First Responder" sceneMemberID="firstResponder"/>

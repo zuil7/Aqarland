@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sliderVal;
 @property (weak, nonatomic) IBOutlet UIButton *propertyType;
 @property (weak, nonatomic) IBOutlet UIButton *searchBtn;
+@property (weak, nonatomic) IBOutlet UITextField *sqmTxtField;
 
 @property (nonatomic, unsafe_unretained) id<AQFilterResultDelegate> filterDelegate;
 @end

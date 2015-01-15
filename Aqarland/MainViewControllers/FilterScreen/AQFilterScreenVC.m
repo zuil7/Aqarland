@@ -135,7 +135,9 @@
         NSMutableDictionary *dict=[NSMutableDictionary dictionary];
         dict[@"city"] = self.locationBtn.titleLabel.text;
         dict[@"pType"] = self.propertyType.titleLabel.text;
-        dict[@"pSize"] = [NSString stringWithFormat:@"%.2f",self.pSizeSlider.value];
+        NSString *val = self.sqmTxtField.text;
+        float fCost = [val floatValue];
+        dict[@"pSize"] = [NSNumber numberWithFloat:fCost];
         NSLog(@"dict %@",dict);
         ParseLayerService *request=[[ParseLayerService alloc] init];
         [request FilterSearch:dict];
@@ -175,7 +177,7 @@
     if (![self.locationBtn.titleLabel.text isEqualToString:@"Location"] &&
         ![self.propertyType.titleLabel.text isEqualToString:@"Property Type"])
     {
-         if(self.pSizeSlider.value !=0)
+         if([self.sqmTxtField.text isEqualToString:@"0"] || [self.sqmTxtField.text length]!=0)
          {
              return r0;
          }else
