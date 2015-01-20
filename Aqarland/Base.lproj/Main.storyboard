@@ -2052,42 +2052,52 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZw-Cj-TFI">
                                         <rect key="frame" x="0.0" y="234" width="320" height="137"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Townhouse 125sqm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQJ-SO-c2C" customClass="RobotoMedium">
-                                                <rect key="frame" x="20" y="5" width="280" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$720,000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPN-Cz-hTb" customClass="RobotoLight">
-                                                <rect key="frame" x="80" y="25" width="161" height="24"/>
+                                                <rect key="frame" x="80" y="18" width="161" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJj-AP-MNw">
+                                                <rect key="frame" x="61" y="35" width="199" height="31"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="call_btn_touch_up_inside:" destination="zrq-Af-Aa6" eventType="touchUpInside" id="iTy-bl-thQ"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8C-hH-dhZ" customClass="RobotoLight">
-                                                <rect key="frame" x="128" y="60" width="27" height="24"/>
+                                                <rect key="frame" x="128" y="64" width="27" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nd3-7s-vrS" customClass="RobotoLight">
-                                                <rect key="frame" x="210" y="60" width="27" height="24"/>
+                                                <rect key="frame" x="210" y="64" width="27" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unit 5, #35 Amberland Plaza Julio Vargas Ave. Paranque, 17288" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="w96-Lh-168" customClass="RobotoLight">
-                                                <rect key="frame" x="16" y="87" width="288" height="46"/>
+                                                <rect key="frame" x="16" y="91" width="288" height="46"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bathtub_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XPH-yY-JC1">
-                                                <rect key="frame" x="100" y="62" width="20" height="20"/>
+                                                <rect key="frame" x="100" y="66" width="20" height="20"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bed_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="mJq-wK-Gec">
-                                                <rect key="frame" x="185" y="62" width="20" height="20"/>
+                                                <rect key="frame" x="185" y="66" width="20" height="20"/>
                                             </imageView>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Townhouse 125sqm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQJ-SO-c2C" customClass="RobotoMedium">
+                                                <rect key="frame" x="20" y="1" width="280" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
@@ -2214,6 +2224,7 @@
                         <outlet property="bathRoomLbl" destination="F8C-hH-dhZ" id="COO-Fw-u3E"/>
                         <outlet property="bedRoomLbl" destination="Nd3-7s-vrS" id="itd-g6-zWk"/>
                         <outlet property="carousel" destination="Q8S-Um-Dr0" id="CJQ-7o-c9S"/>
+                        <outlet property="contactNumBtn" destination="PJj-AP-MNw" id="R2O-1t-M6l"/>
                         <outlet property="contactPerson" destination="Rvo-5l-5xc" id="q0I-Os-mjn"/>
                         <outlet property="descriptionLbl" destination="YAy-DZ-sah" id="DJ1-LX-26C"/>
                         <outlet property="mapView" destination="Ydo-4L-pKF" id="FBc-EK-oXa"/>

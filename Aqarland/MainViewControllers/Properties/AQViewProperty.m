@@ -25,6 +25,7 @@
 @property (nonatomic, strong) AQAddPropertyViewController *addPropertyViewController;
 @property (nonatomic, strong) UIButton *favoriteBtn;
 @property (nonatomic, strong) UIButton *shareBtn;
+@property (nonatomic,strong) NSString *contactNumberText;
 
 @end
 
@@ -413,25 +414,39 @@
 {
     [self.townHouseLbl setText:[NSString stringWithFormat:@"%@, %@ sqm",self.propertyDetails.m_propertyType,self.propertyDetails.m_propertySize]];
     PFObject *user=(PFObject *)self.propertyDetails.user;
-    NSString *contactPersonText = @"Edit Property";
-    self.contactPerson.enabled = YES;
-    if (!self.isUserDetails) {
-        self.contactPerson.enabled = NO;
-        contactPersonText = [NSString stringWithFormat:@"Contact %@",user[@"name"]];
-    }
+    NSLog(@"User %@",user);
+    PFRelation *relation = user[@"userProfile"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
+     {
+         NSDictionary *dict=[results objectAtIndex:0];
+         self.contactNumberText=dict[@"phoneNumber"];
+         NSString *contactText = [NSString stringWithFormat:@"Contact No.  %@",dict[@"phoneNumber"]];
+         [self.contactNumBtn setTitle:contactText forState:UIControlStateNormal];
+         
+         NSString *contactPersonText = @"Edit Property";
+         self.contactPerson.enabled = YES;
+         if (!self.isUserDetails) {
+             self.contactPerson.enabled = NO;
+             contactPersonText = [NSString stringWithFormat:@"Contact %@",user[@"name"]];
+         }
+         
+         [self.contactPerson setTitle:contactPersonText forState:UIControlStateNormal];
+         [self.priceLbl setText:[NSString stringWithFormat:@"$ %@",self.propertyDetails.m_price]];
+         [self.bathRoomLbl setText:self.propertyDetails.m_numberOfBaths];
+         [self.bedRoomLbl setText:self.propertyDetails.m_numberOfBedrooms];
+         [self.addressLbl setText:[NSString stringWithFormat:@"%@, %@, %@, %@, %@",
+                                   self.propertyDetails.m_houseNumber,
+                                   self.propertyDetails.m_building,
+                                   self.propertyDetails.m_street,
+                                   self.propertyDetails.m_city,
+                                   self.propertyDetails.m_postCode]];
+         [self.amenitiesLbl setText:self.propertyDetails.m_amenities];
+         [self.descriptionLbl setText:self.propertyDetails.m_description];
+
+       
+    }];
     
-    [self.contactPerson setTitle:contactPersonText forState:UIControlStateNormal];
-    [self.priceLbl setText:[NSString stringWithFormat:@"$ %@",self.propertyDetails.m_price]];
-    [self.bathRoomLbl setText:self.propertyDetails.m_numberOfBaths];
-    [self.bedRoomLbl setText:self.propertyDetails.m_numberOfBedrooms];
-    [self.addressLbl setText:[NSString stringWithFormat:@"%@, %@, %@, %@, %@",
-                              self.propertyDetails.m_houseNumber,
-                              self.propertyDetails.m_building,
-                              self.propertyDetails.m_street,
-                              self.propertyDetails.m_city,
-                              self.propertyDetails.m_postCode]];
-    [self.amenitiesLbl setText:self.propertyDetails.m_amenities];
-    [self.descriptionLbl setText:self.propertyDetails.m_description];
     
    
 }
@@ -562,7 +577,25 @@
 ////////////////////////////////////
 #pragma mark - IBActions
 ////////////////////////////////////
+- (IBAction)call_btn_touch_up_inside:(id)sender
+{
+    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] )
+    {
+        NSLog(@"self.contactNumberText %@",self.contactNumberText);
+        NSString *callStr=[NSString stringWithFormat:@"telprompt://%@",self.contactNumberText];
+        NSURL *url = [NSURL URLWithString:callStr];
+        [[UIApplication sharedApplication] openURL:url];
+    }else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iInformation
+                                                        message:@"Device cannot call"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
 
+    }
+}
 - (IBAction)edit_property_btn_touch_up_inside:(id)sender {
     self.addPropertyViewController = [GlobalInstance loadStoryBoardId:sAddPropertyVC];
     self.addPropertyViewController.propertyDetails = self.propertyDetails;
