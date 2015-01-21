@@ -8,12 +8,13 @@
 
 #import "AQAddPropertyViewController.h"
 #import "AQPropertyDetailsViewController.h"
-
+#import "AQPropertyUploadPhoto.h"
 
 @interface AQAddPropertyViewController ()
 
 @property(nonatomic,strong) NSMutableDictionary *propertyDictionary;
 @property(nonatomic,strong) AQPropertyDetailsViewController *propertyDetailsVC;
+@property(nonatomic,strong) AQPropertyUploadPhoto *propertyUploadVC;
 
 @end
 
@@ -35,7 +36,7 @@
                                    initWithTarget:self action:@selector(handleSingleTap:)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
-    
+    NSLog(@"Property Details %@",self.propertyDetailsDict);
     // Do any additional setup after loading the view.
     [self customizeHeaderBar];
 }
@@ -106,7 +107,7 @@
         forwardBtn.frame = CGRectMake(0,0,22,32);
         [forwardBtn setImage:forwardImage forState:UIControlStateNormal];
         
-        [forwardBtn addTarget:self action:@selector(goToPropertyDetails:) forControlEvents:UIControlEventTouchUpInside];
+        [forwardBtn addTarget:self action:@selector(goToUploadImage:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:forwardBtn];
         [self.navigationItem setRightBarButtonItem:barButtonItem];
@@ -119,21 +120,43 @@
     [self.view endEditing:YES];
 }
 
--(void) goToPropertyDetails:(id) sender
+-(void) goToUploadImage:(id) sender
 {
     if([self checkTextField])
     {
-        self.propertyDictionary=[[NSMutableDictionary alloc] init];
-        self.propertyDictionary[@"unit"] = self.unitTxtField.text;
-        self.propertyDictionary[@"houseNum"] = self.houseNumTxtField.text;
-        self.propertyDictionary[@"bldg"] = self.bldgTxtField.text;
-        self.propertyDictionary[@"street"] = self.streetTxtField.text;
-        self.propertyDictionary[@"city"] = self.cityTxtField.text;
-        self.propertyDictionary[@"postcode"] = self.postCodeTxtField.text;
-        self.propertyDetailsVC=[GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];
-        self.propertyDetailsVC.propertyAddress=self.propertyDictionary;
-        self.propertyDetailsVC.propertyDetails = self.propertyDetails;
-        [self.navigationController pushViewController:self.propertyDetailsVC animated:YES];
+        self.propertyDetailsDict[@"unit"] = self.unitTxtField.text;
+        self.propertyDetailsDict[@"houseNum"] = self.houseNumTxtField.text;
+        self.propertyDetailsDict[@"bldg"] = self.bldgTxtField.text;
+        self.propertyDetailsDict[@"street"] = self.streetTxtField.text;
+        self.propertyDetailsDict[@"city"] = self.cityTxtField.text;
+        self.propertyDetailsDict[@"postcode"] = self.postCodeTxtField.text;
+        
+        
+        [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+        ParseLayerService *request=[[ParseLayerService alloc] init];
+        [request addProperty:self.propertyDetailsDict];
+        [request setCompletionBlock:^(id results)
+         {
+             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             NSDictionary *dict=(NSDictionary *) results;
+             
+             if ([dict[@"flag"] boolValue]==1)
+             {
+                 self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
+                 self.propertyUploadVC.propertyObjID=dict[@"propertyObjID"];
+                 self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
+                 self.propertyUploadVC.propertyDetails = self.propertyDetails;
+                 [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
+                 
+            }
+         }];
+        [request setFailedBlock:^(NSError *error)
+         {
+             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+             [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+         }];
+        
+
     }else
     {
         [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];

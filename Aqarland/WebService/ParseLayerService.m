@@ -1180,6 +1180,16 @@ static ParseLayerService *instance = nil;
     post[@"numberOfBedrooms"]=propertyDetails[@"numberOfBedrooms"];
     post[@"numberOfBaths"]=propertyDetails[@"numberOfBaths"];
     post[@"amenities"]=propertyDetails[@"amenities"];
+    
+    if([propertyDetails[@"ofType"] isEqualToString:@"For Rent"])
+    {
+        post[@"ofType"]=@"Rent";
+    }
+    else
+    {
+        post[@"ofType"]=@"Sale";
+    }
+   
     post[@"price"]=propertyDetails[@"price"];
     post[@"description"]=propertyDetails[@"description"];
     

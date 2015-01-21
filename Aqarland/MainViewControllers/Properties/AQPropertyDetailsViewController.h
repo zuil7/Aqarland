@@ -19,4 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *amenitiesTxtField;
 @property (weak, nonatomic) IBOutlet UITextView *descTxtView;
 @property (weak, nonatomic) IBOutlet UITextField *priceLbl;
+@property (weak, nonatomic) IBOutlet UILabel *typeOfProp;
+@property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
+
+
 @end

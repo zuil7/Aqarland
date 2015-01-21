@@ -260,7 +260,7 @@
 }
 -(IBAction)addProperty_touchedup_inside:(id)sender
 {
-    self.addPropertyVC=[GlobalInstance loadStoryBoardId:sAddPropertyVC];
+    self.addPropertyVC=[GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];
     [self.navigationController pushViewController:self.addPropertyVC animated:YES];
 }
 -(IBAction)myChats_touchedup_inside:(id)sender

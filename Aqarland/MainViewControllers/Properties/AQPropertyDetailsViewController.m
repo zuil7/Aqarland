@@ -9,11 +9,14 @@
 #import "AQPropertyDetailsViewController.h"
 #import "RMPickerViewController.h"
 #import "AQPropertyUploadPhoto.h"
-
+#import "AQAddPropertyViewController.h"
 @interface AQPropertyDetailsViewController ()<RMPickerViewControllerDelegate>
 
 @property(nonatomic,strong) NSArray *propertyList;
-@property(nonatomic,strong) AQPropertyUploadPhoto *propertyUploadVC;
+@property(nonatomic,strong) AQAddPropertyViewController *addPropertyVC;
+@property(nonatomic,assign) int buttonTag;
+@property(nonatomic,strong) NSArray *typeOfProperty;
+
 @end
 
 @implementation AQPropertyDetailsViewController
@@ -30,16 +33,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.propertyAddress=[[NSMutableDictionary alloc] init ];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self action:@selector(handleSingleTap:)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
     
+    self.typeOfProperty=[NSArray arrayWithObjects:@"For Rent",@"For Sale", nil];
     self.propertyList=[GlobalInstance loadPlistfile:@"propertyTypeList" forKey:@"propertyList"];
     // Do any additional setup after loading the view.
     [self customizeHeaderBar];
     NSLog(@"propertyAddress %@",self.propertyAddress);
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [self.containerScrollView setContentSize:CGSizeMake(self.view.frame.size.width, 560)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,6 +91,7 @@
         self.nBedroomsTxtField.text.length!=0 &&
         self.nBathsTxtField.text.length!=0 &&
         self.amenitiesTxtField.text.length!=0 &&
+        self.typeOfProp.text.length!=0 &&
         self.priceLbl.text.length!=0 &&
         self.descTxtView.text.length!=0 ) {
         return 1;
@@ -118,7 +128,7 @@
         forwardBtn.frame = CGRectMake(0,0,22,32);
         [forwardBtn setImage:forwardImage forState:UIControlStateNormal];
         
-        [forwardBtn addTarget:self action:@selector(goToUploadPhoto:) forControlEvents:UIControlEventTouchUpInside];
+        [forwardBtn addTarget:self action:@selector(goToAddPropertyView:) forControlEvents:UIControlEventTouchUpInside];
         
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:forwardBtn];
         [self.navigationItem setRightBarButtonItem:barButtonItem];
@@ -136,6 +146,7 @@
 ////////////////////////////////////
 -(IBAction) popertyType_touchedup_inside:(id) sender
 {
+    self.buttonTag=(int)[sender tag];
     RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
     pickerVC.delegate = self;
     
@@ -147,7 +158,9 @@
 }
 
 
--(void) goToUploadPhoto:(id) sender
+
+
+-(void) goToAddPropertyView:(id) sender
 {
     if([self checkTextField])
     {
@@ -156,6 +169,7 @@
         [self.propertyAddress setValue:self.nBedroomsTxtField.text forKey:@"numberOfBedrooms"];
         [self.propertyAddress setValue:self.nBathsTxtField.text forKey:@"numberOfBaths"];
         [self.propertyAddress setValue:self.amenitiesTxtField.text forKey:@"amenities"];
+        [self.propertyAddress setValue:self.typeOfProp.text forKey:@"ofType"];
         [self.propertyAddress setValue:self.priceLbl.text forKey:@"price"];
         [self.propertyAddress setValue:self.descTxtView.text forKey:@"description"];
         NSLog(@"self.propertyAddress %@",self.propertyAddress);
@@ -170,13 +184,15 @@
             [request setCompletionBlock:^(id success)
              {
                  [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                /*
                  if ([success boolValue]) {
-                     self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
+                     self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sAddPropertyVC];
                      self.propertyUploadVC.propertyObjID=self.propertyDetails.m_objectID;
                      self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
                      self.propertyUploadVC.propertyDetails = self.propertyDetails;
                      [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
                  }
+                 */
              }];
             [request setFailedBlock:^(NSError *error)
              {
@@ -186,6 +202,14 @@
         }
         else
         {
+            self.addPropertyVC=[GlobalInstance loadStoryBoardId:sAddPropertyVC];
+            NSLog(@"self.propertyAddress %@",self.propertyAddress);
+            self.addPropertyVC.propertyDetailsDict=self.propertyAddress;
+//            self.propertyUploadVC.propertyObjID=dict[@"propertyObjID"];
+//            self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
+//            self.propertyUploadVC.propertyDetails = self.propertyDetails;
+            [self.navigationController pushViewController:self.addPropertyVC animated:YES];
+            /*
             [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
             ParseLayerService *request=[[ParseLayerService alloc] init];
             [request addProperty:self.propertyAddress];
@@ -208,6 +232,7 @@
                  [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
                  [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
              }];
+             */
         }
     }else
     {
@@ -224,8 +249,19 @@
 //    selectedIdx=0;
     int idx=[[selectedRows objectAtIndex:0] intValue];
 //    selectedIdx=idx + 1;
-    NSString *selectedStr=[self.propertyList objectAtIndex:idx];
-    [self.propertyTypeLbl setText:selectedStr];
+    if (self.buttonTag==0)
+    {
+        
+        NSString *selectedStr=[self.propertyList objectAtIndex:idx];
+        [self.propertyTypeLbl setText:selectedStr];
+
+    }else
+    {
+        NSString *selectedStr=[self.typeOfProperty objectAtIndex:idx];
+        [self.typeOfProp setText:selectedStr];
+
+        
+    }
 }
 
 - (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
@@ -236,12 +272,30 @@
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self.propertyList count];
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (self.buttonTag==0)
+    {
+        return [self.propertyList count];
+
+    }else
+    {
+        return [self.typeOfProperty count];
+    }
+   
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    NSString *str=[self.propertyList objectAtIndex:row];
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *str;
+    if (self.buttonTag==0)
+    {
+        str=[self.propertyList objectAtIndex:row];
+    }else
+    {
+        str=[self.typeOfProperty objectAtIndex:row];
+
+    }
     return str;
 }
 
