@@ -557,6 +557,10 @@ static ParseLayerService *instance = nil;
                 {
                     property.m_price=pResult[@"price"];
                 }
+                if (pResult[@"ofType"] != [NSNull null])
+                {
+                    property.m_ofType=pResult[@"ofType"];
+                }
                 if (pResult[@"user"] != [NSNull null])
                 {
                     property.user=pResult[@"user"];

@@ -99,7 +99,7 @@
 }
 - (void)viewDidLayoutSubviews
 {
-    [self.propertySV setContentSize:CGSizeMake(320, 900)];
+    [self.propertySV setContentSize:CGSizeMake(320, 950)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -443,7 +443,14 @@
                                    self.propertyDetails.m_postCode]];
          [self.amenitiesLbl setText:self.propertyDetails.m_amenities];
          [self.descriptionLbl setText:self.propertyDetails.m_description];
-
+         if([self.propertyDetails.m_ofType isEqualToString:@"Rent"])
+         {
+          [self.offType setText:@"Type: For rent"];
+         }else
+         {
+             [self.offType setText:@"Type: For sale"];
+          }
+        
        
     }];
     

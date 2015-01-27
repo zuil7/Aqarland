@@ -40,6 +40,7 @@
 @property (assign, nonatomic) BOOL isUserDetails;
 @property (weak) id <AQMyPropertyDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *contactNumBtn;
+@property (weak, nonatomic) IBOutlet UILabel *offType;
 
 
 @end
