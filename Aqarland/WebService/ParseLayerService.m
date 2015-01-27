@@ -454,7 +454,11 @@ static ParseLayerService *instance = nil;
                  {
                      property.m_price=pResult[@"price"];
                  }
-                 
+                 if (pResult[@"ofType"] != [NSNull null])
+                 {
+                     property.m_ofType=pResult[@"ofType"];
+                 }
+
                  [propertyListArr addObject:property];
              }
              
@@ -1225,7 +1229,7 @@ static ParseLayerService *instance = nil;
         
         property[@"street"] = propertyDetails[@"Street"];
         property[@"city"] = propertyDetails[@"City"];
-        //property[@"postCode"] = propertyDetails[@"ZIP"];
+        property[@"postCode"] = propertyDetails[@"ZIP"];
         property[@"latLong"] = propertyDetails[@"latLong"];
         NSLog(@"propertyDetails %@",property);
         [property saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -1262,6 +1266,15 @@ static ParseLayerService *instance = nil;
                 object[@"propertyType"] = propertyDetails[@"propertyType"];
                 object[@"street"] = propertyDetails[@"street"];
                 object[@"unit"] = propertyDetails[@"unit"];
+
+                if([propertyDetails[@"ofType"] isEqualToString:@"For Rent"])
+                {
+                    object[@"ofType"]=@"Rent";
+                }
+                else
+                {
+                    object[@"ofType"]=@"Sale";
+                }
                 object[@"price"] = propertyDetails[@"price"];
                 object[@"updatedAt"] = [NSDate date];
                 

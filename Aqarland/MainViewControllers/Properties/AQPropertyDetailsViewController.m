@@ -60,6 +60,13 @@
         self.nBathsTxtField.text = self.propertyDetails.m_numberOfBaths;
         self.amenitiesTxtField.text = self.propertyDetails.m_amenities;
         self.descTxtView.text = self.propertyDetails.m_description;
+        if ([self.propertyDetails.m_ofType isEqualToString:@"Sale"])
+        {
+            self.typeOfProp.text =@"For Sale";
+        }else
+        {
+            self.typeOfProp.text=@"For Rent";
+        }
         self.priceLbl.text = self.propertyDetails.m_price;
 
     }
@@ -173,32 +180,44 @@
         [self.propertyAddress setValue:self.priceLbl.text forKey:@"price"];
         [self.propertyAddress setValue:self.descTxtView.text forKey:@"description"];
         NSLog(@"self.propertyAddress %@",self.propertyAddress);
-        if (self.propertyDetails) {
+        if (self.propertyDetails)
+        {
             [self.propertyAddress setValue:self.propertyDetails.m_objectID forKey:@"objectId"];
         }
         
-        if (self.propertyDetails) {
-            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
-            ParseLayerService *request=[[ParseLayerService alloc] init];
-            [request updatePropertyList:self.propertyDetails withDetails:self.propertyAddress];
-            [request setCompletionBlock:^(id success)
-             {
-                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-                /*
-                 if ([success boolValue]) {
-                     self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sAddPropertyVC];
-                     self.propertyUploadVC.propertyObjID=self.propertyDetails.m_objectID;
-                     self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
-                     self.propertyUploadVC.propertyDetails = self.propertyDetails;
-                     [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
-                 }
-                 */
-             }];
-            [request setFailedBlock:^(NSError *error)
-             {
-                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-                 [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
-             }];
+        if (self.propertyDetails)
+        {
+             self.addPropertyVC=[GlobalInstance loadStoryBoardId:sAddPropertyVC];
+             self.addPropertyVC.propertyDetailsDict=self.propertyAddress;
+             self.addPropertyVC.propertyDetails=self.propertyDetails;
+            NSLog(@"Index %ld",(long)self.nIndex);
+
+            self.addPropertyVC.nIndex=self.nIndex;
+
+             [self.navigationController pushViewController:self.addPropertyVC animated:YES];
+
+//            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+//            ParseLayerService *request=[[ParseLayerService alloc] init];
+//            [request updatePropertyList:self.propertyDetails withDetails:self.propertyAddress];
+//            [request setCompletionBlock:^(id success)
+//             {
+//                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+//                
+//                 if ([success boolValue]) {
+//                     self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sAddPropertyVC];
+//                     self.propertyUploadVC.propertyObjID=self.propertyDetails.m_objectID;
+//                     self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
+//                     self.propertyUploadVC.propertyDetails = self.propertyDetails;
+//                     [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
+//                 }
+//                 
+//             }];
+//            [request setFailedBlock:^(NSError *error)
+//             {
+//                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+//                 [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+//             }];
+        
         }
         else
         {

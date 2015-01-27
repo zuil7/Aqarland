@@ -101,6 +101,8 @@
 #define iDeleteImg              @"delete_icon.png"
 
 //Notification
-#define nsFetchProperty   @"fetchNewProperty"
-#define nsUpdateFavorites @"updateFavorites"
+#define nsFetchProperty        @"fetchNewProperty"
+#define nsUpdateFavorites      @"updateFavorites"
+#define nsUpdateMyPropertyList @"updateMyPropertyList"
+
 #endif

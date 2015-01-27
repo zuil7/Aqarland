@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *cityTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *postCodeTxtField;
 @property (strong, nonatomic) NSMutableDictionary *propertyDetailsDict;
+@property (assign, nonatomic) NSInteger nIndex;
 
 @end

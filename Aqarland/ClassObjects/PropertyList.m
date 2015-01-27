@@ -25,4 +25,6 @@
 @synthesize m_propertySize;
 @synthesize m_latLong;
 @synthesize propertyImages;
+@synthesize m_ofType;
+@synthesize m_price;
 @end

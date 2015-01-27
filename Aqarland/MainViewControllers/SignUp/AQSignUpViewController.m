@@ -213,6 +213,7 @@
        
         if ([placemarks count]!=0)
         {
+            
             NSDictionary *dictionary = [[placemarks objectAtIndex:0] addressDictionary];
             NSLog(@"self.placeMark: %@", dictionary);
             [self.streetTxtFld setText:dictionary[@"Street"]];

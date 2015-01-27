@@ -43,7 +43,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.propertyDetails) {
+    
+    if (self.propertyDetails)
+    {
         self.unitTxtField.text = self.propertyDetails.m_unit;
         self.houseNumTxtField.text = self.propertyDetails.m_houseNumber;
         self.bldgTxtField.text = self.propertyDetails.m_building;
@@ -131,31 +133,61 @@
         self.propertyDetailsDict[@"city"] = self.cityTxtField.text;
         self.propertyDetailsDict[@"postcode"] = self.postCodeTxtField.text;
         
-        
-        [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
-        ParseLayerService *request=[[ParseLayerService alloc] init];
-        [request addProperty:self.propertyDetailsDict];
-        [request setCompletionBlock:^(id results)
-         {
-             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-             NSDictionary *dict=(NSDictionary *) results;
-             
-             if ([dict[@"flag"] boolValue]==1)
+        if(self.propertyDetails)
+        {
+            
+            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+            ParseLayerService *request=[[ParseLayerService alloc] init];
+            [request updatePropertyList:self.propertyDetails withDetails:self.propertyDetailsDict];
+            [request setCompletionBlock:^(id success)
+            {
+                    [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+            
+                    if ([success boolValue])
+                    {
+                                 self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
+                                 self.propertyUploadVC.propertyObjID=self.propertyDetails.m_objectID;
+                                 self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
+                                 NSLog(@"Index %ld",(long)self.nIndex);
+                                 self.propertyUploadVC.nIndex=self.nIndex;
+
+                                 self.propertyUploadVC.propertyDetails = self.propertyDetails;
+                                 [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
+                    }
+            
+            }];
+            [request setFailedBlock:^(NSError *error)
+            {
+                    [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                    [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+            }];
+
+        }else
+        {
+            [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
+            ParseLayerService *request=[[ParseLayerService alloc] init];
+            [request addProperty:self.propertyDetailsDict];
+            [request setCompletionBlock:^(id results)
              {
-                 self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
-                 self.propertyUploadVC.propertyObjID=dict[@"propertyObjID"];
-                 self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
-                 self.propertyUploadVC.propertyDetails = self.propertyDetails;
-                 [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 NSDictionary *dict=(NSDictionary *) results;
                  
-            }
-         }];
-        [request setFailedBlock:^(NSError *error)
-         {
-             [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
-             [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
-         }];
-        
+                 if ([dict[@"flag"] boolValue]==1)
+                 {
+                     self.propertyUploadVC=[GlobalInstance loadStoryBoardId:sPropertyUploadVC];
+                     self.propertyUploadVC.propertyObjID=dict[@"propertyObjID"];
+                     self.propertyUploadVC.imageList = self.propertyDetails.propertyImages;
+                     self.propertyUploadVC.propertyDetails = self.propertyDetails;
+                     [self.navigationController pushViewController:self.propertyUploadVC animated:YES];
+                     
+                }
+             }];
+            [request setFailedBlock:^(NSError *error)
+             {
+                 [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
+                 [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+             }];
+        }
 
     }else
     {

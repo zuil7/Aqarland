@@ -39,8 +39,8 @@
     self.AddressDict=[[NSMutableDictionary alloc] init];
     [self.pinView setHidden:YES];
     [self customizeHeaderBar];
-    [self requestGeocode];
     self.propertyPic.layer.cornerRadius = self.propertyPic.frame.size.width / 2;
+   
 
     self.propertyPic.clipsToBounds = YES;
     [self.propertyPic setImage:self.propertyImg];
@@ -48,10 +48,39 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.propertyDetails) {
-        self.streetTxtField.text = self.propertyDetails.m_street;
-        self.cityTxtField.text = self.propertyDetails.m_city;
-        self.postCodeTxtField.text = self.propertyDetails.m_postCode;
+    if (self.propertyDetails)
+    {
+        NSArray *latlongArr = [self.propertyDetails.m_latLong componentsSeparatedByString: @","];
+        NSString *latStr=[latlongArr objectAtIndex:0];
+        NSString *longStr=[latlongArr objectAtIndex:1];
+        double lat = [latStr doubleValue];
+        double lng = [longStr doubleValue];
+        NSLog(@"lat %f",lat);
+        NSLog(@"lat %f",lng);
+        NSLog(@"self.propertyDetails.m_latLong %@",self.propertyDetails.m_latLong);
+        self.geoCoder = [[CLGeocoder alloc] init];
+
+       
+        self.selectedLocation =
+        [[CLLocation alloc] initWithLatitude:lat
+                                   longitude:lng];
+        
+        CLLocationCoordinate2D coordinates = self.selectedLocation.coordinate;
+
+        CLLocationCoordinate2D zoomLocation;
+        zoomLocation.latitude = coordinates.latitude;
+        zoomLocation.longitude= coordinates.longitude;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1609.344,1609.344);
+         [self.mapView setRegion:viewRegion animated:YES];
+        [self performSelector:@selector(delayedReverseGeocodeLocation)
+                   withObject:nil
+                   afterDelay:0.3];
+//        self.streetTxtField.text = self.propertyDetails.m_street;
+//        self.cityTxtField.text = self.propertyDetails.m_city;
+//        self.postCodeTxtField.text = self.propertyDetails.m_postCode;
+    }else
+    {
+         [self requestGeocode];
     }
 }
 
@@ -83,7 +112,7 @@
         [self.AddressDict setValue:self.streetTxtField.text forKey:@"Street"];
         [self.AddressDict setValue:self.cityTxtField.text forKey:@"City"];
          //Dont Save zip Code for now
-        //[self.AddressDict setValue:self.postCodeTxtField.text forKey:@"ZIP"];
+        [self.AddressDict setValue:self.postCodeTxtField.text forKey:@"ZIP"];
         [self.AddressDict setValue:latLongVal forKey:@"latLong"];
         
         NSLog(@"self.AddressDict %@",self.AddressDict);
@@ -95,6 +124,17 @@
              {
                  [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
                  [[NSNotificationCenter defaultCenter] postNotificationName:nsFetchProperty object:nil];
+                 if (self.propertyDetails)
+                 {
+                     NSMutableDictionary *dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                [NSNumber numberWithInteger:self.nIndex],@"idx",
+                                                self.propertyDetails,@"propertyObj",
+                                                self.AddressDict,@"AddressDict",nil];
+
+                       [[NSNotificationCenter defaultCenter] postNotificationName:nsUpdateMyPropertyList object:dict];
+                     NSLog(@"Index %ld",(long)self.nIndex);
+                     NSLog(@"self.propertyDetails %@",self.propertyDetails);
+                 }
                  [self.navigationController popToRootViewControllerAnimated:YES];
              }
          }];
@@ -199,28 +239,28 @@
 {
     [self.geoCoder reverseGeocodeLocation:self.selectedLocation completionHandler:^(NSArray *placemarks, NSError *error)
      {
-         NSLog(@"placemarks %@",placemarks);
-         
-         if ([placemarks count]!=0)
-         {
-             NSDictionary *dictionary = [[placemarks objectAtIndex:0] addressDictionary];
-             NSLog(@"self.placeMark: %@", dictionary);
-             [self.streetTxtField setText:dictionary[@"Street"]];
-             [self.cityTxtField setText:dictionary[@"City"]];
-             [self.postCodeTxtField setText:dictionary[@"ZIP"]];
-             
-             CLPlacemark *mark=[placemarks objectAtIndex:0];
-             float latVal=mark.location.coordinate.latitude;
-             float longVal=mark.location.coordinate.longitude;
-             NSLog(@"long %f",longVal);
-             latLongVal=[NSString stringWithFormat:@"%f,%f",latVal,longVal];
-             NSLog(@"latLongVal %@",latLongVal);
-             [self showTargetImage];
-             
-         } else
-         {
-             NSLog(@"%@", error.debugDescription);
-         }
+        if ([placemarks count]!=0)
+             {
+                 NSDictionary *dictionary = [[placemarks objectAtIndex:0] addressDictionary];
+                 NSLog(@"self.placeMark: %@", dictionary);
+                 [self.streetTxtField setText:dictionary[@"Street"]];
+                 [self.cityTxtField setText:dictionary[@"City"]];
+                 [self.postCodeTxtField setText:dictionary[@"ZIP"]];
+                 
+                 CLPlacemark *mark=[placemarks objectAtIndex:0];
+                 float latVal=mark.location.coordinate.latitude;
+                 float longVal=mark.location.coordinate.longitude;
+                 NSLog(@"lat %f",latVal);
+                 NSLog(@"long %f",longVal);
+                 latLongVal=[NSString stringWithFormat:@"%f,%f",latVal,longVal];
+                 NSLog(@"latLongVal %@",latLongVal);
+                  [self showTargetImage];
+                 
+             } else
+             {
+                 NSLog(@"%@", error.debugDescription);
+             }
+      
      } ];
 }
 
@@ -232,6 +272,8 @@
 #pragma mark - MapView Delegate Methods
 
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    //self.selectedLocation=nil;
+    NSLog(@"self.selectedLocation %@",self.selectedLocation);
     self.selectedLocation =
     [[CLLocation alloc] initWithLatitude:mapView.centerCoordinate.latitude
                                longitude:mapView.centerCoordinate.longitude];
@@ -255,7 +297,7 @@
     // NSLog(@"didUpdateToLocation: %@", newLocation);
     // self.selectedLocation = newLocation;
     
-    [self.locationManager stopUpdatingLocation];
+    //[self.locationManager stopUpdatingLocation];
     
     CLLocationCoordinate2D coordinates = self.locationManager.location.coordinate;
     CLLocationCoordinate2D zoomLocation;

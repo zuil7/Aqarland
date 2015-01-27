@@ -136,11 +136,13 @@
 -(void) uploadImages:(id) sender
 {
      __block int ctr=0;
-    if (isOnEditMode && newPropertyImages.count <= 0 && self.imageList.count > 1) {
+    if (isOnEditMode && newPropertyImages.count <= 0 && self.imageList.count > 1)
+    {
         self.mapConfirmVC=[GlobalInstance loadStoryBoardId:sPropertyConfirmLocVC];
         self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:1];
         self.mapConfirmVC.strPropertyID=self.propertyDetails.m_objectID;
         self.mapConfirmVC.propertyDetails = self.propertyDetails;
+        self.mapConfirmVC.nIndex=self.nIndex;
         [self.navigationController pushViewController:self.mapConfirmVC animated:YES];
 
     } else if([self.imageList count]>1)
@@ -176,10 +178,11 @@
                  if(ctr==[imagesToUpload count])
                  {
                      self.mapConfirmVC=[GlobalInstance loadStoryBoardId:sPropertyConfirmLocVC];
-                     self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:ctr-1];
+                     self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:1];
                      NSLog(@"propertyList %@",propertyID);
                      self.mapConfirmVC.strPropertyID=propertyID;
                      self.mapConfirmVC.propertyDetails = self.propertyDetails;
+                     self.mapConfirmVC.nIndex=self.nIndex;
                      [self.navigationController pushViewController:self.mapConfirmVC animated:YES];
                      [self.HUD hide:YES];
                  }

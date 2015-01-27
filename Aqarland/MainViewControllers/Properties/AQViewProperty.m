@@ -597,8 +597,9 @@
     }
 }
 - (IBAction)edit_property_btn_touch_up_inside:(id)sender {
-    self.addPropertyViewController = [GlobalInstance loadStoryBoardId:sAddPropertyVC];
+    self.addPropertyViewController = [GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];
     self.addPropertyViewController.propertyDetails = self.propertyDetails;
+    self.addPropertyViewController.nIndex=self.nIndex;
     [self.navigationController pushViewController:self.addPropertyViewController animated:YES];
 
 //    if ([self.delegate respondsToSelector:@selector(editMyPropertyList:)]) {

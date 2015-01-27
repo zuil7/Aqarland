@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCV;
 @property (strong, nonatomic) NSString *propertyObjID;
 @property (nonatomic, strong) NSMutableArray *imageList;
+@property (assign, nonatomic) NSInteger nIndex;
 
 
 @end

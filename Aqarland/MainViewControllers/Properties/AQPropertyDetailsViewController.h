@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *priceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *typeOfProp;
 @property (weak, nonatomic) IBOutlet UIScrollView *containerScrollView;
+@property (assign, nonatomic) NSInteger nIndex;
 
 
 @end

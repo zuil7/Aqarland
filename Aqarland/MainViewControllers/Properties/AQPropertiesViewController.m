@@ -37,6 +37,12 @@
     propertyListDetails = [[NSMutableArray alloc] init];
     self.viewProperty = [[AQViewProperty alloc] init];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateList:)
+                                                 name:nsUpdateMyPropertyList
+                                               object:nil];
+
+    
     [self customizeHeaderBar];
     [self setupUserInterfaceComponents];
     [self fetchProperties];
@@ -60,6 +66,22 @@
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
+-(void) updateList:(NSNotification *) notify
+{
+   
+    NSDictionary *dict = [[NSDictionary alloc]initWithDictionary:[notify object]];
+    PropertyList *pList=(PropertyList *)dict[@"propertyObj"];
+    NSMutableDictionary *address=(NSMutableDictionary *)dict[@"AddressDict"];
+
+    NSInteger idx=[dict[@"idx"] intValue];
+    NSLog(@"pList.m_postCode %@",pList.m_postCode);
+    NSString *strText=[NSString stringWithFormat:@"%@, %@, %@, %@",pList.m_building,pList.m_street,pList.m_city,address[@"ZIP"]];
+     NSLog(@"strText %@",strText);
+    
+    [propertyList replaceObjectAtIndex:idx withObject:strText];
+     NSLog(@"propertyList %@",propertyList);
+    [self.tableView reloadData];
+}
 -(void) customizeHeaderBar
 {
     [self.navigationItem setTitle:@"My Property List"];
@@ -112,6 +134,7 @@
             [address appendString:[pl valueForKey:@"m_postCode"]];
          
             [propertyList addObject:address];
+            NSLog(@"propertyList %@",propertyList);
             [propertyListDetails addObject:pl];
         }
         [self.tableView reloadData];

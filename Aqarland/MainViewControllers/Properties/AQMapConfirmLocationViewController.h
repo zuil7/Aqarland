@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *streetTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *cityTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *postCodeTxtField;
+@property (assign, nonatomic) NSInteger nIndex;
 
 @end
