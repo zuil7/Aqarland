@@ -173,12 +173,18 @@
                  
                  self.HUD.detailsLabelText = [NSString stringWithFormat:@"%d of %lu",ctr,(unsigned long)[imagesToUpload count]];
                  NSLog(@"ctr %d",ctr);
-                 NSLog(@"[imagesToUpload count] %d",[imagesToUpload count]);
+                 NSLog(@"[imagesToUpload count] %lu",(unsigned long)[imagesToUpload count]);
                  NSLog(@"self.imageList %@",self.imageList);
                  if(ctr==[imagesToUpload count])
                  {
                      self.mapConfirmVC=[GlobalInstance loadStoryBoardId:sPropertyConfirmLocVC];
-                     self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:1];
+                     if(self.propertyDetails)
+                     {
+                         self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:1];
+                     }else
+                     {
+                         self.mapConfirmVC.propertyImg=(UIImage *)[self.imageList objectAtIndex:ctr-1];
+                     }
                      NSLog(@"propertyList %@",propertyID);
                      self.mapConfirmVC.strPropertyID=propertyID;
                      self.mapConfirmVC.propertyDetails = self.propertyDetails;

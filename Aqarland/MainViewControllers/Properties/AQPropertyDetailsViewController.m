@@ -98,7 +98,7 @@
         self.nBedroomsTxtField.text.length!=0 &&
         self.nBathsTxtField.text.length!=0 &&
         self.amenitiesTxtField.text.length!=0 &&
-        self.typeOfProp.text.length!=0 &&
+        ![self.typeOfProp.text isEqualToString:@"Type"] &&
         self.priceLbl.text.length!=0 &&
         self.descTxtView.text.length!=0 ) {
         return 1;
