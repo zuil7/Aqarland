@@ -13,6 +13,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <MessageUI/MessageUI.h>
 #import "AQViewPropertyImageViewer.h"
+#import "ChatView.h"
+#import "messages.h"
 
 @interface AQViewProperty ()<MBProgressHUDDelegate,MFMailComposeViewControllerDelegate>
 {
@@ -414,6 +416,7 @@
 {
     [self.townHouseLbl setText:[NSString stringWithFormat:@"%@, %@ sqm",self.propertyDetails.m_propertyType,self.propertyDetails.m_propertySize]];
     PFObject *user=(PFObject *)self.propertyDetails.user;
+    NSLog(@"self.propertyDetails.user %@",self.propertyDetails.user);
     NSLog(@"User %@",user);
     PFRelation *relation = user[@"userProfile"];
     PFQuery *query = [relation query];
@@ -427,7 +430,7 @@
          NSString *contactPersonText = @"Edit Property";
          self.contactPerson.enabled = YES;
          if (!self.isUserDetails) {
-             self.contactPerson.enabled = NO;
+             self.contactPerson.enabled = YES;
              contactPersonText = [NSString stringWithFormat:@"Contact %@",user[@"name"]];
          }
          
@@ -603,12 +606,23 @@
 
     }
 }
-- (IBAction)edit_property_btn_touch_up_inside:(id)sender {
-    self.addPropertyViewController = [GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];
-    self.addPropertyViewController.propertyDetails = self.propertyDetails;
-    self.addPropertyViewController.nIndex=self.nIndex;
-    [self.navigationController pushViewController:self.addPropertyViewController animated:YES];
-
+- (IBAction)edit_property_btn_touch_up_inside:(id)sender
+{
+    if (!self.isUserDetails)
+    {
+        PFUser *user1 = [PFUser currentUser];
+        PFUser *user2 = (PFUser *)self.propertyDetails.user;
+        NSString *roomId = StartPrivateChat(user1, user2);
+        //---------------------------------------------------------------------------------------------------------------------------------------------
+        ChatView *chatView = [[ChatView alloc] initWith:roomId];
+        [self.navigationController pushViewController:chatView animated:YES];
+    }else
+    {
+        self.addPropertyViewController = [GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];
+        self.addPropertyViewController.propertyDetails = self.propertyDetails;
+        self.addPropertyViewController.nIndex=self.nIndex;
+        [self.navigationController pushViewController:self.addPropertyViewController animated:YES];
+    }
 //    if ([self.delegate respondsToSelector:@selector(editMyPropertyList:)]) {
 //        [self.delegate editMyPropertyList:self.propertyDetails];
 //    }

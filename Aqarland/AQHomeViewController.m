@@ -14,6 +14,7 @@
 #import "PropertyList.h"
 #import "AQFilterProperTypeVC.h"
 #import "AQFilterScreenVC.h"
+#import "MessagesView.h"
 
 @interface AQHomeViewController ()<AQSearchViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate,MBProgressHUDDelegate,AQFilterResultDelegate, AQFilterProperTypeVCDelegate>
 {
@@ -31,6 +32,8 @@
 @property(nonatomic,strong) NSMutableArray *annotationArray;
 @property(nonatomic,strong) PropertyList *property;
 @property (nonatomic, strong) MBProgressHUD *HUD;
+@property (strong, nonatomic) MessagesView *messagesView;
+
 
 @property(strong,nonatomic) CLLocationManager *locationManager;
 @end
@@ -265,7 +268,10 @@
 }
 -(IBAction)myChats_touchedup_inside:(id)sender
 {
-    
+    self.messagesView=[[MessagesView alloc] initWithNibName:@"MessagesView" bundle:nil];
+    self.messagesView.isComingFromHome=YES;
+    [self.navigationController pushViewController:self.messagesView animated:YES];
+
 }
 
 -(IBAction)mapviewType:(id)sender

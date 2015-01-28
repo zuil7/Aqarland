@@ -25,6 +25,7 @@
     [Parse setApplicationId:kParseID clientKey:kParseKey];
 	// *****************************************************************
     
+    [PFImageView class];
     
     [PFFacebookUtils initializeFacebook];
     
@@ -86,5 +87,38 @@
     return nil;
 }
 
+#pragma mark - Push notification methods
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    //NSLog(@"didFailToRegisterForRemoteNotificationsWithError %@", error);
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    [self performSelector:@selector(refreshMessagesView) withObject:nil afterDelay:4.0];
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    //[PFPush handlePush:userInfo];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)refreshMessagesView
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    [self.messagesView loadMessages];
+}
 
 @end

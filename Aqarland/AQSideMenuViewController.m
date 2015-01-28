@@ -9,6 +9,7 @@
 #import "AQSideMenuViewController.h"
 #import "AQSideMenuCell.h"
 #import "AQProfileViewController.h"
+#import "MessagesView.h"
 
 @interface AQSideMenuViewController ()
 
@@ -114,7 +115,8 @@
         self.destinationController=[GlobalInstance loadStoryBoardId:sPropertiesVC];
     }else if(indexPath.row==3)
     {
-        self.destinationController=[GlobalInstance loadStoryBoardId:sMyChatVC];
+        self.destinationController=[[MessagesView alloc] initWithNibName:@"MessagesView" bundle:nil];
+
     }else if(indexPath.row==4)
     {
         self.destinationController=[GlobalInstance loadStoryBoardId:sSupportVC];

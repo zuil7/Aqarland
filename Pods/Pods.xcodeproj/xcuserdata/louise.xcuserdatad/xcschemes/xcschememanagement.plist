@@ -39,6 +39,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Aqarland-JSQMessagesViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Aqarland-JSQSystemSoundPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Aqarland-KxMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,77 +92,87 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1F36C06C8CE4595ABF5C83D4</key>
+		<key>155E15C9FCC3949A3B7FF712</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>32B90DD281F6BE436A2253CE</key>
+		<key>2961053A6BF7278F14FA6578</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>619240BD3DD1224957581368</key>
+		<key>2AD67B949CA183C3570DF910</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>651613BFBF463B0795C27FC3</key>
+		<key>3DAFB0D436771B809F292E36</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7719406D5FE81A63570A6F67</key>
+		<key>46250D237E88A23D9BDEADBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>821C4224BC25B2528DC21D59</key>
+		<key>4717DFBF70F0676B4D5EF8C9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84DC7BF0F0CFBF29BD88F7D6</key>
+		<key>4EA25AFF8FFFDDD8E252C734</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88AF238D16D2657C4400851A</key>
+		<key>772F44E72576165093449249</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F0514C6CA771853C48BCA4A</key>
+		<key>86AC753FFE00E0701A4CFB13</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AE2B3F35614477B62DEAE025</key>
+		<key>8FF55E3C343F481A00219FDE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C5A42F645D006AC863C65D12</key>
+		<key>90CD9B8B94A7817C538627CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA53766589B6CE518A3A9FA9</key>
+		<key>96251B38F311550E361C6F4E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CAC4C18BE813EDB0DCBC8F8C</key>
+		<key>9A01F59633D84900AF74566C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F7658FD0D2DA5C7800F1E867</key>
+		<key>B257ED73FCF6D852A122A08A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FDB4FB78BE1095BA0B7628D6</key>
+		<key>BFDD43441A39D5B77AFE8719</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB6876B81621921D0FFF9E63</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E59AAABC409E431F360E2010</key>
 		<dict>
 			<key>primary</key>
 			<true/>
