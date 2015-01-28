@@ -136,10 +136,18 @@
             ParseLayerService *request = [[ParseLayerService alloc] init];
             [request propertyImagesForPropertyList:property];
             [request setCompletionBlock:^(id results) {
-                NSArray *images = (NSArray *)results;
-                PropertyImages *propertyImage = (PropertyImages *)images[0];
-                curAnnotation.file=propertyImage.m_propertyImg;
-                [self.mapView addAnnotation:curAnnotation];
+                NSLog(@"results %@",results);
+                if(results)
+                {
+                    NSDictionary *imagesDict = [results objectAtIndex:0];
+                     NSLog(@"imagesDict %@",imagesDict);
+                    //PropertyImages *propertyImage = (PropertyImages *)images[0];
+                    if (imagesDict[@"propertyImg"] != [NSNull null])
+                    {
+                        curAnnotation.file=imagesDict[@"propertyImg"];
+                        [self.mapView addAnnotation:curAnnotation];
+                    }
+                }
             }];
             [request setFailedBlock:^(NSError *error) {
                 

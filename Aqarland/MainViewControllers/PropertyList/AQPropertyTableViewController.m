@@ -125,7 +125,9 @@
     [super objectsDidLoad:error];
     self.distinctCity= [self.objects valueForKeyPath:@"@distinctUnionOfObjects.city"];
     NSLog(@"self.distinctCity %@",self.distinctCity);
-    
+    [self.tableView reloadData];
+    [MBProgressHUD hideAllHUDsForView:GlobalInstance.navController.view animated:YES];
+
 }
 
 @end
