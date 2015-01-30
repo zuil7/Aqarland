@@ -37,6 +37,7 @@
 
 #define		PF_CHAT_CLASS_NAME					@"Chat"					//	Class name
 #define		PF_CHAT_USER						@"user"					//	Pointer to User Class
+#define		PF_USER_AGENT						@"UserAgent"			//	Pointer to User Agent Class
 #define		PF_CHAT_ROOMID						@"roomId"				//	String
 #define		PF_CHAT_TEXT						@"text"					//	String
 #define		PF_CHAT_PICTURE						@"picture"				//	File

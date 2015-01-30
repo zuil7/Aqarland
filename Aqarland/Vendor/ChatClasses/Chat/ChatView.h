@@ -14,6 +14,8 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView : JSQMessagesViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+@property(nonatomic,strong) UIImage *agentAvatar;
+@property(nonatomic,strong) PFUser *userAgent;
 
 - (id)initWith:(NSString *)roomId_;
 

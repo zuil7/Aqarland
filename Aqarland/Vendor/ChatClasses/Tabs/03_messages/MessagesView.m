@@ -29,7 +29,11 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableMessages;
 @property (strong, nonatomic) IBOutlet UIView *viewEmpty;
-
+@property (strong, nonatomic)  PFFile *lastUserAvatar;
+@property (strong, nonatomic) NSArray *messageArray;
+@property (strong, nonatomic) NSMutableArray *agentAvatarArr;
+@property (strong, nonatomic) NSMutableArray *userAgentArr;
+@property (strong, nonatomic) PFUser *agentUser;
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -58,6 +62,8 @@
 {
 	[super viewDidLoad];
 	self.title = @"Messages";
+    self.agentAvatarArr=[[NSMutableArray alloc] init];
+    self.userAgentArr=[[NSMutableArray alloc] init];
     [self customizeHeaderBar];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[tableMessages registerNib:[UINib nibWithNibName:@"MessagesCell" bundle:nil] forCellReuseIdentifier:@"MessagesCell"];
@@ -129,25 +135,84 @@
 - (void)loadMessages
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+//    [self.agentAvatarArr removeAllObjects];
 	if ([PFUser currentUser] != nil)
 	{
 		PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
 		[query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
 		[query includeKey:PF_MESSAGES_LASTUSER];
+        [query includeKey:@"FromUser"];
+        [query includeKey:@"ToUser"];
+      //  [query includeKey:@"UserProfileArray"];
 		[query orderByDescending:PF_MESSAGES_UPDATEDACTION];
 		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 		{
-			if (error == nil)
-			{
-				[messages removeAllObjects];
-				[messages addObjectsFromArray:objects];
-				[tableMessages reloadData];
-				[self updateEmptyView];
-				[self updateTabCounter];
-			}
-			else [ProgressHUD showError:@"Network error."];
-			[refreshControl endRefreshing];
-		}];
+            self.messageArray=objects;
+            NSLog(@"objects %@",objects);
+            for (NSDictionary *dict in objects)
+            {
+                PFUser *currentUser=[PFUser currentUser];
+                PFUser *agentUser=(PFUser *)dict[@"FromUser"];
+                PFObject *obj;
+                if ([agentUser.objectId isEqualToString:currentUser.objectId])
+                {
+                     obj=(PFObject*)dict[@"ToUser"];
+                    [self.userAgentArr addObject:dict[@"ToUser"]];
+                }else
+                {
+                    obj=(PFObject*)dict[@"FromUser"];
+                    [self.userAgentArr addObject:dict[@"FromUser"]];
+
+                }
+                
+                NSLog(@"obj %@",obj[@"UserProfile"]);
+                PFRelation *relation = obj[@"userProfile"];
+                PFQuery *query = [relation query];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
+                 {
+                     NSLog(@"results %@",results);
+                     if([results count]!=0)
+                     {
+                         NSDictionary *dict=[results objectAtIndex:0];
+                         [self.agentAvatarArr addObject:dict[@"userAvatar"]];
+                     }
+                     NSLog(@"self.agentAvatarArr %@",self.agentAvatarArr);
+                     if([self.messageArray count]!=0)
+                     {
+                         if (error == nil)
+                         {
+                             if ([self.agentAvatarArr count]==[self.messageArray count])
+                             {
+                                 [messages removeAllObjects];
+                                 [messages addObjectsFromArray:self.messageArray];
+                                 [self.agentAvatarArr reverseObjectEnumerator];
+                                 [self.userAgentArr reverseObjectEnumerator];
+                                 [tableMessages reloadData];
+                                 [self updateEmptyView];
+                                 [self updateTabCounter];
+                             }
+                         }
+                         else
+                         {
+                             [ProgressHUD showError:@"Network error."];
+                         }
+                         [refreshControl endRefreshing];
+                         
+                     }
+                     else
+                     {
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iInformation
+                                                                         message:@"No Messages"
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"OK"
+                                                               otherButtonTitles:nil];
+                         [alert show];
+                     }
+
+                 }];
+            }
+ 
+            }];
 	}
 }
 
@@ -207,7 +272,15 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	MessagesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessagesCell" forIndexPath:indexPath];
-	[cell bindData:messages[indexPath.row]];
+    if([self.agentAvatarArr count]!=0)
+    {
+        PFFile *avatar=self.agentAvatarArr[indexPath.row];
+        [cell bindData:messages[indexPath.row] avatar:avatar];
+    }else
+    {
+        [cell bindData:messages[indexPath.row] avatar:nil];
+    }
+	
 	return cell;
 }
 
@@ -239,6 +312,11 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	PFObject *message = messages[indexPath.row];
 	ChatView *chatView = [[ChatView alloc] initWith:message[PF_MESSAGES_ROOMID]];
+    PFFile *avatar=self.agentAvatarArr[indexPath.row];
+    NSLog(@"avatar %@",avatar);
+    NSData *imageData = [avatar getData];
+    chatView.agentAvatar=[UIImage imageWithData:imageData];
+    chatView.userAgent=self.userAgentArr[indexPath.row];
 	chatView.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:chatView animated:YES];
 }

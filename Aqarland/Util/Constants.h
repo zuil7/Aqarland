@@ -78,7 +78,7 @@
 #define sPropertyFilterTypeVC       @"filterPropertyTypeVC"
 #define sSearchFilterResultVC       @"filterSearchResult"
 #define sImageViewer                @"sImageViewer"
-
+#define sContactAgent               @"ContactAgent"
 
 
 //Parse Class Name

@@ -61,6 +61,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updatePlaceHolders];
+        
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,31 +77,32 @@
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)]) {
-        UIImage *menuImage = [UIImage imageNamed:iMenuImg];
-        UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        menuBtn.frame = CGRectMake(0,0,22,32);
-        [menuBtn setImage:menuImage forState:UIControlStateNormal];
+            UIImage *menuImage = [UIImage imageNamed:iMenuImg];
+            UIButton *menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            menuBtn.frame = CGRectMake(0,0,22,32);
+            [menuBtn setImage:menuImage forState:UIControlStateNormal];
+            
+            [menuBtn addTarget:self.viewDeckController action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuBtn];
+            self.navigationItem.leftBarButtonItem = barButtonItem;
+        }
         
-        [menuBtn addTarget:self.viewDeckController action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+        editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        editButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 32.0f);
+        editButton.titleLabel.font = [UIFont fontWithName: @"Roboto-Light" size:18.0f];
+        [editButton setTitle:@"Edit" forState:UIControlStateNormal];
+        [editButton addTarget:self action:@selector(didTapEditButton) forControlEvents:UIControlEventTouchUpInside];
         
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuBtn];
-        self.navigationItem.leftBarButtonItem = barButtonItem;
-    }
+        saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        saveButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 32.0f);
+        saveButton.titleLabel.font = [UIFont fontWithName: @"Roboto-Light" size:18.0f];
+        [saveButton setTitle:@"Save" forState:UIControlStateNormal];
+        [saveButton addTarget:self action:@selector(didTapSaveButton) forControlEvents:UIControlEventTouchUpInside];
+        
+        rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:editButton];
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     
-    editButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    editButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 32.0f);
-    editButton.titleLabel.font = [UIFont fontWithName: @"Roboto-Light" size:18.0f];
-    [editButton setTitle:@"Edit" forState:UIControlStateNormal];
-    [editButton addTarget:self action:@selector(didTapEditButton) forControlEvents:UIControlEventTouchUpInside];
-    
-    saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    saveButton.frame = CGRectMake(0.0f, 0.0f, 50.0f, 32.0f);
-    saveButton.titleLabel.font = [UIFont fontWithName: @"Roboto-Light" size:18.0f];
-    [saveButton setTitle:@"Save" forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(didTapSaveButton) forControlEvents:UIControlEventTouchUpInside];
-    
-    rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:editButton];
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     [self disableInputFields];
 }
 

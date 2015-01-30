@@ -15,6 +15,7 @@
 #import "AQViewPropertyImageViewer.h"
 #import "ChatView.h"
 #import "messages.h"
+#import "AQContactAgentViewController.h"
 
 @interface AQViewProperty ()<MBProgressHUDDelegate,MFMailComposeViewControllerDelegate>
 {
@@ -25,10 +26,12 @@
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) NSMutableArray *imagesArr;
 @property (nonatomic, strong) AQAddPropertyViewController *addPropertyViewController;
+@property (nonatomic, strong) AQContactAgentViewController *contactAgent;
+
 @property (nonatomic, strong) UIButton *favoriteBtn;
 @property (nonatomic, strong) UIButton *shareBtn;
 @property (nonatomic,strong) NSString *contactNumberText;
-
+@property (nonatomic,strong) NSDictionary *dictUserProfile;
 @end
 
 @implementation AQViewProperty
@@ -422,10 +425,8 @@
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
      {
-         NSDictionary *dict=[results objectAtIndex:0];
-         self.contactNumberText=dict[@"phoneNumber"];
-         NSString *contactText = [NSString stringWithFormat:@"Contact No.  %@",dict[@"phoneNumber"]];
-         [self.contactNumBtn setTitle:contactText forState:UIControlStateNormal];
+         self.dictUserProfile=[results objectAtIndex:0];
+         self.contactNumberText=self.dictUserProfile[@"phoneNumber"];
          
          NSString *contactPersonText = @"Edit Property";
          self.contactPerson.enabled = YES;
@@ -448,7 +449,7 @@
          [self.descriptionLbl setText:self.propertyDetails.m_description];
          if([self.propertyDetails.m_ofType isEqualToString:@"Rent"])
          {
-          [self.offType setText:@"Type: For rent"];
+             [self.offType setText:@"Type: For rent"];
          }else
          {
              [self.offType setText:@"Type: For sale"];
@@ -587,35 +588,21 @@
 ////////////////////////////////////
 #pragma mark - IBActions
 ////////////////////////////////////
-- (IBAction)call_btn_touch_up_inside:(id)sender
-{
-    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] )
-    {
-        NSLog(@"self.contactNumberText %@",self.contactNumberText);
-        NSString *callStr=[NSString stringWithFormat:@"telprompt://%@",self.contactNumberText];
-        NSURL *url = [NSURL URLWithString:callStr];
-        [[UIApplication sharedApplication] openURL:url];
-    }else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iInformation
-                                                        message:@"Device cannot call"
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-
-    }
-}
 - (IBAction)edit_property_btn_touch_up_inside:(id)sender
 {
     if (!self.isUserDetails)
     {
-        PFUser *user1 = [PFUser currentUser];
-        PFUser *user2 = (PFUser *)self.propertyDetails.user;
-        NSString *roomId = StartPrivateChat(user1, user2);
-        //---------------------------------------------------------------------------------------------------------------------------------------------
-        ChatView *chatView = [[ChatView alloc] initWith:roomId];
-        [self.navigationController pushViewController:chatView animated:YES];
+        self.contactAgent=[GlobalInstance loadStoryBoardId:sContactAgent];
+        self.contactAgent.propertyDetails=self.propertyDetails;
+        self.contactAgent.userProfile=self.dictUserProfile;
+        [self.navigationController pushViewController:self.contactAgent animated:YES];
+
+//        PFUser *user1 = [PFUser currentUser];
+//        PFUser *user2 = (PFUser *)self.propertyDetails.user;
+//        NSString *roomId = StartPrivateChat(user1, user2);
+//        //---------------------------------------------------------------------------------------------------------------------------------------------
+//        ChatView *chatView = [[ChatView alloc] initWith:roomId];
+//        [self.navigationController pushViewController:chatView animated:YES];
     }else
     {
         self.addPropertyViewController = [GlobalInstance loadStoryBoardId:sAddPropertyDetailsVC];

@@ -110,6 +110,7 @@
     }else if(indexPath.row==1)
     {
         self.destinationController=[GlobalInstance loadStoryBoardId:sProfileVC];
+
     }else if(indexPath.row==2)
     {
         self.destinationController=[GlobalInstance loadStoryBoardId:sPropertiesVC];

@@ -36,6 +36,7 @@
 
 	JSQMessagesAvatarImage *avatarImageBlank;
 }
+@property (nonatomic,strong) UIImage *currentUserAvatar;
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -55,29 +56,89 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
-	self.title = @"Chat";
-
+	//self.title = @"Chat";
+    [self customizeHeaderBar];
 	users = [[NSMutableArray alloc] init];
 	messages = [[NSMutableArray alloc] init];
 	avatars = [[NSMutableDictionary alloc] init];
 
 	PFUser *user = [PFUser currentUser];
-	self.senderId = user.objectId;
-    //LN185
-	self.senderDisplayName = user[@"username"];
+    NSLog(@"user %@",user);
+    self.senderId = user.objectId;
+    self.senderDisplayName = user[@"username"];
 
-	JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
-	bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
-	bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleGreenColor]];
-
-	avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"chat_blank"] diameter:30.0];
-
-	isLoading = NO;
-	[self loadMessages];
-
-	ClearMessageCounter(roomId);
+    avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"chat_blank"] diameter:30.0];
+    if([self isBlankImage:self.agentAvatar])
+    {
+        self.agentAvatar=[UIImage imageNamed:@"chat_blank"];
+    }
+    
+    PFRelation *relation = user[@"userProfile"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
+     {
+         if([results count]!=0)
+         {
+             NSDictionary *dict=[results objectAtIndex:0];
+             NSLog(@"results %@",results);
+             PFFile *imageFile = dict[@"userAvatar"];
+             NSData *imageData = [imageFile getData];
+             self.currentUserAvatar = [UIImage imageWithData:imageData];
+             
+             
+             //LN185
+             
+             JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
+             bubbleImageOutgoing = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
+             bubbleImageIncoming = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleGreenColor]];
+             
+             
+             //avatarImageBlank = [JSQMessagesAvatarImageFactory avatarImageWithImage:image diameter:30.0];
+             
+             isLoading = NO;
+             [self loadMessages];
+             
+             ClearMessageCounter(roomId);
+         }
+       
+     }];
+    
+	
 }
 
+-(BOOL)isBlankImage:(UIImage *)myImage
+{
+    typedef struct
+    {
+        uint8_t red;
+        uint8_t green;
+        uint8_t blue;
+        uint8_t alpha;
+    } MyPixel_T;
+    
+    CGImageRef myCGImage = [myImage CGImage];
+    
+    //Get a bitmap context for the image
+    CGContextRef bitmapContext = CGBitmapContextCreate(NULL, CGImageGetWidth(myCGImage), CGImageGetHeight(myCGImage),
+                                                       CGImageGetBitsPerComponent(myCGImage), CGImageGetBytesPerRow(myCGImage),
+                                                       CGImageGetColorSpace(myCGImage), CGImageGetBitmapInfo(myCGImage));
+    
+    //Draw the image into the context
+    CGContextDrawImage(bitmapContext, CGRectMake(0, 0, CGImageGetWidth(myCGImage), CGImageGetHeight(myCGImage)), myCGImage);
+    
+    //Get pixel data for the image
+    MyPixel_T *pixels = CGBitmapContextGetData(bitmapContext);
+    size_t pixelCount = CGImageGetWidth(myCGImage) * CGImageGetHeight(myCGImage);
+    for(size_t i = 0; i < pixelCount; i++)
+    {
+        MyPixel_T p = pixels[i];
+        //Your definition of what's blank may differ from mine
+        if(p.red > 0 || p.green > 0 || p.blue > 0 || p.alpha > 0)
+            return NO;
+    }
+    
+    return YES;
+}
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -93,6 +154,27 @@
 {
 	[super viewWillDisappear:animated];
 	[timer invalidate];
+}
+
+-(void) customizeHeaderBar
+{
+    [self.navigationItem setTitle:@"Chats"];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
+    
+    if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
+    {
+        UIImage *backImage = [UIImage imageNamed:iBackArrowImg];
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        backBtn.frame = CGRectMake(0,0,22,32);
+        [backBtn setImage:backImage forState:UIControlStateNormal];
+        
+        [backBtn addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        [self.navigationItem setLeftBarButtonItem:barButtonItem];
+        
+    }
 }
 
 #pragma mark - Backend methods
@@ -155,7 +237,7 @@
 		JSQPhotoMediaItem *mediaItem = [[JSQPhotoMediaItem alloc] initWithImage:nil];
 		mediaItem.appliesMediaViewMaskAsOutgoing = [user.objectId isEqualToString:self.senderId];
 		JSQMessage *message =
-			[[JSQMessage alloc] initWithSenderId:user.objectId senderDisplayName:user[PF_USER_FULLNAME] date:object.createdAt media:mediaItem];
+			[[JSQMessage alloc] initWithSenderId:user.objectId senderDisplayName:user[@"username"] date:object.createdAt media:mediaItem];
 		[messages addObject:message];
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 		PFFile *filePicture = object[PF_CHAT_PICTURE];
@@ -189,6 +271,8 @@
 	object[PF_CHAT_USER] = [PFUser currentUser];
 	object[PF_CHAT_ROOMID] = roomId;
 	object[PF_CHAT_TEXT] = text;
+    NSLog(@"self.userAgent %@",self.userAgent);
+    object[PF_USER_AGENT] = self.userAgent;
 	if (filePicture != nil) object[PF_CHAT_PICTURE] = filePicture;
 	[object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 	{
@@ -250,21 +334,51 @@
 					avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFUser *user = users[indexPath.item];
-	if (avatars[user.objectId] == nil)
-	{
-		PFFile *fileThumbnail = user[PF_USER_THUMBNAIL];
-		[fileThumbnail getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
-		{
-			if (error == nil)
-			{
-				avatars[user.objectId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageWithData:imageData] diameter:30.0];
-				[self.collectionView reloadData];
-			}
-		}];
-		return avatarImageBlank;
-	}
-	else return avatars[user.objectId];
+//    NSLog(@"avatarImageBlank %@",avatarImageBlank);
+//
+//	PFUser *user = users[indexPath.item];
+//    NSLog(@"user %@",user);
+//	if (avatars[user.objectId] == nil)
+//	{
+//		PFFile *fileThumbnail = user[PF_USER_THUMBNAIL];
+//		[fileThumbnail getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error)
+//		{
+//			if (error == nil)
+//			{
+//				avatars[user.objectId] = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageWithData:imageData] diameter:30.0];
+//				[self.collectionView reloadData];
+//			}
+//		}];
+    
+        JSQMessage *message = messages[indexPath.item];
+        if ([message.senderId isEqualToString:self.senderId])
+        {
+            NSLog(@"avatarImageBlank %@",avatarImageBlank);
+            avatarImageBlank=[JSQMessagesAvatarImageFactory avatarImageWithImage:self.currentUserAvatar diameter:30.0];
+            return avatarImageBlank;
+        }else
+        {
+            avatarImageBlank=[JSQMessagesAvatarImageFactory avatarImageWithImage:self.agentAvatar diameter:30.0];
+            NSLog(@"avatarImageBlank %@",avatarImageBlank);
+            return avatarImageBlank;
+        }
+        
+		
+	//}
+//	else
+//    {
+//        return avatars[user.objectId];
+//    }
+    
+//    JSQMessage *message = messages[indexPath.item];
+//    if ([message.senderId isEqualToString:self.senderId])
+//    {
+//        return avatarImageBlank;
+//    }else
+//    {
+//        return [JSQMessagesAvatarImageFactory avatarImageWithImage:self.agentAvatar diameter:30.0];
+//    }
+
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

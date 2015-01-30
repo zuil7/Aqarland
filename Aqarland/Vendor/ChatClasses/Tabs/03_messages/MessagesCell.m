@@ -38,7 +38,7 @@
 @synthesize labelElapsed, labelCounter;
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)bindData:(PFObject *)message_
+- (void)bindData:(PFObject *)message_ avatar:(PFFile *)uAvatar;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	message = message_;
@@ -46,8 +46,8 @@
 	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
 	imageUser.layer.masksToBounds = YES;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PFUser *lastUser = message[PF_MESSAGES_LASTUSER];
-	[imageUser setFile:lastUser[PF_USER_PICTURE]];
+	//PFUser *lastUser = message[PF_MESSAGES_LASTUSER];
+	[imageUser setFile:uAvatar];
 	[imageUser loadInBackground];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	labelDescription.text = message[PF_MESSAGES_DESCRIPTION];

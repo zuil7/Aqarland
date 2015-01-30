@@ -15,9 +15,10 @@
 NSString*	StartPrivateChat			(PFUser *user1, PFUser *user2);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void		CreateMessageItem			(PFUser *user, NSString *roomId, NSString *description);
+void		CreateMessageItem		    (PFUser *user, NSString *roomId, NSString *description, PFUser *ToUser);
 void		DeleteMessageItem			(PFObject *message);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void		UpdateMessageCounter		(NSString *roomId, NSString *lastMessage);
 void		ClearMessageCounter			(NSString *roomId);
+

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PropertyList.h"
 
 @interface AQProfileViewController : UIViewController
+
+@property (nonatomic,assign) NSDictionary *userProfile;
+@property (strong, nonatomic) PropertyList *propertyDetails;
 
 @end

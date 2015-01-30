@@ -15,6 +15,6 @@
 @interface MessagesCell : UITableViewCell
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-- (void)bindData:(PFObject *)message_;
+- (void)bindData:(PFObject *)message_ avatar:(PFFile *)uAvatarArr;
 
 @end

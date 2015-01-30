@@ -190,7 +190,8 @@
 	PFObject *chatroom = chatrooms[indexPath.row];
 	NSString *roomId = chatroom.objectId;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	CreateMessageItem([PFUser currentUser], roomId, chatroom[PF_CHATROOMS_NAME]);
+    PFUser *currentUser=[PFUser currentUser];
+	CreateMessageItem([PFUser currentUser], roomId, chatroom[PF_CHATROOMS_NAME],nil);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:roomId];
 	chatView.hidesBottomBarWhenPushed = YES;

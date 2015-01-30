@@ -263,6 +263,7 @@
 		B7A83CD6199B3C1D00B4B0C6 /* AQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A83CD5199B3C1D00B4B0C6 /* AQSearchViewController.m */; };
 		B7A83CD9199B71E000B4B0C6 /* searchBarBg.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83CD7199B71E000B4B0C6 /* searchBarBg.png */; };
 		B7A83CDA199B71E000B4B0C6 /* searchBarBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A83CD8199B71E000B4B0C6 /* searchBarBg@2x.png */; };
+		B7AA79FD1A79D00300A88154 /* AQContactAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AA79FC1A79D00300A88154 /* AQContactAgentViewController.m */; };
 		B7AABE001990CF2500DEADAD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABDFF1990CF2500DEADAD /* Accounts.framework */; };
 		B7AABE021990CF2D00DEADAD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AABE011990CF2D00DEADAD /* Social.framework */; };
 		B7AF57771A662EAB00F640F3 /* AQViewPropertyImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AF57761A662EAB00F640F3 /* AQViewPropertyImageViewer.m */; };
@@ -632,6 +633,8 @@
 		B7A83CD5199B3C1D00B4B0C6 /* AQSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQSearchViewController.m; sourceTree = "<group>"; };
 		B7A83CD7199B71E000B4B0C6 /* searchBarBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBarBg.png; sourceTree = "<group>"; };
 		B7A83CD8199B71E000B4B0C6 /* searchBarBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarBg@2x.png"; sourceTree = "<group>"; };
+		B7AA79FB1A79D00300A88154 /* AQContactAgentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQContactAgentViewController.h; sourceTree = "<group>"; };
+		B7AA79FC1A79D00300A88154 /* AQContactAgentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQContactAgentViewController.m; sourceTree = "<group>"; };
 		B7AABDFF1990CF2500DEADAD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B7AABE011990CF2D00DEADAD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B7AF57751A662EAB00F640F3 /* AQViewPropertyImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQViewPropertyImageViewer.h; sourceTree = "<group>"; };
@@ -1501,6 +1504,8 @@
 			children = (
 				B7A83C651999F57800B4B0C6 /* AQProfileViewController.h */,
 				FBAF2E1619D2FD5E00D5B01E /* AQProfileViewController.m */,
+				B7AA79FB1A79D00300A88154 /* AQContactAgentViewController.h */,
+				B7AA79FC1A79D00300A88154 /* AQContactAgentViewController.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2031,6 +2036,7 @@
 				B72613951A78A535005C7FFF /* pushnotification.m in Sources */,
 				B7A39C8D19CC202F005FBEE6 /* AQPropertyTableViewController.m in Sources */,
 				B79B3A0519C2FA9100F2DEDD /* ReflectionView.m in Sources */,
+				B7AA79FD1A79D00300A88154 /* AQContactAgentViewController.m in Sources */,
 				B788325D19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m in Sources */,
 				B7A43B1E1988A2A800180532 /* AQViewController.m in Sources */,
 				B72613891A78A535005C7FFF /* MessagesView.m in Sources */,

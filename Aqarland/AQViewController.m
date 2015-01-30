@@ -55,6 +55,9 @@
         //[self LoadDashboard];
         [self.navigationController pushViewController:self.viewDeckVC animated:NO];
         
+    }else
+    {
+        [self LoadViewControllers];
     }
 //#warning mark Put NSUSERDEFAULTS HERE
 }
@@ -110,7 +113,9 @@
 }
 -(void) LoadViewControllers
 {
-    
+    self.homeVC=nil;
+    self.sideMenuVC=nil;
+    self.viewDeckVC=nil;
     self.homeVC =[GlobalInstance loadStoryBoardId:sHomeVC];
     self.sideMenuVC =[GlobalInstance loadStoryBoardId:sSideMenuVC];
     
