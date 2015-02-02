@@ -30,9 +30,12 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableMessages;
 @property (strong, nonatomic) IBOutlet UIView *viewEmpty;
 @property (strong, nonatomic)  PFFile *lastUserAvatar;
-@property (strong, nonatomic) NSArray *messageArray;
+@property (strong, nonatomic) NSMutableArray *messageArray;
 @property (strong, nonatomic) NSMutableArray *agentAvatarArr;
 @property (strong, nonatomic) NSMutableArray *userAgentArr;
+@property (strong, nonatomic) NSMutableArray *userAgentTempArr;
+@property (strong, nonatomic) NSMutableDictionary *userInfoDict;
+
 @property (strong, nonatomic) PFUser *agentUser;
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -64,6 +67,8 @@
 	self.title = @"Messages";
     self.agentAvatarArr=[[NSMutableArray alloc] init];
     self.userAgentArr=[[NSMutableArray alloc] init];
+    self.userAgentTempArr=[[NSMutableArray alloc] init];
+    self.messageArray=[[NSMutableArray alloc] init];
     [self customizeHeaderBar];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[tableMessages registerNib:[UINib nibWithNibName:@"MessagesCell" bundle:nil] forCellReuseIdentifier:@"MessagesCell"];
@@ -135,6 +140,8 @@
 - (void)loadMessages
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+   // __block NSMutableDictionary *dictUser=[[NSMutableDictionary alloc] init];
+
 //    [self.agentAvatarArr removeAllObjects];
 	if ([PFUser currentUser] != nil)
 	{
@@ -147,34 +154,67 @@
 		[query orderByDescending:PF_MESSAGES_UPDATEDACTION];
 		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 		{
-            self.messageArray=objects;
+            self.messageArray=[NSMutableArray arrayWithArray:objects];
             NSLog(@"objects %@",objects);
             for (NSDictionary *dict in objects)
             {
+                NSMutableDictionary *dictUser=[[NSMutableDictionary alloc] init];
                 PFUser *currentUser=[PFUser currentUser];
+                PFUser *tempUser;
                 PFUser *agentUser=(PFUser *)dict[@"FromUser"];
                 PFObject *obj;
                 if ([agentUser.objectId isEqualToString:currentUser.objectId])
                 {
                      obj=(PFObject*)dict[@"ToUser"];
-                    [self.userAgentArr addObject:dict[@"ToUser"]];
+                     tempUser=dict[@"ToUser"];
+                    dictUser[@"UserInfo"]=dict[@"ToUser"];
+                    dictUser[@"ImgUser"]=@"";
+                    //[self.userAgentArr addObject:dictUser];
                 }else
                 {
                     obj=(PFObject*)dict[@"FromUser"];
-                    [self.userAgentArr addObject:dict[@"FromUser"]];
+                    tempUser=dict[@"FromUser"];
+                    dictUser[@"UserInfo"]=dict[@"FromUser"];
+                    dictUser[@"ImgUser"]=@"";
+
+                    //[self.userAgentArr addObject:dictUser];
 
                 }
-                
-                NSLog(@"obj %@",obj[@"UserProfile"]);
+                [self.userAgentArr addObject:dictUser];
+                [self.userAgentTempArr addObject:tempUser];
+//                NSLog(@"self.messageArray %@",self.messageArray);
+//                NSLog(@"obj %@",obj[@"UserProfile"]);
                 PFRelation *relation = obj[@"userProfile"];
                 PFQuery *query = [relation query];
                 [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
                  {
-                     NSLog(@"results %@",results);
+//                     NSLog(@"self.userAgentArr %@",self.userAgentArr);
+//                     NSLog(@"results>>> %@",results);
+//                     NSLog(@"self.userAgentTempArr %@",self.userAgentTempArr);
+
                      if([results count]!=0)
                      {
-                         NSDictionary *dict=[results objectAtIndex:0];
-                         [self.agentAvatarArr addObject:dict[@"userAvatar"]];
+                         for (int i=0; i<[self.userAgentArr count]; i++)
+                         {
+                             NSDictionary *tempUser=[self.userAgentArr objectAtIndex:i];
+                             PFUser *tempUser1=tempUser[@"UserInfo"];
+                             NSDictionary *dict=[results objectAtIndex:0];
+                             PFUser *agentUser=dict[@"user"];
+//                             NSLog(@"agentUser.objectId>>> %@",agentUser.objectId);
+//                             NSLog(@"tempUser>>> %@",tempUser1.objectId);
+
+                             if ([tempUser1.objectId isEqualToString:agentUser.objectId])
+                             {
+                                 NSMutableDictionary *innerDict= [[NSMutableDictionary alloc] initWithDictionary:[self.userAgentArr objectAtIndex:i]];
+                                 [innerDict setObject:dict[@"userAvatar"] forKey:@"ImgUser"];
+                                 [self.userAgentArr replaceObjectAtIndex:i withObject:innerDict];
+                                 NSLog(@"self.userAgentArr %@",self.userAgentArr);
+                                 [self.agentAvatarArr addObject:innerDict[@"UserInfo"]];
+                             }
+                         }
+                         //NSDictionary *dict=[results objectAtIndex:0];
+                         //dictUser=[[NSMutableDictionary alloc] initWithObjectsAndKeys:@"", nil]
+                         //[self.agentAvatarArr addObject:dict[@"userAvatar"]];
                      }
                      NSLog(@"self.agentAvatarArr %@",self.agentAvatarArr);
                      if([self.messageArray count]!=0)
@@ -185,8 +225,8 @@
                              {
                                  [messages removeAllObjects];
                                  [messages addObjectsFromArray:self.messageArray];
-                                 [self.agentAvatarArr reverseObjectEnumerator];
-                                 [self.userAgentArr reverseObjectEnumerator];
+                                 //[self.agentAvatarArr reverseObjectEnumerator];
+                                 //[self.userAgentArr reverseObjectEnumerator];
                                  [tableMessages reloadData];
                                  [self updateEmptyView];
                                  [self updateTabCounter];
@@ -272,10 +312,19 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	MessagesCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MessagesCell" forIndexPath:indexPath];
-    if([self.agentAvatarArr count]!=0)
+    if([self.userAgentArr count]!=0)
     {
-        PFFile *avatar=self.agentAvatarArr[indexPath.row];
-        [cell bindData:messages[indexPath.row] avatar:avatar];
+        NSLog(@"self.userAgentArr %@",self.userAgentArr);
+        NSDictionary *dict=[self.userAgentArr objectAtIndex:indexPath.row];
+        PFFile *avatar;
+        if(dict[@"ImgUser"])
+        {
+            avatar=dict[@"ImgUser"];
+            [cell bindData:messages[indexPath.row] avatar:avatar];
+        }else
+        {
+            [cell bindData:messages[indexPath.row] avatar:nil];
+        }
     }else
     {
         [cell bindData:messages[indexPath.row] avatar:nil];
@@ -312,11 +361,13 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	PFObject *message = messages[indexPath.row];
 	ChatView *chatView = [[ChatView alloc] initWith:message[PF_MESSAGES_ROOMID]];
-    PFFile *avatar=self.agentAvatarArr[indexPath.row];
+    NSDictionary *dict=self.userAgentArr[indexPath.row];
+    PFFile *avatar=dict[@"ImgUser"];
     NSLog(@"avatar %@",avatar);
     NSData *imageData = [avatar getData];
     chatView.agentAvatar=[UIImage imageWithData:imageData];
-    chatView.userAgent=self.userAgentArr[indexPath.row];
+
+    chatView.userAgent=(PFUser *)[self.agentAvatarArr objectAtIndex:indexPath.row];
 	chatView.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:chatView animated:YES];
 }
