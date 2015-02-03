@@ -83,6 +83,17 @@
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
+- (NSString *) randomStringWithLength: (int) len
+{
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [LETTERS characterAtIndex: arc4random_uniform([LETTERS length])]];
+    }
+    
+    return randomString;
+}
 -(void) customizeHeaderBar
 {
     [self.navigationItem setTitle:@"Add Property"];
@@ -164,6 +175,7 @@
 
         }else
         {
+            self.propertyDetailsDict[@"propertyID"] = [self randomStringWithLength:5];
             [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
             ParseLayerService *request=[[ParseLayerService alloc] init];
             [request addProperty:self.propertyDetailsDict];

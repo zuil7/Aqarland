@@ -33,12 +33,14 @@
 @property(nonatomic,strong) PropertyList *property;
 @property (nonatomic, strong) MBProgressHUD *HUD;
 @property (strong, nonatomic) MessagesView *messagesView;
-
+@property (strong, nonatomic) NSString *letters;
 
 @property(strong,nonatomic) CLLocationManager *locationManager;
 @end
 
 @implementation AQHomeViewController
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +54,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
      [self customizeHeaderBar];
 //  self.propertyListArr=[[NSMutableArray alloc]initWithArray:[GlobalInstance loadPlistfile:@"propertyTypeList" forKey:@"Station"]];
@@ -289,6 +292,8 @@
 ////////////////////////////////////
 #pragma mark - Logic
 ////////////////////////////////////
+
+
 
 -(void) searchBarBtn_touchedupInside:(id) sender
 {

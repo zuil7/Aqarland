@@ -29,5 +29,5 @@
 @property (nonatomic, strong) NSNumber *m_propertySize;
 @property (nonatomic, strong) NSString *m_latLong;
 @property (nonatomic, strong) NSMutableArray *propertyImages;
-
+@property (nonatomic, strong) NSString *m_propertyID;
 @end

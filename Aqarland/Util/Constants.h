@@ -41,6 +41,8 @@
 #define TitleHeaderFont @"Roboto-Light"
 #define TitleHeaderFontSize 18.0
 
+#define LETTERS @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
 //UserDefaults
 #define userDefaultUserName             @"dUsername"
 #define userDefaultLoginType            @"dLoginType"

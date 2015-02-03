@@ -133,7 +133,8 @@
 
 -(void) customizeHeaderBar
 {
-    [self.navigationItem setTitle:@"Unit Number"];
+    NSLog(@"Prop Id %@",self.propertyDetails.m_propertyID);
+    [self.navigationItem setTitle:[NSString stringWithFormat:@"Unit No. %@",self.propertyDetails.m_propertyID]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     

@@ -27,4 +27,5 @@
 @synthesize propertyImages;
 @synthesize m_ofType;
 @synthesize m_price;
+@synthesize m_propertyID;
 @end

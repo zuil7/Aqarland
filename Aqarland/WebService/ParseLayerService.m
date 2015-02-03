@@ -458,6 +458,10 @@ static ParseLayerService *instance = nil;
                  {
                      property.m_ofType=pResult[@"ofType"];
                  }
+                 if (pResult[@"propertyID"] != [NSNull null])
+                 {
+                     property.m_propertyID=pResult[@"propertyID"];
+                 }
 
                  [propertyListArr addObject:property];
              }
@@ -573,6 +577,11 @@ static ParseLayerService *instance = nil;
                 {
                     property.user=pResult[@"user"];
                 }
+                if (pResult[@"propertyID"] != [NSNull null])
+                {
+                    property.m_propertyID=pResult[@"propertyID"];
+                }
+
                 [propertyListArr addObject:property];
             }
             
@@ -674,7 +683,11 @@ static ParseLayerService *instance = nil;
                 {
                     property.user=pResult[@"user"];
                 }
-               
+                if (pResult[@"propertyID"] != [NSNull null])
+                {
+                    property.m_propertyID=pResult[@"propertyID"];
+                }
+
                 
                 [propertyListArr addObject:property];
             }
@@ -953,7 +966,11 @@ static ParseLayerService *instance = nil;
                          {
                              property.m_price=pResult[@"price"];
                          }
-                         
+                         if (pResult[@"propertyID"] != [NSNull null])
+                         {
+                             property.m_propertyID=pResult[@"propertyID"];
+                         }
+
                          [propertyListArr addObject:property];
                      }
                      
@@ -1170,11 +1187,22 @@ static ParseLayerService *instance = nil;
 ////////////////////////////////
 #pragma mark - Add Property
 ////////////////////////////////
--(void) addProperty:(NSDictionary *) propertyDetails
+- (NSString *) randomStringWithLength: (int) len
+{
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [LETTERS characterAtIndex: arc4random_uniform([LETTERS length])]];
+    }
+    
+    return randomString;
+}
+-(void) saveProperty:(NSDictionary *) propertyDetails
 {
     PFUser *cUser = [PFUser currentUser];
     PFObject *post = [PFObject objectWithClassName:pPropertyList];
-   
+    
     post[@"unit"] = propertyDetails[@"unit"];
     post[@"houseNumber"]=propertyDetails[@"houseNum"];
     post[@"building"]=propertyDetails[@"bldg"];
@@ -1188,7 +1216,7 @@ static ParseLayerService *instance = nil;
     post[@"numberOfBedrooms"]=propertyDetails[@"numberOfBedrooms"];
     post[@"numberOfBaths"]=propertyDetails[@"numberOfBaths"];
     post[@"amenities"]=propertyDetails[@"amenities"];
-    
+    post[@"propertyID"]=propertyDetails[@"propertyID"];
     if([propertyDetails[@"ofType"] isEqualToString:@"For Rent"])
     {
         post[@"ofType"]=@"Rent";
@@ -1197,7 +1225,7 @@ static ParseLayerService *instance = nil;
     {
         post[@"ofType"]=@"Sale";
     }
-   
+    
     post[@"price"]=propertyDetails[@"price"];
     post[@"description"]=propertyDetails[@"description"];
     
@@ -1210,7 +1238,7 @@ static ParseLayerService *instance = nil;
             [relation addObject:post];
             [cUser saveInBackground];
             NSDictionary *dict=[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithBool:succeeded],@"flag",
-                [post objectId],@"propertyObjID",nil];
+                                [post objectId],@"propertyObjID",nil];
             [self reportSuccess:dict];
         }
         else
@@ -1218,7 +1246,25 @@ static ParseLayerService *instance = nil;
             [self reportFailure:error];
         }
     }];
-
+}
+-(void) addProperty:(NSDictionary *) propertyDetails
+{
+    NSLog(@"propertyID %@",propertyDetails[@"propertyID"]);
+    PFQuery *query = [PFQuery queryWithClassName:pPropertyList];
+    [query whereKey:@"propertyID" equalTo:(id)propertyDetails[@"propertyID"]];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+    {
+        if(!object)
+        {
+            [self saveProperty:propertyDetails];
+        }else
+        {
+            NSMutableDictionary *dict=[[NSMutableDictionary alloc] initWithDictionary:propertyDetails];
+            dict[@"propertyID"]=[self randomStringWithLength:5];
+            [self saveProperty:dict];
+        }
+     }];
+    
 }
 ////////////////////////////////
 #pragma mark - Update Property
@@ -1530,7 +1576,11 @@ static ParseLayerService *instance = nil;
                  {
                      property.m_price=pResult[@"price"];
                  }
-                 
+                 if (pResult[@"propertyID"] != [NSNull null])
+                 {
+                     property.m_propertyID=pResult[@"propertyID"];
+                 }
+
                  [propertyListArr addObject:property];
              }
              
@@ -1627,7 +1677,11 @@ static ParseLayerService *instance = nil;
                  {
                      property.m_price=pResult[@"price"];
                  }
-                 
+                 if (pResult[@"propertyID"] != [NSNull null])
+                 {
+                     property.m_propertyID=pResult[@"propertyID"];
+                 }
+
                  [propertyListArr addObject:property];
              }
              
