@@ -87,15 +87,18 @@
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {
-        UIImage *backButtonImage = [UIImage imageNamed:iBackArrowImg];
-        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        backBtn.frame = CGRectMake(0,0,22,32);
-        [backBtn setImage:backButtonImage forState:UIControlStateNormal];
-
-        [backBtn addTarget:self.viewDeckController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Previous" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+        [barButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,RGB(255, 255, 255), NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
         [self.navigationItem setLeftBarButtonItem:barButtonItem];
+//        UIImage *backButtonImage = [UIImage imageNamed:iBackArrowImg];
+//        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        backBtn.frame = CGRectMake(0,0,22,32);
+//        [backBtn setImage:backButtonImage forState:UIControlStateNormal];
+//
+//        [backBtn addTarget:self.viewDeckController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+//        [self.navigationItem setLeftBarButtonItem:barButtonItem];
         
        /* self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"left", nil) style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(popViewControllerAnimated:)];
         

@@ -117,15 +117,20 @@
     }
     if ([self.navigationItem respondsToSelector:@selector(rightBarButtonItems)])
     {
-        UIImage *forwardImage = [UIImage imageNamed:iForwardArrowImg];
-        UIButton *forwardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        forwardBtn.frame = CGRectMake(0,0,22,32);
-        [forwardBtn setImage:forwardImage forState:UIControlStateNormal];
-        
-        [forwardBtn addTarget:self action:@selector(uploadImages:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:forwardBtn];
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(uploadImages:)];
+        [barButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,RGB(255, 255, 255), NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
         [self.navigationItem setRightBarButtonItem:barButtonItem];
+
+        
+//        UIImage *forwardImage = [UIImage imageNamed:iForwardArrowImg];
+//        UIButton *forwardBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        forwardBtn.frame = CGRectMake(0,0,22,32);
+//        [forwardBtn setImage:forwardImage forState:UIControlStateNormal];
+//        
+//        [forwardBtn addTarget:self action:@selector(uploadImages:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:forwardBtn];
+//        [self.navigationItem setRightBarButtonItem:barButtonItem];
         
     }
 }

@@ -40,6 +40,11 @@
     
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Previous" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+        [barButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:TitleHeaderFont size:TitleHeaderFontSize], NSFontAttributeName,RGB(255, 255, 255), NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+        [self.navigationItem setLeftBarButtonItem:barButtonItem];
+        
+        /*
         UIImage *backImage = [UIImage imageNamed:iBackArrowImg];
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.frame = CGRectMake(0,0,22,32);
@@ -49,7 +54,7 @@
         
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
         [self.navigationItem setLeftBarButtonItem:barButtonItem];
-        
+        */
     }
    
 }
