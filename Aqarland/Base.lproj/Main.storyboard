@@ -329,14 +329,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Properties" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7X-wC-mJU">
-                                <rect key="frame" x="115" y="287" width="125" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jbC-a7-qXT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="TOj-Dj-jIN" id="BUw-Ge-iUO"/>
+                                    <outlet property="delegate" destination="TOj-Dj-jIN" id="4ye-uD-lNx"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jbC-a7-qXT" firstAttribute="bottom" secondItem="EYU-oL-fB2" secondAttribute="top" id="HJU-5U-Gwg"/>
+                            <constraint firstItem="jbC-a7-qXT" firstAttribute="leading" secondItem="fpm-BU-LED" secondAttribute="leading" id="I7Q-6d-DHk"/>
+                            <constraint firstItem="jbC-a7-qXT" firstAttribute="top" secondItem="fpm-BU-LED" secondAttribute="top" id="JhD-4S-ird"/>
+                            <constraint firstAttribute="trailing" secondItem="jbC-a7-qXT" secondAttribute="trailing" id="gxj-Q7-j4F"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="listTbl" destination="jbC-a7-qXT" id="NJ0-Um-gog"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50f-oq-PIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

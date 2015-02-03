@@ -10,4 +10,5 @@
 
 @interface AQPropertiesViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *listTbl;
 @end

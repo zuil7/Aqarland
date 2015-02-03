@@ -44,7 +44,7 @@
 
     
     [self customizeHeaderBar];
-    [self setupUserInterfaceComponents];
+    //[self setupUserInterfaceComponents];
     [self fetchProperties];
 }
 
@@ -80,7 +80,7 @@
     
     [propertyList replaceObjectAtIndex:idx withObject:strText];
      NSLog(@"propertyList %@",propertyList);
-    [self.tableView reloadData];
+    [self.listTbl reloadData];
 }
 -(void) customizeHeaderBar
 {
@@ -104,18 +104,18 @@
    
 }
 
-- (void)setupUserInterfaceComponents {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0f constant:0.0f]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0f constant:64.0f]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0f constant:0.0f]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1.0f constant:0.0f]];
-}
-
+//- (void)setupUserInterfaceComponents {
+//    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+//    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
+//    [self.view addSubview:self.tableView];
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0f constant:0.0f]];
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0f constant:64.0f]];
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1.0f constant:0.0f]];
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1.0f constant:0.0f]];
+//}
+//
 - (void)fetchProperties {
     
     [MBProgressHUD showHUDAddedTo:GlobalInstance.navController.view animated:YES];
@@ -137,9 +137,10 @@
             NSLog(@"propertyList %@",propertyList);
             [propertyListDetails addObject:pl];
         }
-        [self.tableView reloadData];
+        [self.listTbl reloadData];
     }];
-    [request setFailedBlock:^(NSError *error) {
+    [request setFailedBlock:^(NSError *error)
+    {
         [MBProgressHUD hideHUDForView:GlobalInstance.navController.view animated:YES];
         [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
     }];
