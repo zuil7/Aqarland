@@ -45,9 +45,15 @@
     [self.navigationController.navigationBar setBarTintColor:RGB(34, 141, 187)];
     if ([self.navigationItem respondsToSelector:@selector(leftBarButtonItems)])
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
-                                                                                              target:self
-                                                                                              action:@selector(closePressed:)];
+        UIImage *backImage = [UIImage imageNamed:iCloseImg];
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        backBtn.frame = CGRectMake(0,0,22,22);
+        [backBtn setImage:backImage forState:UIControlStateNormal];
+        
+        [backBtn addTarget:self action:@selector(closePressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        [self.navigationItem setLeftBarButtonItem:barButtonItem];
     }
     
 }
