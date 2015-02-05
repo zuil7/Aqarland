@@ -81,6 +81,8 @@
 #define sSearchFilterResultVC       @"filterSearchResult"
 #define sImageViewer                @"sImageViewer"
 #define sContactAgent               @"ContactAgent"
+#define sForgotPass                 @"ForgotPassword"
+
 
 
 //Parse Class Name

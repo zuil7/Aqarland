@@ -13,6 +13,7 @@
 #import "AQSignUpViewController.h"
 #import "PFTwitterUtils+NativeTwitter.h"
 #import "IQKeyboardManager.h"
+#import "AQForgotPasswordViewController.h"
 
 @interface AQViewController ()<UIActionSheetDelegate,PFLogInViewControllerDelegate>
 
@@ -23,6 +24,7 @@
 @property(nonatomic,strong) PFLogInViewController *logInController;
 @property(nonatomic,strong) CustomLoginVC *customLoginVC;
 @property(nonatomic,strong) AQSignUpViewController *signUpVC;
+@property(nonatomic,strong) AQForgotPasswordViewController *forgotPassword;
 @property(strong,nonatomic) UINavigationController *ListProperty;
 
 
@@ -257,7 +259,12 @@
 ////////////////////////////////////
 #pragma mark - Action
 ////////////////////////////////////
-
+-(IBAction)forgetPassword_touchedup_Inside:(id)sender
+{
+    self.forgotPassword=[GlobalInstance loadStoryBoardId:sForgotPass];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:self.forgotPassword];
+    [GlobalInstance.navController presentViewController:nc animated:YES completion:nil];
+}
 -(IBAction)login_touchedup_inside:(id)sender
 {
     [self.uETxtField resignFirstResponder];

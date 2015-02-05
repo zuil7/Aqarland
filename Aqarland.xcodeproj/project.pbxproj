@@ -42,6 +42,7 @@
 		B72613AA1A78C2C2005C7FFF /* tab_messages@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B72613A31A78C2C2005C7FFF /* tab_messages@2x.png */; };
 		B72613AB1A78C2C2005C7FFF /* tab_private@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B72613A41A78C2C2005C7FFF /* tab_private@2x.png */; };
 		B72613AC1A78C2C2005C7FFF /* tab_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B72613A51A78C2C2005C7FFF /* tab_profile@2x.png */; };
+		B72B09F21A83344500493770 /* AQForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B72B09F11A83344500493770 /* AQForgotPasswordViewController.m */; };
 		B73C05AA19A1E8BD0048FE8A /* type_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = B73C05A819A1E8BD0048FE8A /* type_fill.png */; };
 		B73C05AB19A1E8BD0048FE8A /* type_fill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B73C05A919A1E8BD0048FE8A /* type_fill@2x.png */; };
 		B788325D19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B788325C19ADBBA700FD2219 /* AQMapConfirmLocationViewController.m */; };
@@ -366,6 +367,8 @@
 		B72613A31A78C2C2005C7FFF /* tab_messages@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_messages@2x.png"; sourceTree = "<group>"; };
 		B72613A41A78C2C2005C7FFF /* tab_private@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_private@2x.png"; sourceTree = "<group>"; };
 		B72613A51A78C2C2005C7FFF /* tab_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_profile@2x.png"; sourceTree = "<group>"; };
+		B72B09F01A83344500493770 /* AQForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQForgotPasswordViewController.h; sourceTree = "<group>"; };
+		B72B09F11A83344500493770 /* AQForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQForgotPasswordViewController.m; sourceTree = "<group>"; };
 		B73C05A819A1E8BD0048FE8A /* type_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = type_fill.png; sourceTree = "<group>"; };
 		B73C05A919A1E8BD0048FE8A /* type_fill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "type_fill@2x.png"; sourceTree = "<group>"; };
 		B788325B19ADBBA700FD2219 /* AQMapConfirmLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQMapConfirmLocationViewController.h; sourceTree = "<group>"; };
@@ -1204,6 +1207,8 @@
 				B7A43B7B1988C8E700180532 /* AQSignUpViewController.m */,
 				B7948FA0198B571A00936E16 /* AQCreateAccountViewController.h */,
 				B7948FA1198B571A00936E16 /* AQCreateAccountViewController.m */,
+				B72B09F01A83344500493770 /* AQForgotPasswordViewController.h */,
+				B72B09F11A83344500493770 /* AQForgotPasswordViewController.m */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -2061,6 +2066,7 @@
 				B7A83CCF199A18F900B4B0C6 /* CustomFontsTextField.m in Sources */,
 				B72613941A78A535005C7FFF /* messages.m in Sources */,
 				B7EE299919B0673A0085DC0D /* FHSStream.m in Sources */,
+				B72B09F21A83344500493770 /* AQForgotPasswordViewController.m in Sources */,
 				B7C6DB2219C8022D00A6AADC /* AQPropertListViewController.m in Sources */,
 				B79120FC19E52F1D005EC610 /* FXBlurView.m in Sources */,
 				B726138F1A78A535005C7FFF /* RegisterView.m in Sources */,
