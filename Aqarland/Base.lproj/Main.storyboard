@@ -35,13 +35,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_screen_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y6p-gV-XZP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login_screen_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y6p-gV-XZP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="CaM-nu-PzO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="CaM-nu-PzO">
                                 <rect key="frame" x="68" y="52" width="185" height="133"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="QTi-Xo-ZHz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="QTi-Xo-ZHz">
                                 <rect key="frame" x="0.0" y="230" width="320" height="109"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Td-Js-sjJ">
@@ -91,7 +91,7 @@
                                     <action selector="loginTwitter_touchedup_inside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="VMh-Cn-fUp"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9mz-KJ-Xdn" customClass="RobotoLightTxtField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9mz-KJ-Xdn" customClass="RobotoLightTxtField">
                                 <rect key="frame" x="44" y="239" width="230" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -984,68 +984,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARK-Fc-Lga" customClass="RobotoLight">
-                                <rect key="frame" x="23" y="84" width="174" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARK-Fc-Lga" customClass="RobotoLight">
+                                <rect key="frame" x="23" y="98" width="174" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="174" id="JG2-Vq-GBE"/>
+                                    <constraint firstAttribute="height" constant="26" id="ZKK-TR-lAf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="type_fill.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQ3-Tx-Pmp">
-                                <rect key="frame" x="23" y="113" width="281" height="37"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="type_fill.png" translatesAutoresizingMaskIntoConstraints="NO" id="kQ3-Tx-Pmp">
+                                <rect key="frame" x="23" y="127" width="281" height="37"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHo-Wg-GV0" customClass="RobotoLightTxtField">
-                                <rect key="frame" x="31" y="117" width="264" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aHo-Wg-GV0" customClass="RobotoLightTxtField">
+                                <rect key="frame" x="31" y="131" width="264" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8Wa-yh-qB7"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter New Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQG-Lw-cUL" customClass="RobotoLight">
-                                <rect key="frame" x="23" y="155" width="174" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="type_fill.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ogk-a1-1D3">
-                                <rect key="frame" x="23" y="182" width="281" height="37"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pdl-7v-krl" customClass="RobotoLightTxtField">
-                                <rect key="frame" x="31" y="185" width="264" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirm New Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBW-Bt-ofv" customClass="RobotoLight">
-                                <rect key="frame" x="23" y="224" width="174" height="26"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="type_fill.png" translatesAutoresizingMaskIntoConstraints="NO" id="pVq-mi-03V">
-                                <rect key="frame" x="23" y="251" width="281" height="37"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-ZM-hHZ" customClass="RobotoLightTxtField">
-                                <rect key="frame" x="31" y="254" width="264" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9o-cl-KSf" customClass="RobotoLightBtn">
-                                <rect key="frame" x="23" y="316" width="281" height="46"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9o-cl-KSf" customClass="RobotoLightBtn">
+                                <rect key="frame" x="23" y="191" width="281" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Reset Password" backgroundImage="blank_button_inactive.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="done_button_active.png"/>
-                                <state key="highlighted" image="done_button_inactive.png"/>
+                                <state key="selected" backgroundImage="blank_button_inactive.png"/>
+                                <state key="highlighted" backgroundImage="blank_button_inactive.png"/>
                                 <connections>
-                                    <action selector="done_touchedup_inside:" destination="vAd-ZU-gl7" eventType="touchUpInside" id="Ioi-mI-XXX"/>
+                                    <action selector="resetPassword_touchedup_inside:" destination="ABM-lh-ciF" eventType="touchUpInside" id="7jC-vz-JX3"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ARK-Fc-Lga" firstAttribute="top" secondItem="CM2-Oc-LxU" secondAttribute="bottom" constant="34" id="1az-pu-Dp6"/>
+                            <constraint firstItem="kQ3-Tx-Pmp" firstAttribute="trailing" secondItem="e9o-cl-KSf" secondAttribute="trailing" id="52c-sp-Ktq"/>
+                            <constraint firstItem="aHo-Wg-GV0" firstAttribute="top" secondItem="ARK-Fc-Lga" secondAttribute="bottom" constant="7" id="Qsr-oO-9pj"/>
+                            <constraint firstItem="4yc-8j-1PY" firstAttribute="top" secondItem="e9o-cl-KSf" secondAttribute="bottom" constant="331" id="Vl1-KK-Qyk"/>
+                            <constraint firstItem="aHo-Wg-GV0" firstAttribute="centerX" secondItem="kQ3-Tx-Pmp" secondAttribute="centerX" id="XN7-wV-fcE"/>
+                            <constraint firstItem="ARK-Fc-Lga" firstAttribute="leading" secondItem="kQ3-Tx-Pmp" secondAttribute="leading" id="edl-O4-Oah"/>
+                            <constraint firstItem="aHo-Wg-GV0" firstAttribute="leading" secondItem="rIq-1v-bLN" secondAttribute="leadingMargin" constant="15" id="hpN-o1-rK1"/>
+                            <constraint firstItem="e9o-cl-KSf" firstAttribute="trailing" secondItem="rIq-1v-bLN" secondAttribute="trailingMargin" id="icr-DB-mKZ"/>
+                            <constraint firstItem="kQ3-Tx-Pmp" firstAttribute="top" secondItem="ARK-Fc-Lga" secondAttribute="bottom" constant="3" id="kf8-pU-i7m"/>
+                            <constraint firstItem="e9o-cl-KSf" firstAttribute="top" secondItem="aHo-Wg-GV0" secondAttribute="bottom" constant="30" id="mRU-ke-0hn"/>
+                            <constraint firstItem="e9o-cl-KSf" firstAttribute="top" secondItem="kQ3-Tx-Pmp" secondAttribute="bottom" constant="27" id="uI4-jV-3fH"/>
+                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="confirmTextField" destination="Zbh-ZM-hHZ" id="7vK-I2-yPF"/>
                         <outlet property="emailAddTxtField" destination="aHo-Wg-GV0" id="cuS-ZO-61q"/>
-                        <outlet property="passwordTextField" destination="Pdl-7v-krl" id="zBn-rp-PNO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y3b-Om-7eS" userLabel="First Responder" sceneMemberID="firstResponder"/>

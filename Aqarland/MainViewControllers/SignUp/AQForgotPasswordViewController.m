@@ -37,6 +37,16 @@
 ////////////////////////
 #pragma mark - Logic
 ////////////////////////
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = NO;
+    
+    NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+    NSString *laxString = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
 -(void) customizeHeaderBar
 {
     [self.navigationController setNavigationBarHidden:NO];
@@ -57,10 +67,60 @@
     }
     
 }
-
+-(BOOL) checkTextField
+{
+    if (self.emailAddTxtField.text.length!=0)
+    {
+        return 1;
+    }else
+    {
+        return 0;
+    }
+    
+}
 - (void)closePressed:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+////////////////////////
+#pragma mark - Action
+////////////////////////
+-(IBAction)resetPassword_touchedup_inside:(id)sender
+{
+    [self.emailAddTxtField resignFirstResponder];
+    if([self checkTextField])
+    {
+        if([self NSStringIsValidEmail:self.emailAddTxtField.text])
+        {
+            [PFUser requestPasswordResetForEmailInBackground:self.emailAddTxtField.text
+                                                       block:^(BOOL succeeded, NSError *error)
+             {
+                 if(succeeded)
+                 {
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:iInformation
+                                                                     message:@"Please check your email"
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"OK"
+                                                           otherButtonTitles:nil];
+                     [alert show];
+                 }else
+                 {
+                     [GlobalInstance showAlert:iErrorInfo message:[error userInfo][@"error"]];
+                 }
+             }];
+        }else
+        {
+             [GlobalInstance showAlert:iInformation message:@"Invalid email format"];
+        }
+    }else
+    {
+          [GlobalInstance showAlert:iInformation message:@"Please fill out all the textfield to proceed"];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self closePressed:nil];
 }
 
 @end
