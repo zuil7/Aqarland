@@ -192,7 +192,7 @@
                 [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
                  {
 //                     NSLog(@"self.userAgentArr %@",self.userAgentArr);
-//                     NSLog(@"results>>> %@",results);
+                     NSLog(@"results>>> %@",results);
 //                     NSLog(@"self.userAgentTempArr %@",self.userAgentTempArr);
 
                      if([results count]!=0)
@@ -209,10 +209,15 @@
                              if ([tempUser1.objectId isEqualToString:agentUser.objectId])
                              {
                                  NSMutableDictionary *innerDict= [[NSMutableDictionary alloc] initWithDictionary:[self.userAgentArr objectAtIndex:i]];
-                                 [innerDict setObject:dict[@"userAvatar"] forKey:@"ImgUser"];
-                                 [self.userAgentArr replaceObjectAtIndex:i withObject:innerDict];
-                                 NSLog(@"self.userAgentArr %@",self.userAgentArr);
+
+                                 if(dict[@"userAvatar"])
+                                 {
+                                     [innerDict setObject:dict[@"userAvatar"] forKey:@"ImgUser"];
+                                     [self.userAgentArr replaceObjectAtIndex:i withObject:innerDict];
+                                     NSLog(@"self.userAgentArr %@",self.userAgentArr);
+                                 }
                                  [self.agentAvatarArr addObject:innerDict[@"UserInfo"]];
+
                              }
                          }
                          //NSDictionary *dict=[results objectAtIndex:0];
@@ -319,15 +324,17 @@
     {
         NSLog(@"self.userAgentArr %@",self.userAgentArr);
         NSDictionary *dict=[self.userAgentArr objectAtIndex:indexPath.row];
-        PFFile *avatar;
-        if(dict[@"ImgUser"])
+        PFFile *avatar=(PFFile *)dict[@"ImgUser"];
+        NSLog(@"ImgUser %@",dict[@"ImgUser"]);
+        NSLog(@"avatar %@",avatar);
+        if ([avatar isKindOfClass:[PFFile class] ])
         {
-            avatar=dict[@"ImgUser"];
             [cell bindData:messages[indexPath.row] avatar:avatar];
         }else
         {
-            [cell bindData:messages[indexPath.row] avatar:nil];
+             [cell bindData:messages[indexPath.row] avatar:nil];
         }
+        
     }else
     {
         [cell bindData:messages[indexPath.row] avatar:nil];
@@ -366,9 +373,17 @@
 	ChatView *chatView = [[ChatView alloc] initWith:message[PF_MESSAGES_ROOMID]];
     NSDictionary *dict=self.userAgentArr[indexPath.row];
     PFFile *avatar=dict[@"ImgUser"];
-    NSLog(@"avatar %@",avatar);
-    NSData *imageData = [avatar getData];
-    chatView.agentAvatar=[UIImage imageWithData:imageData];
+    if ([avatar isKindOfClass:[PFFile class] ])
+    {
+        NSLog(@"avatar %@",avatar);
+        NSData *imageData = [avatar getData];
+        chatView.agentAvatar=[UIImage imageWithData:imageData];
+    }else
+    {
+        chatView.agentAvatar=[UIImage imageNamed:@"chat_blank"];
+
+    }
+   
 
     chatView.userAgent=(PFUser *)[self.agentAvatarArr objectAtIndex:indexPath.row];
 	chatView.hidesBottomBarWhenPushed = YES;
