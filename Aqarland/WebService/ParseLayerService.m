@@ -105,7 +105,8 @@ static ParseLayerService *instance = nil;
     post[@"city"]=profileInfo[@"City"];
     post[@"postCode"]=profileInfo[@"PostCode"];
     post[@"latLong"]=profileInfo[@"LatLong"];
-    
+    post[@"latLong"]=profileInfo[@"LatLong"];
+    post[@"sellerType"]=profileInfo[@"SellerType"];
     
     
     [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

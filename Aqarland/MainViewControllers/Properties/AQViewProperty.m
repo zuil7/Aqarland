@@ -430,6 +430,7 @@
     PFQuery *query = [relation query];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error)
      {
+         NSLog(@"results %@",results);
          self.dictUserProfile=[results objectAtIndex:0];
          self.contactNumberText=self.dictUserProfile[@"phoneNumber"];
          

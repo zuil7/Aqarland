@@ -7,9 +7,11 @@
 //
 
 #import "AQCreateAccountViewController.h"
+#import "RMPickerViewController.h"
 
-@interface AQCreateAccountViewController ()
+@interface AQCreateAccountViewController ()<RMPickerViewControllerDelegate>
 
+@property(nonatomic,strong) NSArray *userTypeArr;
 
 
 @end
@@ -34,6 +36,8 @@
     tap.cancelsTouchesInView = NO;
     
     [self.view addGestureRecognizer:tap];
+    self.userTypeArr=[NSArray arrayWithObjects:@"Seller",@"Agent", nil];
+
     
 }
 
@@ -78,6 +82,7 @@
     if (self.fullNameTxtFld.text.length!=0 &&
         self.eAddressTxtFld.text.length!=0 &&
         self.pNumberTxtFld.text.length!=0 &&
+        ![self.userType.text isEqualToString:@"Type"] &&
         self.pPasswordTxtFld.text.length!=0 &&
         self.cPasswordTxtFld.text.length!=0) {
         return 1;
@@ -89,6 +94,17 @@
 }
 
 #pragma mark - Action
+-(IBAction) userType_touchedup_inside:(id) sender
+{
+    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
+    pickerVC.delegate = self;
+    
+    //You can enable or disable bouncing and motion effects
+    //pickerVC.disableBouncingWhenShowing = YES;
+    //pickerVC.disableMotionEffects = YES;
+    
+    [pickerVC show];
+}
 -(IBAction) done_touchedup_inside:(id)sender
 {
     if ([self checkTextField])
@@ -107,6 +123,7 @@
             parameters[@"City"]=self.placeDict[@"city"];
             parameters[@"PostCode"]=self.placeDict[@"postcode"];
             parameters[@"LatLong"]=self.placeDict[@"latlong"];
+            parameters[@"SellerType"]=self.userType.text;
             parameters[@"loginType"]=mManualLogin;
             
             ParseLayerService *request=[[ParseLayerService alloc] init];
@@ -146,6 +163,37 @@
     {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+////////////////////////
+#pragma mark - RMPickerViewController Delegates
+////////////////////////
+- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray *)selectedRows
+{
+    //    selectedIdx=0;
+    int idx=[[selectedRows objectAtIndex:0] intValue];
+    //    selectedIdx=idx + 1;
+    NSString *selectedStr=[self.userTypeArr objectAtIndex:idx];
+    [self.userType setText:selectedStr];
+        
+}
+
+- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
+    NSLog(@"Selection was canceled");
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [self.userTypeArr count];
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [self.userTypeArr objectAtIndex:row];
 }
 
 @end

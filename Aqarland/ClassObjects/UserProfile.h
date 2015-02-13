@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSString *m_phoneNumber;
 @property (nonatomic, strong) AQUser *user;
 @property (nonatomic, strong) UIImage *userAvatar;
+@property (nonatomic, strong) NSString *m_userType;
 
 @end

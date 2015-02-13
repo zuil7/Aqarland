@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *pNumberTxtFld;
 @property (weak, nonatomic) IBOutlet UITextField *pPasswordTxtFld;
 @property (weak, nonatomic) IBOutlet UITextField *cPasswordTxtFld;
+@property (weak, nonatomic) IBOutlet UILabel *userType;
 
 @end

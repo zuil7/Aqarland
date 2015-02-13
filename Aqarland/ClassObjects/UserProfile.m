@@ -20,5 +20,5 @@
 @synthesize m_phoneNumber;
 @synthesize user;
 @synthesize userAvatar;
-
+@synthesize m_userType;
 @end
